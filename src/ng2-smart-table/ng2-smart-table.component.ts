@@ -19,7 +19,6 @@ import { deepExtend } from './lib/helpers';
   styles: [require('./ng2-smart-table.scss')],
   template: require('./ng2-smart-table.html')
 })
-
 export class Ng2SmartTableComponent implements OnInit, OnChanges {
 
   @Input() source: DataSource;
@@ -161,7 +160,4 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
   protected prepareSettings(): Object {
     return deepExtend(this.defaultSettings, this.settings);
   }
-
-  
-
 }

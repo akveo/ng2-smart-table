@@ -5,14 +5,14 @@
   "author": "akveo",
   "homepage": "http://akveo.github.io/ng2-smart-table/",
   "license": "MIT",
+  "main": "./ng2-smart-table.js",
   "typings": "./ng2-smart-table.d.ts",
   "dependencies": {
   },
   "peerDependencies": {
     "@angular/common": "2.0.0-rc.4",
     "@angular/compiler": "2.0.0-rc.4",
-    "@angular/core": "2.0.0-rc.4",
-    "@angular/forms": "^0.2.0"
+    "@angular/core": "2.0.0-rc.4"
   },
   "devDependencies": {
     "@angular/common": "2.0.0-rc.4",
