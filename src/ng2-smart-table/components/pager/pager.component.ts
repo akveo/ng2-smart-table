@@ -7,7 +7,7 @@ import { DataSource } from '../../lib/data-source/data-source';
   styles: [require('./pager.scss')],
   template: `
   <nav *ngIf="shouldShow()">
-    <ul class="ng2-smart-pagination pager">
+    <ul class="ng2-smart-pagination pagination">
       <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
         <a class="ng2-smart-page-link page-link" href="#" 
         (click)="getPage() == 1 ? false : paginate(1)" aria-label="First">
