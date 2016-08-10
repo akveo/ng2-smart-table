@@ -10,7 +10,8 @@ import { Column } from '../../lib/data-set/column';
       <input 
       [(ngModel)]="query"
       (keyup)="filter($event)"
-      [class]="inputClass"
+      [ngClass]="inputClass"
+      class="form-control"
       type="text" 
       placeholder="{{ column.title }}" />
     </div>

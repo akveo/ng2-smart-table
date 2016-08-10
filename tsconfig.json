@@ -6,9 +6,12 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": false,
-    "declaration": true,
     "noEmitHelpers": true,
+//    "lib": ["es6", "dom"],
     "strictNullChecks": false,
+    "baseUrl": "./demo/src",
+    "paths": [
+    ],
     "types": [
       "core-js",
       "hammerjs",
@@ -18,9 +21,6 @@
       "webpack"
     ]
   },
-  "files": [
-    "ng2-smart-table.ts"
-  ],
   "exclude": [
     "node_modules",
     "demo"

@@ -7,7 +7,9 @@ import { Cell } from '../../lib/data-set/cell';
   styles: [require('./cell.scss')],
   template: `
     <template [ngIf]="!cell.getRow().isInEditing">{{ cell.getValue() }}</template>
-    <input *ngIf="cell.getRow().isInEditing" [class]="inputClass"
+    <input *ngIf="cell.getRow().isInEditing" 
+      [ngClass]="inputClass"
+      class="form-control"
       [(ngModel)]="cell.newValue"
       [name]="cell.getColumn().id" 
       [placeholder]="cell.getColumn().title"
