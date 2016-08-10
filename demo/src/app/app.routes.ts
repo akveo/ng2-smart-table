@@ -1,8 +1,8 @@
-import {provideRouter, RouterConfig} from '@angular/router';
+import { provideRouter, RouterConfig } from '@angular/router';
 import { AppComponent } from './app.component';
 
 //noinspection TypeScriptValidateTypes
-export const routes:RouterConfig = [
+export const routes: RouterConfig = [
   {
     path: '*',
     component: AppComponent,

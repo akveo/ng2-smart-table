@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import { Column } from './data-set/column';
 import { Row } from './data-set/row';
 import { DataSet } from './data-set/data-set';

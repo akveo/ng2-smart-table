@@ -11,6 +11,7 @@ import { FilterComponent } from './components/filter/filter.component';
 import { TitleComponent } from './components/title/title.component';
 import { PagerComponent } from './components/pager/pager.component';
 import { CellComponent } from './components/cell/cell.component';
+import { deepExtend } from './lib/helpers';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -158,30 +159,9 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
   }
 
   protected prepareSettings(): Object {
-    return Ng2SmartTableComponent.deepExtend(this.defaultSettings, this.settings);
+    return deepExtend(this.defaultSettings, this.settings);
   }
 
-  private static deepExtend(out, ...sources) {
-    out = out || {};
-
-    for (let i = 0; i < sources.length; i++) {
-      var obj = sources[i];
-      if (!obj) {
-        continue;  
-      }
-
-      for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          if (typeof obj[key] === 'object') {
-            out[key] = Ng2SmartTableComponent.deepExtend(out[key], obj[key]);  
-          }
-          else {
-            out[key] = obj[key];  
-          }
-        }
-      }
-    }
-    return out;
-  }
+  
 
 }

@@ -1,6 +1,6 @@
-import {Component, ViewEncapsulation} from "@angular/core";
-import { NG2_SMART_TABLE_DIRECTIVES } from '../../../lib/ng2-smart-table.directives';
-import {LocalDataSource} from '../../../lib/ng2-smart-table/lib';
+import { Component, ViewEncapsulation } from '@angular/core';
+import { NG2_SMART_TABLE_DIRECTIVES } from '../../../src/ng2-smart-table.directives';
+import { LocalDataSource } from '../../../src/ng2-smart-table/lib';
 
 /*
  * App Component
@@ -99,9 +99,9 @@ export class AppComponent {
       }
     }
   };
-  
+
   source: LocalDataSource;
-  
+
   ngOnInit(): void {
     this.source = new LocalDataSource();
   }
