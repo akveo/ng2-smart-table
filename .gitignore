@@ -58,5 +58,8 @@ npm-debug.log
 .idea/
 *.swp
 
-*.ts
-!*.d.ts
+*.js
+!/config/**/*.js
+!webpack.config.js
+*.map
+*.d.ts

@@ -10,6 +10,7 @@ coverage
 demo
 demo-build
 webpack.config.js
+config
 
 #typescript sources
 *.ts

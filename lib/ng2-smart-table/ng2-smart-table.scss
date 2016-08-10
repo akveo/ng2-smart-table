@@ -1,0 +1,17 @@
+.ng2-smart-table {
+  td, th {
+    padding: 10px;
+    vertical-align: top;
+  }
+
+  .ng2-smart-row {
+    &.selected {
+      background: rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  .ng2-smart-action {
+    font-size: 22px;
+    padding: 5px;
+  }
+}

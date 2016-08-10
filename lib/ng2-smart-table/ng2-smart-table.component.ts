@@ -3,33 +3,33 @@ import {
   OnChanges
 } from '@angular/core';
 
-//import { Grid } from './lib/grid';
-//import { DataSource } from './lib/dataSource/dataSource';
-//import { Row } from './lib/dataset/row';
+import { Grid } from './lib/grid';
+import { DataSource } from './lib/data-source/data-source';
+import { Row } from './lib/data-set/row';
 
-//import { FilterComponent } from './components/filter/filter.component';
-//import { TitleComponent } from './components/title/title.component';
-//import { PagerComponent } from './components/pager/pager.component';
-//import { CellComponent } from './components/cell/cell.component';
+import { FilterComponent } from './components/filter/filter.component';
+import { TitleComponent } from './components/title/title.component';
+import { PagerComponent } from './components/pager/pager.component';
+import { CellComponent } from './components/cell/cell.component';
 
 @Component({
   selector: 'ng2-smart-table',
-  //directives: [FilterComponent, TitleComponent, PagerComponent, CellComponent],
-  //styles: [require('./baSmartTable.scss')],
-  //template: require('./baSmartTable.html')
+  directives: [FilterComponent, TitleComponent, PagerComponent, CellComponent],
+  styles: [require('./ng2-smart-table.scss')],
+  template: require('./ng2-smart-table.html')
 })
 
 export class Ng2SmartTableComponent implements OnInit, OnChanges {
 
-  //@Input() source: DataSource;
-  //@Input() settings: Object = {};
-  //
-  //@Output() public select: EventEmitter<any> = new EventEmitter<any>();
-  //@Output() public delete: EventEmitter<any> = new EventEmitter<any>();
-  //@Output() public edit: EventEmitter<any> = new EventEmitter<any>();
-  //@Output() public create: EventEmitter<any> = new EventEmitter<any>();
-  //
-  //protected grid: Grid;
+  @Input() source: DataSource;
+  @Input() settings: Object = {};
+
+  @Output() public select: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public delete: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public edit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public create: EventEmitter<any> = new EventEmitter<any>();
+
+  protected grid: Grid;
   protected defaultSettings: Object = {
 
     mode: 'inline', // inline|external|click-to-edit
@@ -69,95 +69,119 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
   };
 
   ngOnInit(): void {
-    //if (!this.source) {
-    //  throw new Error('DataSource object can not be empty during table intialization');
-    //}
+    if (!this.source) {
+      throw new Error('DataSource object can not be empty during table intialization');
+    }
   }
 
   ngOnChanges(changes: {[propertyName: string]: SimpleChange}): void {
-    //if (this.grid) {
-    //  if (changes['settings']) {
-    //    this.grid.setSettings(this.prepareSettings());
-    //  }
-    //  if (changes['source']) {
-    //    this.grid.setSource(this.source);
-    //  }
-    //} else {
-    //  this.initGrid();
-    //}
+    if (this.grid) {
+      if (changes['settings']) {
+        this.grid.setSettings(this.prepareSettings());
+      }
+      if (changes['source']) {
+        this.grid.setSource(this.source);
+      }
+    } else {
+      this.initGrid();
+    }
   }
-  //
-  //onAdd(event): boolean {
-  //  event.stopPropagation();
-  //  if (this.grid.getSetting('mode') === 'external') {
-  //    this.create.emit({
-  //      source: this.source
-  //    });
-  //  } else {
-  //    this.grid.createFormShown = true;
-  //  }
-  //  return false;
-  //}
-  //
-  //onSelectRow(row: Row): boolean {
-  //  this.grid.selectRow(row);
-  //  this.select.emit({
-  //    row: row,
-  //    source: this.source
-  //  });
-  //  return false;
-  //}
-  //
-  //onEdit(row: Row, event): boolean {
-  //  event.stopPropagation();
-  //  this.onSelectRow(row);
-  //
-  //  if (this.grid.getSetting('mode') === 'external') {
-  //    this.edit.emit({
-  //      row: row,
-  //      source: this.source
-  //    });
-  //  } else {
-  //    this.grid.edit(row);
-  //  }
-  //  return false;
-  //}
-  //
-  //onDelete(row: Row, event): boolean {
-  //  event.stopPropagation();
-  //  this.onSelectRow(row);
-  //
-  //  if (this.grid.getSetting('mode') === 'external') {
-  //    this.delete.emit({
-  //      row: row,
-  //      source: this.source
-  //    });
-  //  } else {
-  //    this.grid.delete(row);
-  //  }
-  //  return false;
-  //}
-  //
-  //onCreate(row: Row): boolean {
-  //  event.stopPropagation();
-  //
-  //  this.grid.create(row);
-  //  return false;
-  //}
-  //
-  //onSave(row: Row): boolean {
-  //  event.stopPropagation();
-  //
-  //  this.grid.save(row);
-  //  return false;
-  //}
-  //
-  //protected initGrid(): void {
-  //  this.grid = new Grid(this.source, this.prepareSettings());
-  //  this.grid.onSelectRow().subscribe((row) => this.onSelectRow(row));
-  //}
-  //
-  //protected prepareSettings(): Object {
-  //  return _.merge(this.defaultSettings, this.settings);
-  //}
+
+  onAdd(event): boolean {
+    event.stopPropagation();
+    if (this.grid.getSetting('mode') === 'external') {
+      this.create.emit({
+        source: this.source
+      });
+    } else {
+      this.grid.createFormShown = true;
+    }
+    return false;
+  }
+
+  onSelectRow(row: Row): boolean {
+    this.grid.selectRow(row);
+    this.select.emit({
+      row: row,
+      source: this.source
+    });
+    return false;
+  }
+
+  onEdit(row: Row, event): boolean {
+    event.stopPropagation();
+    this.onSelectRow(row);
+
+    if (this.grid.getSetting('mode') === 'external') {
+      this.edit.emit({
+        row: row,
+        source: this.source
+      });
+    } else {
+      this.grid.edit(row);
+    }
+    return false;
+  }
+
+  onDelete(row: Row, event): boolean {
+    event.stopPropagation();
+    this.onSelectRow(row);
+
+    if (this.grid.getSetting('mode') === 'external') {
+      this.delete.emit({
+        row: row,
+        source: this.source
+      });
+    } else {
+      this.grid.delete(row);
+    }
+    return false;
+  }
+
+  onCreate(row: Row): boolean {
+    event.stopPropagation();
+
+    this.grid.create(row);
+    return false;
+  }
+
+  onSave(row: Row): boolean {
+    event.stopPropagation();
+
+    this.grid.save(row);
+    return false;
+  }
+
+  protected initGrid(): void {
+    this.grid = new Grid(this.source, this.prepareSettings());
+    this.grid.onSelectRow().subscribe((row) => this.onSelectRow(row));
+  }
+
+  protected prepareSettings(): Object {
+    return Ng2SmartTableComponent.deepExtend(this.defaultSettings, this.settings);
+  }
+
+  private static deepExtend(out, ...sources) {
+    out = out || {};
+
+    for (let i = 0; i < sources.length; i++) {
+      var obj = sources[i];
+      if (!obj) {
+        continue;  
+      }
+
+      for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          if (typeof obj[key] === 'object') {
+            out[key] = Ng2SmartTableComponent.deepExtend(out[key], obj[key]);  
+          }
+          else {
+            out[key] = obj[key];  
+          }
+        }
+      }
+    }
+    return out;
+  }
+
 }

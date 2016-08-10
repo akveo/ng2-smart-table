@@ -1,16 +1,12 @@
 import {provideRouter, RouterConfig} from '@angular/router';
-import {LoginRoutes} from "./pages/login/login.routes";
-import {PagesRoutes} from "./pages/pages.routes";
-import {RegisterRoutes} from "./pages/register/register.routes";
+import { AppComponent } from './app.component';
 
+//noinspection TypeScriptValidateTypes
 export const routes:RouterConfig = [
-  ...LoginRoutes,
-  ...RegisterRoutes,
-  ...PagesRoutes,
   {
-    path: '**',
-    redirectTo: '/pages/dashboard'
-  },
+    path: '*',
+    component: AppComponent,
+  }
 ];
 
 export const APP_ROUTER_PROVIDERS = [
