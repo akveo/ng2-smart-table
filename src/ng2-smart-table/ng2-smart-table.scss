@@ -13,5 +13,41 @@
   .ng2-smart-action {
     font-size: 22px;
     padding: 5px;
+
+    &.ng2-smart-action-add-add {
+      &::before {
+        content: '✚';
+      }
+    }
+    &.ng2-smart-action-add-cancel {
+      &::before {
+        content: '✗';
+      }
+    }
+    &.ng2-smart-action-add-create {
+      &::before {
+        content: '✓';
+      }
+    }
+    &.ng2-smart-action-edit-edit {
+      &::before {
+        content: '✎';
+      }
+    }
+    &.ng2-smart-action-edit-save {
+      &::before {
+        content: '✓';
+      }
+    }
+    &.ng2-smart-action-edit-cancel {
+      &::before {
+        content: '✗';
+      }
+    }
+    &.ng2-smart-action-delete-delete {
+      &::before {
+        content: '✗';
+      }
+    }
   }
 }

@@ -43,19 +43,19 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
     },
     edit: {
       inputClass: '',
-      editButtonContent: '&#9998;',
-      saveButtonContent: '&#10003;',
-      cancelButtonContent: '&#10007;'
+      editButtonContent: '',
+      saveButtonContent: '',
+      cancelButtonContent: ''
     },
     add: {
       title: 'Actions',
       inputClass: '',
-      addButtonContent: '&#10010;',
-      createButtonContent: '&#10003;',
-      cancelButtonContent: '&#10007;'
+      addButtonContent: '',
+      createButtonContent: '',
+      cancelButtonContent: ''
     },
     delete: {
-      deleteButtonContent: '&#10007;'
+      deleteButtonContent: ''
     },
     attr: {
       id: '',
