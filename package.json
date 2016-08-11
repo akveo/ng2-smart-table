@@ -111,7 +111,10 @@
     "gh-pages": "wintersmith build -C docs && gh-pages -d docs/build",
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
-    "prepublish": "./node_modules/typescript/bin/tsc --outDir build -p tsconfig.publish.json"
+    "prepublish:clean": "npm run rimraf -- build",
+    "prepublish:prepare": "mkdir -p build/src && cp -R src build/src",
+    "prepublish:build": "./node_modules/typescript/bin/tsc --outDir build -p tsconfig.publish.json",
+    "prepublish": "npm run prepublish:clean && npm run prepublish:prepare && npm run prepublish:build"
   },
   "repository": {
     "type": "git",
