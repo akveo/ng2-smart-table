@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { NG2_SMART_TABLE_DIRECTIVES } from '../../../src/ng2-smart-table.directives';
-import { LocalDataSource } from '../../../src/ng2-smart-table/lib';
+import { LocalDataSource, NG2_SMART_TABLE_DIRECTIVES } from '../../../ng2-smart-table';
+import { AppService } from './app.service';
 
 /*
  * App Component
@@ -8,9 +8,8 @@ import { LocalDataSource } from '../../../src/ng2-smart-table/lib';
  */
 @Component({
   selector: 'app',
-  pipes: [],
   directives: [NG2_SMART_TABLE_DIRECTIVES],
-  providers: [],
+  providers: [AppService],
   encapsulation: ViewEncapsulation.None,
   styles: [require('./app.scss')],
   template: `
@@ -100,9 +99,15 @@ export class AppComponent {
     }
   };
 
-  source: LocalDataSource;
+  source: LocalDataSource = new LocalDataSource();
+  
+  constructor(protected service: AppService) {
+    
+  }
 
   ngOnInit(): void {
-    this.source = new LocalDataSource();
+    this.service.getData().then((data) => {
+      this.source.load(data);
+    })
   }
 }
