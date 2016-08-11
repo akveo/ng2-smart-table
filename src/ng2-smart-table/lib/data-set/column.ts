@@ -4,6 +4,7 @@ export class Column {
 
   public title: string = '';
   public type: string = '';
+  public class: string = '';
   public isSortable: boolean = false;
   public isEditable: boolean = true;
   public isFilterable: boolean = false;
@@ -31,6 +32,7 @@ export class Column {
 
   protected process(): void {
     this.title = this.settings['title'];
+    this.class = this.settings['class'];
     this.type = this.prepareType();
 
     this.isFilterable = !!this.settings['filter'];

@@ -6,7 +6,7 @@
       <th *ngIf="grid.getSetting('actions.add') || grid.getSetting('actions.edit') || grid.getSetting('actions.delete')" class="ng2-smart-actions">
         <div class="ng2-smart-title">Actions</div>
       </th>
-      <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
+      <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class">
         <div class="ng2-smart-title">
           <ng2-smart-table-title [source]="source" [column]="column"></ng2-smart-table-title>
         </div>

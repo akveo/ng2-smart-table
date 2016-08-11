@@ -65,7 +65,8 @@ export class AppComponent {
         // value type (how to treat the value, not implemented)
         type: 'number',
         // sort (false, true or if you want to sort the table by defaul - asc|desc)
-        sort: false
+        sort: false,
+        class: 'custom-column-class'
       },
       id: {
         title: 'ID',
