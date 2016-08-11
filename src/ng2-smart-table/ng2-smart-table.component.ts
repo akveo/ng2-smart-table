@@ -34,6 +34,7 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
 
     mode: 'inline', // inline|external|click-to-edit
     actions: {
+      columnTitle: 'Actions',
       add: true,
       edit: true,
       delete: true
@@ -48,7 +49,6 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
       cancelButtonContent: ''
     },
     add: {
-      title: 'Actions',
       inputClass: '',
       addButtonContent: '',
       createButtonContent: '',
@@ -100,13 +100,12 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
     return false;
   }
 
-  onSelectRow(row: Row): boolean {
+  onSelectRow(row: Row): void {
     this.grid.selectRow(row);
     this.select.emit({
-      row: row,
+      data: row.getData(),
       source: this.source
     });
-    return false;
   }
 
   onEdit(row: Row, event): boolean {
@@ -115,7 +114,7 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
 
     if (this.grid.getSetting('mode') === 'external') {
       this.edit.emit({
-        row: row,
+        data: row.getData(),
         source: this.source
       });
     } else {
@@ -130,7 +129,7 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
 
     if (this.grid.getSetting('mode') === 'external') {
       this.delete.emit({
-        row: row,
+        data: row.getData(),
         source: this.source
       });
     } else {
@@ -139,14 +138,14 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
     return false;
   }
 
-  onCreate(row: Row): boolean {
+  onCreate(row: Row, event): boolean {
     event.stopPropagation();
 
     this.grid.create(row);
     return false;
   }
 
-  onSave(row: Row): boolean {
+  onSave(row: Row, event): boolean {
     event.stopPropagation();
 
     this.grid.save(row);

@@ -13,14 +13,15 @@ import { AppService } from './app.service';
   encapsulation: ViewEncapsulation.None,
   styles: [require('./app.scss')],
   template: `
-    <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="source" (edit)="onEdit($event)" (select)="onSelect($event)" (delete)="onDelete($event)" (create)="onCreate($event)"></ng2-smart-table>
   `
 })
 export class AppComponent {
 
   settings = {
-    mode: 'inline',
+    mode: 'external',
     actions: { // actions to perform on table
+      columnTitle: 'Add/Edit',
       add: true,
       edit: true,
       delete: true
@@ -35,7 +36,6 @@ export class AppComponent {
       //cancelButtonContent: ''
     },
     add: {
-      title: 'Add/Edit'
       //inputClass: 'form-control',
       //addButtonContent: '',
       //createButtonContent: '',
@@ -116,5 +116,21 @@ export class AppComponent {
     this.service.getData().then((data) => {
       this.source.load(data);
     })
+  }
+  
+  onSelect(event): void {
+    console.log('select, ', event);
+  }
+
+  onEdit(event): void {
+    console.log('edit, ', event);
+  }
+
+  onDelete(event): void {
+    console.log('delete, ', event);
+  }
+
+  onCreate(event): void {
+    console.log('create, ', event);
   }
 }
