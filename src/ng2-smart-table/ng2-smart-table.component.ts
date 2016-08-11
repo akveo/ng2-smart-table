@@ -48,6 +48,7 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
       cancelButtonContent: '&#10007;'
     },
     add: {
+      title: 'Actions',
       inputClass: '',
       addButtonContent: '&#10010;',
       createButtonContent: '&#10003;',

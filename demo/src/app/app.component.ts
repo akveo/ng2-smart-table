@@ -35,6 +35,7 @@ export class AppComponent {
       //cancelButtonContent: ''
     },
     add: {
+      title: 'Add/Edit'
       //inputClass: 'form-control',
       //addButtonContent: '',
       //createButtonContent: '',
