@@ -6,7 +6,7 @@ import { DataSource } from '../../lib/data-source/data-source';
   selector: 'ng2-smart-table-pager',
   styles: [require('./pager.scss')],
   template: `
-  <nav *ngIf="shouldShow()">
+  <nav *ngIf="shouldShow()" class="ng2-smart-pagination-nav">
     <ul class="ng2-smart-pagination pagination">
       <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
         <a class="ng2-smart-page-link page-link" href="#" 
