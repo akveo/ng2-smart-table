@@ -12,9 +12,12 @@ demo-build
 webpack.config.js
 config
 
+# sources
+src
+
 #typescript sources
 *.ts
 *.js.map
 !*.d.ts
-/components/**/*.ts
-!/components/**/*.d.ts
+/build/**/*.ts
+!/build/**/*.d.ts

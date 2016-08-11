@@ -5,8 +5,8 @@
   "author": "akveo",
   "homepage": "http://akveo.github.io/ng2-smart-table/",
   "license": "MIT",
-  "main": "./ng2-smart-table.js",
-  "typings": "./ng2-smart-table.d.ts",
+  "main": "./build/ng2-smart-table.js",
+  "typings": "./build/ng2-smart-table.d.ts",
   "dependencies": {},
   "peerDependencies": {
     "@angular/common": "2.0.0-rc.4",
@@ -111,7 +111,7 @@
     "gh-pages": "wintersmith build -C docs && gh-pages -d docs/build",
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
-    "prepublish": "./node_modules/typescript/bin/tsc"
+    "prepublish": "./node_modules/typescript/bin/tsc --outDir build -p tsconfig.publish.json"
   },
   "repository": {
     "type": "git",

@@ -5,22 +5,23 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "noEmitHelpers": true,
+    "declaration": true,
     "lib": ["es6", "dom"],
     "strictNullChecks": false,
     "types": [
-      "core-js",
-      "hammerjs",
       "node",
-      "source-map",
-      "uglify-js",
       "webpack"
     ]
   },
   "exclude": [
     "node_modules",
+    "demo",
     "build"
+  ],
+  "files": [
+    "./ng2-smart-table.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
