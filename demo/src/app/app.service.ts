@@ -21,7 +21,7 @@ export class AppService {
       objectId: n,
       objectType: `type number ${n}`,
       name: `name ${n}`,
-      description: 'Building new questionnaire from scratch. \nmodified on 28th Jan',
+      description: 'Building new questionnaire from scratch. \nmodified on <strong>28th Jan</strong>',
       actionPerformed: `action number ${n}`,
       createdBy: n,
       createdOn: new Date(),

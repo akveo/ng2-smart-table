@@ -6,7 +6,8 @@ import { Cell } from '../../lib/data-set/cell';
   selector: 'ng2-smart-table-cell',
   styles: [require('./cell.scss')],
   template: `
-    <template [ngIf]="!cell.getRow().isInEditing">{{ cell.getValue() }}</template>
+    <div *ngIf="!cell.getRow().isInEditing && cell.getColumn().type !== 'html'">{{ cell.getValue() }}</div>
+    <div *ngIf="!cell.getRow().isInEditing && cell.getColumn().type === 'html'" [innerHTML]="cell.getValue()"></div>
     <input *ngIf="cell.getRow().isInEditing" 
       [ngClass]="inputClass"
       class="form-control"

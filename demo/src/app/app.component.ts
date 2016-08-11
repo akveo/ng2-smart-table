@@ -85,6 +85,11 @@ export class AppComponent {
         //   return value.indexOf(search) > -1;
         // }
       },
+      description: {
+        title: 'Description',
+        sort: false,
+        type: 'html'
+      },
       actionPerformed: {
         title: 'Action',
         type: 'string',
