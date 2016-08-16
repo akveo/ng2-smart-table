@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title><%= webpackConfig.metadata.title %></title>
-
   <meta name="description" content="<%= webpackConfig.metadata.description %>">
 
   <% if (webpackConfig.htmlElements.headTags) { %>
@@ -18,7 +16,6 @@
   <base href="<%= webpackConfig.metadata.baseUrl %>">
 
 </head>
-
 <body>
 <app>
 </app>
@@ -27,5 +24,6 @@
 <script src="/webpack-dev-server.js"></script>
 <% } %>
 
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 </body>
 </html>
