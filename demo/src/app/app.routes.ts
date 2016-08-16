@@ -1,11 +1,12 @@
 import { provideRouter, RouterConfig } from '@angular/router';
-import { AppComponent } from './app.component';
+import { PagesRoutes } from './pages/pages.routes';
 
 //noinspection TypeScriptValidateTypes
 export const routes: RouterConfig = [
+  ...PagesRoutes,
   {
-    path: '*',
-    component: AppComponent,
+    path: '**',
+    redirectTo: '/'
   }
 ];
 

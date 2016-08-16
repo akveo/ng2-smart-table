@@ -9,7 +9,7 @@ import {Component, ViewEncapsulation} from '@angular/core';
   styles: [require('./home.scss')],
   template: require('./home.html')
 })
-export class Home {
+export class HomeComponent {
 
   constructor() {
   }
