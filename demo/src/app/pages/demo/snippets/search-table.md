@@ -1,0 +1,24 @@
+onSearch(query: string = ''): void {
+  this.source.setFilter([
+    // fields we want to inclue in the search
+    {
+      field: 'id',
+      search: query
+    },
+    {
+      field: 'name',
+      search: query
+    },
+    {
+      field: 'username',
+      search: query
+    },
+    {
+      field: 'email',
+      search: query
+    }
+  ], false); 
+  // second parameter specifying whether to perform AND or OR search 
+  // (meaning all columns should contain search query or at least one)
+  // AND by default, so changing to OR be setting false here
+}

@@ -1,0 +1,1 @@
+import { NG2_SMART_TABLE_DIRECTIVES, LocalDataSource } from 'ng2-smart-table';
