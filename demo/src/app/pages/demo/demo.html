@@ -19,12 +19,12 @@
   <pre>
     <code class="bash">{{ snippets.install }}</code>
   </pre>
-  <p>This command will create a record in your `package.json` file and install the package into npm module folder.</p>
+  <p>This command will create a record in your `package.json` file and install the package into the npm module folder.</p>
 
   <h2><a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
   <h3><a id="minimal-setup" class="anchor" href="#minimal-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Minimal Setup Example</h3>
   <p>
-    First thing you need to do is to add the ng2-smart table directives to your component.
+    First thing you need to do is to import the ng2-smart-table directives into your component.
   </p>
   <pre>
     <code class="typescript">{{ snippets.require }}</code>
@@ -37,7 +37,7 @@
   </pre>
   <p>
     Now, we need to configure the table and add it into the template. The only <strong>required</strong> setting for component to start working is a columns configuration.<br>
-    Let's register <i>settings</i> property inside of the component where we what to have the table and configure some columns:
+    Let's register <i>settings</i> property inside of the component where we want to have the table and configure some columns (<a [routerLink]="['/documentation']">Settings documentation</a>):
   </p>
   <pre>
     <code class="typescript">{{ snippets.settings }}</code>
@@ -55,7 +55,7 @@
     <basic-example></basic-example>
   </div>
   <p>
-    All functions are available by default and you don't need to configure them somehow, so you already able to add/edit/delete the rows, sort or filter the table, etc.
+    All functions are available by default and you don't need to configure them somehow, so you already able to add/edit/delete rows, sort or filter the table, etc.
   </p>
   <p>
     But it feels like something is missing... Right, there is no data in the table by default. To add some, let's create an array property with a list of objects in the component. Please note that object keys are same as in the columns configuration.
@@ -79,12 +79,12 @@
   </pre>
   <h3><a id="separate-filter" class="anchor" href="#separate-filter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Standalone Filter Example</h3>
   <p>
-    But what if you don't need to have a filter field in the each table column or the requirements says that search field should be placed outside of the table?<br>
+    Say you don't need to have a filter field in the each table column or the requirements says that search field should be placed outside of the table?<br>
     Fortunately this is super easy to achieve, to do this we need to slightly modify our basic component example.
   </p>
   <h4><a id="data-source" class="anchor" href="#data-source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Source</h4>
   <p>
-    First thing you need to know is that all the data operations against the table <i>must</i> be done using the <strong>DataSource</strong> table property. DataSource is an abstraction around your data which allows you easily modify the table data or subscribe on events to modify the table behaviour. 
+    First thing you need to know is that all the data operations against the table <i>must</i> be done using the <strong>DataSource</strong> table property. DataSource is an abstraction around your data which allows you easily modify the table data or subscribe to events to modify the table behaviour. 
   </p>
   <p>
     To access the DataSource we either can take it from the table or pass it instead of our <i>data array</i>. Let's do the second option as it requires less code and is more demonstrative. Let's import the DataSource class by modifying the import statement:
@@ -106,7 +106,7 @@
     <code class="typescript">{{ snippets.sourceTemplate }}</code>
   </pre>
   <p>
-    At this point if you look at the result there will be no difference between the first example. Basically if you pass an array to the table component first thing it will do is wrap LocalDataSource object around your array as we did here manually.<br>
+    At this point if you look at the result there will be no difference comparing to the first example. Basically if you pass an array to the table component first thing it will do is wrap LocalDataSource object around your array as we did here manually.<br>
     Now, having the DataSource we basically could change the table data in any way we need to - filter it, sort, paginate to some page, create/delete/modify the rows. In our example we need to be able to filter the data outside of the table, firstly let's add a search filed to the template with a listener: 
   </p>
   <pre>
@@ -132,4 +132,5 @@
     <a class="source" href="http://google.com">Demo Source</a>
     <code class="typescript">{{ snippets.sourceFull }}</code>
   </pre>
+  <p>Documentation you can find <a [routerLink]="['/documentation']">here</a>.</p>
 </section>
