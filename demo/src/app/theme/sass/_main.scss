@@ -34,13 +34,20 @@ a:hover {
 
 pre {
   position: relative;
-  
+
   a.source {
     position: absolute;
     right: 0;
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 0.875rem;
   }
+}
+
+span.highlight {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0 .25rem;
+  border-radius: .125rem;
+  color: #1e6bb8;
 }
 
 .btn + .btn {
@@ -85,12 +92,16 @@ pre {
   text-align: center;
   background-color: #182978;
   background-image: linear-gradient(120deg, #182978, #22A9B6);
+  
+  h1 a {
+    color: #fff;
+  }
 }
 
 @media screen and (min-width: 64em) {
   .page-header {
     padding: 5rem 6rem;
-    
+
     &.internal {
       padding: 3rem 4rem;
     }
@@ -210,6 +221,29 @@ pre {
 
 .main-content blockquote > :last-child {
   margin-bottom: 0;
+}
+
+.main-content table {
+  display: block;
+  width: 100%;
+  font-size: .875rem;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.main-content table th {
+  font-weight: bold;
+}
+
+.main-content table th, .main-content table td {
+  padding: 0.5rem 1rem;
+  border: 1px solid #e9ebec;
+}
+
+.main-content table tr.section {
+  font-size: .75rem;
+  font-weight: bold;
 }
 
 .main-content dl {

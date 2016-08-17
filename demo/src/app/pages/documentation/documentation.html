@@ -1,0 +1,542 @@
+<section class="page-header internal">
+  <h1 class="project-name"><a [routerLink]="['']">ng2-smart-table</a></h1>
+  <h2 class="project-tagline">Documentation</h2>
+  
+  <a href="https://github.com/akveo/ng2-smart-table" class="btn">View on GitHub</a>
+  <a [routerLink]="['/demo']" class="btn">Quick Start & Demos</a>
+</section>
+
+<section class="main-content">
+  <h2><a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+  
+  <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component Inputs</h3>
+
+  <table>
+    <tr>
+      <th>Input</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>[settings]</td>
+      <td><span class="highlight">Object</span></td>
+      <td>Table component configuration object, properties described below</td>
+    </tr>
+    <tr>
+      <td>[source]</td>
+      <td><span class="highlight">Array</span>|<span class="highlight">DataSource</span></td>
+      <td>Table data, either an array or DataSource object (LocalDataSource currently supported)</td>
+    </tr>
+  </table>
+  
+  <h3><a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table Configuration</h3>
+  
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+    <tr class="section">
+      <td>Required Table Settings</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>columns</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Table column settings, by default an empty object.<br>
+        Example format:<br>
+        <code>
+          columns: {
+            <b>columnKey</b>: {
+              title: 'Some Title'
+            }
+          }
+        </code>
+        <br>
+        Please note, <b>columnKey</b> must be the same as a key in data array objects.
+      </td>
+    </tr>
+    <tr class="section">
+      <td>Column Settings</td>
+      <td></td>
+      <td></td>
+      <td>
+        List of a column's settings
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Column title
+      </td>
+    </tr>
+    <tr>
+      <td>class</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Column class
+      </td>
+    </tr>
+    <tr>
+      <td>editable</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Whether this column is editable or not
+      </td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td><span class="highlight">'string'</span>|<span class="highlight">'html'</span></td>
+      <td>'string'</td>
+      <td>
+        Column data type. NOTE: currently not fully supported.<br>
+        If type is <span class="highlight">html</span> then cell value will be inserted as html.
+      </td>
+    </tr>
+    <tr>
+      <td>sort</td>
+      <td><span class="highlight">boolean</span>|<span class="highlight">'asc'</span>|<span class="highlight">'desc'</span></td>
+      <td>true</td>
+      <td>
+        Column sort settings, enable, disable or default sort direction (asc/desc)
+      </td>
+    </tr>
+    <tr>
+      <td>sortFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>
+        n/a
+      </td>
+      <td>
+        Function run against the values to sort the table
+      </td>
+    </tr>
+    <tr>
+      <td>filter</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Column filter settings, enable/disable
+      </td>
+    </tr>
+    <tr>
+      <td>filterFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>n/a</td>
+      <td>
+        Function run against the column value when filtering is happening
+      </td>
+    </tr>
+    <tr class="section">
+      <td>Other Table Settings</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>mode</td>
+      <td><span class="highlight">'external'</span>|<span class="highlight">'inline'</span></td>
+      <td>'inline'</td>
+      <td>
+        Determines how to react on action links (Add, Edit, Delete).<br>
+        <span class="highlight">'external'</span> - just trigger the events (LINK HERE).<br>
+        <span class="highlight">'inline'</span> - process internally, show forms/inputs/etc<br>
+      </td>
+    </tr>
+    <tr>
+      <td>noDataMessage</td>
+      <td><span class="highlight">string</span></td>
+      <td>'No data found'</td>
+      <td>
+        Message shown when there is no data in the table
+      </td>
+    </tr>
+    <tr>
+      <td>attr</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Table attributes settings
+      </td>
+    </tr>
+    <tr>
+      <td>attr.id</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Table element id
+      </td>
+    </tr>
+    <tr>
+      <td>attr.class</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Table element class
+      </td>
+    </tr>
+    <tr>
+      <td>actions</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Settings for the table actions
+      </td>
+    </tr>
+    <tr>
+      <td>actions.columnTitle</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Actions'</td>
+      <td>
+        Actions column title
+      </td>
+    </tr>
+    <tr>
+      <td>actions.add</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Show/not show Add button
+      </td>
+    </tr>
+    <tr>
+      <td>actions.edit</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Show/not show Edit button
+      </td>
+    </tr>
+    <tr>
+      <td>actions.delete</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Show/not show Delete button
+      </td>
+    </tr>
+    <tr>
+      <td>filter</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Settings for the table filter
+      </td>
+    </tr>
+    <tr>
+      <td>filter.inputClass</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Filter input class
+      </td>
+    </tr>
+    <tr>
+      <td>edit</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Edit action settings
+      </td>
+    </tr>
+    <tr>
+      <td>edit.inputClass</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Editing form input class
+      </td>
+    </tr>
+    <tr>
+      <td>edit.editButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Edit'</td>
+      <td>
+        Edit row button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>edit.createButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Update'</td>
+      <td>
+        Update button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>edit.cancelButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Cancel'</td>
+      <td>
+        Cancel button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>add</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Add action settings
+      </td>
+    </tr>
+    <tr>
+      <td>add.inputClass</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        New row input class
+      </td>
+    </tr>
+    <tr>
+      <td>add.addButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Add New'</td>
+      <td>
+        Add New button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>add.createButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Create'</td>
+      <td>
+        Create button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>add.cancelButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Cancel'</td>
+      <td>
+        Cancel button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>delete</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Delete action settings
+      </td>
+    </tr>
+    <tr>
+      <td>delete.deleteButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Delete'</td>
+      <td>
+        Delete row input class
+      </td>
+    </tr>
+    <tr>
+      <td>pager</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Pager settings
+      </td>
+    </tr>
+    <tr>
+      <td>pager.display</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Whether to display the pager or not
+      </td>
+    </tr>    
+    <tr>
+      <td>pager.perPage</td>
+      <td><span class="highlight">number</span></td>
+      <td>10</td>
+      <td>
+        Rows per page
+      </td>
+    </tr>
+  </table>
+
+  <h3><a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component Outputs/Events</h3>
+
+  <table>
+    <tr>
+      <th>Event</th>
+      <th>Arguments</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>(select)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - selected row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a row is selected (either clicked or selected automatically (after page is changed, after some row is deleted, etc).
+      </td>
+    </tr>
+    <tr>
+      <td>(create)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Create button clicked. Triggered only if table <strong>mode = external</strong>.
+      </td>
+    </tr>
+    <tr>
+      <td>(edit)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once an Edit button clicked on a row. Triggered only if table <strong>mode = external</strong>.
+      </td>
+    </tr>
+    <tr>
+      <td>(delete)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Delete button clicked on a row. Triggered only if table <strong>mode = external</strong>.
+      </td>
+    </tr>
+  </table>
+  
+  <h3><a id="source-method" class="anchor" href="#source-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Source Methods</h3>
+
+  <table>
+    <tr>
+      <th>Method</th>
+      <th>Arguments</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>load</td>
+      <td>
+        <ul>
+          <li>data: <span class="highlight">Array</span> - data to load into the table</li>
+        </ul>
+      <td>
+        Reload table with new data. For example if some data has received from the server.
+      </td>
+    </tr>
+    <tr>
+      <td>prepend</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to add</li>
+        </ul>
+      <td>
+        Add a new element to the beginning of the table.
+      </td>
+    </tr>
+    <tr>
+      <td>append</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to add</li>
+        </ul>
+      <td>
+        Add a new element to the end of the table. This also will switch current page to the last one.
+      </td>
+    </tr>
+    <tr>
+      <td>add</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to add</li>
+        </ul>
+      <td>
+        Add a new element to the table.
+      </td>
+    </tr>
+    <tr>
+      <td>remove</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to remove</li>
+        </ul>
+      <td>
+        Remove the element from the table.
+      </td>
+    </tr>
+    <tr>
+      <td>update</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to update</li>
+          <li>values: <span class="highlight">Object</span> - object with new values</li>
+        </ul>
+      <td>
+        Update the element in the table.
+      </td>
+    </tr>
+    <tr>
+      <td>find</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to find</li>
+        </ul>
+      <td>
+        Find the element in the table.
+      </td>
+    </tr>
+    <tr>
+      <td>reset</td>
+      <td>
+        <ul>
+          <li>silent: <span class="highlight">boolean</span> - if true - you have to additionally call `refresh` to reflect the changes</li>
+        </ul>
+      <td>
+        Set data source to first page with empty filter and empty sort.
+      </td>
+    </tr>
+    <tr>
+      <td>refresh</td>
+      <td>
+        n/a
+      <td>
+        Refresh data in the data source.
+      </td>
+    </tr>
+    <tr>
+      <td>count</td>
+      <td>
+        n/a
+      <td>
+        Return count of element in the data source.
+      </td>
+    </tr>
+    <tr>
+      <td>empty</td>
+      <td>
+        n/a
+      <td>
+        Empty the data source.
+      </td>
+    </tr>
+  </table>
+  
+</section>
