@@ -1,0 +1,6 @@
+// ...
+
+@Component({
+  directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
+})
+// ...

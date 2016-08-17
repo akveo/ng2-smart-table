@@ -79,12 +79,20 @@ a:hover {
 @media screen and (min-width: 64em) {
   .page-header {
     padding: 5rem 6rem;
+    
+    &.internal {
+      padding: 3rem 4rem;
+    }
   }
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .page-header {
     padding: 3rem 4rem;
+
+    &.internal {
+      padding: 2rem 1rem;
+    }
   }
 }
 
@@ -103,11 +111,21 @@ a:hover {
   .project-name {
     font-size: 3.25rem;
   }
+  .internal {
+    .project-name {
+      font-size: 2.25rem;
+    }
+  }
 }
 
 @media screen and (min-width: 42em) and (max-width: 64em) {
   .project-name {
     font-size: 2.25rem;
+  }
+  .internal {
+    .project-name {
+      font-size: 1.75rem;
+    }
   }
 }
 
@@ -161,69 +179,69 @@ a:hover {
 }
 
 .main-content code {
-  padding: 2px 4px;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+//  padding: 2px 4px;
+//  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 0.9rem;
-  color: #383e41;
-  background-color: #f3f6fa;
-  border-radius: 0.3rem;
+//  color: #383e41;
+//  background-color: #f3f6fa;
+//  border-radius: 0.3rem;
 }
-
-.main-content pre {
-  padding: 0.8rem;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  color: #567482;
-  word-wrap: normal;
-  background-color: #f3f6fa;
-  border: solid 1px #dce6f0;
-  border-radius: 0.3rem;
-}
-
-.main-content pre > code {
-  padding: 0;
-  margin: 0;
-  font-size: 0.9rem;
-  color: #567482;
-  word-break: normal;
-  white-space: pre;
-  background: transparent;
-  border: 0;
-}
-
-.main-content .highlight {
-  margin-bottom: 1rem;
-}
-
-.main-content .highlight pre {
-  margin-bottom: 0;
-  word-break: normal;
-}
-
-.main-content .highlight pre, .main-content pre {
-  padding: 0.8rem;
-  overflow: auto;
-  font-size: 0.9rem;
-  line-height: 1.45;
-  border-radius: 0.3rem;
-}
-
-.main-content pre code, .main-content pre tt {
-  display: inline;
-  max-width: initial;
-  padding: 0;
-  margin: 0;
-  overflow: initial;
-  line-height: inherit;
-  word-wrap: normal;
-  background-color: transparent;
-  border: 0;
-}
-
-.main-content pre code:before, .main-content pre code:after, .main-content pre tt:before, .main-content pre tt:after {
-  content: normal;
-}
+//
+//.main-content pre {
+//  padding: 0.8rem;
+//  margin-top: 0;
+//  margin-bottom: 1rem;
+//  font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
+//  color: #567482;
+//  word-wrap: normal;
+//  background-color: #f3f6fa;
+//  border: solid 1px #dce6f0;
+//  border-radius: 0.3rem;
+//}
+//
+//.main-content pre > code {
+//  padding: 0;
+//  margin: 0;
+//  font-size: 0.9rem;
+//  color: #567482;
+//  word-break: normal;
+//  white-space: pre;
+//  background: transparent;
+//  border: 0;
+//}
+//
+//.main-content .highlight {
+//  margin-bottom: 1rem;
+//}
+//
+//.main-content .highlight pre {
+//  margin-bottom: 0;
+//  word-break: normal;
+//}
+//
+//.main-content .highlight pre, .main-content pre {
+//  padding: 0.8rem;
+//  overflow: auto;
+//  font-size: 0.9rem;
+//  line-height: 1.45;
+//  border-radius: 0.3rem;
+//}
+//
+//.main-content pre code, .main-content pre tt {
+//  display: inline;
+//  max-width: initial;
+//  padding: 0;
+//  margin: 0;
+//  overflow: initial;
+//  line-height: inherit;
+//  word-wrap: normal;
+//  background-color: transparent;
+//  border: 0;
+//}
+//
+//.main-content pre code:before, .main-content pre code:after, .main-content pre tt:before, .main-content pre tt:after {
+//  content: normal;
+//}
 
 .main-content ul, .main-content ol {
   margin-top: 0;
@@ -244,22 +262,22 @@ a:hover {
   margin-bottom: 0;
 }
 
-.main-content table {
-  display: block;
-  width: 100%;
-  overflow: auto;
-  word-break: normal;
-  word-break: keep-all;
-}
-
-.main-content table th {
-  font-weight: bold;
-}
-
-.main-content table th, .main-content table td {
-  padding: 0.5rem 1rem;
-  border: 1px solid #e9ebec;
-}
+//.main-content table {
+//  display: block;
+//  width: 100%;
+//  overflow: auto;
+//  word-break: normal;
+//  word-break: keep-all;
+//}
+//
+//.main-content table th {
+//  font-weight: bold;
+//}
+//
+//.main-content table th, .main-content table td {
+//  padding: 0.5rem 1rem;
+//  border: 1px solid #e9ebec;
+//}
 
 .main-content dl {
   padding: 0;
@@ -287,7 +305,7 @@ a:hover {
 
 @media screen and (min-width: 64em) {
   .main-content {
-    max-width: 64rem;
+    max-width: 82rem;
     padding: 2rem 6rem;
     margin: 0 auto;
     font-size: 1.1rem;

@@ -1,0 +1,72 @@
+<section class="page-header internal">
+  <h1 class="project-name">ng2-smart-table</h1>
+  <h2 class="project-tagline">Documentation & Demos</h2>
+  <a [routerLink]="['']" class="btn">Back to Home</a>
+  <a href="https://github.com/akveo/ng2-smart-table" class="btn">View on GitHub</a>
+</section>
+
+<section class="main-content">
+  <h3><a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h3>
+  <p>
+    Hello and Welcome!
+  </p>
+
+  <h3><a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
+  <p>
+    The library is available as npm package, so all you need to do is to run the following command:
+  </p>
+  <pre>
+    <code class="bash">{{ snippets.install }}</code>
+  </pre>
+  <p>This command will create a record in your `package.json` file and install the package into npm module folder.</p>
+
+  <h3><a id="minimal-setup" class="anchor" href="#minimal-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Minimal setup</h3>
+  <p>
+    First thing you need to do is to add the ng2-smart table directives to your component.
+  </p>
+  <pre>
+    <code class="typescript">{{ snippets.require }}</code>
+  </pre>
+  <p>
+    Then register it by adding to the list of directives and insert the component in the template:
+  </p>
+  <pre>
+    <code class="typescript">{{ snippets.directive }}</code>
+  </pre>
+  <p>
+    Now, we need to configure the table and add it into the template. The only <strong>required</strong> setting for component to start working is a columns configuration.<br>
+    Let's register <i>settings</i> property inside of the component where we what to have the table and configure some columns:
+  </p>
+  <pre>
+    <code class="typescript">{{ snippets.settings }}</code>
+  </pre>
+  <p>
+    Finally let's put the ng2-smart-table component inside of the template:
+  </p>
+  <pre>
+    <code class="typescript">{{ snippets.template }}</code>
+  </pre>
+  <p>
+    At this step you will have a minimally configured table which should look something like this:
+  </p>
+  <div>
+    <basic-example></basic-example>
+  </div>
+  <p>
+    All functions are available by default and you don't need to configure them somehow, so you already able to add/edit/delete the rows, sort or filter the table, etc.
+  </p>
+  <p>
+    But it feels like something is missing... Right, there is no data in the table by default. To add some, let's create an array property with a list of objects in the component:
+  </p>
+  <pre>
+    <code class="typescript">{{ snippets.array }}</code>
+  </pre>
+  <p>And pass the data to the table:</p>
+  <pre>
+    <code class="typescript">{{ snippets.dataTemplate }}</code>
+  </pre>
+  <p>Now you have some data in the table:</p>
+  <div>
+    <basic-example-data></basic-example-data>
+  </div>
+</section>

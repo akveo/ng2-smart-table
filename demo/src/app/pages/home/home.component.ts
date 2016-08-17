@@ -1,11 +1,8 @@
-import {Component, ViewEncapsulation} from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
   selector: 'home',
-  pipes: [],
-  directives: [],
-  encapsulation: ViewEncapsulation.None,
   styles: [require('./home.scss')],
   template: require('./home.html')
 })
