@@ -32,6 +32,17 @@ a:hover {
   transition: color 0.2s, background-color 0.2s, border-color 0.2s;
 }
 
+pre {
+  position: relative;
+  
+  a.source {
+    position: absolute;
+    right: 0;
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.875rem;
+  }
+}
+
 .btn + .btn {
   margin-left: 1rem;
 }
@@ -179,69 +190,8 @@ a:hover {
 }
 
 .main-content code {
-//  padding: 2px 4px;
-//  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
   font-size: 0.9rem;
-//  color: #383e41;
-//  background-color: #f3f6fa;
-//  border-radius: 0.3rem;
 }
-//
-//.main-content pre {
-//  padding: 0.8rem;
-//  margin-top: 0;
-//  margin-bottom: 1rem;
-//  font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
-//  color: #567482;
-//  word-wrap: normal;
-//  background-color: #f3f6fa;
-//  border: solid 1px #dce6f0;
-//  border-radius: 0.3rem;
-//}
-//
-//.main-content pre > code {
-//  padding: 0;
-//  margin: 0;
-//  font-size: 0.9rem;
-//  color: #567482;
-//  word-break: normal;
-//  white-space: pre;
-//  background: transparent;
-//  border: 0;
-//}
-//
-//.main-content .highlight {
-//  margin-bottom: 1rem;
-//}
-//
-//.main-content .highlight pre {
-//  margin-bottom: 0;
-//  word-break: normal;
-//}
-//
-//.main-content .highlight pre, .main-content pre {
-//  padding: 0.8rem;
-//  overflow: auto;
-//  font-size: 0.9rem;
-//  line-height: 1.45;
-//  border-radius: 0.3rem;
-//}
-//
-//.main-content pre code, .main-content pre tt {
-//  display: inline;
-//  max-width: initial;
-//  padding: 0;
-//  margin: 0;
-//  overflow: initial;
-//  line-height: inherit;
-//  word-wrap: normal;
-//  background-color: transparent;
-//  border: 0;
-//}
-//
-//.main-content pre code:before, .main-content pre code:after, .main-content pre tt:before, .main-content pre tt:after {
-//  content: normal;
-//}
 
 .main-content ul, .main-content ol {
   margin-top: 0;
@@ -261,23 +211,6 @@ a:hover {
 .main-content blockquote > :last-child {
   margin-bottom: 0;
 }
-
-//.main-content table {
-//  display: block;
-//  width: 100%;
-//  overflow: auto;
-//  word-break: normal;
-//  word-break: keep-all;
-//}
-//
-//.main-content table th {
-//  font-weight: bold;
-//}
-//
-//.main-content table th, .main-content table td {
-//  padding: 0.5rem 1rem;
-//  border: 1px solid #e9ebec;
-//}
 
 .main-content dl {
   padding: 0;
