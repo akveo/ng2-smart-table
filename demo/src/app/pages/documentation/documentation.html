@@ -515,6 +515,108 @@
       </td>
     </tr>
     <tr>
+      <td>setSort</td>
+      <td>
+        <ul>
+          <li>
+            conf: <span class="highlight">Array</span> - array of sort setting objects, object format is:
+            <ul>
+              <li>field - <span class="highlight">string</span> - columnKey</li>
+              <li>direction - <span class="string">string|null</span> - 'asc'|'desc'|null - sort direction</li>
+              <li>compare - <span class="string">Function|null</span> - custom compare function</li>
+            </ul>
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table sorts, example: <br>
+        <code>this.source.setSort([{ field: 'id', direction: 'asc' }]);</code>
+      </td>
+    </tr>
+    <tr>
+      <td>setFilter</td>
+      <td>
+        <ul>
+          <li>
+            conf: <span class="highlight">Array</span> - array of filter setting objects, object format is:
+            <ul>
+              <li>field - <span class="highlight">string</span> - columnKey</li>
+              <li>search - <span class="string">string</span> - search query</li>
+              <li>filter - <span class="string">Function|null</span> - custom filter function</li>
+            </ul>
+          </li>
+          <li>
+            andOperator: <span class="highlight">boolean</span> - how to process multiple filters (as AND or as OR), default = true (AND)
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table filters, example: <br>
+        <code>this.source.setFilter([{ field: 'id', search: 'foobar' }, { field: 'name', search: 'foobar' }]);</code>
+      </td>
+    </tr>
+    <tr>
+      <td>addFilter</td>
+      <td>
+        <ul>
+          <li>
+            conf: <span class="highlight">Object</span> - one filter object, format is:
+            <ul>
+              <li>field - <span class="highlight">string</span> - columnKey</li>
+              <li>search - <span class="string">string</span> - search query</li>
+              <li>filter - <span class="string">Function|null</span> - custom filter function</li>
+            </ul>
+          </li>
+          <li>
+            andOperator: <span class="highlight">boolean</span> - how to process multiple filters (as AND or as OR), default = true (AND)
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table filter for one column, example: <br>
+        <code>this.source.addFilter({ field: 'id', search: 'foobar' });</code>
+      </td>
+    </tr>
+    <tr>
+      <td>setPaging</td>
+      <td>
+        <ul>
+          <li>
+            page: <span class="highlight">number</span> - page number
+          </li>
+          <li>
+            perPage: <span class="highlight">number</span> - about per page
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table pagination settings
+      </td>
+    </tr>
+    <tr>
+      <td>setPage</td>
+      <td>
+        <ul>
+          <li>
+            page: <span class="highlight">number</span> - page number
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table page
+      </td>
+    </tr>
+    <tr>
       <td>reset</td>
       <td>
         <ul>
@@ -529,7 +631,7 @@
       <td>
         n/a
       <td>
-        Refresh data in the data source.
+        Refresh data in the data source. In most cases you won't need this method.
       </td>
     </tr>
     <tr>
