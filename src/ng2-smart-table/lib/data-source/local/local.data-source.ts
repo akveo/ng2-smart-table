@@ -84,8 +84,8 @@ export class LocalDataSource extends DataSource {
       this.sortConf = [];
       this.pagingConf['page'] = 1;
     } else {
-      this.setFilter([]);
-      this.setSort([]);
+      this.setFilter([], true, false);
+      this.setSort([], false);
       this.setPage(1);
     }
   }
