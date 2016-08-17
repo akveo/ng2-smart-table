@@ -1,12 +1,19 @@
 <section class="page-header">
   <h1 class="project-name">ng2-smart-table</h1>
   <h2 class="project-tagline">Smart data table library with sorting, filtering, pagination & add/edit/delete functions.</h2>
+  <a [routerLinkActive]="['active']" [routerLink]="['/demo']" class="btn">Quick Start & Demos</a>
+  <a [routerLinkActive]="['active']" [routerLink]="['/documentation']" class="btn">Documentation</a>
   <a href="https://github.com/akveo/ng2-smart-table" class="btn">View on GitHub</a>
-  <a [routerLink]="['/demo']" class="btn">Quick Start & Demos</a>
-  <a [routerLink]="['/documentation']" class="btn">Documentation</a>
 </section>
 
 <section class="main-content">
+
+  <h3><a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h3>
+  
+  <div>
+    <basic-example-source></basic-example-source>
+  </div>
+  
   <h3><a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h3>
     <ul>
       <li>Local data source (Server/API DataSource is on its way)</li>

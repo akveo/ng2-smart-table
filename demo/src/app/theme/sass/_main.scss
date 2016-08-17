@@ -54,7 +54,7 @@ span.highlight {
   margin-left: 1rem;
 }
 
-.btn:hover {
+.btn:hover, .btn.active {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   background-color: rgba(255, 255, 255, 0.2);
