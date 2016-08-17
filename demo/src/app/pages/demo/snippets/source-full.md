@@ -60,8 +60,8 @@ export class BasicExampleSourceComponent {
         search: query
       }
     ], false);
-    // second parameter specifying whether to perform AND or OR search 
+    // second parameter specifying whether to perform 'AND' or 'OR' search 
     // (meaning all columns should contain search query or at least one)
-    // AND by default, so changing to OR be setting false here
+    // 'AND' by default, so changing to 'OR' by setting false here
   }
 }
