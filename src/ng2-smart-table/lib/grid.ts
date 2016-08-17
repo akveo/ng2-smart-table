@@ -36,7 +36,7 @@ export class Grid {
     this.source = this.prepareSource(source);
 
     this.source.onChanged().subscribe((changes) => {
-      if (['load', 'filter', 'sort', 'page', 'remove'].indexOf(changes['action']) !== -1) {
+      if (['filter', 'sort', 'page', 'remove', 'refresh'].indexOf(changes['action']) !== -1) {
         this.dataSet.setData(changes['elements']);
         let row = this.determineRowToSelect(changes);
         if (row) {
@@ -117,7 +117,7 @@ export class Grid {
   // TODO: move to selectable? Separate directive
   protected determineRowToSelect(changes): Row {
 
-    if (['load', 'page', 'filter', 'sort'].indexOf(changes['action']) !== -1) {
+    if (['load', 'page', 'filter', 'sort', 'refresh'].indexOf(changes['action']) !== -1) {
       return this.dataSet.select();
     }
     if (changes['action'] === 'remove') {
@@ -148,11 +148,13 @@ export class Grid {
   protected prepareSource(source): DataSource {
     let initialSource = this.getInitialSort();
     if (initialSource && initialSource['field'] && initialSource['direction']) {
-      source.setSort([initialSource]);
+      source.setSort([initialSource], false);
     }
     if (this.getSetting('pager.display') === true) {
-      source.setPaging(1, this.getSetting('pager.perPage'));
+      source.setPaging(1, this.getSetting('pager.perPage'), false);
     }
+
+    source.refresh();
     return source;
   }
 

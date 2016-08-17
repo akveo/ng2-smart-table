@@ -1,53 +1,26 @@
 .ng2-smart-table {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #606c71;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+  
   td, th {
-    padding: 10px;
-    vertical-align: top;
+    font-size: .875rem;
+    margin: 0;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e9ebec;
   }
 
   .ng2-smart-row {
     &.selected {
-      background: rgba(0, 0, 0, 0.08);
-    }
-  }
-
-  .ng2-smart-action {
-    font-size: 22px;
-    padding: 5px;
-
-    &.ng2-smart-action-add-add {
-      &::before {
-        content: '✚';
-      }
-    }
-    &.ng2-smart-action-add-cancel {
-      &::before {
-        content: '✗';
-      }
-    }
-    &.ng2-smart-action-add-create {
-      &::before {
-        content: '✓';
-      }
-    }
-    &.ng2-smart-action-edit-edit {
-      &::before {
-        content: '✎';
-      }
-    }
-    &.ng2-smart-action-edit-save {
-      &::before {
-        content: '✓';
-      }
-    }
-    &.ng2-smart-action-edit-cancel {
-      &::before {
-        content: '✗';
-      }
-    }
-    &.ng2-smart-action-delete-delete {
-      &::before {
-        content: '✗';
-      }
+      background: rgba(0, 0, 0, 0.05);
     }
   }
 }

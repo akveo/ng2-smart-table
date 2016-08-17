@@ -16,7 +16,7 @@ import { Cell } from '../../lib/data-set/cell';
       [placeholder]="cell.getColumn().title"
       [disabled]="!cell.getColumn().isEditable"
       (click)="onClick($event)"
-      (keydown.enter)="onEdited()" 
+      (keydown.enter)="onEdited($event)" 
       (keydown.esc)="onStopEditing()">
   `
 })
@@ -33,8 +33,8 @@ export class CellComponent {
     return false;
   }
 
-  onEdited(): boolean {
-    this.edited.emit(null);
+  onEdited(event): boolean {
+    this.edited.emit(event);
     return false;
   }
 

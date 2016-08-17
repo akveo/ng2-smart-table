@@ -5,6 +5,7 @@ import { Column } from '../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-filter',
+  styles: [require('./filter.scss')],
   template: `
     <div class="ba-grid-filter" *ngIf="column.isFilterable">
       <input 

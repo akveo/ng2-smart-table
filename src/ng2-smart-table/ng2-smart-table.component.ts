@@ -12,6 +12,7 @@ import { TitleComponent } from './components/title/title.component';
 import { PagerComponent } from './components/pager/pager.component';
 import { CellComponent } from './components/cell/cell.component';
 import { deepExtend } from './lib/helpers';
+import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -19,9 +20,9 @@ import { deepExtend } from './lib/helpers';
   styles: [require('./ng2-smart-table.scss')],
   template: require('./ng2-smart-table.html')
 })
-export class Ng2SmartTableComponent implements OnInit, OnChanges {
+export class Ng2SmartTableComponent implements OnChanges {
 
-  @Input() source: DataSource;
+  @Input() source: any;
   @Input() settings: Object = {};
 
   @Output() public select: EventEmitter<any> = new EventEmitter<any>();
@@ -44,18 +45,18 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
     },
     edit: {
       inputClass: '',
-      editButtonContent: '',
-      saveButtonContent: '',
-      cancelButtonContent: ''
+      editButtonContent: 'Edit',
+      saveButtonContent: 'Update',
+      cancelButtonContent: 'Cancel'
     },
     add: {
       inputClass: '',
-      addButtonContent: '',
-      createButtonContent: '',
-      cancelButtonContent: ''
+      addButtonContent: 'Add New',
+      createButtonContent: 'Create',
+      cancelButtonContent: 'Cancel'
     },
     delete: {
-      deleteButtonContent: ''
+      deleteButtonContent: 'Delete'
     },
     attr: {
       id: '',
@@ -68,12 +69,6 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
       perPage: 10
     }
   };
-
-  ngOnInit(): void {
-    if (!this.source) {
-      throw new Error('DataSource object can not be empty during table intialization');
-    }
-  }
 
   ngOnChanges(changes: {[propertyName: string]: SimpleChange}): void {
     if (this.grid) {
@@ -153,8 +148,19 @@ export class Ng2SmartTableComponent implements OnInit, OnChanges {
   }
 
   protected initGrid(): void {
+    this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
     this.grid.onSelectRow().subscribe((row) => this.onSelectRow(row));
+  }
+  
+  protected prepareSource(): DataSource {
+    if (this.source instanceof DataSource) {
+      return this.source;
+    } else if (this.source instanceof Array) {
+      return new LocalDataSource(this.source);
+    }
+    
+    return new LocalDataSource();
   }
 
   protected prepareSettings(): Object {

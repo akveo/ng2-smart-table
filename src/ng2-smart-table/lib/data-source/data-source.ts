@@ -73,26 +73,34 @@ export abstract class DataSource {
     return Promise.resolve();
   }
 
-  setSort(conf: Array<any>): void {
-    this.emitOnChanged('sort');
+  setSort(conf: Array<any>, doEmit?: boolean): void {
+    if (doEmit) {
+      this.emitOnChanged('sort');
+    }
   }
 
-  setFilter(conf: Array<any>, andOperator?: boolean): void {
-    this.emitOnChanged('filter');
-  }
-
-  addFilter(fieldConf: {}, doEmit?: boolean, andOperator?: boolean): void {
+  setFilter(conf: Array<any>, andOperator?: boolean, doEmit?: boolean): void {
     if (doEmit) {
       this.emitOnChanged('filter');
     }
   }
 
-  setPaging(page: number, perPage: number): void {
-    this.emitOnChanged('paging');
+  addFilter(fieldConf: {}, andOperator?: boolean, doEmit?: boolean): void {
+    if (doEmit) {
+      this.emitOnChanged('filter');
+    }
   }
 
-  setPage(page: number): void {
-    this.emitOnChanged('page');
+  setPaging(page: number, perPage: number, doEmit?: boolean): void {
+    if (doEmit) {
+      this.emitOnChanged('paging');
+    }
+  }
+
+  setPage(page: number, doEmit?: boolean): void {
+    if (doEmit) {
+      this.emitOnChanged('page');
+    }
   }
 
   protected emitOnRemoved(): void {

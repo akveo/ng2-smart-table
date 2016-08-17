@@ -107,9 +107,10 @@ export class LocalDataSource extends DataSource {
    *  {field: string, direction: asc|desc|null, compare: Function|null},
    * ]
    * @param conf
+   * @param doEmit
    * @returns {LocalDataSource}
    */
-  setSort(conf: Array<any>): LocalDataSource {
+  setSort(conf: Array<any>, doEmit = true): LocalDataSource {
     if (conf !== null) {
 
       conf.forEach((fieldConf) => {
@@ -120,7 +121,7 @@ export class LocalDataSource extends DataSource {
       this.sortConf = conf;
     }
 
-    super.setSort(conf);
+    super.setSort(conf, doEmit);
     return this;
   }
 
@@ -132,12 +133,13 @@ export class LocalDataSource extends DataSource {
    * ]
    * @param conf
    * @param andOperator
+   * @param doEmit
    * @returns {LocalDataSource}
    */
-  setFilter(conf: Array<any>, andOperator = true): LocalDataSource {
+  setFilter(conf: Array<any>, andOperator = true, doEmit = true): LocalDataSource {
     if (conf && conf.length > 0) {
       conf.forEach((fieldConf) => {
-        this.addFilter(fieldConf, false);
+        this.addFilter(fieldConf, andOperator, false);
       });
     } else {
       this.filterConf = {
@@ -147,11 +149,12 @@ export class LocalDataSource extends DataSource {
     }
     this.filterConf.andOperator = andOperator;
     this.pagingConf['page'] = 1;
-    super.setFilter(conf);
+    
+    super.setFilter(conf, andOperator, doEmit);
     return this;
   }
 
-  addFilter(fieldConf, doEmit: boolean = true, andOperator = true): LocalDataSource {
+  addFilter(fieldConf, andOperator = true, doEmit: boolean = true): LocalDataSource {
     if (!fieldConf['field'] || typeof fieldConf['search'] === 'undefined') {
       throw new Error('Filter configuration object is not valid');
     }
@@ -167,21 +170,21 @@ export class LocalDataSource extends DataSource {
       this.filterConf.filters.push(fieldConf);
     }
     this.filterConf.andOperator = andOperator;
-    super.addFilter(fieldConf, doEmit);
+    super.addFilter(fieldConf, andOperator, doEmit);
     return this;
   }
 
-  setPaging(page: number, perPage: number): LocalDataSource {
+  setPaging(page: number, perPage: number, doEmit: boolean = true): LocalDataSource {
     this.pagingConf['page'] = page;
     this.pagingConf['perPage'] = perPage;
 
-    super.setPaging(page, perPage);
+    super.setPaging(page, perPage, doEmit);
     return this;
   }
 
-  setPage(page: number): LocalDataSource {
+  setPage(page: number, doEmit: boolean = true): LocalDataSource {
     this.pagingConf['page'] = page;
-    super.setPage(page);
+    super.setPage(page, doEmit);
     return this;
   }
 

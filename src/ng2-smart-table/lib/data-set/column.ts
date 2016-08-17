@@ -35,9 +35,9 @@ export class Column {
     this.class = this.settings['class'];
     this.type = this.prepareType();
 
-    this.isFilterable = !!this.settings['filter'];
+    this.isFilterable = typeof this.settings['filter'] === 'undefined' ? true : !!this.settings['filter'];
     this.defaultSortDirection = this.settings['sort'];
-    this.isSortable = !!this.settings['sort'];
+    this.isSortable = typeof this.settings['sort'] === 'undefined' ? true : !!this.settings['sort'];
     this.isEditable = typeof this.settings['editable'] === 'undefined' ? true : !!this.settings['editable'];
     this.sortDirection = this.prepareSortDirection();
 

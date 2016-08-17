@@ -14,7 +14,7 @@
     </tr>
 
     <tr class="ng2-smart-filters">
-      <th class="ng2-smart-actions-title" *ngIf="grid.getSetting('actions.add')">
+      <th class="ng2-smart-actions-title ng2-smart-actions-title-add" *ngIf="grid.getSetting('actions.add')">
         <a href="#" class="ng2-smart-action ng2-smart-action-add-add" [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
       </th>
       <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
@@ -30,7 +30,7 @@
         </div>
       </td>
       <td *ngFor="let cell of grid.getNewRow().getCells()">
-        <ng2-smart-table-cell [cell]="cell" [inputClass]="grid.getSetting('add.inputClass')" (edited)="onCreate(grid.getNewRow())"></ng2-smart-table-cell>
+        <ng2-smart-table-cell [cell]="cell" [inputClass]="grid.getSetting('add.inputClass')" (edited)="onCreate(grid.getNewRow(), $event)"></ng2-smart-table-cell>
       </td>
     </tr>
 
@@ -52,7 +52,7 @@
         </div>
       </td>
       <td *ngFor="let cell of row.getCells()">
-        <ng2-smart-table-cell [cell]="cell" [mode]="grid.getSetting('mode')" [inputClass]="grid.getSetting('edit.inputClass')" (edited)="onSave(row)"></ng2-smart-table-cell>
+        <ng2-smart-table-cell [cell]="cell" [mode]="grid.getSetting('mode')" [inputClass]="grid.getSetting('edit.inputClass')" (edited)="onSave(row, $event)"></ng2-smart-table-cell>
       </td>
 
     </tr>
