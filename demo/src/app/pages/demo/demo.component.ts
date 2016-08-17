@@ -21,6 +21,7 @@ export class DemoComponent {
     template: require('raw-loader!./snippets/template.md'),
     array: require('raw-loader!./snippets/array.md'),
     dataTemplate: require('raw-loader!./snippets/data-template.md'),
+    basicFull: require('raw-loader!./snippets/basic-full.md'),
   };
   
   constructor() {

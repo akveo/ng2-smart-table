@@ -56,7 +56,7 @@
     All functions are available by default and you don't need to configure them somehow, so you already able to add/edit/delete the rows, sort or filter the table, etc.
   </p>
   <p>
-    But it feels like something is missing... Right, there is no data in the table by default. To add some, let's create an array property with a list of objects in the component:
+    But it feels like something is missing... Right, there is no data in the table by default. To add some, let's create an array property with a list of objects in the component. Please note that object keys are same as in the columns configuration.
   </p>
   <pre>
     <code class="typescript">{{ snippets.array }}</code>
@@ -69,4 +69,11 @@
   <div>
     <basic-example-data></basic-example-data>
   </div>
+  
+  <p>
+    That's it for a minimal setup, our final component should look like this, pretty simple, huh?
+  </p>
+  <pre>
+    <code class="typescript">{{ snippets.basicFull }}</code>
+  </pre>
 </section>

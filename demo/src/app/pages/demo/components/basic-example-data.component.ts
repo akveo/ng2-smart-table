@@ -97,8 +97,4 @@ export class BasicExampleDataComponent {
       email: "Rey.Padberg@rosamond.biz"
     }
   ];
-  
-  ngOnInit() {
-    
-  }
 }
