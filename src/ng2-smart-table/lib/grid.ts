@@ -161,7 +161,7 @@ export class Grid {
   protected getInitialSort() {
     let sortConf = {};
     this.getColumns().forEach((column: Column) => {
-      if (column.isSortable && ['asc', 'desc'].indexOf(column.defaultSortDirection) !== -1) {
+      if (column.isSortable && column.defaultSortDirection) {
         sortConf['field'] = column.id;
         sortConf['direction'] = column.defaultSortDirection;
         sortConf['compare'] = column.getCompareFunction();
