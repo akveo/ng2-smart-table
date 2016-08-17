@@ -16,7 +16,7 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 const METADATA = {
   title: 'ng2-smart-table - Angular 2 Smart Table',
   description: 'Angular 2 Smart Table',
-  baseUrl: '/'
+  baseUrl: ''
 };
 
 /*
