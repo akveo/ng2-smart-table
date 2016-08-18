@@ -23,7 +23,7 @@
     </tr>
 
     <tr *ngIf="grid.createFormShown">
-      <td class="ng2-smart-actions-title">
+      <td class="ng2-smart-actions">
         <a href="#" class="ng2-smart-action ng2-smart-action-add-create" [innerHTML]="grid.getSetting('add.createButtonContent')" (click)="onCreate(grid.getNewRow(), $event)"></a>
         <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel" [innerHTML]="grid.getSetting('add.cancelButtonContent')" (click)="grid.createFormShown = false;"></a>
       </td>
