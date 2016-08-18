@@ -3,6 +3,8 @@ import { Row } from './data-set/row';
 import { DataSet } from './data-set/data-set';
 import { DataSource } from './data-source/data-source';
 import { Subject, Observable } from 'rxjs/Rx';
+import { EventEmitter } from '@angular/core';
+import { Deferred } from './helpers';
 
 export class Grid {
 
@@ -74,32 +76,74 @@ export class Grid {
   edit(row: Row): void {
     row.isInEditing = true;
   }
+  
+  create(row: Row, confirmEmitter: EventEmitter<any>): void {
 
-  // TODO: error handling
-  create(row: Row): void {
-    this.source.prepend(row.getNewData()).then(() => {
-      this.createFormShown = false;
-      this.dataSet.createNewRow();
-    }).catch((e) => {
-      console.error(e);
+    let deferred = new Deferred();
+    deferred.promise.then((newData) => {
+      newData = newData ? newData : row.getNewData();
+      this.source.prepend(newData).then(() => {
+        this.createFormShown = false;
+        this.dataSet.createNewRow();
+      })
+    }).catch((err) => {
+      // doing nothing
     });
+
+    if (this.getSetting('add.confirmCreate')) {
+      confirmEmitter.emit({
+        newData: row.getNewData(),
+        source: this.source,
+        confirm: deferred
+      });
+    } else {
+      deferred.resolve();
+    }
+  }
+  
+  save(row: Row, confirmEmitter: EventEmitter<any>): void {
+
+    let deferred = new Deferred();
+    deferred.promise.then((newData) => {
+      newData = newData ? newData : row.getNewData();
+      this.source.update(row.getData(), newData).then(() => {
+        row.isInEditing = false;
+      })
+    }).catch((err) => {
+      // doing nothing
+    });
+
+    if (this.getSetting('edit.confirmSave')) {
+      console.log('here');
+      confirmEmitter.emit({
+        data: row.getData(),
+        newData: row.getNewData(),
+        source: this.source,
+        confirm: deferred
+      });
+    } else {
+      deferred.resolve();
+    }
   }
 
-  // TODO: error handling
-  save(row: Row): void {
-    this.source.update(row.getData(), row.getNewData()).then(() => {
-      row.isInEditing = false;
-    }).catch((e) => {
-      console.error(e);
+  delete(row: Row, confirmEmitter: EventEmitter<any>): void {
+    
+    let deferred = new Deferred();
+    deferred.promise.then(() => {
+      this.source.remove(row.getData());
+    }).catch((err) => {
+      // doing nothing
     });
-  }
-
-  delete(row: Row): void {
-    this.source.remove(row.getData()).then(() => {
-
-    }).catch((e) => {
-      console.error(e);
-    });
+    
+    if (this.getSetting('delete.confirmDelete')) {
+      confirmEmitter.emit({
+        data: row.getData(),
+        source: this.source,
+        confirm: deferred
+      });
+    } else {
+      deferred.resolve();
+    }
   }
   
   protected processDataChange(changes): void {

@@ -30,6 +30,10 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() public edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() public create: EventEmitter<any> = new EventEmitter<any>();
 
+  @Output() public deleteConfirm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public editConfirm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public createConfirm: EventEmitter<any> = new EventEmitter<any>();
+  
   protected grid: Grid;
   protected defaultSettings: Object = {
 
@@ -49,16 +53,19 @@ export class Ng2SmartTableComponent implements OnChanges {
       inputClass: '',
       editButtonContent: 'Edit',
       saveButtonContent: 'Update',
-      cancelButtonContent: 'Cancel'
+      cancelButtonContent: 'Cancel',
+      confirmSave: false
     },
     add: {
       inputClass: '',
       addButtonContent: 'Add New',
       createButtonContent: 'Create',
-      cancelButtonContent: 'Cancel'
+      cancelButtonContent: 'Cancel',
+      confirmCreate: false
     },
     delete: {
-      deleteButtonContent: 'Delete'
+      deleteButtonContent: 'Delete',
+      confirmDelete: false
     },
     attr: {
       id: '',
@@ -130,7 +137,7 @@ export class Ng2SmartTableComponent implements OnChanges {
         source: this.source
       });
     } else {
-      this.grid.delete(row);
+      this.grid.delete(row, this.deleteConfirm);
     }
     return false;
   }
@@ -138,14 +145,14 @@ export class Ng2SmartTableComponent implements OnChanges {
   onCreate(row: Row, event): boolean {
     event.stopPropagation();
 
-    this.grid.create(row);
+    this.grid.create(row, this.createConfirm);
     return false;
   }
 
   onSave(row: Row, event): boolean {
     event.stopPropagation();
 
-    this.grid.save(row);
+    this.grid.save(row, this.editConfirm);
     return false;
   }
 
