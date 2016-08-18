@@ -2,12 +2,13 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { BasicExampleComponent } from './components/basic-example.component';
 import { BasicExampleDataComponent } from './components/basic-example-data.component';
 import { BasicExampleSourceComponent } from './components/basic-example-source.component';
+import { BasicExampleLoadComponent } from './components/basic-example-load.component';
 
 let hljs: any = require('highlight.js');
 
 @Component({
   selector: 'demo',
-  directives: [BasicExampleComponent, BasicExampleDataComponent, BasicExampleSourceComponent],
+  directives: [BasicExampleComponent, BasicExampleDataComponent, BasicExampleSourceComponent, BasicExampleLoadComponent],
   encapsulation: ViewEncapsulation.None,
   styles: [require('./demo.scss'), require('highlight.js/styles/dracula.css')],
   template: require('./demo.html')
