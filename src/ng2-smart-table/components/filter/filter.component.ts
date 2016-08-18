@@ -7,7 +7,7 @@ import { Column } from '../../lib/data-set/column';
   selector: 'ng2-smart-table-filter',
   styles: [require('./filter.scss')],
   template: `
-    <div class="ba-grid-filter" *ngIf="column.isFilterable">
+    <div class="ng2-smart-filter" *ngIf="column.isFilterable">
       <input 
       [(ngModel)]="query"
       (keyup)="filter($event)"
