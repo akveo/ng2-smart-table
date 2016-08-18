@@ -35,15 +35,7 @@ export class Grid {
   setSource(source: DataSource): void {
     this.source = this.prepareSource(source);
 
-    this.source.onChanged().subscribe((changes) => {
-      if (['filter', 'sort', 'page', 'remove', 'refresh', 'load'].indexOf(changes['action']) !== -1) {
-        this.dataSet.setData(changes['elements']);
-        let row = this.determineRowToSelect(changes);
-        if (row) {
-          this.onSelectRowSource.next(row);
-        }
-      }
-    });
+    this.source.onChanged().subscribe((changes) => this.processDataChange(changes));
 
     this.source.onUpdated().subscribe((data) => {
       let changedRow = this.dataSet.findRowByData(data);
@@ -112,6 +104,26 @@ export class Grid {
     }).catch((e) => {
       console.error(e);
     });
+  }
+  
+  protected processDataChange(changes): void {
+    if (this.shouldProcessChange(changes)) {
+      this.dataSet.setData(changes['elements']);
+      let row = this.determineRowToSelect(changes);
+      if (row) {
+        this.onSelectRowSource.next(row);
+      }
+    }
+  }
+  
+  protected shouldProcessChange(changes): boolean {
+    if (['filter', 'sort', 'page', 'remove', 'refresh', 'load'].indexOf(changes['action']) !== -1) {
+      return true;
+    } else if (['prepend', 'append'].indexOf(changes['action']) !== -1 && !this.getSetting('pager.display')) {
+      return true;
+    }
+    
+    return false;
   }
 
   // TODO: move to selectable? Separate directive

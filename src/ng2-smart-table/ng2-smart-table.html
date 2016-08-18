@@ -1,8 +1,8 @@
 <div class="ng2-smart-table-container">
   <table class="ng2-smart-table table" [id]="grid.getSetting('attr.id')" [ngClass]="grid.getSetting('attr.class')">
-    <thead>
+    <thead *ngIf="!grid.getSetting('hideHeader') || !grid.getSetting('hideSubHeader')">
 
-    <tr class="ng2-smart-titles">
+    <tr class="ng2-smart-titles" *ngIf="!grid.getSetting('hideHeader')">
       <th *ngIf="grid.getSetting('actions.add') || grid.getSetting('actions.edit') || grid.getSetting('actions.delete')" class="ng2-smart-actions">
         <div class="ng2-smart-title">{{ grid.getSetting('actions.columnTitle') }}</div>
       </th>
@@ -13,7 +13,7 @@
       </th>
     </tr>
 
-    <tr class="ng2-smart-filters">
+    <tr class="ng2-smart-filters" *ngIf="!grid.getSetting('hideSubHeader')">
       <th class="ng2-smart-actions-title ng2-smart-actions-title-add" *ngIf="grid.getSetting('actions.add')">
         <a href="#" class="ng2-smart-action ng2-smart-action-add-add" [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
       </th>
@@ -23,11 +23,9 @@
     </tr>
 
     <tr *ngIf="grid.createFormShown">
-      <td>
-        <div class="ng2-smart-actions-title">
-          <a href="#" class="ng2-smart-action ng2-smart-action-add-create" [innerHTML]="grid.getSetting('add.createButtonContent')" (click)="onCreate(grid.getNewRow(), $event)"></a>
-          <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel" [innerHTML]="grid.getSetting('add.cancelButtonContent')" (click)="grid.createFormShown = false;"></a>
-        </div>
+      <td class="ng2-smart-actions-title">
+        <a href="#" class="ng2-smart-action ng2-smart-action-add-create" [innerHTML]="grid.getSetting('add.createButtonContent')" (click)="onCreate(grid.getNewRow(), $event)"></a>
+        <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel" [innerHTML]="grid.getSetting('add.cancelButtonContent')" (click)="grid.createFormShown = false;"></a>
       </td>
       <td *ngFor="let cell of grid.getNewRow().getCells()">
         <ng2-smart-table-cell [cell]="cell" [inputClass]="grid.getSetting('add.inputClass')" (edited)="onCreate(grid.getNewRow(), $event)"></ng2-smart-table-cell>
@@ -40,16 +38,12 @@
 
     <tr *ngFor="let row of grid.getRows()" (click)="onSelectRow(row)" class="ng2-smart-row" [ngClass]="{selected: row.isSelected}">
       <td *ngIf="!row.isInEditing && (grid.getSetting('actions.edit') || grid.getSetting('actions.delete'))" class="ng2-smart-actions">
-        <div class="actions">
-          <a href="#" *ngIf="grid.getSetting('actions.edit')" class="ng2-smart-action ng2-smart-action-edit-edit" [innerHTML]="grid.getSetting('edit.editButtonContent')" (click)="onEdit(row, $event)"></a>
-          <a href="#" *ngIf="grid.getSetting('actions.delete')" class="ng2-smart-action ng2-smart-action-delete-delete" [innerHTML]="grid.getSetting('delete.deleteButtonContent')" (click)="onDelete(row, $event)"></a>
-        </div>
+        <a href="#" *ngIf="grid.getSetting('actions.edit')" class="ng2-smart-action ng2-smart-action-edit-edit" [innerHTML]="grid.getSetting('edit.editButtonContent')" (click)="onEdit(row, $event)"></a>
+        <a href="#" *ngIf="grid.getSetting('actions.delete')" class="ng2-smart-action ng2-smart-action-delete-delete" [innerHTML]="grid.getSetting('delete.deleteButtonContent')" (click)="onDelete(row, $event)"></a>
       </td>
-      <td *ngIf="row.isInEditing">
-        <div class="ng2-smart-actions-title">
-          <a href="#" class="ng2-smart-action ng2-smart-action-edit-save" [innerHTML]="grid.getSetting('edit.saveButtonContent')" (click)="onSave(row, $event)"></a>
-          <a href="#" class="ng2-smart-action ng2-smart-action-edit-cancel" [innerHTML]="grid.getSetting('edit.cancelButtonContent')" (click)="row.isInEditing = false;"></a>
-        </div>
+      <td *ngIf="row.isInEditing" class="ng2-smart-actions">
+        <a href="#" class="ng2-smart-action ng2-smart-action-edit-save" [innerHTML]="grid.getSetting('edit.saveButtonContent')" (click)="onSave(row, $event)"></a>
+        <a href="#" class="ng2-smart-action ng2-smart-action-edit-cancel" [innerHTML]="grid.getSetting('edit.cancelButtonContent')" (click)="row.isInEditing = false;"></a>
       </td>
       <td *ngFor="let cell of row.getCells()">
         <ng2-smart-table-cell [cell]="cell" [mode]="grid.getSetting('mode')" [inputClass]="grid.getSetting('edit.inputClass')" (edited)="onSave(row, $event)"></ng2-smart-table-cell>

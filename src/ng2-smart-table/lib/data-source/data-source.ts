@@ -7,6 +7,7 @@ export abstract class DataSource {
   protected onUpdatedSource = new Subject<any>();
   protected onRemovedSource = new Subject<any>();
 
+  abstract getAll(): Promise<any>;
   abstract getElements(): Promise<any>;
   abstract getSort(): any;
   abstract getFilter(): any;

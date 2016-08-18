@@ -75,6 +75,11 @@ export class LocalDataSource extends DataSource {
     return Promise.resolve(this.prepareData(data));
   }
 
+  getAll(): Promise<any> {
+    let data = this.data.slice(0);
+    return Promise.resolve(data);
+  }
+
   reset(silent = false): void {
     if (silent) {
       this.filterConf = {
