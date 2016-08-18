@@ -36,7 +36,7 @@ export class Grid {
     this.source = this.prepareSource(source);
 
     this.source.onChanged().subscribe((changes) => {
-      if (['filter', 'sort', 'page', 'remove', 'refresh'].indexOf(changes['action']) !== -1) {
+      if (['filter', 'sort', 'page', 'remove', 'refresh', 'load'].indexOf(changes['action']) !== -1) {
         this.dataSet.setData(changes['elements']);
         let row = this.determineRowToSelect(changes);
         if (row) {
