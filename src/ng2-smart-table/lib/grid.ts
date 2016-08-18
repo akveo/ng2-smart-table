@@ -114,7 +114,6 @@ export class Grid {
     });
 
     if (this.getSetting('edit.confirmSave')) {
-      console.log('here');
       confirmEmitter.emit({
         data: row.getData(),
         newData: row.getNewData(),

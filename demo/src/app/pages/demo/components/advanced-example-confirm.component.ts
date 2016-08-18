@@ -128,7 +128,8 @@ export class AdvancedExampleConfirmComponent {
 
   onSaveConfirm(event):void {
     if (window.confirm('Are you sure you want to save?')) {
-      event.confirm.resolve({id: 'custom change'});
+      event.newData['name'] += ' + added in code'; 
+      event.confirm.resolve(event.newData);
     } else {
       event.confirm.reject();
     }
@@ -136,7 +137,8 @@ export class AdvancedExampleConfirmComponent {
 
   onCreateConfirm(event):void {
     if (window.confirm('Are you sure you want to create?')) {
-      event.confirm.resolve({id: 'custom change'});
+      event.newData['name'] += ' + added in code';
+      event.confirm.resolve(event.newData);
     } else {
       event.confirm.reject();
     }
