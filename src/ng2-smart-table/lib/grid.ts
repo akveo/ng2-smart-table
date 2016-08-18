@@ -77,9 +77,7 @@ export class Grid {
 
   // TODO: error handling
   create(row: Row): void {
-    let values = {};
-    row.getCells().forEach((cell) => values[cell.getColumn().id] = cell.newValue);
-    this.source.prepend(values).then(() => {
+    this.source.prepend(row.getNewData()).then(() => {
       this.createFormShown = false;
       this.dataSet.createNewRow();
     }).catch((e) => {
@@ -89,9 +87,7 @@ export class Grid {
 
   // TODO: error handling
   save(row: Row): void {
-    let values = {};
-    row.getCells().forEach((cell) => values[cell.getColumn().id] = cell.newValue);
-    this.source.update(row.getData(), values).then(() => {
+    this.source.update(row.getData(), row.getNewData()).then(() => {
       row.isInEditing = false;
     }).catch((e) => {
       console.error(e);

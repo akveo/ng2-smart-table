@@ -24,6 +24,12 @@ export class Row {
   getData(): any {
     return this.data;
   }
+  
+  getNewData(): any {
+    let values = {};
+    this.getCells().forEach((cell) => values[cell.getColumn().id] = cell.newValue);
+    return values;
+  }
 
   setData(data): any {
     this.data = data;
