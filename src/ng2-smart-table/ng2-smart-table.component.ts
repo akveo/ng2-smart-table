@@ -129,7 +129,6 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   onDelete(row: Row, event): boolean {
     event.stopPropagation();
-    this.onSelectRow(row);
 
     if (this.grid.getSetting('mode') === 'external') {
       this.delete.emit({
