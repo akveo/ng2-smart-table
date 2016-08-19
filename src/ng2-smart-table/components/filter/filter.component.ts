@@ -26,7 +26,7 @@ export class FilterComponent {
 
   query: string = '';
   timeout: any;
-  delay: number = 800;
+  delay: number = 300;
 
   ngAfterViewInit(): void {
     this.source.onChanged().subscribe((elements) => {

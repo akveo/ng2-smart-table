@@ -58,7 +58,7 @@ export abstract class DataSource {
   }
 
   remove(element: any): Promise<any> {
-    this.emitOnRemoved();
+    this.emitOnRemoved(element);
     this.emitOnChanged('remove');
     return Promise.resolve();
   }
@@ -104,8 +104,8 @@ export abstract class DataSource {
     }
   }
 
-  protected emitOnRemoved(): void {
-    this.onRemovedSource.next(null);
+  protected emitOnRemoved(element: any): void {
+    this.onRemovedSource.next(element);
   }
 
   protected emitOnUpdated(element: any): void {

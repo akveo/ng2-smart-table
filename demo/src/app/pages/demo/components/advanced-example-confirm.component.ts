@@ -7,6 +7,7 @@ import { NG2_SMART_TABLE_DIRECTIVES, LocalDataSource } from '../../../../../../n
   directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
   styles: [],
   template: `
+    <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
     <ng2-smart-table 
     [settings]="settings" 
     [source]="source" 
@@ -142,5 +143,30 @@ export class AdvancedExampleConfirmComponent {
     } else {
       event.confirm.reject();
     }
+  }
+
+  onSearch(query: string = ''): void {
+    this.source.setFilter([
+      // fields we want to inclue in the search
+      {
+        field: 'id',
+        search: query
+      },
+      {
+        field: 'name',
+        search: query
+      },
+      {
+        field: 'username',
+        search: query
+      },
+      {
+        field: 'email',
+        search: query
+      }
+    ], false);
+    // second parameter specifying whether to perform 'AND' or 'OR' search 
+    // (meaning all columns should contain search query or at least one)
+    // 'AND' by default, so changing to 'OR' by setting false here
   }
 }
