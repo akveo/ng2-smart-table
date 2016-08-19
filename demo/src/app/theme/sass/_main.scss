@@ -43,6 +43,12 @@ a:hover {
   }
 }
 
+input.search {
+  margin-bottom: 20px;
+  line-height: normal;
+  padding: .375rem .75rem;
+}
+
 span.highlight {
   background: rgba(0, 0, 0, 0.05);
   padding: 0 .25rem;
