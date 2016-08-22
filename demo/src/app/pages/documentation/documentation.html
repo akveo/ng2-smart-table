@@ -309,6 +309,14 @@
       </td>
     </tr>
     <tr>
+      <td>edit.confirmSave</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Enable/disable <span class="highlight">(confirmEdit)</span> event. If enabled data will be edited only if confirm.resolve() called.
+      </td>
+    </tr>
+    <tr>
       <td>add</td>
       <td><span class="highlight">Object</span></td>
       <td>n/a</td>
@@ -349,6 +357,14 @@
       </td>
     </tr>
     <tr>
+      <td>add.confirmCreate</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Enable/disable <span class="highlight">(confirmCreate)</span> event. If enabled data will be added only if confirm.resolve() called. 
+      </td>
+    </tr>
+    <tr>
       <td>delete</td>
       <td><span class="highlight">Object</span></td>
       <td>n/a</td>
@@ -362,6 +378,14 @@
       <td>'Delete'</td>
       <td>
         Delete row input class
+      </td>
+    </tr>
+    <tr>
+      <td>delete.confirmDelete</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Enable/disable <span class="highlight">(confirmDelete)</span> event. If enabled data will be deleted only if confirm.resolve() called.
       </td>
     </tr>
     <tr>
@@ -424,6 +448,21 @@
       </td>
     </tr>
     <tr>
+      <td>(createConfirm)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>newData: <span class="highlight">Object</span> - data entered in a new row</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+          <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve(newData: Object) and reject() methods.</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Create button clicked. Triggered only if table <strong>confirmCreate = true and mode = inline</strong>.
+        Allows you to confirm changes before they are applied to the table data source.
+      </td>
+    </tr>
+    <tr>
       <td>(edit)</td>
       <td>
         event: <span class="highlight">Object</span>, consist of:
@@ -437,6 +476,22 @@
       </td>
     </tr>
     <tr>
+      <td>(editConfirm)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - original row data</li>
+          <li>newData: <span class="highlight">Object</span> - edited data</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+          <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve(newData: Object) and reject() methods.</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Save button clicked. Triggered only if table <strong>confirmSave = true and mode = inline</strong>.
+        Allows you to confirm changes before they are applied to the table data source.
+      </td>
+    </tr>
+    <tr>
       <td>(delete)</td>
       <td>
         event: <span class="highlight">Object</span>, consist of:
@@ -447,6 +502,21 @@
       </td>
       <td>
         Triggered once a Delete button clicked on a row. Triggered only if table <strong>mode = external</strong>.
+      </td>
+    </tr>
+    <tr>
+      <td>(deleteConfirm)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - data object to delete</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+          <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve() and reject() methods.</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Delete button clicked. Triggered only if table <strong>confirmDelete = true and mode = inline</strong>.
+        Allows you to confirm changes before they are applied to the table data source.
       </td>
     </tr>
   </table>
