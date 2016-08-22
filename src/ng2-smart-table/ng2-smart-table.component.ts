@@ -25,7 +25,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Input() source: any;
   @Input() settings: Object = {};
 
-  @Output() public select: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public rowSelect: EventEmitter<any> = new EventEmitter<any>();
   @Output() public delete: EventEmitter<any> = new EventEmitter<any>();
   @Output() public edit: EventEmitter<any> = new EventEmitter<any>();
   @Output() public create: EventEmitter<any> = new EventEmitter<any>();
@@ -106,7 +106,7 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   onSelectRow(row: Row): void {
     this.grid.selectRow(row);
-    this.select.emit({
+    this.rowSelect.emit({
       data: row.getData(),
       source: this.source
     });

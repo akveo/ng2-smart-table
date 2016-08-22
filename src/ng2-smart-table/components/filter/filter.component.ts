@@ -40,7 +40,8 @@ export class FilterComponent {
   filter(event): boolean {
     if (event.which === 13) {
       this.addFilter();
-    } else {
+      // ignore tab component
+    } else if(event.which !== 9) {
       if (this.timeout) {
         clearTimeout(this.timeout);
       }
