@@ -4,12 +4,13 @@ import { BasicExampleDataComponent } from './components/basic-example-data.compo
 import { BasicExampleSourceComponent } from './components/basic-example-source.component';
 import { BasicExampleLoadComponent } from './components/basic-example-load.component';
 import { AdvancedExampleConfirmComponent } from './components/advanced-example-confirm.component';
+import { ScrollPositionDirective } from '../../theme/directives/scrollPosition.directive';
 
 let hljs: any = require('highlight.js');
 
 @Component({
   selector: 'demo',
-  directives: [BasicExampleComponent, 
+  directives: [ScrollPositionDirective, BasicExampleComponent, 
     BasicExampleDataComponent, 
     BasicExampleSourceComponent, 
     BasicExampleLoadComponent, 
@@ -19,6 +20,9 @@ let hljs: any = require('highlight.js');
   template: require('./demo.html')
 })
 export class DemoComponent {
+
+  sidebarScrolled = false;
+  sidebarOffset = 0;
 
   snippets = {
     install: require('raw-loader!./snippets/install.md'),

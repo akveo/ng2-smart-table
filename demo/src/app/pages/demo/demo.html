@@ -1,14 +1,36 @@
-<section class="page-header internal">
+<section class="page-header internal" id="top">
   <h1 class="project-name"><a [routerLink]="['']">ng2-smart-table</a></h1>
   <h2 class="project-tagline">Quick Start & Demos</h2>
 
-  <a [routerLinkActive]="['active']" [routerLink]="['/demo']" class="btn">Quick Start & Demos</a>
-  <a [routerLinkActive]="['active']" [routerLink]="['/documentation']" class="btn">Documentation</a>
+  <a routerLinkActive="active" routerLink="/demo" class="btn">Quick Start & Demos</a>
+  <a routerLinkActive="active" routerLink="/documentation" class="btn">Documentation</a>
   <a href="https://github.com/akveo/ng2-smart-table" class="btn">View on GitHub</a>
 </section>
+<section class="main-content with-sidebar">
+  <nav class="fixed-sidebar" scrollPosition [maxHeight]="295" (scrollChange)="sidebarScrolled = $event.scrolled;" [ngClass]="{scrolled: sidebarScrolled}">
+    <h4>Navigation</h4>
+    <ul>
+      <li class="back-top"><a href="/demo#top">&#8592; Back to Top</a></li>
+      <li>
+        <a href="/demo#getting-started">Getting Started</a>
 
-<section class="main-content">
-  <h2><a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+        <ul>
+          <li><a href="/demo#installation">Installation</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="/demo#examples">Examples</a>
+
+        <ul>
+          <li><a href="/demo#minimal-setup">Minimal Setup Example</a></li>
+          <li><a href="/demo#separate-filter">Standalone Filter Example</a></li>
+          <li><a href="/demo#confirm">Confirm Action Example</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  
+  <h2 ><a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
   <p>
     Hello and Welcome!
   </p>
