@@ -28,7 +28,7 @@ export class Row {
   getNewData(): any {
     let values = {};
     this.getCells().forEach((cell) => values[cell.getColumn().id] = cell.newValue);
-    return values;
+    return Object.assign(this.data, values);
   }
 
   setData(data): any {
