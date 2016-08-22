@@ -30,6 +30,16 @@
   <!-- base url -->
   <base href="">
 
+  <script>
+    (function(){
+      var redirect = sessionStorage.redirect;
+      if (redirect && redirect != location.href) {
+        delete sessionStorage.redirect;
+        history.replaceState(null, null, redirect);
+      }
+    })();
+  </script>
+  
 </head>
 <body>
 <app>
