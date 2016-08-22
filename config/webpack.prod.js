@@ -27,11 +27,19 @@ const METADATA = webpackMerge(commonConfig.metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
-  HMR: false
+  HMR: false,
+  ghRedirectPath: '/ng2-smart-admin/'
 });
 
 module.exports = webpackMerge(commonConfig, {
 
+  /**
+   * Merged metadata from webpack.common.js for index.html
+   *
+   * See: (custom attribute)
+   */
+  metadata: METADATA,
+  
   /**
    * Switch loaders to debug mode.
    *

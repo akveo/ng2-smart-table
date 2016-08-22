@@ -16,7 +16,8 @@ const HtmlElementsPlugin = require('./html-elements-plugin');
 const METADATA = {
   title: 'ng2-smart-table - Angular 2 Smart Table',
   description: 'Angular 2 Smart Table',
-  baseUrl: ''
+  baseUrl: '',
+  ghRedirectPath: '/'
 };
 
 /*
@@ -183,7 +184,7 @@ module.exports = {
       {
         test: /\.html$/,
         loader: 'raw-loader',
-        exclude: [helpers.root('demo/src/index.html')]
+        exclude: [helpers.root('demo/src/index.html'), helpers.root('demo/src/404.html')]
       }
 
     ]
@@ -250,9 +251,15 @@ module.exports = {
      */
     new HtmlWebpackPlugin({
       template: 'demo/src/index.html',
-      chunksSortMode: 'dependency'
+      chunksSortMode: 'dependency',
+      filename: 'index.html'
     }),
-
+    new HtmlWebpackPlugin({
+      template: 'demo/src/404.html',
+      filename: '404.html',
+      inject: false
+    }),
+    
     /*
      * Plugin: HtmlHeadConfigPlugin
      * Description: Generate html tags based on javascript maps.
