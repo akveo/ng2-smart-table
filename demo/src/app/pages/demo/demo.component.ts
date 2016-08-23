@@ -39,6 +39,7 @@ export class DemoComponent {
     search: require('raw-loader!./snippets/search.md'),
     searchTable: require('raw-loader!./snippets/search-table.md'),
     sourceFull: require('raw-loader!./snippets/source-full.md'),
+    hideFilters: require('raw-loader!./snippets/hide-filters.md'),
   };
 
   constructor() {

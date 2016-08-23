@@ -24,6 +24,7 @@
         <ul>
           <li><a href="#minimal-setup">Minimal Setup Example</a></li>
           <li><a href="#separate-filter">Standalone Filter Example</a></li>
+          <li><a href="#from-server">Loading From Server Example</a></li>
           <li><a href="#confirm">Confirm Action Example</a></li>
         </ul>
       </li>
@@ -143,6 +144,12 @@
     <code class="typescript">{{ snippets.searchTable }}</code>
   </pre>
   <p>
+    Last thing, let's hide the default table filters to not conflict with our standalone one:
+  </p>
+  <pre>
+    <code class="typescript">{{ snippets.hideFilters }}</code>
+  </pre>
+  <p>
     And done! Now the table has a standalone search field:
   </p>
   <div>
@@ -158,12 +165,18 @@
   </pre>
 
   <h3><a id="from-server" class="anchor" href="#from-server" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Loading From Server Example</h3>
+  <p>
+    This example shows how to pass the data loaded from some API to the table DataSource.
+  </p>
   <div class="with-source">
     <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/basic-example-load.component.ts" target="_blank">Demo Source</a>
     <basic-example-load></basic-example-load>
   </div>
   
   <h3><a id="confirm" class="anchor" href="#confirm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Confirm Action Example</h3>
+  <p>
+    An example on how to confirm an action before it's applied to the table:
+  </p>
   <div class="with-source">
     <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/advanced-example-confirm.component.ts" target="_blank">Demo Source</a>
     <advance-example-comfirm></advance-example-comfirm>

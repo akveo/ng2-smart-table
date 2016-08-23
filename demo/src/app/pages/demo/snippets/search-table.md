@@ -1,6 +1,6 @@
 onSearch(query: string = ''): void {
   this.source.setFilter([
-    // fields we want to inclue in the search
+    // fields we want to include in the search
     {
       field: 'id',
       search: query

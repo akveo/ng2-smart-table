@@ -16,16 +16,20 @@ export class BasicExampleSourceComponent {
   settings = {
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        filter: false
       },
       name: {
-        title: 'Full Name'
+        title: 'Full Name',
+        filter: false
       },
       username: {
-        title: 'User Name'
+        title: 'User Name',
+        filter: false
       },
       email: {
-        title: 'Email'
+        title: 'Email',
+        filter: false
       }
     }
   };
@@ -42,7 +46,7 @@ export class BasicExampleSourceComponent {
 
   onSearch(query: string = ''): void {
     this.source.setFilter([
-      // fields we want to inclue in the search
+      // fields we want to include in the search
       {
         field: 'id',
         search: query

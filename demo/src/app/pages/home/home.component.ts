@@ -1,10 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { BasicExampleSourceComponent } from '../demo/components/basic-example-source.component';
-
+import { BasicExampleDataComponent } from '../demo/components/basic-example-data.component';
 
 @Component({
   selector: 'home',
-  directives: [BasicExampleSourceComponent],
+  directives: [BasicExampleDataComponent],
   encapsulation: ViewEncapsulation.None,
   styles: [require('./home.scss')],
   template: require('./home.html')

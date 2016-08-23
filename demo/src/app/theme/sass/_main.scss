@@ -43,6 +43,12 @@ a:hover {
   }
 }
 
+div.with-source {
+  a.source {
+    top: -40px;
+  }
+}
+
 input.search {
   margin-bottom: 20px;
   line-height: normal;
