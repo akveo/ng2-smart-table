@@ -8,8 +8,114 @@ ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/).
 
 ![alt tag](demo/src/assets/img/demo.gif)
 
+## Installation
+
+The library is available as npm package, so all you need to do is to run the following command:
+
+```
+npm install --save ng2-smart-table
+```
+
+This command will create a record in your `package.json` file and install the package into the npm modules folder.
+
+## Minimal Setup Example
+
+First thing you need to do is to import the ng2-smart-table directives into your component.
+
+```
+import { NG2_SMART_TABLE_DIRECTIVES, LocalDataSource } from 'ng2-smart-table';
+```
+Then register it by adding to the list of directives:
+
+```
+// ...
+
+@Component({
+  directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
+})
+// ...
+```
+
+Now, we need to configure the table and add it into the template. The only <strong>required</strong> setting for the component to start working is a columns configuration.
+Let's register <i>settings</i> property inside of the component where we want to have the table and configure some columns [Settings documentation](https://akveo.github.io/ng2-smart-table/documentation):
+    
+```
+settings = {
+  columns: {
+    id: {
+      title: 'ID'
+    },
+    name: {
+      title: 'Full Name'
+    },
+    username: {
+      title: 'User Name'
+    },
+    email: {
+      title: 'Email'
+    }
+  }
+};
+```
+
+Finally let's put the ng2-smart-table component inside of the template:
+
+```
+// ...
+
+@Component({
+  template: `
+    <ng2-smart-table [settings]="settings"></ng2-smart-table>
+  `
+})
+// ...
+```
+At this step you will have a minimally configured table. All functions are available by default and you don't need to configure them somehow, so you already able to add/edit/delete rows, sort or filter the table, etc.
  
-## Documentation
+But it feels like something is missing... Right, there is no data in the table by default. To add some, let's create an array property with a list of objects in the component. Please note that object keys are same as in the columns configuration.
+
+```
+data = [
+  {
+    id: 1,
+    name: "Leanne Graham",
+    username: "Bret",
+    email: "Sincere@april.biz"
+  },
+  {
+    id: 2,
+    name: "Ervin Howell",
+    username: "Antonette",
+    email: "Shanna@melissa.tv"
+  },
+  
+  // ... list of items
+  
+  {
+    id: 11,
+    name: "Nicholas DuBuque",
+    username: "Nicholas.Stanton",
+    email: "Rey.Padberg@rosamond.biz"
+  }
+];
+```
+
+And pass the data to the table:
+
+```
+// ...
+
+@Component({
+  template: `
+    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+  `
+})
+// ...
+```
+
+Now you have some data in the table.
+ 
+## Further Documentation
 Installation, customization and other useful articles: https://akveo.github.io/ng2-smart-table/
 
 ## How can I support developers?
