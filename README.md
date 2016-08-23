@@ -6,6 +6,8 @@ ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/).
 
 <a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
 
+![alt tag](demo/src/assets/img/demo.gif)
+
  
 ## Documentation
 Installation, customization and other useful articles: https://akveo.github.io/ng2-smart-table/
