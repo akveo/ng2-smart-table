@@ -21,7 +21,10 @@ export class AppComponent {
     if (redirect && redirect != location.href) {
       redirect = redirect.replace(location.href, '/');
       sessionStorage.removeItem('redirect');
-      this.router.navigateByUrl(redirect);
+
+      setTimeout(() => {
+        this.router.navigateByUrl(redirect);
+      });
     }
   }
 }
