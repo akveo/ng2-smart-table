@@ -5,7 +5,6 @@ import { BasicExampleLoadService } from './basic-example-load.service';
 
 @Component({
   selector: 'basic-example-load',
-  directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
   styles: [],
   providers: [BasicExampleLoadService],
   template: `

@@ -4,7 +4,6 @@ import { NG2_SMART_TABLE_DIRECTIVES } from '../../../../../../ng2-smart-table.ts
 
 @Component({
   selector: 'basic-example',
-  directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
   styles: [],
   template: `
     <ng2-smart-table [settings]="settings"></ng2-smart-table>

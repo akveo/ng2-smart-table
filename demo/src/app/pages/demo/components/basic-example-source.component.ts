@@ -4,7 +4,6 @@ import { NG2_SMART_TABLE_DIRECTIVES, LocalDataSource } from '../../../../../../n
 
 @Component({
   selector: 'basic-example-source',
-  directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
   styles: [],
   template: `
     <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">

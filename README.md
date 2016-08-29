@@ -23,12 +23,34 @@ This command will create a record in your `package.json` file and install the pa
 First thing you need to do is to import the ng2-smart-table directives into your component.
 
 ```
-import { NG2_SMART_TABLE_DIRECTIVES, LocalDataSource } from 'ng2-smart-table';
+ // If you are already on angular rc.5 just import the Ng2SmartTableModule into the imports statement of a module where you need the table:
+
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+
+// If you are still on angular rc.4, then simply import the derictives array:
+
+import { NG2_SMART_TABLE_DIRECTIVES } from 'ng2-smart-table';
 ```
+
 Then register it by adding to the list of directives:
 
 ```
 // ...
+
+// RC5:
+
+@NgModule({
+  imports: [
+    // ...
+    
+    Ng2SmartTableModule,
+    
+    // ...
+  ],
+  declarations: [ ... ]
+})
+
+// RC4
 
 @Component({
   directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive

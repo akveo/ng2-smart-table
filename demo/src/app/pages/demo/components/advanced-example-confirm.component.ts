@@ -4,7 +4,6 @@ import { NG2_SMART_TABLE_DIRECTIVES, LocalDataSource } from '../../../../../../n
 
 @Component({
   selector: 'advance-example-comfirm',
-  directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
   styles: [],
   template: `
     <ng2-smart-table 
