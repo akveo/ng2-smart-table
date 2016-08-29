@@ -53,11 +53,11 @@
         Table column settings, by default an empty object.<br>
         Example format:<br>
         <code>
-          columns: {
-            <b>columnKey</b>: {
+          columns: {{ '{' }}
+            <b>columnKey</b>: {{ '{' }}
               title: 'Some Title'
-            }
-          }
+            {{ '}' }}
+          {{ '}' }}
         </code>
         <br>
         Please note, <b>columnKey</b> must be the same as a key in data array objects.
@@ -634,7 +634,7 @@
         </ul>
       <td>
         Set table sorts, example: <br>
-        <code>this.source.setSort([{ field: 'id', direction: 'asc' }]);</code>
+        <code>this.source.setSort([{{ '{' }} field: 'id', direction: 'asc' {{ '}' }}]);</code>
       </td>
     </tr>
     <tr>
@@ -658,7 +658,7 @@
         </ul>
       <td>
         Set table filters, example: <br>
-        <code>this.source.setFilter([{ field: 'id', search: 'foobar' }, { field: 'name', search: 'foobar' }]);</code>
+        <code>this.source.setFilter([{{ '{' }} field: 'id', search: 'foobar' {{ '}' }}, {{ '{' }} field: 'name', search: 'foobar' {{ '}' }}]);</code>
       </td>
     </tr>
     <tr>
@@ -682,7 +682,7 @@
         </ul>
       <td>
         Set table filter for one column, example: <br>
-        <code>this.source.addFilter({ field: 'id', search: 'foobar' });</code>
+        <code>this.source.addFilter({{ '{' }} field: 'id', search: 'foobar' {{ '}' }});</code>
       </td>
     </tr>
     <tr>

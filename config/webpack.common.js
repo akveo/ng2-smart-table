@@ -111,11 +111,8 @@ module.exports = {
         loader: 'source-map-loader',
         exclude: [
           // these packages have problems with their sourcemaps
-          helpers.root('node_modules/rxjs'),
-          helpers.root('node_modules/@angular'),
-          helpers.root('node_modules/@ngrx'),
           helpers.root('node_modules/ng2-bootstrap'),
-          helpers.root('node_modules/ng2-branchy')
+          helpers.root('node_modules/ng2-tree')
         ]
       }
 
@@ -133,12 +130,14 @@ module.exports = {
 
       /*
        * Typescript loader support for .ts and Angular 2 async routes via .async.ts
+       * Replace templateUrl and stylesUrl with require()
        *
        * See: https://github.com/s-panferov/awesome-typescript-loader
+       * See: https://github.com/TheLarkInn/angular2-template-loader
        */
       {
         test: /\.ts$/,
-        loader: 'awesome-typescript-loader',
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader', '@angularclass/hmr-loader'],
         exclude: [/\.(spec|e2e)\.ts$/]
       },
 
@@ -185,8 +184,14 @@ module.exports = {
         test: /\.html$/,
         loader: 'raw-loader',
         exclude: [helpers.root('demo/src/index.html'), helpers.root('demo/src/404.html')]
-      }
+      },
 
+      /* File loader for supporting images, for example, in CSS files.
+       */
+      {
+        test: /\.(jpg|png|gif)$/,
+        loader: 'file'
+      }
     ]
 
   },
@@ -296,6 +301,7 @@ module.exports = {
   node: {
     global: 'window',
     crypto: 'empty',
+    process: true,
     module: false,
     clearImmediate: false,
     setImmediate: false

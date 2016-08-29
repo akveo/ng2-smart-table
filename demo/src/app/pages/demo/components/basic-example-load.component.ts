@@ -14,6 +14,8 @@ import { BasicExampleLoadService } from './basic-example-load.service';
 })
 export class BasicExampleLoadComponent {
 
+  source: LocalDataSource;
+  
   settings = {
     columns: {
       id: {
@@ -30,8 +32,6 @@ export class BasicExampleLoadComponent {
       }
     }
   };
-
-  source: LocalDataSource;
 
   constructor(protected service: BasicExampleLoadService) {
     this.source = new LocalDataSource();
