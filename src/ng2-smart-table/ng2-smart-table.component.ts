@@ -1,5 +1,5 @@
 import {
-  Component, Input, Output, SimpleChange, EventEmitter, OnInit,
+  Component, Input, Output, SimpleChange, EventEmitter,
   OnChanges
 } from '@angular/core';
 
@@ -7,16 +7,11 @@ import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 
-import { FilterComponent } from './components/filter/filter.component';
-import { TitleComponent } from './components/title/title.component';
-import { PagerComponent } from './components/pager/pager.component';
-import { CellComponent } from './components/cell/cell.component';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
   selector: 'ng2-smart-table',
-  directives: [FilterComponent, TitleComponent, PagerComponent, CellComponent],
   styles: [require('./ng2-smart-table.scss')],
   template: require('./ng2-smart-table.html')
 })
