@@ -60,6 +60,7 @@
     "http-server": "^0.9.0",
     "ie-shim": "^0.1.0",
     "imports-loader": "^0.6.5",
+    "istanbul-instrumenter-loader": "^0.2.0",
     "json-loader": "^0.5.4",
     "node-sass": "^3.5.3",
     "parse5": "^1.5.1",
