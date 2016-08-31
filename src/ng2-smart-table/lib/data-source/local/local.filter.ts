@@ -8,7 +8,8 @@ export class LocalFilter {
     let filter: Function = customFilter ? customFilter : this.FILTER;
 
     return data.filter((el) => {
-      return filter.call(null, el[field].toString().toLowerCase(), search.toString().toLowerCase());
+      let value = typeof el[field] === 'undefined' || el[field] === null ? '' : el[field];
+      return filter.call(null, value.toString().toLowerCase(), search.toString().toLowerCase());
     });
   }
 }
