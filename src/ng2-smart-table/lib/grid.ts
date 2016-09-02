@@ -28,6 +28,10 @@ export class Grid {
   setSettings(settings: Object): void {
     this.settings = settings;
     this.dataSet = new DataSet([], this.getSetting('columns'));
+
+    if (this.source) {
+      this.source.refresh();  
+    }
   }
 
   getDataSet(): DataSet {

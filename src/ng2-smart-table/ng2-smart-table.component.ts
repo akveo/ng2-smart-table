@@ -172,6 +172,6 @@ export class Ng2SmartTableComponent implements OnChanges {
   }
 
   protected prepareSettings(): Object {
-    return deepExtend(this.defaultSettings, this.settings);
+    return deepExtend(this.settings, this.defaultSettings);
   }
 }
