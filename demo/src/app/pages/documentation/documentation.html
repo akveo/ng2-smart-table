@@ -105,6 +105,18 @@
       </td>
     </tr>
     <tr>
+      <td>valuePrepareFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>
+        n/a
+      </td>
+      <td>
+        Function run against a value before it gets inserted into a cell.
+        You can use it to modify how a value is displayed in the cell.
+        Example <a href="https://github.com/akveo/ng2-smart-table/issues/11#issuecomment-243443311">here</a>.
+      </td>
+    </tr>
+    <tr>
       <td>sort</td>
       <td><span class="highlight">boolean</span></td>
       <td>true</td>
@@ -123,7 +135,7 @@
       </td>
     </tr>
     <tr>
-      <td>sortFunction</td>
+      <td>compareFunction</td>
       <td><span class="highlight">Function</span></td>
       <td>
         n/a
@@ -432,7 +444,20 @@
         </ul>
       </td>
       <td>
-        Triggered once a row is selected (either clicked or selected automatically (after page is changed, after some row is deleted, etc).
+        Triggered once a row is selected (either clicked or selected automatically (after page is changed, after some row is deleted, etc)).
+      </td>
+    </tr>
+    <tr>
+      <td>(userRowSelect)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - selected row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered <strong>only</strong> on a user click event.
       </td>
     </tr>
     <tr>
