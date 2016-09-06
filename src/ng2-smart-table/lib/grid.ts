@@ -20,6 +20,10 @@ export class Grid {
     this.setSettings(settings);
     this.setSource(source);
   }
+  
+  showActionColumn(): boolean {
+    return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete');
+  }
 
   getNewRow(): Row {
     return this.dataSet.newRow;
