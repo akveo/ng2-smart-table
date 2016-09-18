@@ -36,7 +36,7 @@ export class BasicExampleSourceComponent {
   data = [
     {
       id: 1,
-      name: "Leanne Graham",
+      name: "Lesanne Graham",
       username: "Bret",
       email: "Sincere@april.biz"
     },
