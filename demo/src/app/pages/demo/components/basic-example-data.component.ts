@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { NG2_SMART_TABLE_DIRECTIVES } from '../../../../../../ng2-smart-table.ts';
-
 @Component({
   selector: 'basic-example-data',
   styles: [],

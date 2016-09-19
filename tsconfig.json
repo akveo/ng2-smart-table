@@ -17,10 +17,10 @@
       "es6"
     ],
     "types": [
-      "hammerjs",
+//      "hammerjs",
       "node",
-      "source-map",
-      "uglify-js",
+//      "source-map",
+//      "uglify-js",
       "webpack"
     ]
   },

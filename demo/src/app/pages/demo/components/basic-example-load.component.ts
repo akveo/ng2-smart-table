@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { NG2_SMART_TABLE_DIRECTIVES, LocalDataSource } from '../../../../../../ng2-smart-table.ts';
+import { LocalDataSource } from '../../../../../../ng2-smart-table.ts';
 import { BasicExampleLoadService } from './basic-example-load.service';
 
 @Component({

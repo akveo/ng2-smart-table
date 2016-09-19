@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 
-import { NG2_SMART_TABLE_DIRECTIVES, LocalDataSource } from 'ng2-smart-table';
-
 @Component({
   selector: 'basic-example-source',
-  directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
   styles: [],
   template: `
     <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">

@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
 
-import { NG2_SMART_TABLE_DIRECTIVES } from 'ng2-smart-table';
-
 @Component({
   selector: 'basic-example-data',
-  directives: [NG2_SMART_TABLE_DIRECTIVES], // register the directive
   styles: [],
   template: `
     <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
