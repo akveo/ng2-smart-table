@@ -6,13 +6,13 @@
  npm install @types/lodash
  * If you can't find the type definition in the registry we can make an ambient/global definition in
  * this file for now. For example
- declare module "my-module" {
+ declare module 'my-module' {
  export function doesSomething(value: string): string;
  }
  * If you are using a CommonJS module that is using module.exports then you will have to write your
  * types using export = yourObjectOrFunction with a namespace above it
  * notice how we have to create a namespace that is equal to the function we're assigning the export to
- declare module "jwt-decode" {
+ declare module 'jwt-decode' {
  function jwtDecode(token: string): any;
  namespace jwtDecode {}
  export = jwtDecode;
@@ -33,15 +33,22 @@
  */
 
 // support NodeJS modules without type definitions
-declare module "*";
+declare module '*';
 
 // Extra variables that live on Global that will be replaced by webpack DefinePlugin
 declare var ENV: string;
 declare var HMR: boolean;
+declare var System: SystemJS;
+
+interface SystemJS {
+  import: (path?: string) => Promise<any>;
+}
 
 interface GlobalEnvironment {
-  ENV;
-  HMR;
+  ENV: string;
+  HMR: boolean;
+  SystemJS: SystemJS;
+  System: SystemJS;
 }
 
 interface Es6PromiseLoader {

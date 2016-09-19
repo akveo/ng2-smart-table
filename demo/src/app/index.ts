@@ -1,5 +1,1 @@
-export * from './app.component';
-
-// Application wide providers
-export const APP_PROVIDERS = [
-];
+export * from './app.module';

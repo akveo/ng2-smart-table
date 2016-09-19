@@ -5,11 +5,17 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
     "sourceMap": false,
     "noEmitHelpers": true,
-    "declaration": true,
-    "lib": ["es6", "dom"],
     "strictNullChecks": false,
+    "baseUrl": "./src",
+    "paths": [
+    ],
+    "lib": [
+      "dom",
+      "es6"
+    ],
     "types": [
       "node",
       "webpack"

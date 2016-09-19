@@ -12,16 +12,17 @@ import '@angular/forms';
 import '@angular/http';
 import '@angular/router';
 
+// AngularClass
+import '@angularclass/hmr';
+
 // RxJS
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
+// Web dependencies
 
 if ('production' === ENV) {
   // Production
-
 } else {
   // Development
-  require('angular2-hmr');
-
 }
