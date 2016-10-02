@@ -34,6 +34,15 @@ export class FilterComponent {
       if (filterConf && filterConf.filters && filterConf.filters.length === 0) {
         this.query = '';
       }
+      // add a check for existing filters an set the query if one exists for this column
+      // this covers instances where the filter is set by user code while maintaining existing functionality
+      else if (filterConf && filterConf.filters && filterConf.filters.length > 0) {
+          for (let key of filterConf.filters)
+          {
+              if (key['field'] == _this.column['id'])
+                  _this.query = key['search'];
+          }
+      }
     });
   }
 
