@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { CommonModule }  from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { routing }       from './pages.routing';
 
@@ -20,6 +21,7 @@ import { AdvancedExampleConfirmComponent } from './demo/components/advanced-exam
   imports: [
     CommonModule, 
     FormsModule,
+    HttpModule,
     ReactiveFormsModule,
     Ng2SmartTableModule,
     routing
