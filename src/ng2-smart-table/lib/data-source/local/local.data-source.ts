@@ -17,7 +17,8 @@ export class LocalDataSource extends DataSource {
 
   constructor(data: Array<any> = []) {
     super();
-    this.load(data);
+
+    this.data = data;
   }
 
   load(data: Array<any>): Promise<any> {
