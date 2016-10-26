@@ -62,7 +62,7 @@ export class ServerDataSource extends LocalDataSource {
       return +res.headers.get(this.conf.totalKey);
     } else {
       const rawData = res.json();
-      return getDeepFromObject(rawData, this.conf.totalKey, [])
+      return getDeepFromObject(rawData, this.conf.totalKey, 0)
     }
   }
 
