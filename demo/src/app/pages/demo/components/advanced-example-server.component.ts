@@ -31,6 +31,6 @@ export class AdvancedExampleServerComponent {
   source: ServerDataSource;
   
   constructor(http: Http) {
-    this.source = new ServerDataSource(http, 'https://jsonplaceholder.typicode.com/photos');
+    this.source = new ServerDataSource(http, {endPoint: 'https://jsonplaceholder.typicode.com/photos'});
   }
 }
