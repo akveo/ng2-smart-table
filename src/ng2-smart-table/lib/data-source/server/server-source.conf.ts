@@ -6,6 +6,7 @@ export class ServerSourceConf {
   protected static readonly PAGER_LIMIT_KEY = '_limit';
   protected static readonly FILTER_FIELD_KEY = '#field#_like';
   protected static readonly TOTAL_KEY = 'x-total-count';
+  protected static readonly DATA_KEY = '';
 
   endPoint: string;
 
@@ -15,9 +16,10 @@ export class ServerSourceConf {
   pagerLimitKey: string;
   filterFieldKey: string;
   totalKey: string;
+  dataKey: string;
 
   constructor(
-    {endPoint = '', sortFieldKey = '', sortDirKey = '', pagerPageKey = '', pagerLimitKey = '', filterFieldKey = '', totalKey = ''} = {}) {
+    {endPoint = '', sortFieldKey = '', sortDirKey = '', pagerPageKey = '', pagerLimitKey = '', filterFieldKey = '', totalKey = '', dataKey = ''} = {}) {
 
     this.endPoint = endPoint ? endPoint : '';
 
@@ -27,5 +29,6 @@ export class ServerSourceConf {
     this.pagerLimitKey = pagerLimitKey ? pagerLimitKey : ServerSourceConf.PAGER_LIMIT_KEY;
     this.filterFieldKey = filterFieldKey ? filterFieldKey : ServerSourceConf.FILTER_FIELD_KEY;
     this.totalKey = totalKey ? totalKey : ServerSourceConf.TOTAL_KEY;
+    this.dataKey = dataKey ? dataKey : ServerSourceConf.DATA_KEY;
   }
 }
