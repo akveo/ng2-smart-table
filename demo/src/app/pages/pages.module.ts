@@ -16,6 +16,7 @@ import { BasicExampleDataComponent } from './demo/components/basic-example-data.
 import { BasicExampleSourceComponent } from './demo/components/basic-example-source.component';
 import { BasicExampleLoadComponent } from './demo/components/basic-example-load.component';
 import { AdvancedExampleConfirmComponent } from './demo/components/advanced-example-confirm.component';
+import { AdvancedExampleServerComponent } from './demo/components/advanced-example-server.component';
 
 @NgModule({
   imports: [
@@ -35,6 +36,7 @@ import { AdvancedExampleConfirmComponent } from './demo/components/advanced-exam
     BasicExampleSourceComponent,
     BasicExampleLoadComponent,
     AdvancedExampleConfirmComponent,
+    AdvancedExampleServerComponent,
     ScrollPositionDirective
   ]
 })
