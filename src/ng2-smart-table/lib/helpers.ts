@@ -128,3 +128,17 @@ export class Deferred {
     })
   }
 }
+
+// getDeepFromObject({result: {data: 1}}, 'result.data', 2); // returns 1
+export function getDeepFromObject(object = {}, name: string, defaultValue?: any) {
+  let keys = name.split('.');
+  // clone the object
+  let level = deepExtend({}, object);
+  keys.forEach((k) => {
+    if (level && typeof level[k] !== 'undefined') {
+      level = level[k];
+    }
+  });
+
+  return typeof level === 'undefined' ? defaultValue : level;
+}
