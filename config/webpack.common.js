@@ -180,7 +180,7 @@ module.exports = function (options) {
         {
           test: /\.html$/,
           loader: 'raw-loader',
-          exclude: [helpers.root('demo/src/index.html')]
+          exclude: [helpers.root('demo/src/index.html'), helpers.root('demo/src/404.html')]
         },
 
         /* File loader for supporting images, for example, in CSS files.
