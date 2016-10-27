@@ -8,7 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "declaration": true,
     "sourceMap": false,
-    "noEmitHelpers": true,
+    "noEmitHelpers": false,
     "strictNullChecks": false,
     "baseUrl": "./src",
     "paths": [
