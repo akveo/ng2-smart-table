@@ -14,7 +14,7 @@ export class Cell {
   getValue(): any {
     let valid = this.column.getValuePrepareFunction() instanceof Function;
     let prepare = valid ? this.column.getValuePrepareFunction() : Cell.PREPARE;
-    return prepare.call(null, this.value);
+    return prepare.call(null, this.value, this.row.getData());
   }
 
   getColumn(): Column {
