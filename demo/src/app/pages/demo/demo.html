@@ -60,11 +60,19 @@
     <code class="typescript">{{ snippets.directive }}</code>
   </pre>
   <p>
-    Now, we need to configure the table and add it into the template. The only <strong>required</strong> setting for the component to start working is a columns configuration.<br>
+    Now, we need to configure the table and add it into the template. The only two settings <strong>required</strong> for the component to start working is a <strong>columns configuration</strong> and <strong>primary key definition</strong>.<br>
+  </p>
+  <p>
     Let's register <i>settings</i> property inside of the component where we want to have the table and configure some columns (<a [routerLink]="['/documentation']">Settings documentation</a>):
   </p>
   <pre>
     <code class="typescript">{{ snippets.settings }}</code>
+  </pre>
+  <p>
+    Next we should define primary key. Using this key smart table will compare rows (<a [routerLink]="['/documentation']">Primary key documentation</a>):
+  </p>
+  <pre>
+    <code class="typescript">{{ snippets.primary }}</code>
   </pre>
   <p>
     Finally let's put the ng2-smart-table component inside of the template:

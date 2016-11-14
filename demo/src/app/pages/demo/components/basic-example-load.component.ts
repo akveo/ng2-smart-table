@@ -18,7 +18,8 @@ export class BasicExampleLoadComponent {
   settings = {
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        editable: false
       },
       name: {
         title: 'Full Name'
@@ -29,7 +30,8 @@ export class BasicExampleLoadComponent {
       email: {
         title: 'Email'
       }
-    }
+    },
+    primary: 'id'
   };
 
   constructor(protected service: BasicExampleLoadService) {

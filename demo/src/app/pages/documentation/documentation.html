@@ -63,6 +63,15 @@
         Please note, <b>columnKey</b> must be the same as a key in data array objects.
       </td>
     </tr>
+    <tr>
+      <td>primary</td>
+      <td><span class="highlight">string</span>|<span class="highlight">Function</span></td>
+      <td>n/a</td>
+      <td>
+        Primary key is a string with a primary column <b>columnKey</b> or a function which takes a row object and returns the unique value identifier for the row.<br>
+        PLEASE NOTE: primary key field must be unique, otherwise you may face unexpected behaviour.
+      </td>
+    </tr>
     <tr class="section">
       <td>Column Settings</td>
       <td></td>
@@ -775,6 +784,22 @@
         n/a
       <td>
         Empty the data source.
+      </td>
+    </tr>
+    <tr>
+      <td>setPrimary</td>
+      <td>
+        primary: <span class="highlight">string</span>|<span class="highlight">Function</span>
+      <td>
+        Set primary key.
+      </td>
+    </tr>
+    <tr>
+      <td>getPrimary</td>
+      <td>
+        n/a
+      <td>
+        Return primary key.
       </td>
     </tr>
   </table>

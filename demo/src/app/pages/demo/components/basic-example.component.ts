@@ -12,7 +12,8 @@ export class BasicExampleComponent {
   settings = {
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        editable: false
       },
       name: {
         title: 'Full Name'
@@ -23,7 +24,8 @@ export class BasicExampleComponent {
       email: {
         title: 'Email'
       }
-    }
+    },
+    primary: 'id'
   };
   
   ngOnInit() {

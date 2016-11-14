@@ -4,7 +4,7 @@ import { DataSet } from './data-set/data-set';
 import { DataSource } from './data-source/data-source';
 import { Subject, Observable } from 'rxjs/Rx';
 import { EventEmitter } from '@angular/core';
-import { Deferred, getDeepFromObject } from './helpers';
+import { Deferred, getDeepFromObject, equalByPrimary } from './helpers';
 
 export class Grid {
 
@@ -48,7 +48,7 @@ export class Grid {
     this.source.onChanged().subscribe((changes) => this.processDataChange(changes));
 
     this.source.onUpdated().subscribe((data) => {
-      let changedRow = this.dataSet.findRowByData(data);
+      let changedRow = this.dataSet.findRow(data, this.source.getPrimary());
       changedRow.setData(data);
     });
   }
@@ -104,14 +104,18 @@ export class Grid {
   save(row: Row, confirmEmitter: EventEmitter<any>): void {
 
     let deferred = new Deferred();
-    deferred.promise.then((newData) => {
-      newData = newData ? newData : row.getNewData();
-      this.source.update(row.getData(), newData).then(() => {
-        row.isInEditing = false;
-      })
-    }).catch((err) => {
-      // doing nothing
-    });
+    deferred.promise
+      .then((newData) => {
+        newData = newData ? newData : row.getNewData();
+
+        if (equalByPrimary(row.getData(), newData, this.source.getPrimary())) {
+          this.source.update(newData).then(() => {
+            row.isInEditing = false;
+          })
+        } else {
+          throw new Error('You can\'t change primary key value');
+        }
+      });
 
     if (this.getSetting('edit.confirmSave')) {
       confirmEmitter.emit({
@@ -154,7 +158,7 @@ export class Grid {
       }
     }
   }
-  
+
   protected shouldProcessChange(changes): boolean {
     if (['filter', 'sort', 'page', 'remove', 'refresh', 'load'].indexOf(changes['action']) !== -1) {
       return true;

@@ -14,7 +14,8 @@ export class AdvancedExampleServerComponent {
   settings = {
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        editable: false
       },
       albumId: {
         title: 'Album'
@@ -25,7 +26,8 @@ export class AdvancedExampleServerComponent {
       url: {
         title: 'Url'
       }
-    }
+    },
+    primary: 'id'
   };
 
   source: ServerDataSource;

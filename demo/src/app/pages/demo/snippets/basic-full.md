@@ -23,7 +23,8 @@ export class BasicExampleDataComponent {
       email: {
         title: 'Email'
       }
-    }
+    },
+    primary: 'id'
   };
   
   data = [

@@ -28,7 +28,8 @@ export class AdvancedExampleConfirmComponent {
     },
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        editable: false
       },
       name: {
         title: 'Full Name'
@@ -39,7 +40,8 @@ export class AdvancedExampleConfirmComponent {
       email: {
         title: 'Email'
       }
-    }
+    },
+    primary: 'id'
   };
   
   data = [

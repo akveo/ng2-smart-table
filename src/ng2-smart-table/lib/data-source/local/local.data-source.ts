@@ -2,7 +2,7 @@ import { LocalSorter } from './local.sorter';
 import { LocalFilter } from './local.filter';
 import { LocalPager } from './local.pager';
 import { DataSource } from '../data-source';
-import { deepExtend } from '../../helpers';
+import { deepExtend, findByPrimary, equalByPrimary } from '../../helpers';
 
 export class LocalDataSource extends DataSource {
 
@@ -48,22 +48,22 @@ export class LocalDataSource extends DataSource {
   }
 
   remove(element: any): Promise<any> {
-    this.data = this.data.filter(el => el !== element);
+    this.data = this.data.filter(el => !equalByPrimary(el, element, this.primary));
 
     return super.remove(element);
   }
 
-  update(element: any, values: any): Promise<any> {
+  update(element: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.find(element).then((found) => {
-        found = deepExtend(found, values);
-        super.update(found, values).then(resolve).catch(reject);
+        found = deepExtend(found, element);
+        super.update(element).then(resolve).catch(reject);
       }).catch(reject);
     });
   }
 
   find(element: any): Promise<any> {
-    let found = this.data.find(el => el === element);
+    let found = findByPrimary(this.data, element, this.primary);
     if (found) {
       return Promise.resolve(found);
     }
@@ -239,8 +239,8 @@ export class LocalDataSource extends DataSource {
             .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']));
         });
         // remove non unique items
-        data = mergedData.filter((elem, pos, arr) => {
-          return arr.indexOf(elem) === pos;
+        data = mergedData.filter((element, pos, arr) => {
+          return arr.indexOf(element) === pos;
         });
       }
     }

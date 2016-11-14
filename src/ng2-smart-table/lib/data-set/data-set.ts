@@ -1,5 +1,6 @@
 import { Row } from './row';
 import { Column } from './column';
+import { equalByPrimary } from '../helpers';
 
 export class DataSet {
 
@@ -31,8 +32,8 @@ export class DataSet {
     return this.rows;
   }
 
-  findRowByData(data): Row {
-    return this.rows.find((row: Row) => row.getData() === data);
+  findRow(data: any, primary: string | Function): Row {
+    return this.rows.find((row: Row) => equalByPrimary(row.getData(), data, primary));
   }
 
   deselectAll(): void {

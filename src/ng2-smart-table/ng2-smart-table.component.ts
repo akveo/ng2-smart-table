@@ -168,16 +168,32 @@ export class Ng2SmartTableComponent implements OnChanges {
   }
   
   protected prepareSource(): DataSource {
+    let source: DataSource;
+
     if (this.source instanceof DataSource) {
-      return this.source;
+      source = this.source;
     } else if (this.source instanceof Array) {
-      return new LocalDataSource(this.source);
+      source = new LocalDataSource(this.source);
+    } else {
+      source = new LocalDataSource();
     }
-    
-    return new LocalDataSource();
+
+    this.setSourcePrimary(source);
+
+    return source;
   }
 
   protected prepareSettings(): Object {
     return deepExtend({}, this.defaultSettings, this.settings);
+  }
+
+  protected setSourcePrimary(source: DataSource): void {
+    const primary: string | Function = this.settings['primary'];
+
+    if (primary) {
+      source.setPrimary(primary);
+    } else {
+      throw new Error('Please, set primary key name in ng2-smart-table settings: settings.primary = \'column name\'');
+    }
   }
 }

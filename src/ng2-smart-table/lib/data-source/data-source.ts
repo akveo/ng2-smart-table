@@ -7,6 +7,8 @@ export abstract class DataSource {
   protected onUpdatedSource = new Subject<any>();
   protected onRemovedSource = new Subject<any>();
 
+  protected primary: string | Function;
+
   abstract getAll(): Promise<any>;
   abstract getElements(): Promise<any>;
   abstract getSort(): any;
@@ -63,7 +65,7 @@ export abstract class DataSource {
     return Promise.resolve();
   }
 
-  update(element: any, values: any): Promise<any> {
+  update(element: any): Promise<any> {
     this.emitOnUpdated(element);
     this.emitOnChanged('update');
     return Promise.resolve();
@@ -102,6 +104,14 @@ export abstract class DataSource {
     if (doEmit) {
       this.emitOnChanged('page');
     }
+  }
+
+  setPrimary(primary: string | Function): void {
+    this.primary = primary;
+  }
+
+  getPrimary(): string | Function {
+    return this.primary;
   }
 
   protected emitOnRemoved(element: any): void {

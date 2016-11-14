@@ -16,7 +16,8 @@ export class BasicExampleSourceComponent {
     columns: {
       id: {
         title: 'ID',
-        filter: false
+        filter: false,
+        editable: false
       },
       name: {
         title: 'Full Name',
@@ -30,7 +31,8 @@ export class BasicExampleSourceComponent {
         title: 'Email',
         filter: false
       }
-    }
+    },
+    primary: 'id'
   };
   
   data = [

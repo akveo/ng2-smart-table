@@ -142,3 +142,28 @@ export function getDeepFromObject(object = {}, name: string, defaultValue?: any)
 
   return typeof level === 'undefined' ? defaultValue : level;
 }
+
+export const findByPrimary = function(collection: Array<any>, searchElement: any, primary: string | Function) {
+  let found;
+
+  for (let element of collection) {
+    if (equalByPrimary(element, searchElement, primary)) {
+      found = element;
+      break;
+    }
+  }
+
+  return found;
+};
+
+export const equalByPrimary = function (first: any, second: any, primary: string | Function): boolean {
+  let isEqual;
+
+  if (typeof primary === 'string') {
+    isEqual = first[primary] === second[primary]
+  } else {
+    isEqual = primary(first) == primary(second);
+  }
+
+ return isEqual;
+};
