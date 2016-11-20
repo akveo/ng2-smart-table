@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -11,6 +11,7 @@
     "noEmitHelpers": false,
     "strictNullChecks": false,
     "baseUrl": "./src",
+    "outDir": "./build",
     "paths": [
     ],
     "lib": [
@@ -33,6 +34,9 @@
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
+  },
+  "angularCompilerOptions": {
+    "genDir": "AOT"
   },
   "compileOnSave": false,
   "buildOnSave": false,
