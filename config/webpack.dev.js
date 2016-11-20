@@ -7,6 +7,7 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
  */
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
 /**
  * Webpack Constants
@@ -31,19 +32,19 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
 module.exports = function(options) {
   return webpackMerge(commonConfig({env: ENV}), {
 
-    /**
-     * Merged metadata from webpack.common.js for index.html
+    /*
+     * The entry point for the bundle
+     * Our Angular.js app
      *
-     * See: (custom attribute)
+     * See: http://webpack.github.io/docs/configuration.html#entry
      */
-    metadata: METADATA,
+    entry: {
 
-    /**
-     * Switch loaders to debug mode.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#debug
-     */
-    debug: true,
+      'polyfills': './demo/src/polyfills.browser.ts',
+      'vendor': './demo/src/vendor.browser.ts',
+      'main': './demo/src/main.browser.ts'
+
+    },
 
     /**
      * Developer tool to enhance debugging
@@ -94,6 +95,27 @@ module.exports = function(options) {
       libraryTarget: 'var',
     },
 
+    module: {
+      rules: [
+        /*
+         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
+         * Replace templateUrl and stylesUrl with require()
+         *
+         * See: https://github.com/s-panferov/awesome-typescript-loader
+         * See: https://github.com/TheLarkInn/angular2-template-loader
+         */
+        {
+          test: /\.ts$/,
+          loaders: [
+            '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
+            'awesome-typescript-loader',
+            'angular2-template-loader'
+          ],
+          exclude: [/\.(spec|e2e)\.ts$/]
+        }
+      ]
+    },
+
     plugins: [
 
       /**
@@ -124,19 +146,30 @@ module.exports = function(options) {
        */
       new NamedModulesPlugin(),
 
-    ],
+      /**
+       * Plugin LoaderOptionsPlugin (experimental)
+       *
+       * See: https://gist.github.com/sokra/27b24881210b56bbaff7
+       */
+      new LoaderOptionsPlugin({
+        debug: true,
+        options: {
 
-    /**
-     * Static analysis linter for TypeScript advanced options configuration
-     * Description: An extensible linter for the TypeScript language.
-     *
-     * See: https://github.com/wbuchwalter/tslint-loader
-     */
-    tslint: {
-      emitErrors: false,
-      failOnHint: false,
-      resourcePath: 'demo/src'
-    },
+          /**
+           * Static analysis linter for TypeScript advanced options configuration
+           * Description: An extensible linter for the TypeScript language.
+           *
+           * See: https://github.com/wbuchwalter/tslint-loader
+           */
+          tslint: {
+            emitErrors: false,
+            failOnHint: false,
+            resourcePath: 'src'
+          }
+        }
+      })
+
+    ],
 
     /**
      * Webpack Development Server configuration
@@ -166,7 +199,7 @@ module.exports = function(options) {
      * See: https://webpack.github.io/docs/configuration.html#node
      */
     node: {
-      global: 'window',
+      global: true,
       crypto: 'empty',
       process: true,
       module: false,

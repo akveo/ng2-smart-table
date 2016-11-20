@@ -34,13 +34,6 @@ module.exports = function (options) {
   return {
 
     /*
-     * Static metadata for index.html
-     *
-     * See: (custom attribute)
-     */
-    metadata: METADATA,
-
-    /*
      * Cache generated modules and chunks to improve performance for multiple incremental builds.
      * This is enabled by default in watch mode.
      * You can pass false to disable it.
@@ -48,20 +41,6 @@ module.exports = function (options) {
      * See: http://webpack.github.io/docs/configuration.html#cache
      */
     //cache: false,
-
-    /*
-     * The entry point for the bundle
-     * Our Angular.js app
-     *
-     * See: http://webpack.github.io/docs/configuration.html#entry
-     */
-    entry: {
-
-      'polyfills': './demo/src/polyfills.browser.ts',
-      'vendor': './demo/src/vendor.browser.ts',
-      'main': './demo/src/main.browser.ts'
-
-    },
 
     /*
      * Options affecting the resolving of modules.
@@ -75,13 +54,9 @@ module.exports = function (options) {
        *
        * See: http://webpack.github.io/docs/configuration.html#resolve-extensions
        */
-      extensions: ['', '.ts', '.js', '.css', '.scss', '.json'],
+      extensions: ['.ts', '.js', '.css', '.scss', '.json'],
 
-      // Make sure root is src
-      root: helpers.root('src'),
-
-      // remove other default values
-      modulesDirectories: ['node_modules'],
+      modules: [helpers.root('src'), 'node_modules'],
 
     },
 
@@ -92,12 +67,7 @@ module.exports = function (options) {
      */
     module: {
 
-      /*
-       * An array of applied pre and post loaders.
-       *
-       * See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
-       */
-      preLoaders: [
+      rules: [
         {
           test: /\.ts$/,
           loader: 'string-replace-loader',
@@ -106,36 +76,8 @@ module.exports = function (options) {
             replace: '$1.import($3).then(mod => (mod.__esModule && mod.default) ? mod.default : mod)',
             flags: 'g'
           },
-          include: [helpers.root('src')]
-        },
-
-      ],
-
-      /*
-       * An array of automatically applied loaders.
-       *
-       * IMPORTANT: The loaders here are resolved relative to the resource which they are applied to.
-       * This means they are not resolved relative to the configuration file.
-       *
-       * See: http://webpack.github.io/docs/configuration.html#module-loaders
-       */
-      loaders: [
-
-        /*
-         * Typescript loader support for .ts and Angular 2 async routes via .async.ts
-         * Replace templateUrl and stylesUrl with require()
-         *
-         * See: https://github.com/s-panferov/awesome-typescript-loader
-         * See: https://github.com/TheLarkInn/angular2-template-loader
-         */
-        {
-          test: /\.ts$/,
-          loaders: [
-            '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd,
-            'awesome-typescript-loader',
-            'angular2-template-loader'
-          ],
-          exclude: [/\.(spec|e2e)\.ts$/]
+          include: [helpers.root('src')],
+          enforce: 'pre'
         },
 
         /*
@@ -188,10 +130,8 @@ module.exports = function (options) {
         {
           test: /\.(jpg|png|gif)$/,
           loader: 'file'
-        }
-      ],
+        },
 
-      postLoaders: [
         {
           test: /\.js$/,
           loader: 'string-replace-loader',
@@ -199,7 +139,8 @@ module.exports = function (options) {
             search: 'var sourceMappingUrl = extractSourceMappingUrl\\(cssText\\);',
             replace: 'var sourceMappingUrl = "";',
             flags: 'g'
-          }
+          },
+          enforce: 'post'
         }
       ]
     },
@@ -225,6 +166,7 @@ module.exports = function (options) {
        * See: https://github.com/s-panferov/awesome-typescript-loader#forkchecker-boolean-defaultfalse
        */
       new ForkCheckerPlugin(),
+
       /*
        * Plugin: CommonsChunkPlugin
        * Description: Shares common code between the pages.
@@ -236,7 +178,6 @@ module.exports = function (options) {
       new webpack.optimize.CommonsChunkPlugin({
         name: ['polyfills', 'vendor'].reverse()
       }),
-
 
       /**
        * Plugin: ContextReplacementPlugin
@@ -274,11 +215,17 @@ module.exports = function (options) {
        */
       new HtmlWebpackPlugin({
         template: 'demo/src/index.html',
+        title: METADATA.title,
+        filename: 'index.html',
         chunksSortMode: 'dependency',
-        filename: 'index.html'
+        metadata: METADATA,
+        inject: 'head'
       }),
+      
       new HtmlWebpackPlugin({
         template: 'demo/src/404.html',
+        title: METADATA.title,
+        metadata: METADATA,
         filename: '404.html',
         inject: false
       }),
