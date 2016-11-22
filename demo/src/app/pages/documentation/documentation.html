@@ -113,7 +113,24 @@
       <td>
         Function run against a value before it gets inserted into a cell.
         You can use it to modify how a value is displayed in the cell.
-        Example <a href="https://github.com/akveo/ng2-smart-table/issues/11#issuecomment-243443311">here</a>.
+        <br>
+        Assume data is:
+        <br>
+        <code>
+          [{{ '{' }}'increment': 1000, 'percentage' : '5%'}]
+        </code>
+        <br>
+        <b>Basic Example</b> it will purely display "1000"
+        <br>
+        <code>
+          (value) => {{ '{' }} return value }
+        </code>
+        <br>
+        <b>Advance Example</b> it will display "1000(5%)"
+        <br>
+        <code>
+          (value, row) => {{ '{' }} return value + '(' + row.percentage + ')' }
+        </code>
       </td>
     </tr>
     <tr>
