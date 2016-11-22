@@ -21,7 +21,15 @@ export class Grid {
     this.setSource(source);
   }
   
-  showActionColumn(): boolean {
+  showActionColumn(position: string): boolean {
+    return this.isCurrentActionsPosition(position) && this.isActionsVisible();
+  }
+
+  isCurrentActionsPosition(position: string): boolean {
+    return position == this.getSetting('actions.position')
+  }
+
+  isActionsVisible(): boolean {
     return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete');
   }
 
