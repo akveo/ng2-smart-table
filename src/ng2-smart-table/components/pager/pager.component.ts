@@ -4,7 +4,7 @@ import { DataSource } from '../../lib/data-source/data-source';
 
 @Component({
   selector: 'ng2-smart-table-pager',
-  styles: [require('./pager.scss')],
+  styleUrls: ['./pager.scss'],
   template: `
   <nav *ngIf="shouldShow()" class="ng2-smart-pagination-nav">
     <ul class="ng2-smart-pagination pagination">

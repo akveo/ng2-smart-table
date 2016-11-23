@@ -4,7 +4,7 @@ import { Cell } from '../../lib/data-set/cell';
 
 @Component({
   selector: 'ng2-smart-table-cell',
-  styles: [require('./cell.scss')],
+  styleUrls: ['./cell.scss'],
   template: `
     <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type !== 'html'">{{ cell.getValue() }}</div>
     <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type === 'html'" [innerHTML]="cell.getValue()"></div>

@@ -3,17 +3,16 @@
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
+    "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "declaration": true,
-    "sourceMap": false,
-    "noEmitHelpers": false,
+    "sourceMap": true,
+    "noEmitHelpers": true,
     "strictNullChecks": false,
     "baseUrl": "./src",
-    "outDir": "./build",
-    "paths": [
-    ],
+    "paths": {
+    },
     "lib": [
       "dom",
       "es6"
@@ -25,18 +24,14 @@
   },
   "exclude": [
     "node_modules",
-    "demo",
     "build"
   ],
   "files": [
-    "./ng2-smart-table.ts"
+    "demo/src/app/app.module.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
-  },
-  "angularCompilerOptions": {
-    "genDir": "AOT"
   },
   "compileOnSave": false,
   "buildOnSave": false,

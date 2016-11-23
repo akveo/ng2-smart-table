@@ -1,10 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import 'style!./app.scss';
 
 @Component({
   selector: 'app',
-  encapsulation: ViewEncapsulation.None,
-  styles: [require('./app.scss')],
   template: `
     <router-outlet></router-outlet>
   `

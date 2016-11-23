@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import 'style!./demo.scss';
+import 'style!highlight.js/styles/dracula.css';
 
 let hljs: any = require('highlight.js');
 
 @Component({
   selector: 'demo',
-  encapsulation: ViewEncapsulation.None,
-  styles: [require('./demo.scss'), require('highlight.js/styles/dracula.css')],
-  template: require('./demo.html')
+  templateUrl: './demo.html'
 })
 export class DemoComponent {
 

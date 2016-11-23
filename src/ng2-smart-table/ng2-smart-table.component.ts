@@ -12,8 +12,8 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
   selector: 'ng2-smart-table',
-  styles: [require('./ng2-smart-table.scss')],
-  template: require('./ng2-smart-table.html')
+  styleUrls: ['./ng2-smart-table.scss'],
+  templateUrl: './ng2-smart-table.html'
 })
 export class Ng2SmartTableComponent implements OnChanges {
 

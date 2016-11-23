@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LocalDataSource } from '../../../../../../ng2-smart-table.ts';
+import { LocalDataSource } from '../../../../../../ng2-smart-table';
 import { BasicExampleLoadService } from './basic-example-load.service';
 
 @Component({
