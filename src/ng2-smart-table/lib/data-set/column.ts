@@ -13,6 +13,7 @@ export class Column {
   protected compareFunction: Function;
   protected valuePrepareFunction: Function;
   protected filterFunction: Function;
+  protected cellRenderFunction: Function;
 
   constructor(public id: string, protected settings: any, protected dataSet: DataSet) {
     this.process();
@@ -30,6 +31,10 @@ export class Column {
     return this.filterFunction;
   }
 
+  public getCellRenderFunction(): Function {
+    return this.cellRenderFunction;
+  }
+
   protected process(): void {
     this.title = this.settings['title'];
     this.class = this.settings['class'];
@@ -44,6 +49,7 @@ export class Column {
     this.compareFunction = this.settings['compareFunction'];
     this.valuePrepareFunction = this.settings['valuePrepareFunction'];
     this.filterFunction = this.settings['filterFunction'];
+    this.cellRenderFunction = this.settings['cellRenderFunction'];
   }
 
   protected prepareType(): string {

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 
 import { Cell } from '../../lib/data-set/cell';
 
@@ -6,8 +6,8 @@ import { Cell } from '../../lib/data-set/cell';
   selector: 'ng2-smart-table-cell',
   styleUrls: ['./cell.scss'],
   template: `
-    <div *ngIf="!cell.getRow().isInEditing && cell.getColumn().type !== 'html'">{{ cell.getValue() }}</div>
-    <div *ngIf="!cell.getRow().isInEditing && cell.getColumn().type === 'html'" [innerHTML]="cell.getValue()"></div>
+    <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type !== 'html'">{{ cell.getValue() }}</div>
+    <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type === 'html'" [innerHTML]="cell.getValue()"></div>
     <input *ngIf="cell.getRow().isInEditing" 
       [ngClass]="inputClass"
       class="form-control"
@@ -28,9 +28,19 @@ export class CellComponent {
 
   @Output() public edited: EventEmitter<any> = new EventEmitter<any>();
 
+  @ViewChild('cellContainer') cellRef: ElementRef;
+
   onStopEditing(): boolean {
     this.cell.getRow().isInEditing = false;
     return false;
+  }
+
+  ngAfterViewInit(): void {
+    const cellRenderFunc = this.cell.getColumn().getCellRenderFunction();
+
+    if (cellRenderFunc) {
+      cellRenderFunc.call(null, this.cell, this.cellRef.nativeElement)
+    }
   }
 
   onEdited(event): boolean {

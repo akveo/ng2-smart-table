@@ -21,7 +21,15 @@ export class Grid {
     this.setSource(source);
   }
   
-  showActionColumn(): boolean {
+  showActionColumn(position: string): boolean {
+    return this.isCurrentActionsPosition(position) && this.isActionsVisible();
+  }
+
+  isCurrentActionsPosition(position: string): boolean {
+    return position == this.getSetting('actions.position')
+  }
+
+  isActionsVisible(): boolean {
     return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete');
   }
 
@@ -156,7 +164,7 @@ export class Grid {
   }
   
   protected shouldProcessChange(changes): boolean {
-    if (['filter', 'sort', 'page', 'remove', 'refresh', 'load'].indexOf(changes['action']) !== -1) {
+    if (['filter', 'sort', 'page', 'remove', 'refresh', 'load', 'paging'].indexOf(changes['action']) !== -1) {
       return true;
     } else if (['prepend', 'append'].indexOf(changes['action']) !== -1 && !this.getSetting('pager.display')) {
       return true;
