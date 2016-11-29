@@ -29,7 +29,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() public deleteConfirm: EventEmitter<any> = new EventEmitter<any>();
   @Output() public editConfirm: EventEmitter<any> = new EventEmitter<any>();
   @Output() public createConfirm: EventEmitter<any> = new EventEmitter<any>();
-  
+
   protected grid: Grid;
   protected defaultSettings: Object = {
 
@@ -105,16 +105,22 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.grid.selectRow(row);
     this.userRowSelect.emit({
       data: row.getData(),
+      isSelected: row.getIsSelected(),
       source: this.source
     });
-    
-    this.onSelectRow(row);
+
+    this.emitSelectRow(row);
   }
-  
+
   onSelectRow(row: Row): void {
     this.grid.selectRow(row);
+    this.emitSelectRow(row);
+  }
+
+  protected emitSelectRow(row: Row): void {
     this.rowSelect.emit({
       data: row.getData(),
+      isSelected: row.getIsSelected(),
       source: this.source
     });
   }
@@ -165,16 +171,16 @@ export class Ng2SmartTableComponent implements OnChanges {
   protected initGrid(): void {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
-    this.grid.onSelectRow().subscribe((row) => this.onSelectRow(row));
+    this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
   }
-  
+
   protected prepareSource(): DataSource {
     if (this.source instanceof DataSource) {
       return this.source;
     } else if (this.source instanceof Array) {
       return new LocalDataSource(this.source);
     }
-    
+
     return new LocalDataSource();
   }
 
