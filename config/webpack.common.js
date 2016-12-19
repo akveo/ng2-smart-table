@@ -6,7 +6,6 @@ const path = require('path');
  * Webpack Plugins
  */
 // problem with copy-webpack-plugin
-const AssetsPlugin = require('assets-webpack-plugin');
 const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
 const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -182,11 +181,7 @@ module.exports = function (options) {
      */
     plugins: [
 
-      new AssetsPlugin({
-        path: helpers.root('demo-dist'),
-        filename: 'webpack-assets.json',
-        prettyPrint: true
-      }),
+
 
       /*
        * Plugin: ForkCheckerPlugin
@@ -248,6 +243,15 @@ module.exports = function (options) {
             chunksSortMode: 'dependency',
             metadata: METADATA,
             inject: 'head'
+        }),
+
+        new HtmlWebpackPlugin({
+            template: 'demo/src/404.html',
+            title: METADATA.title,
+            chunksSortMode: 'dependency',
+            metadata: METADATA,
+            inject: 'head',
+            filename: '404.html'
         }),
 
         /*

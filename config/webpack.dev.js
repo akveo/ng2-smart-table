@@ -152,7 +152,6 @@ module.exports = function(options) {
         aggregateTimeout: 300,
         poll: 1000
       }
-      // outputPath: helpers.root('demo-dist')
     },
 
     /*
