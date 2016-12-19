@@ -7,6 +7,7 @@ const commonConfig = require('./webpack.common.js'); // the settings that are co
  */
 const DefinePlugin = require('webpack/lib/DefinePlugin');
 const NamedModulesPlugin = require('webpack/lib/NamedModulesPlugin');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
 
 /**
  * Webpack Constants
@@ -30,20 +31,6 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
  */
 module.exports = function(options) {
   return webpackMerge(commonConfig({env: ENV}), {
-
-    /**
-     * Merged metadata from webpack.common.js for index.html
-     *
-     * See: (custom attribute)
-     */
-    metadata: METADATA,
-
-    /**
-     * Switch loaders to debug mode.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#debug
-     */
-    debug: true,
 
     /**
      * Developer tool to enhance debugging
@@ -122,21 +109,30 @@ module.exports = function(options) {
        *
        * See: https://github.com/webpack/webpack/commit/a04ffb928365b19feb75087c63f13cadfc08e1eb
        */
-      new NamedModulesPlugin(),
+      // new NamedModulesPlugin(),
 
+      new LoaderOptionsPlugin({
+        debug: true,
+        options: {
+          context: helpers.root('src'),
+          output: {
+            path: helpers.root('dist')
+          },
+
+          /**
+           * Static analysis linter for TypeScript advanced options configuration
+           * Description: An extensible linter for the TypeScript language.
+           *
+           * See: https://github.com/wbuchwalter/tslint-loader
+           */
+          tslint: {
+            emitErrors: false,
+            failOnHint: false,
+            resourcePath: 'demo/src'
+          }
+        }
+      })
     ],
-
-    /**
-     * Static analysis linter for TypeScript advanced options configuration
-     * Description: An extensible linter for the TypeScript language.
-     *
-     * See: https://github.com/wbuchwalter/tslint-loader
-     */
-    tslint: {
-      emitErrors: false,
-      failOnHint: false,
-      resourcePath: 'demo/src'
-    },
 
     /**
      * Webpack Development Server configuration
@@ -155,8 +151,7 @@ module.exports = function(options) {
       watchOptions: {
         aggregateTimeout: 300,
         poll: 1000
-      },
-      outputPath: helpers.root('demo-dist')
+      }
     },
 
     /*
@@ -166,7 +161,7 @@ module.exports = function(options) {
      * See: https://webpack.github.io/docs/configuration.html#node
      */
     node: {
-      global: 'window',
+      global: true,
       crypto: 'empty',
       process: true,
       module: false,
