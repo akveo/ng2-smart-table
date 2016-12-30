@@ -6,7 +6,10 @@ import { Cell } from '../../lib/data-set/cell';
   selector: 'ng2-smart-table-cell',
   styles: [require('./cell.scss')],
   template: `
-    <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type !== 'html'">{{ cell.getValue() }}</div>
+    <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type !== 'html'">
+    <span *ngIf="cell.getColumn().id == 'email'"><input type="checkbox" (change)="cell.isChecked = !cell.isChecked"></span>
+      {{ cell.getValue() }}
+    </div>
     <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type === 'html'" [innerHTML]="cell.getValue()"></div>
     <input *ngIf="cell.getRow().isInEditing" 
       [ngClass]="inputClass"
@@ -27,6 +30,7 @@ export class CellComponent {
   @Input() mode: string = 'inline';
 
   @Output() public edited: EventEmitter<any> = new EventEmitter<any>();
+  @Output() public checked: EventEmitter<any> = new EventEmitter<any>();
 
   @ViewChild('cellContainer') cellRef: ElementRef;
 
@@ -50,5 +54,10 @@ export class CellComponent {
 
   onClick(event): void {
     event.stopPropagation();
+  }
+
+  onChecked(event): boolean {
+    this.checked.emit(this.cell.getValue());
+    return false;
   }
 }

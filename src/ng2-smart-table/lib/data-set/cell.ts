@@ -5,10 +5,13 @@ import { Row } from './row';
 export class Cell {
 
   newValue = '';
+  isChecked = false;
+
   protected static PREPARE = (value) => value;
 
   constructor(protected value: any, protected row: Row, protected column, protected dataSet: DataSet) {
     this.newValue = value;
+    this.isChecked = false;
   }
 
   getValue(): any {
