@@ -8,6 +8,7 @@ import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 
 import { deepExtend } from './lib/helpers';
+import { Deferred } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
@@ -20,6 +21,8 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Input() source: any;
   @Input() settings: Object = {};
 
+  @Input() checkedUsers: any = [];
+
   @Output() public rowSelect: EventEmitter<any> = new EventEmitter<any>();
   @Output() public userRowSelect: EventEmitter<any> = new EventEmitter<any>();
   @Output() public delete: EventEmitter<any> = new EventEmitter<any>();
@@ -29,6 +32,8 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() public deleteConfirm: EventEmitter<any> = new EventEmitter<any>();
   @Output() public editConfirm: EventEmitter<any> = new EventEmitter<any>();
   @Output() public createConfirm: EventEmitter<any> = new EventEmitter<any>();
+
+  @Output() public checkUsers: EventEmitter<any> = new EventEmitter<any>();
   
   protected grid: Grid;
   protected defaultSettings: Object = {
@@ -98,6 +103,39 @@ export class Ng2SmartTableComponent implements OnChanges {
     } else {
       this.grid.createFormShown = true;
     }
+    return false;
+  }
+
+  getCheckedRows(event): boolean {
+    this.checkedUsers = [];
+    event.stopPropagation();
+    var deferred = new Deferred();
+
+    if(this.grid.getSetting('mode') === 'external') {
+      for(var i = 0; i < this.grid.getRows().length; i++) {
+        if(this.grid.getRows()[i].getCells()[0].isChecked) {
+          this.checkedUsers.push(this.grid.getRows()[i]);
+        }
+      }
+      console.log(this.checkedUsers);
+      this.checkUsers.emit({
+        checkedEmails: this.checkedUsers
+      });
+
+      //else code is being triggered as of now
+      } 
+      else {
+        for(var i = 0; i < this.grid.getRows().length; i++) {
+          if(this.grid.getRows()[i].getCells()[0].isChecked) {
+            this.checkedUsers.push(this.grid.getRows()[i]);
+          }
+        }
+        this.checkUsers.emit({
+          data: this.checkedUsers,
+          source: this.source,
+          confirm: deferred
+        });
+      }
     return false;
   }
 
