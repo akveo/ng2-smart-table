@@ -55,7 +55,7 @@ export class CellComponent {
   }
 
   onEditedCompleter(event): boolean {
-    this.cell.newValue = event.originalObject[this.cell.getColumn().id];
+    this.cell.newValue = event.title;
     return false;
   }
 
