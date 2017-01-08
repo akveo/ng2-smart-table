@@ -28,6 +28,7 @@ export class CellComponent {
     if (this.cell.getColumn().type === 'completer') {
       let config = this.cell.getColumn().getConfig().completer;
       config.dataService = this.completerService.local(config.data, config.searchFields, config.titleField);
+      config.dataService.descriptionField(config.descriptionField);
     }
   }
 

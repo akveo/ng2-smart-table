@@ -90,7 +90,8 @@ export class AdvancedExamplesTypesComponent {
           completer: {
             data: this.data,
             searchFields: 'name',
-            titleField: 'name'
+            titleField: 'name',
+            descriptionField: 'email'
           }
         }
       },
