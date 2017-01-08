@@ -134,14 +134,14 @@ export class Grid {
   }
 
   delete(row: Row, confirmEmitter: EventEmitter<any>): void {
-    
+
     let deferred = new Deferred();
     deferred.promise.then(() => {
       this.source.remove(row.getData());
     }).catch((err) => {
       // doing nothing
     });
-    
+
     if (this.getSetting('delete.confirmDelete')) {
       confirmEmitter.emit({
         data: row.getData(),

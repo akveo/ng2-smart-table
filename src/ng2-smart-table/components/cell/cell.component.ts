@@ -1,46 +1,52 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { CompleterService } from 'ng2-completer';
 
 import { Cell } from '../../lib/data-set/cell';
 
 @Component({
   selector: 'ng2-smart-table-cell',
   styles: [require('./cell.scss')],
-  template: `
-    <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type !== 'html'">{{ cell.getValue() }}</div>
-    <div #cellContainer *ngIf="!cell.getRow().isInEditing && cell.getColumn().type === 'html'" [innerHTML]="cell.getValue()"></div>
-    <input *ngIf="cell.getRow().isInEditing" 
-      [ngClass]="inputClass"
-      class="form-control"
-      [(ngModel)]="cell.newValue"
-      [name]="cell.getColumn().id" 
-      [placeholder]="cell.getColumn().title"
-      [disabled]="!cell.getColumn().isEditable"
-      (click)="onClick($event)"
-      (keydown.enter)="onEdited($event)" 
-      (keydown.esc)="onStopEditing()">
-  `
+  template: require('./cell.component.html')
 })
 export class CellComponent {
 
   @Input() cell: Cell;
   @Input() inputClass: string = '';
   @Input() mode: string = 'inline';
+  @Input() isInEditing: boolean = false;
 
   @Output() public edited: EventEmitter<any> = new EventEmitter<any>();
 
   @ViewChild('cellContainer') cellRef: ElementRef;
 
+  completerStr: string = '';
+
+  constructor(private completerService: CompleterService) {
+  }
+
+  ngOnInit(): void {
+    if (this.cell.getColumn().type === 'completer') {
+      let config = this.cell.getColumn().getConfig().completer;
+      config.dataService = this.completerService.local(config.data, config.searchFields, config.titleField);
+    }
+  }
+
   onStopEditing(): boolean {
     this.cell.getRow().isInEditing = false;
+    this.cancelEdit();
     return false;
   }
 
-  ngAfterViewInit(): void {
-    const cellRenderFunc = this.cell.getColumn().getCellRenderFunction();
+  cancelEdit(): void {
+    this.renderCustomValue();
+  }
 
-    if (cellRenderFunc) {
-      cellRenderFunc.call(null, this.cell, this.cellRef.nativeElement)
-    }
+  ngOnChanges(changes): void {
+    setTimeout(() => this.renderCustomValue());
+  }
+
+  ngAfterViewInit(): void {
+    this.renderCustomValue();
   }
 
   onEdited(event): boolean {
@@ -48,7 +54,20 @@ export class CellComponent {
     return false;
   }
 
+  onEditedCompleter(event): boolean {
+    this.cell.newValue = event.originalObject[this.cell.getColumn().id];
+    return false;
+  }
+
   onClick(event): void {
     event.stopPropagation();
+  }
+
+  protected renderCustomValue(): void {
+    const cellRenderFunc = this.cell.getColumn().getCellRenderFunction();
+
+    if (cellRenderFunc && this.cellRef) {
+      cellRenderFunc.call(null, this.cell, this.cellRef.nativeElement)
+    }
   }
 }
