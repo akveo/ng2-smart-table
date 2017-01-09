@@ -61,7 +61,7 @@
     </tr>
 
     <tr *ngIf="grid.getRows().length == 0">
-      <td [attr.colspan]="grid.getColumns().length + (grid.getSetting('actions.add') || grid.getSetting('actions.edit') || grid.getSetting('actions.delete'))">{{ grid.getSetting('noDataMessage') }}</td>
+      <td class="{attr.noDataClass}" [attr.colspan]="grid.getColumns().length + (grid.getSetting('actions.add') || grid.getSetting('actions.edit') || grid.getSetting('actions.delete'))">{{ grid.getSetting('noDataMessage') }}</td>
     </tr>
 
     </tbody>
