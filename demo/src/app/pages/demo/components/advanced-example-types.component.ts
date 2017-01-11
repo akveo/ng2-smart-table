@@ -1,30 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'basic-example-data',
+  selector: 'advanced-example-types',
   styles: [],
   template: `
     <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
   `
 })
-export class BasicExampleDataComponent {
-
-  settings = {
-    columns: {
-      id: {
-        title: 'ID'
-      },
-      name: {
-        title: 'Full Name'
-      },
-      username: {
-        title: 'User Name'
-      },
-      email: {
-        title: 'Email'
-      }
-    }
-  };
+export class AdvancedExamplesTypesComponent {
 
   data = [
     {
@@ -94,4 +77,34 @@ export class BasicExampleDataComponent {
       email: "Rey.Padberg@rosamond.biz"
     }
   ];
+
+  settings = {
+    columns: {
+      id: {
+        title: 'ID'
+      },
+      name: {
+        title: 'Full Name',
+        type: 'completer',
+        config: {
+          completer: {
+            data: this.data,
+            searchFields: 'name',
+            titleField: 'name',
+            descriptionField: 'email'
+          }
+        }
+      },
+      username: {
+        title: 'User Name',
+        type: 'list',
+        config: {
+          list: [{value: 'Antonette', title: 'Antonette'}, {value: 'Bret', title: 'Bret'}, {value: 'Samantha', title: 'Samantha'}]
+        }
+      },
+      email: {
+        title: 'Email'
+      }
+    }
+  };
 }

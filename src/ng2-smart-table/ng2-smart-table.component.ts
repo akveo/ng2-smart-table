@@ -162,6 +162,13 @@ export class Ng2SmartTableComponent implements OnChanges {
     return false;
   }
 
+  onCancelEdit(row, event): boolean {
+    event.stopPropagation();
+
+    row.isInEditing = false;
+    return false;
+  }
+
   protected initGrid(): void {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());

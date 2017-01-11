@@ -10,6 +10,7 @@ export class Column {
   public isFilterable: boolean = false;
   public sortDirection: string = '';
   public defaultSortDirection: string = '';
+  public config: any = {};
   protected compareFunction: Function;
   protected valuePrepareFunction: Function;
   protected filterFunction: Function;
@@ -35,10 +36,15 @@ export class Column {
     return this.cellRenderFunction;
   }
 
+  public getConfig(): any {
+    return this.config;
+  }
+
   protected process(): void {
     this.title = this.settings['title'];
     this.class = this.settings['class'];
     this.type = this.prepareType();
+    this.config = this.settings['config'];
 
     this.isFilterable = typeof this.settings['filter'] === 'undefined' ? true : !!this.settings['filter'];
     this.defaultSortDirection = ['asc', 'desc'].indexOf(this.settings['sortDirection']) !== -1 ? this.settings['sortDirection'] : '';
@@ -62,6 +68,6 @@ export class Column {
 
   protected determineType(): string {
     // TODO: determine type by data
-    return 'string';
+    return 'text';
   }
 }

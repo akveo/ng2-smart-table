@@ -1,0 +1,44 @@
+<template [ngIf]="!isInEditing">
+    <div [ngSwitch]="cell.getColumn().type">
+        <div *ngSwitchCase="'html'" #cellContainer [innerHTML]="cell.getValue()"></div>
+
+        <div *ngSwitchDefault #cellContainer>{{ cell.getValue() }}</div>
+    </div>
+</template>
+<template [ngIf]="isInEditing">
+
+    <div [ngSwitch]="cell.getColumn().type">
+        <select *ngSwitchCase="'list'" [ngClass]="inputClass"
+                class="form-control"
+                [(ngModel)]="cell.newValue"
+                [name]="cell.getColumn().id"
+                [disabled]="!cell.getColumn().isEditable"
+                (click)="onClick($event)"
+                (keydown.enter)="onEdited($event)"
+                (keydown.esc)="onStopEditing()">
+
+            <option *ngFor="let option of cell.getColumn().getConfig()?.list" [value]="option.value"
+                    [selected]="option.value === cell.getValue()">{{ option.title }}
+            </option>
+        </select>
+
+        <ng2-completer *ngSwitchCase="'completer'"
+                       [(ngModel)]="completerStr"
+                       [dataService]="cell.getColumn().getConfig().completer.dataService"
+                       [minSearchLength]="cell.getColumn().getConfig().completer.minSearchLength || 0"
+                       [pause]="cell.getColumn().getConfig().completer.pause || 0"
+                       [placeholder]="cell.getColumn().getConfig().completer.placeholder || 'Start typing...'"
+                       (selected)="onEditedCompleter($event)">
+        </ng2-completer>
+
+        <input *ngSwitchDefault [ngClass]="inputClass"
+               class="form-control"
+               [(ngModel)]="cell.newValue"
+               [name]="cell.getColumn().id"
+               [placeholder]="cell.getColumn().title"
+               [disabled]="!cell.getColumn().isEditable"
+               (click)="onClick($event)"
+               (keydown.enter)="onEdited($event)"
+               (keydown.esc)="onStopEditing()">
+    </div>
+</template>

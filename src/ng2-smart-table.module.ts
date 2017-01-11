@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 import { NG2_SMART_TABLE_DIRECTIVES } from './ng2-smart-table.directives';
 import { CellComponent } from './ng2-smart-table/components/cell/cell.component';
@@ -11,6 +12,7 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
 @NgModule({
   imports: [
     CommonModule,
+    Ng2CompleterModule,
     FormsModule
   ],
   declarations: [
