@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LocalDataSource } from '../../../../../../ng2-smart-table.ts';
+import { LocalDataSource } from '../../../../../../src/ng2-smart-table';
 
 @Component({
   selector: 'advance-example-comfirm',
@@ -41,7 +41,7 @@ export class AdvancedExampleConfirmComponent {
       }
     }
   };
-  
+
   data = [
     {
       id: 1,
@@ -121,16 +121,16 @@ export class AdvancedExampleConfirmComponent {
       notShownField: true
     }
   ];
-  
+
   source: LocalDataSource;
-  
+
   constructor() {
     this.source = new LocalDataSource(this.data);
   }
 
   onDeleteConfirm(event):void {
     if (window.confirm('Are you sure you want to delete?')) {
-      event.confirm.resolve(); 
+      event.confirm.resolve();
     } else {
       event.confirm.reject();
     }
@@ -138,7 +138,7 @@ export class AdvancedExampleConfirmComponent {
 
   onSaveConfirm(event):void {
     if (window.confirm('Are you sure you want to save?')) {
-      event.newData['name'] += ' + added in code'; 
+      event.newData['name'] += ' + added in code';
       event.confirm.resolve(event.newData);
     } else {
       event.confirm.reject();

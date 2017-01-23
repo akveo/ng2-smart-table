@@ -5,8 +5,8 @@
   "author": "akveo",
   "homepage": "http://akveo.github.io/ng2-smart-table/",
   "license": "MIT",
-  "main": "./build/ng2-smart-table.js",
-  "typings": "./build/ng2-smart-table.d.ts",
+  "main": "build/index.js",
+  "typings": "build/index.d.ts",
   "dependencies": {
     "ng2-completer": "^1.0.0",
     "normalize.css": "^4.1.1",
@@ -22,6 +22,7 @@
   "devDependencies": {
     "@angular/common": "2.4.4",
     "@angular/compiler": "2.4.4",
+    "@angular/compiler-cli": "^2.4.4",
     "@angular/core": "2.4.4",
     "@angular/forms": "2.4.4",
     "@angular/http": "2.4.4",
@@ -127,9 +128,8 @@
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "prepublish:clean": "npm run rimraf -- build",
-    "prepublish:prepare": "mkdir -p build/src && cp -R src build",
-    "prepublish:build": "./node_modules/typescript/bin/tsc --outDir build -p tsconfig.publish.json",
-    "prepublish": "npm run prepublish:clean && npm run prepublish:prepare && npm run prepublish:build",
+    "prepublish:build": "node_modules/.bin/tsc -p tsconfig.publish.json",
+    "prepublish": "npm run prepublish:clean && npm run prepublish:build",
     "gh-pages": "npm run build:prod && gh-pages -d demo-dist"
   },
   "repository": {

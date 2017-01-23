@@ -16,12 +16,8 @@
       "dom",
       "es6"
     ],
-    "types": [
-//      "hammerjs",
-      "node",
-//      "source-map",
-//      "uglify-js",
-      "webpack"
+    "typeRoots": [
+      "node_modules/@types/"
     ]
   },
   "exclude": [

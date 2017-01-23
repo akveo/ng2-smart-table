@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LocalDataSource } from '../../../../../../ng2-smart-table.ts';
+import { LocalDataSource } from '../../../../../../src/ng2-smart-table';
 import { BasicExampleLoadService } from './basic-example-load.service';
 
 @Component({
@@ -14,7 +14,7 @@ import { BasicExampleLoadService } from './basic-example-load.service';
 export class BasicExampleLoadComponent {
 
   source: LocalDataSource;
-  
+
   settings = {
     columns: {
       id: {
@@ -34,7 +34,7 @@ export class BasicExampleLoadComponent {
 
   constructor(protected service: BasicExampleLoadService) {
     this.source = new LocalDataSource();
-    
+
     this.service.getData().then((data) => {
       this.source.load(data);
     })

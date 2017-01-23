@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { LocalDataSource } from '../../../../../../ng2-smart-table.ts';
+import { LocalDataSource } from '../../../../../../src/ng2-smart-table';
 
 @Component({
   selector: 'basic-example-source',
@@ -32,7 +32,7 @@ export class BasicExampleSourceComponent {
       }
     }
   };
-  
+
   data = [
     {
       id: 1,
@@ -101,9 +101,9 @@ export class BasicExampleSourceComponent {
       email: "Rey.Padberg@rosamond.biz"
     }
   ];
-  
+
   source: LocalDataSource;
-  
+
   constructor() {
     this.source = new LocalDataSource(this.data);
   }
@@ -128,7 +128,7 @@ export class BasicExampleSourceComponent {
         search: query
       }
     ], false);
-    // second parameter specifying whether to perform 'AND' or 'OR' search 
+    // second parameter specifying whether to perform 'AND' or 'OR' search
     // (meaning all columns should contain search query or at least one)
     // 'AND' by default, so changing to 'OR' by setting false here
   }
