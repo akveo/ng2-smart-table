@@ -35,7 +35,7 @@
     "@angularclass/hmr-loader": "~3.0.2",
     "@types/hammerjs": "^2.0.33",
     "@types/lodash": "0.0.28",
-    "@types/node": "^6.0.38",
+    "@types/node": "^6.0.61",
     "@types/source-map": "^0.1.27",
     "@types/uglify-js": "^2.0.27",
     "@types/webpack": "^2.0.0",
@@ -128,8 +128,10 @@
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "prepublish:clean": "npm run rimraf -- build",
+    "prepublish:clean:aot": "npm run rimraf -- aot",
     "prepublish:build": "node_modules/.bin/tsc -p tsconfig.publish.json",
-    "prepublish": "npm run prepublish:clean && npm run prepublish:build",
+    "prepublish:build:aot": "node_modules/.bin/ngc -p tsconfig-aot.json",
+    "prepublish": "npm run prepublish:clean && npm run prepublish:clean:aot && npm run prepublish:build && npm run prepublish:build:aot",
     "gh-pages": "npm run build:prod && gh-pages -d demo-dist"
   },
   "repository": {

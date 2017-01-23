@@ -12,8 +12,8 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
   selector: 'ng2-smart-table',
-  styles: [require('./ng2-smart-table.scss')],
-  template: require('./ng2-smart-table.html')
+  styleUrls: ['./ng2-smart-table.scss'],
+  templateUrl: './ng2-smart-table.html',
 })
 export class Ng2SmartTableComponent implements OnChanges {
 
@@ -29,7 +29,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() public deleteConfirm: EventEmitter<any> = new EventEmitter<any>();
   @Output() public editConfirm: EventEmitter<any> = new EventEmitter<any>();
   @Output() public createConfirm: EventEmitter<any> = new EventEmitter<any>();
-  
+
   protected grid: Grid;
   protected defaultSettings: Object = {
 
@@ -107,10 +107,10 @@ export class Ng2SmartTableComponent implements OnChanges {
       data: row.getData(),
       source: this.source
     });
-    
+
     this.onSelectRow(row);
   }
-  
+
   onSelectRow(row: Row): void {
     this.grid.selectRow(row);
     this.rowSelect.emit({
@@ -174,14 +174,14 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.grid = new Grid(this.source, this.prepareSettings());
     this.grid.onSelectRow().subscribe((row) => this.onSelectRow(row));
   }
-  
+
   protected prepareSource(): DataSource {
     if (this.source instanceof DataSource) {
       return this.source;
     } else if (this.source instanceof Array) {
       return new LocalDataSource(this.source);
     }
-    
+
     return new LocalDataSource();
   }
 

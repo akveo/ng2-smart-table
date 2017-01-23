@@ -5,8 +5,8 @@ import { Cell } from '../../lib/data-set/cell';
 
 @Component({
   selector: 'ng2-smart-table-cell',
-  styles: [require('./cell.scss')],
-  template: require('./cell.component.html')
+  styleUrls: ['./cell.scss'],
+  templateUrl: './cell.component.html',
 })
 export class CellComponent {
 
