@@ -22,6 +22,17 @@
             </option>
         </select>
 
+        <textarea *ngSwitchCase="'textarea'" [ngClass]="inputClass"
+                  class="form-control"
+                  [(ngModel)]="cell.newValue"
+                  [name]="cell.getColumn().id"
+                  [disabled]="!cell.getColumn().isEditable"
+                  (click)="onClick($event)"
+                  (keydown.enter)="onEdited($event)"
+                  (keydown.esc)="onStopEditing()"
+                  [placeholder]="cell.getColumn().title">
+        </textarea>
+
         <ng2-completer *ngSwitchCase="'completer'"
                        [(ngModel)]="completerStr"
                        [dataService]="cell.getColumn().getConfig().completer.dataService"
