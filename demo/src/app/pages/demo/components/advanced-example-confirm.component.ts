@@ -4,7 +4,6 @@ import { LocalDataSource } from '../../../../../../src/ng2-smart-table';
 
 @Component({
   selector: 'advance-example-comfirm',
-  styles: [],
   template: `
     <ng2-smart-table 
     [settings]="settings" 

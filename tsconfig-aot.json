@@ -6,7 +6,7 @@
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outDir": "build",
+    "outDir": "compiled",
     "declaration": true,
     "lib": [
       "es2015",
@@ -21,7 +21,11 @@
   ],
   "exclude": [
     "node_modules",
-    "**/*.spec.ts "
+    "build",
+    "demo-dist",
+    "demo-dist-aot",
+    "**/*.spec.ts ",
+    "**/*.e2e.ts "
   ],
   "angularCompilerOptions": {
     "genDir": "aot",

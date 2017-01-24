@@ -30,8 +30,8 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() public editConfirm: EventEmitter<any> = new EventEmitter<any>();
   @Output() public createConfirm: EventEmitter<any> = new EventEmitter<any>();
 
-  protected grid: Grid;
-  protected defaultSettings: Object = {
+  grid: Grid;
+  private defaultSettings: Object = {
 
     mode: 'inline', // inline|external|click-to-edit
     hideHeader: false,
@@ -169,13 +169,13 @@ export class Ng2SmartTableComponent implements OnChanges {
     return false;
   }
 
-  protected initGrid(): void {
+  private initGrid(): void {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
     this.grid.onSelectRow().subscribe((row) => this.onSelectRow(row));
   }
 
-  protected prepareSource(): DataSource {
+  private prepareSource(): DataSource {
     if (this.source instanceof DataSource) {
       return this.source;
     } else if (this.source instanceof Array) {
@@ -185,7 +185,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     return new LocalDataSource();
   }
 
-  protected prepareSettings(): Object {
+  private prepareSettings(): Object {
     return deepExtend({}, this.defaultSettings, this.settings);
   }
 }

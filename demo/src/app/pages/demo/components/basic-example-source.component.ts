@@ -4,7 +4,6 @@ import { LocalDataSource } from '../../../../../../src/ng2-smart-table';
 
 @Component({
   selector: 'basic-example-source',
-  styles: [],
   template: `
     <input #search class="search" type="text" placeholder="Search..." (keydown.enter)="onSearch(search.value)">
     <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>

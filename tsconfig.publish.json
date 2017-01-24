@@ -20,7 +20,11 @@
     "src/**/*"
   ],
   "exclude": [
-    "node_modules/*",
-    "**/*.spec.ts "
+    "node_modules",
+    "build",
+    "demo-dist",
+    "demo-dist-aot",
+    "**/*.spec.ts ",
+    "**/*.e2e.ts "
   ]
 }

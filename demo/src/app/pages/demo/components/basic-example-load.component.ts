@@ -5,7 +5,6 @@ import { BasicExampleLoadService } from './basic-example-load.service';
 
 @Component({
   selector: 'basic-example-load',
-  styles: [],
   providers: [BasicExampleLoadService],
   template: `
     <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
