@@ -1,7 +1,12 @@
 <template [ngIf]="!isInEditing">
     <div [ngSwitch]="cell.getColumn().type">
         <div *ngSwitchCase="'html'" #cellContainer [innerHTML]="cell.getValue()"></div>
-
+        <div #cellContainer *ngSwitchCase="'checkbox'">
+            <input style="width: 20px" type="checkbox" 
+               [(ngModel)]="cell.newValue"
+               value="cell.newValue"
+               (click)="onClickCheckbox($event)">
+        </div>
         <div *ngSwitchDefault #cellContainer>{{ cell.getValue() }}</div>
     </div>
 </template>

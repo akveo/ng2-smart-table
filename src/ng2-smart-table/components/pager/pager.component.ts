@@ -92,7 +92,7 @@ export class PagerComponent {
   }
 
   getLast(): number {
-    return Math.ceil(this.count / this.perPage);
+    return Math.ceil(this.count / this.source['pagingConf'].perPage);
   }
 
   protected isPageOutOfBounce(): boolean {

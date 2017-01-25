@@ -64,6 +64,12 @@ export class CellComponent {
     event.stopPropagation();
   }
 
+  onClickCheckbox(event) {
+    this.cell.newValue = !this.cell.newValue;
+    event.returnValue = this.cell.newValue;
+    this.edited.emit(event);
+  }
+
   protected renderCustomValue(): void {
     const cellRenderFunc = this.cell.getColumn().getCellRenderFunction();
 
