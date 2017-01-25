@@ -1,5 +1,4 @@
 import { Injectable, ElementRef } from '@angular/core';
-declare var Selectivity: any;
 
 @Injectable()
 export class MultiSelectService {
