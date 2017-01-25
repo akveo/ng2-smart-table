@@ -10,12 +10,13 @@
     <div [ngSwitch]="cell.getColumn().type">
         <ng2-smart-multi-select *ngSwitchCase="'list'"
                                 [options]="cell.getColumn().getConfig()?.list"
-                                [type]="single-select"
+                                [multiple]="cell.getColumn().getConfig()?.multiple"
+                                [html]="cell.getColumn().getConfig()?.html"
                                 [name]="cell.getColumn().id"
-                                (changed)="setValue($event)"
                                 [selected]="cell.getValue()"
-                                (keydown.esc)="onStopEditing()"
-                                [disabled]="!cell.getColumn().isEditable">
+                                [disabled]="!cell.getColumn().isEditable"
+                                (changed)="cell.setValue($event)"
+                                (keydown.esc)="onStopEditing()">
         </ng2-smart-multi-select>
 
         <!--<select *ngSwitchCase="'list'" [ngClass]="inputClass"

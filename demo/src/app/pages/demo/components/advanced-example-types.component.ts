@@ -98,6 +98,7 @@ export class AdvancedExamplesTypesComponent {
         title: 'User Name',
         type: 'list',
         config: {
+          multiple: true,
           list: [{value: 'Antonette', title: 'Antonette'}, {value: 'Bret', title: 'Bret'}, {value: 'Samantha', title: 'Samantha'}]
         }
       },

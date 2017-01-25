@@ -12,12 +12,13 @@ import { MultiSelectService } from './multi-select.service';
 export class MultiSelectComponent implements OnInit, OnDestroy {
 
   @ViewChild('selectContainer') selectContainer: ElementRef;
-  @Input() type: 'single-select' | 'multi-select' | 'html';
+  @Input() multiple: boolean;
+  @Input() html: boolean;
   @Input() options: Array<any>;
   @Input() name: string;
   @Input() selected: any;
   @Input() disabled: boolean;
-  @Output() changed = new EventEmitter();
+  @Output() changed: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     protected multiSelectService: MultiSelectService,
@@ -25,18 +26,16 @@ export class MultiSelectComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    switch (this.type) {
-      case 'single-select': return this.singleSelect();
-      default: this.singleSelect();
-    }
+    if (!this.html) this.simpleSelect();
 
     this.selectContainer.nativeElement.addEventListener('change', (data) => {
+      // data.value can be either string or array
       this.changed.emit(data.value);
     })
   }
 
-  singleSelect(): void {
-    this.multiSelectService.single(this.selectContainer.nativeElement, this.disabled, this.options, this.selected);
+  simpleSelect(): void {
+    this.multiSelectService.simpleSelect(this.selectContainer.nativeElement, this.disabled, this.options, this.selected, this.multiple);
   }
 
   ngOnDestroy(): void {
