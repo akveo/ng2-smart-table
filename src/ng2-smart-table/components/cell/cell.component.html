@@ -8,7 +8,17 @@
 <template [ngIf]="isInEditing">
 
     <div [ngSwitch]="cell.getColumn().type">
-        <select *ngSwitchCase="'list'" [ngClass]="inputClass"
+        <ng2-smart-multi-select *ngSwitchCase="'list'"
+                                [options]="cell.getColumn().getConfig()?.list"
+                                [type]="single-select"
+                                [name]="cell.getColumn().id"
+                                (changed)="setValue($event)"
+                                [selected]="cell.getValue()"
+                                (keydown.esc)="onStopEditing()"
+                                [disabled]="!cell.getColumn().isEditable">
+        </ng2-smart-multi-select>
+
+        <!--<select *ngSwitchCase="'list'" [ngClass]="inputClass"
                 class="form-control"
                 [(ngModel)]="cell.newValue"
                 [name]="cell.getColumn().id"
@@ -20,7 +30,7 @@
             <option *ngFor="let option of cell.getColumn().getConfig()?.list" [value]="option.value"
                     [selected]="option.value === cell.getValue()">{{ option.title }}
             </option>
-        </select>
+        </select>-->
 
         <ng2-completer *ngSwitchCase="'completer'"
                        [(ngModel)]="completerStr"

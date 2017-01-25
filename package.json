@@ -9,7 +9,8 @@
   "typings": "build/index.d.ts",
   "dependencies": {
     "ng2-completer": "^1.0.0",
-    "rxjs": "~5.0.2"
+    "rxjs": "~5.0.2",
+    "selectivity": "^3.0.2"
   },
   "save-prefix": "^",
   "peerDependencies": {
