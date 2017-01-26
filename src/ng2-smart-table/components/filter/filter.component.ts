@@ -1,11 +1,11 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, AfterContentInit, AfterViewInit } from '@angular/core';
 
 import { DataSource } from '../../lib/data-source/data-source';
 import { Column } from '../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-filter',
-  styles: [require('./filter.scss')],
+  styleUrls: ['./filter.scss'],
   template: `
     <div class="ng2-smart-filter" *ngIf="column.isFilterable">
       <input 
@@ -18,7 +18,7 @@ import { Column } from '../../lib/data-set/column';
     </div>
   `
 })
-export class FilterComponent {
+export class FilterComponent implements AfterViewInit {
 
   @Input() column: Column;
   @Input() source: DataSource;
@@ -41,7 +41,7 @@ export class FilterComponent {
     if (event.which === 13) {
       this.addFilter();
       // ignore tab component
-    } else if(event.which !== 9) {
+    } else if (event.which !== 9) {
       if (this.timeout) {
         clearTimeout(this.timeout);
       }
@@ -52,7 +52,7 @@ export class FilterComponent {
     return false;
   }
 
-  protected addFilter(): void {
+  addFilter(): void {
     this.source.addFilter({
       field: this.column.id,
       search: this.query,

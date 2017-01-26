@@ -5,13 +5,13 @@ import { Column } from '../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-title',
-  styles: [require('./title.scss')],
+  styleUrls: ['./title.scss'],
   template: `
     <a href="#"
-    *ngIf="column.isSortable"
-    (click)="sort($event, column)" 
-    class="ng2-smart-sort-link sort"
-    [ngClass]="currentDirection">
+      *ngIf="column.isSortable"
+      (click)="sort($event, column)" 
+      class="ng2-smart-sort-link sort"
+      [ngClass]="currentDirection">
       {{ column.title }}
     </a>
     <span class="ng2-smart-sort" *ngIf="!column.isSortable">{{ column.title }}</span>
@@ -22,7 +22,7 @@ export class TitleComponent {
   @Input() column: Column;
   @Input() source: DataSource;
 
-  protected currentDirection = '';
+  currentDirection = '';
 
   ngOnInit(): void {
     this.source.onChanged().subscribe((elements) => {

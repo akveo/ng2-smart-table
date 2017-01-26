@@ -50,7 +50,6 @@ npm-debug.log
 /src/*/dist/
 /dist/**
 .webpack.json
-/compiled
 /dll
 
 # Doc #
@@ -67,3 +66,11 @@ npm-debug.log
 /build
 
 demo-dist/
+
+/compiled
+*.metadata.json
+
+# These lines were probably already there
+*.map.js
+*.js  # or /src/**/*.js
+*.d.ts

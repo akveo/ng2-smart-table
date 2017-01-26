@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'basic-example-data',
-  styles: [],
   template: `
     <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
   `

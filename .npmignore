@@ -1,3 +1,7 @@
+/compiled
+# or
+*.ngFactory.ts
+
 .idea
 logs
 
@@ -5,19 +9,9 @@ logs
 karma.conf.js
 test.bundle.js
 coverage
-
 # demo build
 demo
-demo-build
+demo-dist
 webpack.config.js
+tsconfig.webpack.json
 config
-
-# sources
-src
-
-#typescript sources
-*.ts
-*.js.map
-!*.d.ts
-/build/**/*.ts
-!/build/**/*.d.ts

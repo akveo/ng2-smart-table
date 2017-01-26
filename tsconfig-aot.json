@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "declaration": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ]
+  },
+  "files": [
+    "./ng2-smart-table.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "compiled"
+  }
+}

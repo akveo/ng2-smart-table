@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 
+import 'style-loader!./documentation.scss';
+
 @Component({
   selector: 'demo',
-  styles: [require('./documentation.scss')],
-  template: require('./documentation.html')
+  templateUrl: './documentation.html',
 })
 export class DocumentationComponent {
-  
+
 }

@@ -11,10 +11,10 @@ export class Column {
   public sortDirection: string = '';
   public defaultSortDirection: string = '';
   public config: any = {};
-  protected compareFunction: Function;
-  protected valuePrepareFunction: Function;
-  protected filterFunction: Function;
-  protected cellRenderFunction: Function;
+  compareFunction: Function;
+  valuePrepareFunction: Function;
+  filterFunction: Function;
+  cellRenderFunction: Function;
 
   constructor(public id: string, protected settings: any, protected dataSet: DataSet) {
     this.process();
@@ -58,15 +58,15 @@ export class Column {
     this.cellRenderFunction = this.settings['cellRenderFunction'];
   }
 
-  protected prepareType(): string {
+  prepareType(): string {
     return this.settings['type'] || this.determineType();
   }
 
-  protected prepareSortDirection(): string {
+  prepareSortDirection(): string {
     return this.settings['sort'] === 'desc' ? 'desc' : 'asc';
   }
 
-  protected determineType(): string {
+  determineType(): string {
     // TODO: determine type by data
     return 'text';
   }

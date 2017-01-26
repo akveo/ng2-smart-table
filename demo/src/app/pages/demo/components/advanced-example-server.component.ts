@@ -4,7 +4,6 @@ import { Http } from '@angular/http/src/http';
 
 @Component({
   selector: 'advanced-example-server',
-  styles: [],
   template: `
     <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
   `
@@ -29,8 +28,8 @@ export class AdvancedExampleServerComponent {
   };
 
   source: ServerDataSource;
-  
+
   constructor(http: Http) {
-    this.source = new ServerDataSource(http, {endPoint: 'https://jsonplaceholder.typicode.com/photos'});
+    this.source = new ServerDataSource(http, { endPoint: 'https://jsonplaceholder.typicode.com/photos' });
   }
 }
