@@ -17,6 +17,10 @@ export class Cell {
     return prepare.call(null, this.value, this.row.getData());
   }
 
+  setValue(event: string): void {
+    this.newValue = event;
+  }
+
   getColumn(): Column {
     return this.column;
   }

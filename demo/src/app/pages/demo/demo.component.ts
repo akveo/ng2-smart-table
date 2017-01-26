@@ -1,14 +1,14 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import * as hljs from 'highlight.js';
 
-let hljs: any = require('highlight.js');
+import 'style-loader!../../../../../node_modules/highlight.js/styles/dracula.css';
 
 @Component({
   selector: 'demo',
-  encapsulation: ViewEncapsulation.None,
-  styles: [require('./demo.scss'), require('highlight.js/styles/dracula.css')],
-  template: require('./demo.html')
+  styleUrls: ['./demo.scss'],
+  templateUrl: './demo.html',
 })
-export class DemoComponent {
+export class DemoComponent implements AfterViewInit {
 
   sidebarScrolled = false;
   sidebarOffset = 0;
@@ -36,6 +36,5 @@ export class DemoComponent {
 
   ngAfterViewInit(): void {
     hljs.initHighlighting();
-    hljs.initHighlighting.called = false;
   }
 }

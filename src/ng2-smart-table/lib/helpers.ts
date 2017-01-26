@@ -3,7 +3,7 @@ function isSpecificValue(val) {
     val instanceof Buffer
     || val instanceof Date
     || val instanceof RegExp
-  ) ? true : false;
+  );
 }
 
 function cloneSpecificValue(val): any {
@@ -117,10 +117,10 @@ export const deepExtend = function (...objects): any {
 export class Deferred {
 
   promise: Promise<any>;
-  
+
   resolve: any;
   reject: any;
-  
+
   constructor () {
     this.promise = new Promise((resolve, reject) => {
       this.resolve = resolve;

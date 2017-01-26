@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "outDir": "build",
+    "outDir": "compiled",
     "declaration": true,
     "lib": [
       "es2015",
@@ -26,5 +26,9 @@
     "demo-dist-aot",
     "**/*.spec.ts ",
     "**/*.e2e.ts "
-  ]
+  ],
+  "angularCompilerOptions": {
+    "genDir": "aot",
+    "skipMetadataEmit": true
+  }
 }

@@ -8,19 +8,16 @@
 <template [ngIf]="isInEditing">
 
     <div [ngSwitch]="cell.getColumn().type">
-        <select *ngSwitchCase="'list'" [ngClass]="inputClass"
-                class="form-control"
-                [(ngModel)]="cell.newValue"
-                [name]="cell.getColumn().id"
-                [disabled]="!cell.getColumn().isEditable"
-                (click)="onClick($event)"
-                (keydown.enter)="onEdited($event)"
-                (keydown.esc)="onStopEditing()">
-
-            <option *ngFor="let option of cell.getColumn().getConfig()?.list" [value]="option.value"
-                    [selected]="option.value === cell.getValue()">{{ option.title }}
-            </option>
-        </select>
+        <ng2-smart-multi-select *ngSwitchCase="'list'"
+                                [options]="cell.getColumn().getConfig()?.list"
+                                [multiple]="cell.getColumn().getConfig()?.multiple"
+                                [html]="cell.getColumn().getConfig()?.html"
+                                [name]="cell.getColumn().id"
+                                [selected]="cell.getValue()"
+                                [disabled]="!cell.getColumn().isEditable"
+                                (changed)="cell.setValue($event)"
+                                (keydown.esc)="onStopEditing()">
+        </ng2-smart-multi-select>
 
         <ng2-completer *ngSwitchCase="'completer'"
                        [(ngModel)]="completerStr"
@@ -30,6 +27,15 @@
                        [placeholder]="cell.getColumn().getConfig().completer.placeholder || 'Start typing...'"
                        (selected)="onEditedCompleter($event)">
         </ng2-completer>
+
+        <input *ngSwitchCase="'checkbox'" [ngClass]="inputClass"
+               type="checkbox"
+               class="form-control"
+               [name]="cell.getColumn().id"
+               [disabled]="!cell.getColumn().isEditable"
+               [checked]="cell.getValue() == (cell.getColumn().getConfig()?.true || true)"
+               (click)="onClick($event)"
+               (change)="cell.setValue($event.target.checked ? cell.getColumn().getConfig()?.true || true : cell.getColumn().getConfig()?.false || false)">
 
         <input *ngSwitchDefault [ngClass]="inputClass"
                class="form-control"

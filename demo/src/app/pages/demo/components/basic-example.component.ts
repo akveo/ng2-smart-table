@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'basic-example',
-  styles: [],
   template: `
     <ng2-smart-table [settings]="settings"></ng2-smart-table>
   `
@@ -25,8 +24,8 @@ export class BasicExampleComponent {
       }
     }
   };
-  
+
   ngOnInit() {
-    
+
   }
 }

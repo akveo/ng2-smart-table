@@ -50,6 +50,12 @@ npm-debug.log
 /src/*/dist/
 /dist/**
 .webpack.json
+/compiled
+/dll
+/aot
+/build
+/demo-dist
+/demo-dist-aot
 
 # Doc #
 /doc/
@@ -62,6 +68,3 @@ npm-debug.log
 !/config/**/*.js
 !webpack.config.js
 *.map
-/build
-
-demo-dist/

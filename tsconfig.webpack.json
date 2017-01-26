@@ -1,23 +1,22 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "noEmitHelpers": true,
-    "strictNullChecks": false,
-    "baseUrl": "./src",
+    "baseUrl": "./demo/src",
+    "outDir": "demo-dist-aot",
     "paths": {
     },
     "lib": [
-      "dom",
-      "es6"
+      "es2015",
+      "dom"
     ],
     "typeRoots": [
-      "node_modules/@types/"
+      "node_modules/@types"
     ]
   },
   "exclude": [
@@ -31,6 +30,10 @@
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
     "useWebpackText": true
+  },
+  "angularCompilerOptions": {
+    "genDir": "compiled",
+    "skipMetadataEmit": true
   },
   "compileOnSave": false,
   "buildOnSave": false,

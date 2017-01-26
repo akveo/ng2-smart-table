@@ -3,8 +3,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'home',
   encapsulation: ViewEncapsulation.None,
-  styles: [require('./home.scss')],
-  template: require('./home.html')
+  styleUrls: ['./home.scss'],
+  templateUrl: './home.html',
 })
 export class HomeComponent {
 

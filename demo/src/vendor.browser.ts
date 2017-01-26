@@ -20,6 +20,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 
 // Web dependencies
+import '../../node_modules/selectivity/selectivity.min.js';
 
 if ('production' === ENV) {
   // Production

@@ -8,7 +8,7 @@ import { routing }       from './pages.routing';
 import { DemoComponent } from './demo';
 import { DocumentationComponent } from './documentation';
 import { HomeComponent } from './home';
-import { Ng2SmartTableModule } from '../../../../src/ng2-smart-table.module';
+import { Ng2SmartTableModule } from '../../../../src/ng2-smart-table';
 import { ScrollPositionDirective } from '../theme/directives/scrollPosition.directive';
 
 import { BasicExampleComponent } from './demo/components/basic-example.component';
@@ -21,7 +21,7 @@ import { AdvancedExamplesTypesComponent } from './demo/components/advanced-examp
 
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
@@ -29,8 +29,8 @@ import { AdvancedExamplesTypesComponent } from './demo/components/advanced-examp
     routing
   ],
   declarations: [
-    DemoComponent, 
-    DocumentationComponent, 
+    DemoComponent,
+    DocumentationComponent,
     HomeComponent,
     BasicExampleComponent,
     BasicExampleDataComponent,
