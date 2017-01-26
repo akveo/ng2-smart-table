@@ -42,6 +42,14 @@
                        (selected)="onEditedCompleter($event)">
         </ng2-completer>
 
+        <input *ngSwitchCase="'checkbox'" [ngClass]="inputClass"
+               type="checkbox"
+               class="form-control"
+               [(ngModel)]="cell.newValue"
+               [name]="cell.getColumn().id"
+               [disabled]="!cell.getColumn().isEditable"
+               (click)="onClick($event)">
+
         <input *ngSwitchDefault [ngClass]="inputClass"
                class="form-control"
                [(ngModel)]="cell.newValue"

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'advanced-example-types',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="data" (onRowSelect)="change($event)"></ng2-smart-table>
   `
 })
 export class AdvancedExamplesTypesComponent {
@@ -103,8 +103,13 @@ export class AdvancedExamplesTypesComponent {
         }
       },
       email: {
-        title: 'Email'
+        title: 'Email',
+        type: 'checkbox'
       }
     }
   };
+
+  change(event) {
+    console.log('cambiato', event);
+  }
 }

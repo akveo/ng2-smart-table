@@ -8,12 +8,8 @@ import { CellComponent } from './components/cell/cell.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { PagerComponent } from './components/pager/pager.component';
 import { TitleComponent } from './components/title/title.component';
-import { CellComponent } from './ng2-smart-table/components/cell/cell.component';
-import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
-import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
-import { TitleComponent } from './ng2-smart-table/components/title/title.component';
-import { MultiSelectComponent } from './ng2-smart-table/components/multi-select/multi-select.component';
-import { MultiSelectService } from './ng2-smart-table/components/multi-select/multi-select.service';
+import { MultiSelectComponent } from './components/multi-select/multi-select.component';
+import { MultiSelectService } from './components/multi-select/multi-select.service';
 
 @NgModule({
   imports: [

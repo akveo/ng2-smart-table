@@ -64,6 +64,10 @@ export class CellComponent {
     event.stopPropagation();
   }
 
+  onChange(event){
+    console.log('cambiato', event);
+  }
+
   protected renderCustomValue(): void {
     const cellRenderFunc = this.cell.getColumn().getCellRenderFunction();
 
