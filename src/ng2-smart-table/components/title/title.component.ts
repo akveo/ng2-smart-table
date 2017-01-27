@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { DataSource } from '../../lib/data-source/data-source';
 import { Column } from '../../lib/data-set/column';
@@ -9,7 +9,7 @@ import { Column } from '../../lib/data-set/column';
   template: `
     <a href="#"
       *ngIf="column.isSortable"
-      (click)="sort($event, column)" 
+      (click)="_sort($event, column)" 
       class="ng2-smart-sort-link sort"
       [ngClass]="currentDirection">
       {{ column.title }}
@@ -21,6 +21,8 @@ export class TitleComponent {
 
   @Input() column: Column;
   @Input() source: DataSource;
+
+  @Output() sort = new EventEmitter<any>();
 
   currentDirection = '';
 
@@ -40,7 +42,7 @@ export class TitleComponent {
     });
   }
 
-  sort(): boolean {
+  _sort(): boolean {
     this.changeSortDirection();
     this.source.setSort([
       {
@@ -49,6 +51,7 @@ export class TitleComponent {
         compare: this.column.getCompareFunction()
       }
     ]);
+    this.sort.emit(null);
     return false;
   }
 

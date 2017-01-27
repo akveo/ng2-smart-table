@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { DataSource } from '../../lib/data-source/data-source';
 
@@ -40,6 +40,8 @@ export class PagerComponent {
   @Input() perPage: number;
   @Input() source: DataSource;
 
+  @Output() changePage = new EventEmitter<any>();
+
   protected pages: Array<any>;
   protected page: number;
   protected count: number = 0;
@@ -80,6 +82,7 @@ export class PagerComponent {
   paginate(page: number): boolean {
     this.source.setPage(page);
     this.page = page;
+    this.changePage.emit({ page });
     return false;
   }
 

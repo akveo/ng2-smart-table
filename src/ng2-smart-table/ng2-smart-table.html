@@ -3,12 +3,13 @@
     <thead *ngIf="!grid.getSetting('hideHeader') || !grid.getSetting('hideSubHeader')">
 
     <tr class="ng2-smart-titles" *ngIf="!grid.getSetting('hideHeader')">
+      <th *ngIf="grid.isMultiSelectVisible()"></th>
       <th *ngIf="grid.showActionColumn('left')" class="ng2-smart-actions">
         <div class="ng2-smart-title">{{ grid.getSetting('actions.columnTitle') }}</div>
       </th>
       <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class">
         <div class="ng2-smart-title">
-          <ng2-smart-table-title [source]="source" [column]="column"></ng2-smart-table-title>
+          <ng2-smart-table-title [source]="source" [column]="column" (sort)="sort($event)"></ng2-smart-table-title>
         </div>
       </th>
       <th *ngIf="grid.showActionColumn('right')" class="ng2-smart-actions">
@@ -17,11 +18,17 @@
     </tr>
 
     <tr class="ng2-smart-filters" *ngIf="!grid.getSetting('hideSubHeader')">
+      <th *ngIf="grid.isMultiSelectVisible()" (click)="selectAllRows()">
+        <input type="checkbox" [ngModel]="isAllSelected">
+      </th>
       <th *ngIf="grid.showActionColumn('left')" class="ng2-smart-actions-title ng2-smart-actions-title-add">
         <a  *ngIf="grid.getSetting('actions.add')" href="#" class="ng2-smart-action ng2-smart-action-add-add" [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
       </th>
       <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
-        <ng2-smart-table-filter [source]="source" [column]="column" [inputClass]="grid.getSetting('filter.inputClass')"></ng2-smart-table-filter>
+        <ng2-smart-table-filter [source]="source"
+                                [column]="column"
+                                [inputClass]="grid.getSetting('filter.inputClass')"
+                                (filter)="filter($event)"></ng2-smart-table-filter>
       </th>
       <th *ngIf="grid.showActionColumn('right')" class="ng2-smart-actions-title ng2-smart-actions-title-add">
         <a  *ngIf="grid.getSetting('actions.add')" href="#" class="ng2-smart-action ng2-smart-action-add-add" [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
@@ -29,6 +36,7 @@
     </tr>
 
     <tr *ngIf="grid.createFormShown">
+      <td *ngIf="grid.isMultiSelectVisible()"></td>
       <td class="ng2-smart-actions">
         <a href="#" class="ng2-smart-action ng2-smart-action-add-create" [innerHTML]="grid.getSetting('add.createButtonContent')" (click)="onCreate(grid.getNewRow(), $event)"></a>
         <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel" [innerHTML]="grid.getSetting('add.cancelButtonContent')" (click)="grid.createFormShown = false;"></a>
@@ -43,6 +51,9 @@
     <tbody>
 
     <tr *ngFor="let row of grid.getRows()" (click)="onUserSelectRow(row)" class="ng2-smart-row" [ngClass]="{selected: row.isSelected}">
+      <td *ngIf="grid.isMultiSelectVisible()" class="ng2-smart-actions" (click)="multipleSelectRow(row)">
+        <input type="checkbox" class="form-control ng2-smart-action-multiple-select" [ngModel]="row.isSelected">
+      </td>
       <td *ngIf="!row.isInEditing && grid.showActionColumn('left')" class="ng2-smart-actions">
         <a href="#" *ngIf="grid.getSetting('actions.edit')" class="ng2-smart-action ng2-smart-action-edit-edit" [innerHTML]="grid.getSetting('edit.editButtonContent')" (click)="onEdit(row, $event)"></a>
         <a href="#" *ngIf="grid.getSetting('actions.delete')" class="ng2-smart-action ng2-smart-action-delete-delete" [innerHTML]="grid.getSetting('delete.deleteButtonContent')" (click)="onDelete(row, $event)"></a>
@@ -67,6 +78,8 @@
     </tbody>
   </table>
 
-
-  <ng2-smart-table-pager *ngIf="grid.getSetting('pager.display')" [source]="source" [perPage]="grid.getSetting('pager.perPage')"></ng2-smart-table-pager>
+  <ng2-smart-table-pager *ngIf="grid.getSetting('pager.display')"
+                         [source]="source"
+                         [perPage]="grid.getSetting('pager.perPage')"
+                         (changePage)="changePage($event)"></ng2-smart-table-pager>
 </div>

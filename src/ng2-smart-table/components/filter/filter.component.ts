@@ -1,4 +1,4 @@
-import { Component, Input, AfterContentInit, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 import { DataSource } from '../../lib/data-source/data-source';
 import { Column } from '../../lib/data-set/column';
@@ -10,7 +10,7 @@ import { Column } from '../../lib/data-set/column';
     <div class="ng2-smart-filter" *ngIf="column.isFilterable">
       <input 
       [(ngModel)]="query"
-      (keyup)="filter($event)"
+      (keyup)="_filter($event)"
       [ngClass]="inputClass"
       class="form-control"
       type="text" 
@@ -23,6 +23,8 @@ export class FilterComponent implements AfterViewInit {
   @Input() column: Column;
   @Input() source: DataSource;
   @Input() inputClass: string = '';
+
+  @Output() filter = new EventEmitter<any>();
 
   query: string = '';
   timeout: any;
@@ -37,7 +39,7 @@ export class FilterComponent implements AfterViewInit {
     });
   }
 
-  filter(event): boolean {
+  _filter(event): boolean {
     if (event.which === 13) {
       this.addFilter();
       // ignore tab component
@@ -49,6 +51,7 @@ export class FilterComponent implements AfterViewInit {
         this.addFilter();
       }, this.delay);
     }
+    this.filter.emit(null);
     return false;
   }
 

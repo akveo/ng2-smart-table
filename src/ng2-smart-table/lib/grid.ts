@@ -33,6 +33,10 @@ export class Grid {
     return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete');
   }
 
+  isMultiSelectVisible(): boolean {
+    return this.getSetting('selectMode') === 'multi';
+  }
+
   getNewRow(): Row {
     return this.dataSet.newRow;
   }
@@ -75,6 +79,10 @@ export class Grid {
 
   selectRow(row: Row): void {
     this.dataSet.selectRow(row);
+  }
+
+  multipleSelectRow(row: Row): void {
+    this.dataSet.multipleSelectRow(row);
   }
 
   onSelectRow(): Observable<any> {
@@ -156,9 +164,12 @@ export class Grid {
   processDataChange(changes): void {
     if (this.shouldProcessChange(changes)) {
       this.dataSet.setData(changes['elements']);
-      let row = this.determineRowToSelect(changes);
-      if (row) {
-        this.onSelectRowSource.next(row);
+      if (this.getSetting('selectMode') !== 'multi') {
+        let row = this.determineRowToSelect(changes);
+
+        if (row) {
+          this.onSelectRowSource.next(row);
+        }
       }
     }
   }
@@ -227,5 +238,16 @@ export class Grid {
       }
     });
     return sortConf;
+  }
+
+  getSelectedRows(): Array<any> {
+    return this.dataSet.getRows()
+      .filter(r => r.isSelected)
+      .map(r => r.getData());
+  }
+
+  selectAllRows(status) {
+    this.dataSet.getRows()
+      .forEach(r => r.isSelected = status);
   }
 }
