@@ -84,7 +84,6 @@ export class AdvancedExamplesTypesComponent {
       },
       name: {
         title: 'Full Name',
-        type: 'text',
         editor: {
           type: 'completer',
           config: {
@@ -99,7 +98,7 @@ export class AdvancedExamplesTypesComponent {
       },
       username: {
         title: 'User Name',
-        type: 'text',
+        type: 'html',
         editor: {
           type: 'list',
           config: {

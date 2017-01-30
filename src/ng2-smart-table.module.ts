@@ -27,7 +27,9 @@ import { EditCellComponent } from './ng2-smart-table/components/cell/edit-cell.c
     ...NG2_SMART_TABLE_DIRECTIVES
   ],
   exports: [
-    ...NG2_SMART_TABLE_DIRECTIVES
+    ...NG2_SMART_TABLE_DIRECTIVES,
+    EditCellComponent,
+    ViewCellComponent
   ]
 })
 export class Ng2SmartTableModule {

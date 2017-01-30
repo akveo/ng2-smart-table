@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { CompleterService } from 'ng2-completer';
 
 import { Cell } from '../../lib/data-set/cell';
 
