@@ -84,24 +84,30 @@ export class AdvancedExamplesTypesComponent {
       },
       name: {
         title: 'Full Name',
-        type: 'completer',
-        config: {
-          completer: {
-            data: this.data,
-            searchFields: 'name',
-            titleField: 'name',
-            descriptionField: 'email'
+        type: 'text',
+        editor: {
+          type: 'completer',
+          config: {
+            completer: {
+              data: this.data,
+              searchFields: 'name',
+              titleField: 'name',
+              descriptionField: 'email'
+            }
           }
         }
       },
       username: {
         title: 'User Name',
-        type: 'list',
-        config: {
-          list: [{ value: 'Antonette', title: 'Antonette' }, { value: 'Bret', title: 'Bret' }, {
-            value: 'Samantha',
-            title: 'Samantha'
-          }]
+        type: 'text',
+        editor: {
+          type: 'list',
+          config: {
+            list: [{ value: '<b>Antonette</b>', title: 'Antonette' }, { value: 'Bret', title: 'Bret' }, {
+              value: 'Samantha',
+              title: 'Samantha'
+            }]
+          }
         }
       },
       email: {
