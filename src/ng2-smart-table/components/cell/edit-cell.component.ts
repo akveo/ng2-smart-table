@@ -4,7 +4,7 @@ import { CompleterService } from 'ng2-completer';
 import { Cell } from '../../lib/data-set/cell';
 
 @Component({
-  selector: 'edit-cell-component',
+  selector: 'table-cell-edit-mode',
   templateUrl: `
     <div [ngSwitch]="cell.getColumn().editor?.type">
         <select *ngSwitchCase="'list'" [ngClass]="inputClass"

@@ -1,6 +1,0 @@
-<template [ngIf]="!isInEditing">
-    <view-cell-component [cell]="cell"></view-cell-component>
-</template>
-<template [ngIf]="isInEditing">
-    <edit-cell-component [cell]="cell" [inputClass]="inputClass" (edited)="onEdited($event)"></edit-cell-component>
-</template>

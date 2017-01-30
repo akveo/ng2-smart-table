@@ -5,11 +5,11 @@ import { Ng2CompleterModule } from 'ng2-completer';
 
 import { NG2_SMART_TABLE_DIRECTIVES } from './ng2-smart-table.directives';
 import { CellComponent } from './ng2-smart-table/components/cell/cell.component';
+import { ViewCellComponent } from './ng2-smart-table/components/cell/view-cell.component';
+import { EditCellComponent } from './ng2-smart-table/components/cell/edit-cell.component';
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
 import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
 import { TitleComponent } from './ng2-smart-table/components/title/title.component';
-import { ViewCellComponent } from './ng2-smart-table/components/cell/view-cell.component';
-import { EditCellComponent } from './ng2-smart-table/components/cell/edit-cell.component';
 
 @NgModule({
   imports: [
@@ -19,17 +19,15 @@ import { EditCellComponent } from './ng2-smart-table/components/cell/edit-cell.c
   ],
   declarations: [
     CellComponent,
+    ViewCellComponent,
+    EditCellComponent,
     FilterComponent,
     PagerComponent,
     TitleComponent,
-    ViewCellComponent,
-    EditCellComponent,
     ...NG2_SMART_TABLE_DIRECTIVES
   ],
   exports: [
-    ...NG2_SMART_TABLE_DIRECTIVES,
-    EditCellComponent,
-    ViewCellComponent
+    ...NG2_SMART_TABLE_DIRECTIVES
   ]
 })
 export class Ng2SmartTableModule {

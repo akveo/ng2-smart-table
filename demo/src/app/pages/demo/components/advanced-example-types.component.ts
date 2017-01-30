@@ -102,8 +102,8 @@ export class AdvancedExamplesTypesComponent {
         editor: {
           type: 'list',
           config: {
-            list: [{ value: '<b>Antonette</b>', title: 'Antonette' }, { value: 'Bret', title: 'Bret' }, {
-              value: 'Samantha',
+            list: [{ value: 'Antonette', title: 'Antonette' }, { value: 'Bret', title: 'Bret' }, {
+              value: '<b>Samantha</b>',
               title: 'Samantha'
             }]
           }
