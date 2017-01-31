@@ -7,7 +7,7 @@ import 'style-loader!./demo.scss';
 
 @Component({
   selector: 'demo',
-  templateUrl: './demo.html',
+  templateUrl: 'demo.html',
 })
 export class DemoComponent {
 

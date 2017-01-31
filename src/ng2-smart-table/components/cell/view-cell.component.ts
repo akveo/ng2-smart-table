@@ -4,7 +4,7 @@ import { Cell } from '../../lib/data-set/cell';
 
 @Component({
   selector: 'table-cell-view-mode',
-  templateUrl: `
+  template: `
     <div [ngSwitch]="cell.getColumn().type">
         <div *ngSwitchCase="'html'" #cellContainer [innerHTML]="cell.getValue()"></div>
 
@@ -17,19 +17,6 @@ export class ViewCellComponent {
   @Input() cell: Cell;
 
   @ViewChild('cellContainer') cellRef: ElementRef;
-
-  // these methods don't seem to be used
-  /*
-  onStopEditing(): boolean {
-    this.cell.getRow().isInEditing = false;
-    this.cancelEdit();
-    return false;
-  }
-
-  cancelEdit(): void {
-    this.renderCustomValue();
-  }
-  */
 
   ngOnChanges(changes): void {
     setTimeout(() => this.renderCustomValue());

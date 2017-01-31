@@ -4,7 +4,7 @@ import 'style-loader!./documentation.scss';
 
 @Component({
   selector: 'demo',
-  templateUrl: './documentation.html',
+  templateUrl: 'documentation.html',
 })
 export class DocumentationComponent {
 

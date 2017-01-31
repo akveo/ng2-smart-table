@@ -3,13 +3,12 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'basic-example-data',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data" (userRowSelect)="userRowSelect($event)"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
   `
 })
 export class BasicExampleDataComponent {
 
   settings = {
-    selectMode: 'multi',
     columns: {
       id: {
         title: 'ID'
@@ -94,8 +93,4 @@ export class BasicExampleDataComponent {
       email: "Rey.Padberg@rosamond.biz"
     }
   ];
-
-  userRowSelect($event) {
-    console.log($event);
-  }
 }

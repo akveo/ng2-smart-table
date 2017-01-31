@@ -4,7 +4,6 @@ import { Cell } from '../../lib/data-set/cell';
 
 @Component({
   selector: 'ng2-smart-table-cell',
-  styleUrls: ['./cell.scss'],
   template: `
     <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell"></table-cell-view-mode>
     <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell" [inputClass]="inputClass" (edited)="onEdited($event)"></table-cell-edit-mode>

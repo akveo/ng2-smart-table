@@ -5,16 +5,16 @@ import { Column } from '../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-filter',
-  styleUrls: ['./filter.scss'],
+  styleUrls: ['filter.scss'],
   template: `
     <div class="ng2-smart-filter" *ngIf="column.isFilterable">
       <input 
-      [(ngModel)]="query"
-      (keyup)="_filter($event)"
-      [ngClass]="inputClass"
-      class="form-control"
-      type="text" 
-      placeholder="{{ column.title }}" />
+        [(ngModel)]="query"
+        (keyup)="_filter($event)"
+        [ngClass]="inputClass"
+        class="form-control"
+        type="text" 
+        placeholder="{{ column.title }}" />
     </div>
   `
 })

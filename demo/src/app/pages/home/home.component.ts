@@ -4,7 +4,7 @@ import 'style-loader!./home.scss';
 
 @Component({
   selector: 'home',
-  templateUrl: './home.html',
+  templateUrl: 'home.html',
 })
 export class HomeComponent {
 

@@ -5,7 +5,7 @@ import { Column } from '../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-title',
-  styleUrls: ['./title.scss'],
+  styleUrls: ['title.scss'],
   template: `
     <a href="#"
       *ngIf="column.isSortable"
