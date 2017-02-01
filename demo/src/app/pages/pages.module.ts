@@ -15,32 +15,34 @@ import { BasicExampleComponent } from './demo/components/basic-example.component
 import { BasicExampleDataComponent } from './demo/components/basic-example-data.component';
 import { BasicExampleSourceComponent } from './demo/components/basic-example-source.component';
 import { BasicExampleLoadComponent } from './demo/components/basic-example-load.component';
+import { BasicExampleMultiSelectComponent } from './demo/components/basic-example-multi-select.component';
 import { AdvancedExampleConfirmComponent } from './demo/components/advanced-example-confirm.component';
 import { AdvancedExampleServerComponent } from './demo/components/advanced-example-server.component';
 import { AdvancedExamplesTypesComponent } from './demo/components/advanced-example-types.component';
 
 @NgModule({
   imports: [
-    CommonModule, 
+    CommonModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
     Ng2SmartTableModule,
-    routing
+    routing,
   ],
   declarations: [
-    DemoComponent, 
-    DocumentationComponent, 
+    DemoComponent,
+    DocumentationComponent,
     HomeComponent,
     BasicExampleComponent,
     BasicExampleDataComponent,
     BasicExampleSourceComponent,
     BasicExampleLoadComponent,
+    BasicExampleMultiSelectComponent,
     AdvancedExampleConfirmComponent,
     AdvancedExampleServerComponent,
     AdvancedExamplesTypesComponent,
-    ScrollPositionDirective
-  ]
+    ScrollPositionDirective,
+  ],
 })
 export class PagesModule {
 }

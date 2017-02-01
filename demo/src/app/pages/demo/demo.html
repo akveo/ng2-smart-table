@@ -30,7 +30,7 @@
       </li>
     </ul>
   </nav>
-  
+
   <h2 ><a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
   <p>
     Hello and Welcome!
@@ -109,7 +109,7 @@
   </p>
   <h4><a id="data-source" class="anchor" href="#data-source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Source</h4>
   <p>
-    First thing you need to know is that all the data operations against the table <i>must</i> be done using the <strong>DataSource</strong> table property. DataSource is an abstraction around your data which allows you easily modify the table data or subscribe to events to modify the table behaviour. 
+    First thing you need to know is that all the data operations against the table <i>must</i> be done using the <strong>DataSource</strong> table property. DataSource is an abstraction around your data which allows you easily modify the table data or subscribe to events to modify the table behaviour.
   </p>
   <p>
     To access the DataSource we either can take it from the table or pass it instead of our <i>data array</i>. Let's do the second option as it requires less code and is more demonstrative. Let's import the DataSource class by modifying the import statement:
@@ -132,7 +132,7 @@
   </pre>
   <p>
     At this point if you look at the result there will be no difference comparing to the first example. Basically if you pass an array to the table component first thing it will do is wrap LocalDataSource object around your array as we did here manually.<br>
-    Now, having the DataSource we basically could change the table data in any way we need to - filter it, sort, paginate to some page, create/delete/modify the rows. In our example we need to be able to filter the data outside of the table, firstly let's add a search filed to the template with a listener: 
+    Now, having the DataSource we basically could change the table data in any way we need to - filter it, sort, paginate to some page, create/delete/modify the rows. In our example we need to be able to filter the data outside of the table, firstly let's add a search filed to the template with a listener:
   </p>
   <pre>
     <code class="typescript">{{ snippets.search }}</code>
@@ -172,7 +172,7 @@
     <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/basic-example-load.component.ts" target="_blank">Demo Source</a>
     <basic-example-load></basic-example-load>
   </div>
-  
+
   <h3><a id="confirm" class="anchor" href="#confirm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Confirm Action Example</h3>
   <p>
     An example on how to confirm an action before it's applied to the table:
@@ -195,7 +195,13 @@
   </p>
   <div class="with-source">
     <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/advanced-example-types.component.ts" target="_blank">Demo Source</a>
-  <advanced-example-types></advanced-example-types>
+    <advanced-example-types></advanced-example-types>
+  </div>
+  <h3><a id="multiselect" class="anchor" href="#multiselect" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi select</h3>
+  <p>An example on how to use multi select mode:</p>
+  <div class="with-source">
+    <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/basic-example-multi-select.component.ts" target="_blank">Demo Source</a>
+    <basic-example-multi-select></basic-example-multi-select>
   </div>
   <p>Full component documentation you can find <a [routerLink]="['/documentation']">here</a>.</p>
 </section>
