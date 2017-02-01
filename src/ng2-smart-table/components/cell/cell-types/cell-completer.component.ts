@@ -1,7 +1,6 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { CompleterService } from 'ng2-completer';
 
-import { Cell } from '../../../lib/data-set/cell';
 import { DefaultCellType } from './default-cell-type';
 
 @Component({
@@ -17,7 +16,7 @@ import { DefaultCellType } from './default-cell-type';
     `
 })
 export class CellCompleterComponent extends DefaultCellType {
-  
+
   completerStr: string = '';
 
   constructor(private completerService: CompleterService) {
@@ -25,11 +24,11 @@ export class CellCompleterComponent extends DefaultCellType {
   }
 
   ngOnInit(): void {
-		if (this.cell.getColumn().editor && this.cell.getColumn().editor.type === 'completer') {
-			let config = this.cell.getColumn().getConfig().completer;
-			config.dataService = this.completerService.local(config.data, config.searchFields, config.titleField);
-			config.dataService.descriptionField(config.descriptionField);
-		}
+    if (this.cell.getColumn().editor && this.cell.getColumn().editor.type === 'completer') {
+      let config = this.cell.getColumn().getConfig().completer;
+      config.dataService = this.completerService.local(config.data, config.searchFields, config.titleField);
+      config.dataService.descriptionField(config.descriptionField);
+    }
   }
 
   onEditedCompleter(event): boolean {

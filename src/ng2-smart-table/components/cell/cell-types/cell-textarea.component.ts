@@ -1,6 +1,5 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Cell } from '../../../lib/data-set/cell';
 import { DefaultCellType } from './default-cell-type';
 
 @Component({
@@ -11,15 +10,15 @@ import { DefaultCellType } from './default-cell-type';
               [(ngModel)]="cell.newValue"
               [name]="cell.getColumn().id"
               [disabled]="!cell.getColumn().isEditable"
-              (click)="onClick($event)"
-              (keydown.enter)="onEdited($event)"
-              (keydown.esc)="onStopEditing()"
-              [placeholder]="cell.getColumn().title">
+              [placeholder]="cell.getColumn().title"
+              (click)="onClick.emit($event)"
+              (keydown.enter)="onEdited.emit($event)"
+              (keydown.esc)="onStopEditing.emit()">
     </textarea>
     `
 })
 export class CellTextareaComponent extends DefaultCellType {
-  
+
   constructor() {
     super();
   }

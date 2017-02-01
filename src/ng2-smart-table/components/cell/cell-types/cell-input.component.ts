@@ -1,6 +1,5 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Cell } from '../../../lib/data-set/cell';
 import { DefaultCellType } from './default-cell-type';
 
 @Component({
@@ -18,7 +17,7 @@ import { DefaultCellType } from './default-cell-type';
     `
 })
 export class CellInputComponent extends DefaultCellType {
-  
+
   constructor() {
     super();
   }

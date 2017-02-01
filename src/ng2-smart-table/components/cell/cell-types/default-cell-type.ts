@@ -6,7 +6,7 @@ export class DefaultCellType {
   @Input() cell: Cell;
   @Input() inputClass: string;
 
-  @Output() onStopEditing: EventEmitter<any> = new EventEmitter();
-  @Output() onEdited: EventEmitter<any> = new EventEmitter();
-  @Output() onClick: EventEmitter<any> = new EventEmitter();
+  @Output() onStopEditing = new EventEmitter<any>();
+  @Output() onEdited = new EventEmitter<any>();
+  @Output() onClick = new EventEmitter<any>();
 }

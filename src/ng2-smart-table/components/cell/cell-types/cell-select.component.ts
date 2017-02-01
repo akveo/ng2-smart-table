@@ -1,6 +1,5 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { Cell } from '../../../lib/data-set/cell';
 import { DefaultCellType } from './default-cell-type';
 
 @Component({
