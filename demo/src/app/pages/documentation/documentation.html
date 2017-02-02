@@ -97,8 +97,8 @@
     </tr>
     <tr>
       <td>type</td>
-      <td><span class="highlight">'string'</span>|<span class="highlight">'html'</span></td>
-      <td>'string'</td>
+      <td><span class="highlight">'text'</span>|<span class="highlight">'html'</span></td>
+      <td>'text'</td>
       <td>
         Column data type. NOTE: currently not fully supported.<br>
         If type is <span class="highlight">html</span> then cell value will be inserted as html.
@@ -114,7 +114,7 @@
     </tr>
     <tr>
       <td><span class="nested-obj">editor</span>.type</td>
-      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox'</span></td>
+      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list'</span></td>
       <td>'text'</td>
       <td>
         Editor used when new row is added or edited
@@ -134,7 +134,7 @@
       <td>[ ]</td>
       <td>
         Only on <span class="highlight">list</span> type. Example format:<br>
-        <code>{{ '{' }} value: 'ElementValue', title: 'ElementTitle' {{ '}' }}</code><br>
+        <code>{{ '{' }} value: 'Element Value', title: 'Element Title' {{ '}' }}</code><br>
         Html is supported if column type is <span class="highlight">'html'</span>
       </td>
     </tr>
