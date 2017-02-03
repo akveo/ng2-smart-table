@@ -4,6 +4,7 @@ import { DefaultCellType } from './default-cell-type';
 
 @Component({
   selector: 'cell-type-textarea',
+  styleUrls: ['edit-input.component.scss'],
   template: `
     <textarea [ngClass]="inputClass"
               class="form-control"
@@ -15,7 +16,7 @@ import { DefaultCellType } from './default-cell-type';
               (keydown.enter)="onEdited.emit($event)"
               (keydown.esc)="onStopEditing.emit()">
     </textarea>
-    `
+    `,
 })
 export class CellTextareaComponent extends DefaultCellType {
 

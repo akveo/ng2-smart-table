@@ -4,7 +4,6 @@ import { Cell } from '../../lib/data-set/cell';
 
 @Component({
   selector: 'table-cell-edit-mode',
-  styleUrls: ['edit-cell.component.scss'],
   templateUrl: 'edit-cell.component.html',
 })
 export class EditCellComponent {
@@ -23,7 +22,7 @@ export class EditCellComponent {
     this.cell.getRow().isInEditing = false;
     return false;
   }
-  
+
   onClick(event): void {
     event.stopPropagation();
   }
