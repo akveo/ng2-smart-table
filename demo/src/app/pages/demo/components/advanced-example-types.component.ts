@@ -121,11 +121,14 @@ export class AdvancedExamplesTypesComponent {
         }
       },
       email: {
-        title: 'Email'
+        title: 'Email',
+        type: 'string'
       },
       comments: {
         title: 'Comments',
-        type: 'textarea'
+        editor: {
+          type: 'textarea'
+        }
       }
     }
   };
