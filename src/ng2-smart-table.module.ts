@@ -43,3 +43,4 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
 })
 export class Ng2SmartTableModule {
 }
+export { Cell } from './ng2-smart-table/lib/data-set/cell';

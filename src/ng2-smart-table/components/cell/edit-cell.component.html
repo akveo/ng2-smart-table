@@ -25,6 +25,10 @@
                             [cell]="cell">
     </cell-type-completer>
 
+    <template [ngSwitchCase]="'custom'"
+              #dynamicTarget>
+    </template>
+
     <cell-type-input *ngSwitchDefault
                             [cell]="cell"
                             [inputClass]="inputClass"
