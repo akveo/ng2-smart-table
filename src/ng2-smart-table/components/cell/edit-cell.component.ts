@@ -40,6 +40,9 @@ export class EditCellComponent {
         this.component = this.dynamicTarget.createComponent(componentFactory);
         this.component.instance.cell = this.cell;
         this.component.instance.inputClass = this.inputClass;
+        this.component.instance.onStopEditing.subscribe(() => this.onStopEditing());
+        this.component.instance.onEdited.subscribe((event) => this.onEdited(event));
+        this.component.instance.onClick.subscribe((event) => this.onClick(event));
       }
     }
   }
@@ -55,6 +58,7 @@ export class EditCellComponent {
   }
 
   onClick(event): void {
+    console.log('clicked!');
     event.stopPropagation();
   }
 
