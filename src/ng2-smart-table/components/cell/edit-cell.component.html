@@ -15,6 +15,12 @@
                             (onStopEditing)="onStopEditing()">
     </cell-type-textarea>
 
+    <cell-type-checkbox *ngSwitchCase="'checkbox'"
+                            [cell]="cell"
+                            [inputClass]="inputClass"
+                            (onClick)="onClick($event)">
+    </cell-type-checkbox>
+
     <cell-type-completer *ngSwitchCase="'completer'"
                             [cell]="cell">
     </cell-type-completer>
