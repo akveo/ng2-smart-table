@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CustomColumnComponent } from './custom-column.component';
 
 @Component({
   selector: 'advanced-example-types',
@@ -127,9 +128,16 @@ export class AdvancedExamplesTypesComponent {
       comments: {
         title: 'Comments',
         editor: {
-          type: 'textarea'
+          type: 'custom',
+          component: CustomColumnComponent
         }
       }
+      // comments: {
+      //   title: 'Comments',
+      //   editor: {
+      //     type: 'textarea'
+      //   }
+      // }
     }
   };
 }
