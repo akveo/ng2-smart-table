@@ -114,7 +114,7 @@
     </tr>
     <tr>
       <td><span class="nested-obj">editor</span>.type</td>
-      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list'</span></td>
+      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox'</span></td>
       <td>'text'</td>
       <td>
         Editor used when new row is added or edited
@@ -126,6 +126,24 @@
       <td>n/a</td>
       <td>
         Editor configuration settings. Mandatory only for editor types <span class="highlight">completer</span>, <span class="highlight">list</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.true</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Only on <span class="highlight">checkbox</span> type.<br>
+        Defines the value to assign when the checkbox is checked. This parameter is optional, if omitted, <code>true</code> will be used.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.false</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Only on <span class="highlight">checkbox</span> type.<br>
+        Defines the value to assign when the checkbox is not checked. This parameter is optional, if omitted, <code>false</code> will be used.
       </td>
     </tr>
     <tr>
