@@ -139,8 +139,7 @@ export class AdvancedExamplesTypesComponent {
       comments: {
         title: 'Comments',
         editor: {
-          type: 'custom',
-          component: CustomColumnComponent
+          type: 'textarea'
         }
       },
       passed: {
@@ -153,12 +152,6 @@ export class AdvancedExamplesTypesComponent {
           }
         }
       }
-      // comments: {
-      //   title: 'Comments',
-      //   editor: {
-      //     type: 'textarea'
-      //   }
-      // }
     }
   };
 }
