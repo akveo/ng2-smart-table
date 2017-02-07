@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
-import { DefaultCellType } from './default-cell-type';
+import { DefaultEditor } from './default-editor';
 
 @Component({
-  selector: 'cell-type-select',
+  selector: 'select-editor',
   template: `
     <select [ngClass]="inputClass"
             class="form-control"
             [(ngModel)]="cell.newValue"
-            [name]="cell.getColumn().id"
-            [disabled]="!cell.getColumn().isEditable"
+            [name]="cell.getId()"
+            [disabled]="!cell.isEditable()"
             (click)="onClick.emit($event)"
             (keydown.enter)="onEdited.emit($event)"
             (keydown.esc)="onStopEditing.emit()">
@@ -20,7 +20,7 @@ import { DefaultCellType } from './default-cell-type';
     </select>
     `
 })
-export class CellSelectComponent extends DefaultCellType {
+export class SelectEditorComponent extends DefaultEditor {
 
   constructor() {
     super();

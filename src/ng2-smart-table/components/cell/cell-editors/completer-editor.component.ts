@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CompleterService } from 'ng2-completer';
 
-import { DefaultCellType } from './default-cell-type';
+import { DefaultEditor } from './default-editor';
 
 @Component({
-  selector: 'cell-type-completer',
+  selector: 'completer-editor',
   template: `
     <ng2-completer [(ngModel)]="completerStr"
                    [dataService]="cell.getColumn().getConfig().completer.dataService"
@@ -15,7 +15,7 @@ import { DefaultCellType } from './default-cell-type';
     </ng2-completer>
     `
 })
-export class CellCompleterComponent extends DefaultCellType {
+export class CompleterEditorComponent extends DefaultEditor implements OnInit {
 
   completerStr: string = '';
 
