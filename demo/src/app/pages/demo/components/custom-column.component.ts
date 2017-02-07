@@ -1,9 +1,4 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/Subscription';
-import 'rxjs/add/observable/combineLatest';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/startWith';
 
 import { Cell, DefaultEditor, Editor } from '../../../../../../ng2-smart-table';
 
@@ -29,7 +24,7 @@ import { Cell, DefaultEditor, Editor } from '../../../../../../ng2-smart-table';
             (keyup)="updateValue()"
             (keydown.enter)="onEdited.emit($event)"
             (keydown.esc)="onStopEditing.emit()">
-    <div [hidden]="true" [innerHTML]="cell.newValue" #htmlValue></div>
+    <div [hidden]="true" [innerHTML]="cell.getValue()" #htmlValue></div>
     `
 })
 export class CustomColumnComponent extends DefaultEditor implements Editor{
@@ -42,24 +37,24 @@ export class CustomColumnComponent extends DefaultEditor implements Editor{
     super();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.cell.newValue !== ''){
       this.name.nativeElement.value = this.getUrlName();
       this.url.nativeElement.value = this.getUrlHref();
     }
   }
 
-  updateValue() {
+  updateValue(): void {
     const href = this.url.nativeElement.value;
     const name = this.name.nativeElement.value;
     this.cell.newValue = `<a href='${href}'>${name}</a>`;
   }
 
-  getUrlName() {
+  getUrlName(): string {
     return this.htmlValue.nativeElement.innerText;
   }
 
-  getUrlHref() {
+  getUrlHref(): string {
     return this.htmlValue.nativeElement.querySelector('a').getAttribute('href');
   }
 }

@@ -1,4 +1,4 @@
-import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef, SimpleChanges } from '@angular/core';
 
 import { EditCellDefault } from './edit-cell-default';
 import { Cell } from '../../../lib/data-set/cell';
@@ -11,32 +11,29 @@ import { Cell } from '../../../lib/data-set/cell';
 })
 export class CustomEditComponent extends EditCellDefault {
 
-  @ViewChild('dynamicTarget', {read: ViewContainerRef}) dynamicTarget: any;
   customComponent: any;
+  @ViewChild('dynamicTarget', {read: ViewContainerRef}) dynamicTarget: any;
 
   constructor(private resolver: ComponentFactoryResolver) {
     super();
   }
 
-  ngOnChanges(arg) {
-    if (this.cell){
-      let editorType = this.cell.getColumn().editor && this.cell.getColumn().editor.type;
-      if (editorType === 'custom' && !this.customComponent){
-        let componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().editor.component);
-        this.customComponent = this.dynamicTarget.createComponent(componentFactory);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.cell && !this.customComponent){
+      let componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().editor.component);
+      this.customComponent = this.dynamicTarget.createComponent(componentFactory);
 
-        // set @Inputs and @Outputs
-        this.customComponent.instance.cell = this.cell;
-        this.customComponent.instance.inputClass = this.inputClass;
-        this.customComponent.instance.onStopEditing.subscribe(() => this.onStopEditing());
-        this.customComponent.instance.onEdited.subscribe((event) => this.onEdited(event));
-        this.customComponent.instance.onClick.subscribe((event) => this.onClick(event));
-      }
+      // set @Inputs and @Outputs of custom component
+      this.customComponent.instance.cell = this.cell;
+      this.customComponent.instance.inputClass = this.inputClass;
+      this.customComponent.instance.onStopEditing.subscribe(() => this.onStopEditing());
+      this.customComponent.instance.onEdited.subscribe((event) => this.onEdited(event));
+      this.customComponent.instance.onClick.subscribe((event) => this.onClick(event));
     }
   }
 
-  ngOnDestroy() {
-    if(this.customComponent) {
+  ngOnDestroy(): void {
+    if (this.customComponent) {
       this.customComponent.destroy();
     }
   }
