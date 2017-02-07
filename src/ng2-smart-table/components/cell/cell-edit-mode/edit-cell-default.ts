@@ -7,7 +7,7 @@ export class EditCellDefault {
   @Input() cell: Cell;
   @Input() inputClass: string = '';
 
-  @Output() public edited = new EventEmitter<any>();
+  @Output() edited = new EventEmitter<any>();
 
   onEdited(event): boolean {
     this.edited.next(event);

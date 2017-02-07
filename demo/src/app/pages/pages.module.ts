@@ -19,7 +19,8 @@ import { BasicExampleMultiSelectComponent } from './demo/components/basic-exampl
 import { AdvancedExampleConfirmComponent } from './demo/components/advanced-example-confirm.component';
 import { AdvancedExampleServerComponent } from './demo/components/advanced-example-server.component';
 import { AdvancedExamplesTypesComponent } from './demo/components/advanced-example-types.component';
-import { CustomColumnComponent } from './demo/components/custom-column.component';
+import { AdvancedExamplesCustomEditorComponent } from './demo/components/advanced-example-custom-editor.component';
+import { CustomEditorComponent } from './demo/components/custom-editor.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,7 @@ import { CustomColumnComponent } from './demo/components/custom-column.component
     Ng2SmartTableModule,
     routing,
   ],
-  entryComponents: [CustomColumnComponent],
+  entryComponents: [CustomEditorComponent],
   declarations: [
     DemoComponent,
     DocumentationComponent,
@@ -43,8 +44,9 @@ import { CustomColumnComponent } from './demo/components/custom-column.component
     AdvancedExampleConfirmComponent,
     AdvancedExampleServerComponent,
     AdvancedExamplesTypesComponent,
+    AdvancedExamplesCustomEditorComponent,
     ScrollPositionDirective,
-    CustomColumnComponent,
+    CustomEditorComponent,
   ],
 })
 export class PagesModule {

@@ -10,7 +10,7 @@ export class Column {
   public isFilterable: boolean = false;
   public sortDirection: string = '';
   public defaultSortDirection: string = '';
-  public editor: {type: string, config: any, component: any} = {type: '', config: {}, component: null};
+  public editor: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
   compareFunction: Function;
   valuePrepareFunction: Function;
   filterFunction: Function;

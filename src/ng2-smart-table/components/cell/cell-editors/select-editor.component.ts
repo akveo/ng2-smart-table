@@ -8,8 +8,8 @@ import { DefaultEditor } from './default-editor';
     <select [ngClass]="inputClass"
             class="form-control"
             [(ngModel)]="cell.newValue"
-            [name]="cell.getColumn().id"
-            [disabled]="!cell.getColumn().isEditable"
+            [name]="cell.getId()"
+            [disabled]="!cell.isEditable()"
             (click)="onClick.emit($event)"
             (keydown.enter)="onEdited.emit($event)"
             (keydown.esc)="onStopEditing.emit()">
