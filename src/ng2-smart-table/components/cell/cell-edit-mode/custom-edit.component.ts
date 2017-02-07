@@ -1,4 +1,11 @@
-import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ComponentFactoryResolver,
+  ViewChild,
+  ViewContainerRef,
+  SimpleChanges,
+  OnChanges,
+  OnDestroy } from '@angular/core';
 
 import { EditCellDefault } from './edit-cell-default';
 import { Cell } from '../../../lib/data-set/cell';
@@ -9,7 +16,7 @@ import { Cell } from '../../../lib/data-set/cell';
     <template #dynamicTarget></template>
   `,
 })
-export class CustomEditComponent extends EditCellDefault {
+export class CustomEditComponent extends EditCellDefault implements OnChanges {
 
   customComponent: any;
   @ViewChild('dynamicTarget', {read: ViewContainerRef}) dynamicTarget: any;

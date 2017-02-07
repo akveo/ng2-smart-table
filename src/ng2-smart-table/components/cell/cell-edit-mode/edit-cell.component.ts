@@ -1,4 +1,3 @@
-// controllo se e' custom o meno e mostro custom-edit o default-edit
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
@@ -25,7 +24,7 @@ export class EditCellComponent {
   @Input() cell: Cell;
   @Input() inputClass: string = '';
 
-  @Output() public edited = new EventEmitter<any>();
+  @Output() edited = new EventEmitter<any>();
 
   onEdited(event): boolean {
     this.edited.next(event);

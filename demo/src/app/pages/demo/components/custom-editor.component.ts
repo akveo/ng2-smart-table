@@ -13,7 +13,7 @@ import { Cell, DefaultEditor, Editor } from '../../../../../../ng2-smart-table';
             (click)="onClick.emit($event)"
             (keyup)="updateValue()"
             (keydown.enter)="onEdited.emit($event)"
-            (keydown.esc)="onStopEditing.emit()">
+            (keydown.esc)="onStopEditing.emit()"><br>
     Url: <input [ngClass]="inputClass"
             #url
             class="form-control short-input"
@@ -27,7 +27,7 @@ import { Cell, DefaultEditor, Editor } from '../../../../../../ng2-smart-table';
     <div [hidden]="true" [innerHTML]="cell.getValue()" #htmlValue></div>
     `
 })
-export class CustomColumnComponent extends DefaultEditor implements Editor{
+export class CustomEditorComponent extends DefaultEditor {
 
   @ViewChild('name') name: ElementRef;
   @ViewChild('url') url: ElementRef;

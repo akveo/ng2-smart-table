@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnChanges, AfterViewInit } from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
 
@@ -12,10 +12,9 @@ import { Cell } from '../../../lib/data-set/cell';
     </div>
     `
 })
-export class ViewCellComponent {
+export class ViewCellComponent implements OnChanges, AfterViewInit {
 
   @Input() cell: Cell;
-
   @ViewChild('cellContainer') cellRef: ElementRef;
 
   ngOnChanges(changes): void {
@@ -29,8 +28,7 @@ export class ViewCellComponent {
   renderCustomValue(): void {
     const cellRenderFunc = this.cell.getColumn().getCellRenderFunction();
 
-    if (cellRenderFunc && this.cellRef) {
-      cellRenderFunc.call(null, this.cell, this.cellRef.nativeElement)
-    }
+    if (cellRenderFunc && this.cellRef)
+      cellRenderFunc.call(null, this.cell, this.cellRef.nativeElement);
   }
 }

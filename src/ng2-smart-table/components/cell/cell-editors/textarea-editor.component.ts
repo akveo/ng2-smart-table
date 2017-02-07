@@ -4,14 +4,14 @@ import { DefaultEditor } from './default-editor';
 
 @Component({
   selector: 'textarea-editor',
-  styleUrls: ['editor.component.scss'],
+  styleUrls: ['./editor.component.scss'],
   template: `
     <textarea [ngClass]="inputClass"
               class="form-control"
               [(ngModel)]="cell.newValue"
-              [name]="cell.getColumn().id"
-              [disabled]="!cell.getColumn().isEditable"
-              [placeholder]="cell.getColumn().title"
+              [name]="cell.getId()"
+              [disabled]="!cell.isEditable()"
+              [placeholder]="cell.getTitle()"
               (click)="onClick.emit($event)"
               (keydown.enter)="onEdited.emit($event)"
               (keydown.esc)="onStopEditing.emit()">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CompleterService } from 'ng2-completer';
 
 import { DefaultEditor } from './default-editor';
@@ -15,7 +15,7 @@ import { DefaultEditor } from './default-editor';
     </ng2-completer>
     `
 })
-export class CompleterEditorComponent extends DefaultEditor {
+export class CompleterEditorComponent extends DefaultEditor implements OnInit {
 
   completerStr: string = '';
 

@@ -25,19 +25,19 @@ export class Cell {
     return prepare.call(null, this.value, this.row.getData());
   }
 
-  public setValue(value: any): any {
+  setValue(value: any): any {
     this.newValue = value;
   }
 
-  public getId(): string {
+  getId(): string {
     return this.getColumn().id;
   }
 
-  public getTitle(): string {
+  getTitle(): string {
     return this.getColumn().title;
   }
 
-  public isEditable(): boolean {
+  isEditable(): boolean {
     return this.getColumn().isEditable;
   }
 }

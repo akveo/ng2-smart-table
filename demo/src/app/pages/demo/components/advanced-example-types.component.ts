@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CustomColumnComponent } from './custom-column.component';
 
 @Component({
   selector: 'advanced-example-types',

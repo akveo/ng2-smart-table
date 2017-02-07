@@ -19,7 +19,7 @@ export class CellComponent {
   @Input() mode: string = 'inline';
   @Input() isInEditing: boolean = false;
 
-  @Output() public edited = new EventEmitter<any>();
+  @Output() edited = new EventEmitter<any>();
 
   onEdited(event): boolean {
     this.edited.emit(event);
