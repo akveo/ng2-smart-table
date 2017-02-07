@@ -1,22 +1,22 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { DefaultCellType } from './default-cell-type';
+import { DefaultEditor } from './default-editor';
 
 @Component({
-  selector: 'cell-type-checkbox',
-  styleUrls: ['edit-input.component.scss'],
+  selector: 'checkbox-editor',
+  styleUrls: ['./editor.component.scss'],
   template: `
     <input [ngClass]="inputClass"
            type="checkbox"
            class="form-control"
-           [name]="cell.getColumn().id"
-           [disabled]="!cell.getColumn().isEditable"
+           [name]="cell.getId()"
+           [disabled]="!cell.isEditable()"
            [checked]="cell.getValue() == (cell.getColumn().getConfig()?.true || true)"
            (click)="onClick.emit($event)"
            (change)="onChange($event)">
     `,
 })
-export class CellCheckboxComponent extends DefaultCellType {
+export class CheckboxEditorComponent extends DefaultEditor {
 
   constructor() {
     super();

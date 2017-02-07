@@ -15,6 +15,12 @@
                      (onStopEditing)="onStopEditing()">
     </textarea-editor>
 
+    <checkbox-editor *ngSwitchCase="'checkbox'"
+                     [cell]="cell"
+                     [inputClass]="inputClass"
+                     (onClick)="onClick($event)">
+    </checkbox-editor>
+
     <completer-editor *ngSwitchCase="'completer'"
                       [cell]="cell">
     </completer-editor>
