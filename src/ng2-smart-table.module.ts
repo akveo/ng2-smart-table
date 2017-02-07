@@ -5,13 +5,16 @@ import { Ng2CompleterModule } from 'ng2-completer';
 
 import { NG2_SMART_TABLE_DIRECTIVES } from './ng2-smart-table.directives';
 import { CellComponent } from './ng2-smart-table/components/cell/cell.component';
-import { ViewCellComponent } from './ng2-smart-table/components/cell/view-cell.component';
-import { EditCellComponent } from './ng2-smart-table/components/cell/edit-cell.component';
+import { ViewCellComponent } from './ng2-smart-table/components/cell/cell-view-mode/view-cell.component';
 import {
-  CellCompleterComponent,
-  CellInputComponent,
-  CellSelectComponent,
-  CellTextareaComponent } from './ng2-smart-table/components/cell/cell-types';
+  EditCellComponent,
+  DefaultEditComponent,
+  CustomEditComponent } from './ng2-smart-table/components/cell/cell-edit-mode';
+import {
+  CompleterEditorComponent,
+  InputEditorComponent,
+  SelectEditorComponent,
+  TextareaEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
 import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
 import { TitleComponent } from './ng2-smart-table/components/title/title.component';
@@ -25,11 +28,13 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
   declarations: [
     CellComponent,
     ViewCellComponent,
+    DefaultEditComponent,
+    CustomEditComponent,
     EditCellComponent,
-    CellCompleterComponent,
-    CellInputComponent,
-    CellSelectComponent,
-    CellTextareaComponent,
+    CompleterEditorComponent,
+    InputEditorComponent,
+    SelectEditorComponent,
+    TextareaEditorComponent,
     FilterComponent,
     PagerComponent,
     TitleComponent,
@@ -41,5 +46,3 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
 })
 export class Ng2SmartTableModule {
 }
-export { Cell } from './ng2-smart-table/lib/data-set/cell';
-export { DefaultCellType } from './ng2-smart-table/components/cell/cell-types/default-cell-type';

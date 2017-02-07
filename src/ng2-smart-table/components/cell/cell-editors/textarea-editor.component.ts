@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { DefaultCellType } from './default-cell-type';
+import { DefaultEditor } from './default-editor';
 
 @Component({
-  selector: 'cell-type-textarea',
-  styleUrls: ['edit-input.component.scss'],
+  selector: 'textarea-editor',
+  styleUrls: ['editor.component.scss'],
   template: `
     <textarea [ngClass]="inputClass"
               class="form-control"
@@ -18,7 +18,7 @@ import { DefaultCellType } from './default-cell-type';
     </textarea>
     `,
 })
-export class CellTextareaComponent extends DefaultCellType {
+export class TextareaEditorComponent extends DefaultEditor {
 
   constructor() {
     super();

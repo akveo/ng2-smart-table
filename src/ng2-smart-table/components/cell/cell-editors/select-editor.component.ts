@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { DefaultCellType } from './default-cell-type';
+import { DefaultEditor } from './default-editor';
 
 @Component({
-  selector: 'cell-type-select',
+  selector: 'select-editor',
   template: `
     <select [ngClass]="inputClass"
             class="form-control"
@@ -20,7 +20,7 @@ import { DefaultCellType } from './default-cell-type';
     </select>
     `
 })
-export class CellSelectComponent extends DefaultCellType {
+export class SelectEditorComponent extends DefaultEditor {
 
   constructor() {
     super();

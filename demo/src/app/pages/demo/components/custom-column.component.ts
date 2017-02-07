@@ -5,57 +5,61 @@ import 'rxjs/add/observable/combineLatest';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
 
-import { Cell, DefaultCellType } from '../../../../../../src/ng2-smart-table.module';
+import { Cell, DefaultEditor, Editor } from '../../../../../../ng2-smart-table';
 
 @Component({
   template: `
-    From: <input [ngClass]="inputClass"
-            #firstInput
+    Name: <input [ngClass]="inputClass"
+            #name
             class="form-control short-input"
-            [value]="firstVal"
             [name]="cell.getId()"
             [disabled]="!cell.isEditable()"
             [placeholder]="cell.getTitle()"
             (click)="onClick.emit($event)"
-            (keyup)="cell.newValue.from = $event.target.value"
+            (keyup)="updateValue()"
             (keydown.enter)="onEdited.emit($event)"
             (keydown.esc)="onStopEditing.emit()">
-    To: <input [ngClass]="inputClass"
-            #secondInput
+    Url: <input [ngClass]="inputClass"
+            #url
             class="form-control short-input"
-            [value]="secondVal"
             [name]="cell.getId()"
             [disabled]="!cell.isEditable()"
             [placeholder]="cell.getTitle()"
             (click)="onClick.emit($event)"
-            (keyup)="cell.newValue.to = $event.target.value"
+            (keyup)="updateValue()"
             (keydown.enter)="onEdited.emit($event)"
             (keydown.esc)="onStopEditing.emit()">
-    `,
-    styles: [`
-      .short-input{
-        width: 30%;
-      }
-    `]
+    <div [hidden]="true" [innerHTML]="cell.newValue" #htmlValue></div>
+    `
 })
-export class CustomColumnComponent extends DefaultCellType{
+export class CustomColumnComponent extends DefaultEditor implements Editor{
 
-  firstVal: string = '';
-  secondVal: string = '';
-  @ViewChild('firstInput') firstInput: ElementRef;
-  @ViewChild('secondInput') secondInput: ElementRef;
+  @ViewChild('name') name: ElementRef;
+  @ViewChild('url') url: ElementRef;
+  @ViewChild('htmlValue') htmlValue: ElementRef;
 
   constructor() {
     super();
   }
 
-  ngOnInit(): void {
-    // check if any value is set
+  ngAfterViewInit() {
     if (this.cell.newValue !== ''){
-      this.firstVal = this.cell.newValue['from'];
-      this.secondVal = this.cell.newValue['to'];
-    }else{
-      this.cell.newValue = {from : 0, to: 0};
+      this.name.nativeElement.value = this.getUrlName();
+      this.url.nativeElement.value = this.getUrlHref();
     }
+  }
+
+  updateValue() {
+    const href = this.url.nativeElement.value;
+    const name = this.name.nativeElement.value;
+    this.cell.newValue = `<a href='${href}'>${name}</a>`;
+  }
+
+  getUrlName() {
+    return this.htmlValue.nativeElement.innerText;
+  }
+
+  getUrlHref() {
+    return this.htmlValue.nativeElement.querySelector('a').getAttribute('href');
   }
 }

@@ -16,10 +16,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Bret",
       email: "Sincere@april.biz",
       comments: "Lorem ipsum dolor sit amet, ex dolorem officiis convenire usu.",
-      custom: {
-        from: 10,
-        to: 20
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 2,
@@ -27,10 +24,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Antonette",
       email: "Shanna@melissa.tv",
       comments: "Vix iudico graecis in? Malis eirmod consectetuer duo ut? Mel an aeterno vivendum accusata, qui ne amet stet definitiones.",
-      custom: {
-        from: 3,
-        to: 14
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 3,
@@ -38,10 +32,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Samantha",
       email: "Nathan@yesenia.net",
       comments: "Mollis latine intellegebat ei usu, veri exerci intellegebat vel cu. Eu nec ferri copiosae.",
-      custom: {
-        from: 25,
-        to: 56
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 4,
@@ -49,10 +40,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Karianne",
       email: "Julianne.OConner@kory.org",
       comments: "Eu sea graece corrumpit, et tation nominavi philosophia eam, veri posidonium ex mea?",
-      custom: {
-        from: 10,
-        to: 20
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 5,
@@ -60,10 +48,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Kamren",
       email: "Lucio_Hettinger@annie.ca",
       comments: "Quo viris appellantur an, pro id eirmod oblique iuvaret, timeam omittam comprehensam ad eam? Eos id dico gubergren, cum dicant qualisque ea, id vim ferri moderatius?",
-      custom: {
-        from: 9,
-        to: 48
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 6,
@@ -71,10 +56,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Leopoldo_Corkery",
       email: "Karley_Dach@jasper.info",
       comments: "Audire appareat sententiae qui no. Sed no rebum vitae quidam.",
-      custom: {
-        from: 5,
-        to: 11
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 7,
@@ -82,10 +64,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Elwyn.Skiles",
       email: "Telly.Hoeger@billy.biz",
       comments: "Mel dicat sanctus accusata ut! Eu sit choro vituperata, qui cu quod gubergren elaboraret, mollis vulputate ex cum!",
-      custom: {
-        from: 26,
-        to: 74
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 8,
@@ -93,10 +72,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Maxime_Nienow",
       email: "Sherwood@rosamond.me",
       comments: "Cu usu nostrum quaerendum, no eripuit sanctus democritum cum.",
-      custom: {
-        from: 10,
-        to: 20
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 9,
@@ -104,10 +80,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Delphine",
       email: "Chaim_McDermott@dana.io",
       comments: "In iisque oporteat vix, amet volutpat constituto sit ut. Habeo suavitate vis ei.",
-      custom: {
-        from: 1,
-        to: 4
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 10,
@@ -115,10 +88,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Moriah.Stanton",
       email: "Rey.Padberg@karina.biz",
       comments: "Lorem ipsum dolor sit amet, causae fuisset ea has, adhuc tantas interesset per id. Ne vocibus persequeris has, meis lucilius ex mea, illum labores contentiones pro in?",
-      custom: {
-        from: 10,
-        to: 20
-      }
+      link: "<a href='http://google.com'>Google</a>"
     },
     {
       id: 11,
@@ -126,10 +96,7 @@ export class AdvancedExamplesTypesComponent {
       username: "Nicholas.Stanton",
       email: "Rey.Padberg@rosamond.biz",
       comments: "Lorem ipsum dolor sit amet, mea dolorum detraxit ea?",
-      custom: {
-        from: 15,
-        to: 74
-      }
+      link: "<a href='http://google.com'>Google</a>"
     }
   ];
 
@@ -175,8 +142,9 @@ export class AdvancedExamplesTypesComponent {
           type: 'textarea'
         }
       },
-      custom: {
-        title: 'Custom',
+      link: {
+        title: 'Link',
+        type: 'html',
         editor: {
           type: 'custom',
           component: CustomColumnComponent
