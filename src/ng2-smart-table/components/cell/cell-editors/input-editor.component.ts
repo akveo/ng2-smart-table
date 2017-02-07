@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { DefaultCellType } from './default-cell-type';
+import { DefaultEditor } from './default-editor';
 
 @Component({
-  selector: 'cell-type-input',
-  styleUrls: ['edit-input.component.scss'],
+  selector: 'input-editor',
+  styleUrls: ['editor.component.scss'],
   template: `
     <input [ngClass]="inputClass"
            class="form-control"
@@ -17,7 +17,7 @@ import { DefaultCellType } from './default-cell-type';
            (keydown.esc)="onStopEditing.emit()">
     `,
 })
-export class CellInputComponent extends DefaultCellType {
+export class InputEditorComponent extends DefaultEditor {
 
   constructor() {
     super();

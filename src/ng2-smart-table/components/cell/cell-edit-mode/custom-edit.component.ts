@@ -1,21 +1,21 @@
-import { Component, Output, EventEmitter, Input, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, ViewChild, ViewContainerRef } from '@angular/core';
 
-import { Cell } from '../../lib/data-set/cell';
+import { EditCellDefault } from './edit-cell-default';
+import { Cell } from '../../../lib/data-set/cell';
 
 @Component({
-  selector: 'table-cell-edit-mode',
-  templateUrl: 'edit-cell.component.html',
+  selector: 'table-cell-custom-editor',
+  template: `
+    <template #dynamicTarget></template>
+  `,
 })
-export class EditCellComponent {
+export class CustomEditComponent extends EditCellDefault {
 
-  @Input() cell: Cell;
-  @Input() inputClass: string = '';
   @ViewChild('dynamicTarget', {read: ViewContainerRef}) dynamicTarget: any;
   customComponent: any;
 
-  @Output() public edited: EventEmitter<any> = new EventEmitter<any>();
-
-  constructor(private resolver: ComponentFactoryResolver){
+  constructor(private resolver: ComponentFactoryResolver) {
+    super();
   }
 
   ngOnChanges(arg) {
@@ -33,20 +33,6 @@ export class EditCellComponent {
         this.customComponent.instance.onClick.subscribe((event) => this.onClick(event));
       }
     }
-  }
-
-  onEdited(event): boolean {
-    this.edited.next(event);
-    return false;
-  }
-
-  onStopEditing(): boolean {
-    this.cell.getRow().isInEditing = false;
-    return false;
-  }
-
-  onClick(event): void {
-    event.stopPropagation();
   }
 
   ngOnDestroy() {
