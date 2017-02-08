@@ -1,4 +1,5 @@
-import { Component, Renderer, Output, EventEmitter, OnInit, OnDestroy, ViewChild, ElementRef, ViewEncapsulation, Input } from '@angular/core';
+import { Component, Renderer, OnInit, OnDestroy, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
+
 import { SelectAdvancedEditorService } from './select-advanced-editor.service';
 import { DefaultEditor } from '../default-editor';
 
@@ -8,7 +9,6 @@ import { DefaultEditor } from '../default-editor';
   encapsulation: ViewEncapsulation.None,
   providers: [SelectAdvancedEditorService],
   template: `
-  test
     <div #selectContainer></div>
   `
 })
@@ -20,7 +20,6 @@ export class SelectAdvancedEditorComponent extends DefaultEditor implements OnIn
   selected: any;
   disabled: boolean;
   @ViewChild('selectContainer') selectContainer: ElementRef;
-  // @Output() changed: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
     protected selectAdvancedService: SelectAdvancedEditorService,
@@ -34,15 +33,16 @@ export class SelectAdvancedEditorComponent extends DefaultEditor implements OnIn
     this.initialize();
 
     this.selectContainer.nativeElement.addEventListener('change', (data) => {
-      // data.value can be either string or array
-      // this.changed.emit(data.value);
-      console.log('changed', data);
+      // remove first element, if empty
+      if (data.value[0] === '')
+        data.value.splice(0, 1);
+
       this.cell.setValue(data.value);
     });
   }
 
   setupParams(): void {
-    // can't do this in constructor because cell is not defined yet
+    // can't do this in constructor because this.cell is not defined yet
     this.name = this.cell.getId();
     this.selected = this.cell.getValue();
     this.disabled = !this.cell.isEditable();
@@ -51,7 +51,12 @@ export class SelectAdvancedEditorComponent extends DefaultEditor implements OnIn
   }
 
   initialize(): void {
-    this.selectAdvancedService.simpleSelect(this.selectContainer.nativeElement, this.disabled, this.options, this.selected, this.multiple);
+    this.selectAdvancedService.simpleSelect(
+      this.selectContainer.nativeElement,
+      this.disabled,
+      this.options,
+      this.selected,
+      this.multiple);
   }
 
   ngOnDestroy(): void {
