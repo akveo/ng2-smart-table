@@ -8,7 +8,8 @@
   "main": "./ng2-smart-table.js",
   "typings": "./ng2-smart-table.d.ts",
   "dependencies": {
-    "ng2-completer": "^1.0.0"
+    "ng2-completer": "^1.0.0",
+    "selectivity": "^3.0.3"
   },
   "save-prefix": "^",
   "peerDependencies": {

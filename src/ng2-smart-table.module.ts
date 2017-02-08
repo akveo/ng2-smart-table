@@ -15,10 +15,12 @@ import {
   InputEditorComponent,
   SelectEditorComponent,
   TextareaEditorComponent,
-  CheckboxEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
+  CheckboxEditorComponent,
+  SelectAdvancedEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
 import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
 import { TitleComponent } from './ng2-smart-table/components/title/title.component';
+import { ArrayToStringPipe } from './ng2-smart-table/pipes/array-to-string.pipe';
 
 @NgModule({
   imports: [
@@ -37,9 +39,11 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
     SelectEditorComponent,
     TextareaEditorComponent,
     CheckboxEditorComponent,
+    SelectAdvancedEditorComponent,
     FilterComponent,
     PagerComponent,
     TitleComponent,
+    ArrayToStringPipe,
     ...NG2_SMART_TABLE_DIRECTIVES
   ],
   exports: [

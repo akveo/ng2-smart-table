@@ -6,9 +6,9 @@ import { Cell } from '../../../lib/data-set/cell';
   selector: 'table-cell-view-mode',
   template: `
     <div [ngSwitch]="cell.getColumn().type">
-        <div *ngSwitchCase="'html'" #cellContainer [innerHTML]="cell.getValue()"></div>
+        <div *ngSwitchCase="'html'" #cellContainer [innerHTML]="cell.getValue() | arrayToString"></div>
 
-        <div *ngSwitchDefault #cellContainer>{{ cell.getValue() }}</div>
+        <div *ngSwitchDefault #cellContainer>{{ cell.getValue() | arrayToString }}</div>
     </div>
     `
 })

@@ -114,7 +114,7 @@
     </tr>
     <tr>
       <td><span class="nested-obj">editor</span>.type</td>
-      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox'</span></td>
+      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox' | 'list-advanced'</span></td>
       <td>'text'</td>
       <td>
         Editor used when new row is added or edited
@@ -147,13 +147,23 @@
       </td>
     </tr>
     <tr>
+      <td><span class="nested-obj">editor.config</span>.multiple</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Only on <span class="highlight">list-advanced</span> type.<br>
+        Defines the behavior of the advanced select editor. If <code>true</code>, you will be able to select multiple values.<br>
+        <b>Please note</b> that when set to <code>true</code> the input values must be in the form of Array, not string. <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/advanced-example-types.component.ts" target="_blank">Click here</a> to see an example.
+      </td>
+    </tr>
+    <tr>
       <td><span class="nested-obj">editor.config</span>.list</td>
       <td><span class="highlight">Array</span></td>
       <td>[ ]</td>
       <td>
-        Only on <span class="highlight">list</span> type. Example format:<br>
+        Only on <span class="highlight">list</span> and <span class="highlight">list-advanced</span> type. Example format:<br>
         <code>{{ '{' }} value: 'Element Value', title: 'Element Title' {{ '}' }}</code><br>
-        Html is supported if column type is <span class="highlight">'html'</span>
+        Html is supported if column type is <span class="highlight">'html'</span>.
       </td>
     </tr>
     <tr>
@@ -172,7 +182,8 @@
       <td>
         Autocomplete list data source.<br>
         Example format:<br>
-        <code>{{ '{' }} id: 10, name: 'Nick', email: 'rey@karina.biz' {{ '}' }}</code>
+        <code>{{ '{' }} id: 10, name: 'Nick', email: 'rey@karina.biz' {{ '}' }}</code><br>
+        <b>Please note</b> these input fields cannot be of type <code>object</code>.
       </td>
     </tr>
     <tr>

@@ -7,6 +7,14 @@
                    (onStopEditing)="onStopEditing()">
     </select-editor>
 
+    <select-advanced-editor *ngSwitchCase="'list-advanced'"
+                   [cell]="cell"
+                   [inputClass]="inputClass"
+                   (onClick)="onClick($event)"
+                   (onEdited)="onEdited($event)"
+                   (onStopEditing)="onStopEditing()">
+    </select-advanced-editor>
+
     <textarea-editor *ngSwitchCase="'textarea'"
                      [cell]="cell"
                      [inputClass]="inputClass"
