@@ -16,7 +16,7 @@ import {
   SelectEditorComponent,
   TextareaEditorComponent,
   CheckboxEditorComponent,
-  MultiSelectComponent } from './ng2-smart-table/components/cell/cell-editors';
+  SelectAdvancedEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
 import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
 import { TitleComponent } from './ng2-smart-table/components/title/title.component';
@@ -38,7 +38,7 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
     SelectEditorComponent,
     TextareaEditorComponent,
     CheckboxEditorComponent,
-    MultiSelectComponent,
+    SelectAdvancedEditorComponent,
     FilterComponent,
     PagerComponent,
     TitleComponent,

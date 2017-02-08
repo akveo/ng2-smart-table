@@ -4,13 +4,10 @@ require('selectivity/dropdown');
 require('selectivity/templates');
 require('selectivity/inputs/single');
 require('selectivity/inputs/multiple');
-require('selectivity/inputs/email');
-require('selectivity/plugins/ajax');
-require('selectivity/plugins/async');
-require('selectivity/plugins/submenu');
+require('selectivity/plugins/keyboard');
 
 @Injectable()
-export class MultiSelectService {
+export class SelectAdvancedEditorService {
 
   simpleSelect(targetDOMElement: ElementRef, disabled: boolean, options: Array<any>, selectedValue: string | Array<string>, multiple: boolean): void {
     let items = this.refactorOptions(options);
