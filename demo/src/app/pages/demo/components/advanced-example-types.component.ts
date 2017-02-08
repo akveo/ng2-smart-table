@@ -134,15 +134,17 @@ export class AdvancedExamplesTypesComponent {
       email: {
         title: 'Email',
         type: 'html',
-        config: {
+        editor: {
           type: 'list-advanced',
-          // when multiselect is possible, the source list (usernamne field) should be of type array
-          multiple: true,
-          list: [
-            { value: '<em>Telly.Hoeger@billy.biz</em>', title: 'Telly.Hoeger@billy.biz' },
-            { value: '<u>Rey.Padberg@karina.biz</u>', title: 'Rey.Padberg@karina.biz' },
-            { value: '<b>Sincere@april.biz</b>', title: 'Sincere@april.biz' }
-          ]
+          config: {
+            // when multiselect is possible, the source list (usernamne field) should be of type array
+            multiple: true,
+            list: [
+              { value: '<em>Telly.Hoeger@billy.biz</em>', title: 'Telly.Hoeger@billy.biz' },
+              { value: '<u>Rey.Padberg@karina.biz</u>', title: 'Rey.Padberg@karina.biz' },
+              { value: '<b>Sincere@april.biz</b>', title: 'Sincere@april.biz' }
+            ]
+          }
         }
       },
       comments: {
