@@ -15,6 +15,9 @@
   "files": [
     "./ng2-smart-table.ts"
   ],
+  "exclude": [
+    "src/**/*.d.ts"
+  ],
   "angularCompilerOptions": {
     "genDir": "compiled"
   }

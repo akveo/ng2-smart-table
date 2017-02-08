@@ -14,5 +14,4 @@ demo
 demo-dist
 webpack.config.js
 tsconfig.webpack.json
-npm-shrinkwrap.json
 config
