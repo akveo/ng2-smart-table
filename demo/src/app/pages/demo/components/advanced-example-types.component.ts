@@ -75,10 +75,14 @@ export class AdvancedExamplesTypesComponent {
           type: 'completer',
           config: {
             completer: {
-              data: this.data,
+              data: this.data.map((el) => {
+                // optional, but completer.data does not accept object type data
+                // so here we are stripping out the email field
+                return { name: el.name, username: el.username }}
+              ),
               searchFields: 'name',
               titleField: 'name',
-              descriptionField: 'email'
+              descriptionField: 'username'
             }
           }
         }
@@ -102,7 +106,7 @@ export class AdvancedExamplesTypesComponent {
         editor: {
           type: 'list-advanced',
           config: {
-            // when multiselect is possible, the source list (usernamne field) should be of type array
+            // when { multiple: true } remember to format data.email as an Array
             multiple: true,
             list: [
               { value: 'Telly.Hoeger@billy.biz', title: 'Telly.Hoeger@billy.biz' },

@@ -35,6 +35,6 @@ export class SelectAdvancedEditorService {
 
   refactorOptions(options: Array<any>): Array<any> {
     // convert [{value, title}] to [{id, text}]
-    return options.map(option => { return {id: option.value, text: option.title} });
+    return options.map((option) => { return { id: option.value, text: option.title } });
   }
 }

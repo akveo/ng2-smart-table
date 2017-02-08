@@ -1,12 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'arrayToString'
+  name: 'arrayToString',
+  pure: false
 })
 
 export class ArrayToStringPipe implements PipeTransform {
-  transform(value: any, args: any[]): any {
+  transform(value: any): string {
     // this will need to be updated when non-array Objects will be supported
-    return typeof(value) === 'Object' ? value.join(', ') : value;
+    return typeof(value) === 'object' ? value.join(', ') : value;
   }
 }
