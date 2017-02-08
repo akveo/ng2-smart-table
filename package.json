@@ -111,7 +111,7 @@
     "watch:dev": "npm run build:dev -- --watch",
     "watch:dev:hmr": "npm run watch:dev -- --hot",
     "watch:prod": "npm run build:prod -- --watch",
-    "build": "npm run build:dev",
+    "build": "npm run build:package",
     "prebuild:dev": "npm run clean:dist",
     "build:dev": "webpack --config config/webpack.dev.js --progress --profile",
     "prebuild:prod": "npm run clean:dist",
@@ -130,7 +130,7 @@
     "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
-    "prepublish": "node_modules/.bin/ngc -p tsconfig-aot.json",
+    "build:package": "node_modules/.bin/ngc -p tsconfig-aot.json",
     "gh-pages": "npm run build:prod && gh-pages -d demo-dist"
   },
   "repository": {
