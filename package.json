@@ -1,12 +1,12 @@
 {
   "name": "eko-point-ng2-smart-table",
-  "version": "0.5.3-0",
+  "version": "0.5.3-1",
   "description": "Angular 2 Smart Table",
   "author": "akveo",
   "homepage": "http://eko-point.ru/",
   "license": "MIT",
-  "main": "./ng2-smart-table.js",
-  "typings": "./ng2-smart-table.d.ts",
+  "main": "./eko-point-ng2-smart-table.js",
+  "typings": "./eko-point-ng2-smart-table.d.ts",
   "dependencies": {
     "ng2-completer": "^1.0.0"
   },

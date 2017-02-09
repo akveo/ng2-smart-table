@@ -1,6 +1,6 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 
-import { Cell, DefaultEditor, Editor } from '../../../../../../ng2-smart-table';
+import { Cell, DefaultEditor, Editor } from '../../../../../../eko-point-ng2-smart-table';
 
 @Component({
   template: `
