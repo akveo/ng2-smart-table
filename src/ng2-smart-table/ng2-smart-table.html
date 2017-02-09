@@ -3,37 +3,31 @@
     <thead *ngIf="!grid.getSetting('hideHeader') || !grid.getSetting('hideSubHeader')">
 
     <tr class="ng2-smart-titles" *ngIf="!grid.getSetting('hideHeader')">
-      <th *ngIf="grid.isMultiSelectVisible()" (click)="selectAllRows()">
-        <input type="checkbox" [ngModel]="isAllSelected">
-      </th>
-      <th *ngIf="grid.showActionColumn('left')" class="ng2-smart-actions">
-        <div class="ng2-smart-title">{{ grid.getSetting('actions.columnTitle') }}</div>
-      </th>
-      <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class">
-        <div class="ng2-smart-title">
-          <ng2-smart-table-title [source]="source" [column]="column" (sort)="sort($event)"></ng2-smart-table-title>
-        </div>
-      </th>
-      <th *ngIf="grid.showActionColumn('right')" class="ng2-smart-actions">
-        <div class="ng2-smart-title">{{ grid.getSetting('actions.columnTitle') }}</div>
-      </th>
+      <checkbox-select-all-ng2-st [grid]="grid"
+                                  [source]="source"
+                                  (rowSelect)="rowSelect.emit($event)"
+                                  (userRowSelect)="userRowSelect.emit($event)">
+      </checkbox-select-all-ng2-st>
+      <column-title-1-ng2-st *ngIf="grid.showActionColumn('left')" [grid]="grid"></column-title-ng2-st>
+      <column-title-ng2-st [grid]="grid" (sort)="sort($event)"></column-title-ng2-st>
+      <column-title-1-ng2-st *ngIf="grid.showActionColumn('right')" [grid]="grid"></column-title-ng2-st>
     </tr>
 
     <tr class="ng2-smart-filters" *ngIf="!grid.getSetting('hideSubHeader')">
-      <th *ngIf="grid.isMultiSelectVisible()"></th>
+      <th *ngIf="grid.isMultiSelectVisible()">d</th>
       <th *ngIf="grid.showActionColumn('left')" class="ng2-smart-actions-title ng2-smart-actions-title-add">
         <a *ngIf="grid.getSetting('actions.add')" href="#" class="ng2-smart-action ng2-smart-action-add-add"
-           [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
+           [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>e
       </th>
       <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
         <ng2-smart-table-filter [source]="source"
                                 [column]="column"
                                 [inputClass]="grid.getSetting('filter.inputClass')"
-                                (filter)="filter($event)"></ng2-smart-table-filter>
+                                (filter)="filter($event)"></ng2-smart-table-filter>f
       </th>
       <th *ngIf="grid.showActionColumn('right')" class="ng2-smart-actions-title ng2-smart-actions-title-add">
         <a *ngIf="grid.getSetting('actions.add')" href="#" class="ng2-smart-action ng2-smart-action-add-add"
-           [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
+           [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>g
       </th>
     </tr>
 
