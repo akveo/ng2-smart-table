@@ -21,6 +21,12 @@
                      (onClick)="onClick($event)">
     </checkbox-editor>
 
+    <password-editor *ngSwitchCase="'password'"
+                     [cell]="cell"
+                     [inputClass]="inputClass"
+                     (onClick)="onClick($event)">
+    </password-editor>
+
     <completer-editor *ngSwitchCase="'completer'"
                       [cell]="cell">
     </completer-editor>

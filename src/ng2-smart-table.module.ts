@@ -13,6 +13,7 @@ import {
 import {
   CompleterEditorComponent,
   InputEditorComponent,
+  PasswordEditorComponent,
   SelectEditorComponent,
   TextareaEditorComponent,
   CheckboxEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
@@ -34,6 +35,7 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
     EditCellComponent,
     CompleterEditorComponent,
     InputEditorComponent,
+    PasswordEditorComponent,
     SelectEditorComponent,
     TextareaEditorComponent,
     CheckboxEditorComponent,
