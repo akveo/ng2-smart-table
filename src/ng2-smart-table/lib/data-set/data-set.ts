@@ -50,6 +50,13 @@ export class DataSet {
     return this.selectedRow;
   }
 
+  multipleSelectRow(row: Row): Row {
+    row.isSelected = !row.isSelected;
+    this.selectedRow = row;
+
+    return this.selectedRow;
+  }
+
   selectPreviousRow(): Row {
     if (this.rows.length > 0) {
       let index = this.selectedRow ? this.selectedRow.index : 0;
@@ -112,7 +119,7 @@ export class DataSet {
    * @param settings
    * @private
    */
-  protected createColumns(settings) {
+  createColumns(settings) {
     for (let id in settings) {
       if (settings.hasOwnProperty(id)) {
         this.columns.push(new Column(id, settings[id], this));
@@ -124,7 +131,7 @@ export class DataSet {
    * Create rows based on current data prepared in data source
    * @private
    */
-  protected createRows() {
+  createRows() {
     this.rows = [];
     this.data.forEach((el, index) => {
       this.rows.push(new Row(index, el, this));

@@ -1,12 +1,13 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
+import * as hljs from 'highlight.js';
 
-let hljs: any = require('highlight.js');
+import 'style-loader!../../../../../node_modules/highlight.js/styles/dracula.css';
+
+import 'style-loader!./demo.scss';
 
 @Component({
   selector: 'demo',
-  encapsulation: ViewEncapsulation.None,
-  styles: [require('./demo.scss'), require('highlight.js/styles/dracula.css')],
-  template: require('./demo.html')
+  templateUrl: 'demo.html',
 })
 export class DemoComponent {
 
@@ -29,6 +30,7 @@ export class DemoComponent {
     searchTable: require('raw-loader!./snippets/search-table.md'),
     sourceFull: require('raw-loader!./snippets/source-full.md'),
     hideFilters: require('raw-loader!./snippets/hide-filters.md'),
+    customEditorModule: require('raw-loader!./snippets/custom-editor-module.md'),
   };
 
   constructor() {
@@ -36,6 +38,5 @@ export class DemoComponent {
 
   ngAfterViewInit(): void {
     hljs.initHighlighting();
-    hljs.initHighlighting.called = false;
   }
 }

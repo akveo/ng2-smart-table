@@ -6,7 +6,7 @@ export class Row {
 
   isSelected: boolean = false;
   isInEditing: boolean = false;
-  protected cells: Array<Cell> = [];
+  cells: Array<Cell> = [];
 
 
   constructor(public index: number, protected data: any, protected _dataSet: DataSet) {
@@ -24,7 +24,7 @@ export class Row {
   getData(): any {
     return this.data;
   }
-  
+
   getNewData(): any {
     let values = Object.assign({}, this.data);
     this.getCells().forEach((cell) => values[cell.getColumn().id] = cell.newValue);
@@ -36,7 +36,7 @@ export class Row {
     this.process();
   }
 
-  protected process(): void {
+  process(): void {
     this.cells = [];
     this._dataSet.getColumns().forEach((column: Column) => {
       let cell = this.createCell(column);
@@ -44,7 +44,7 @@ export class Row {
     });
   }
 
-  protected createCell(column: Column): Cell {
+  createCell(column: Column): Cell {
     let value = typeof this.data[column.id] === 'undefined' ? '' : this.data[column.id];
     return new Cell(value, this, column, this._dataSet);
   }

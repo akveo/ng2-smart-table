@@ -5,28 +5,21 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "noEmitHelpers": true,
-    "strictNullChecks": false,
-    "baseUrl": "./src",
+    "baseUrl": "./demo/src",
     "paths": {
     },
     "lib": [
-      "dom",
-      "es6"
+      "es2015",
+      "dom"
     ],
-    "types": [
-//      "hammerjs",
-      "node",
-//      "source-map",
-//      "uglify-js",
-      "webpack"
+    "typeRoots": [
+      "node_modules/@types"
     ]
   },
   "exclude": [
     "node_modules",
-    "build"
+    "dist"
   ],
   "awesomeTypescriptLoaderOptions": {
     "forkChecker": true,
@@ -34,5 +27,7 @@
   },
   "compileOnSave": false,
   "buildOnSave": false,
-  "atom": { "rewriteTsconfig": false }
+  "atom": {
+    "rewriteTsconfig": false
+  }
 }

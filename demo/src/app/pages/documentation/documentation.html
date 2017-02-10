@@ -97,11 +97,106 @@
     </tr>
     <tr>
       <td>type</td>
-      <td><span class="highlight">'string'</span>|<span class="highlight">'html'</span></td>
-      <td>'string'</td>
+      <td><span class="highlight">'text'</span>|<span class="highlight">'html'</span></td>
+      <td>'text'</td>
       <td>
         Column data type. NOTE: currently not fully supported.<br>
         If type is <span class="highlight">html</span> then cell value will be inserted as html.
+      </td>
+    </tr>
+    <tr>
+      <td>editor</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Editor attributes settings
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor</span>.type</td>
+      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox'</span></td>
+      <td>'text'</td>
+      <td>
+        Editor used when new row is added or edited
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor</span>.config</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Editor configuration settings. Mandatory only for editor types <span class="highlight">completer</span>, <span class="highlight">list</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.true</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Only on <span class="highlight">checkbox</span> type.<br>
+        Defines the value to assign when the checkbox is checked. This parameter is optional, if omitted, <code>true</code> will be used.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.false</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Only on <span class="highlight">checkbox</span> type.<br>
+        Defines the value to assign when the checkbox is not checked. This parameter is optional, if omitted, <code>false</code> will be used.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.list</td>
+      <td><span class="highlight">Array</span></td>
+      <td>[ ]</td>
+      <td>
+        Only on <span class="highlight">list</span> type. Example format:<br>
+        <code>{{ '{' }} value: 'Element Value', title: 'Element Title' {{ '}' }}</code><br>
+        Html is supported if column type is <span class="highlight">'html'</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.completer</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Only on <span class="highlight">completer</span> type. Example format:<br>
+        Completer configuration settings
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config.completer</span>.data</td>
+      <td><span class="highlight">Array</span></td>
+      <td>[ ]</td>
+      <td>
+        Autocomplete list data source.<br>
+        Example format:<br>
+        <code>{{ '{' }} id: 10, name: 'Nick', email: 'rey@karina.biz' {{ '}' }}</code>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config.completer</span>.searchFields</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Comma separated list of fields to search on. Fields may contain dots for nested attributes; if empty or null all data will be returned
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config.completer</span>.titleField</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+       Name of the field to use as title for the list item
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config.completer</span>.descriptionField</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Name of the field to use as description for the list item
       </td>
     </tr>
     <tr>

@@ -1,28 +1,30 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
 
 import { DataSource } from '../../lib/data-source/data-source';
 import { Column } from '../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-filter',
-  styles: [require('./filter.scss')],
+  styleUrls: ['filter.scss'],
   template: `
     <div class="ng2-smart-filter" *ngIf="column.isFilterable">
       <input 
-      [(ngModel)]="query"
-      (keyup)="filter($event)"
-      [ngClass]="inputClass"
-      class="form-control"
-      type="text" 
-      placeholder="{{ column.title }}" />
+        [(ngModel)]="query"
+        (keyup)="_filter($event)"
+        [ngClass]="inputClass"
+        class="form-control"
+        type="text" 
+        placeholder="{{ column.title }}" />
     </div>
   `
 })
-export class FilterComponent {
+export class FilterComponent implements AfterViewInit {
 
   @Input() column: Column;
   @Input() source: DataSource;
   @Input() inputClass: string = '';
+
+  @Output() filter = new EventEmitter<any>();
 
   query: string = '';
   timeout: any;
@@ -37,11 +39,11 @@ export class FilterComponent {
     });
   }
 
-  filter(event): boolean {
+  _filter(event): boolean {
     if (event.which === 13) {
       this.addFilter();
       // ignore tab component
-    } else if(event.which !== 9) {
+    } else if (event.which !== 9) {
       if (this.timeout) {
         clearTimeout(this.timeout);
       }
@@ -49,10 +51,11 @@ export class FilterComponent {
         this.addFilter();
       }, this.delay);
     }
+    this.filter.emit(null);
     return false;
   }
 
-  protected addFilter(): void {
+  addFilter(): void {
     this.source.addFilter({
       field: this.column.id,
       search: this.query,

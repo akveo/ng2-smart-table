@@ -1,17 +1,17 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { DataSource } from '../../lib/data-source/data-source';
 import { Column } from '../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-title',
-  styles: [require('./title.scss')],
+  styleUrls: ['title.scss'],
   template: `
     <a href="#"
-    *ngIf="column.isSortable"
-    (click)="sort($event, column)" 
-    class="ng2-smart-sort-link sort"
-    [ngClass]="currentDirection">
+      *ngIf="column.isSortable"
+      (click)="_sort($event, column)" 
+      class="ng2-smart-sort-link sort"
+      [ngClass]="currentDirection">
       {{ column.title }}
     </a>
     <span class="ng2-smart-sort" *ngIf="!column.isSortable">{{ column.title }}</span>
@@ -22,7 +22,9 @@ export class TitleComponent {
   @Input() column: Column;
   @Input() source: DataSource;
 
-  protected currentDirection = '';
+  @Output() sort = new EventEmitter<any>();
+
+  currentDirection = '';
 
   ngOnInit(): void {
     this.source.onChanged().subscribe((elements) => {
@@ -40,7 +42,7 @@ export class TitleComponent {
     });
   }
 
-  sort(): boolean {
+  _sort(): boolean {
     this.changeSortDirection();
     this.source.setSort([
       {
@@ -49,6 +51,7 @@ export class TitleComponent {
         compare: this.column.getCompareFunction()
       }
     ]);
+    this.sort.emit(null);
     return false;
   }
 

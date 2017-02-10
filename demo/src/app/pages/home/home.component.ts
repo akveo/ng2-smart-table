@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
+
+import 'style-loader!./home.scss';
 
 @Component({
   selector: 'home',
-  encapsulation: ViewEncapsulation.None,
-  styles: [require('./home.scss')],
-  template: require('./home.html')
+  templateUrl: 'home.html',
 })
 export class HomeComponent {
 
