@@ -276,6 +276,7 @@ module.exports = function (options) {
       new HtmlWebpackPlugin({
         template: 'demo/src/404.html',
         filename: '404.html',
+        metadata: METADATA,
         inject: false
       }),
 
