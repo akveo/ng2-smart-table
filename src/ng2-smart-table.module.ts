@@ -18,7 +18,7 @@ import {
   CheckboxEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
 import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
-import { TitleComponent } from './ng2-smart-table/components/title/title.component';
+import { NG2_SMART_TABLE_THEAD_DIRECTIVES } from './ng2-smart-table/components/thead/thead.directives';
 
 @NgModule({
   imports: [
@@ -39,7 +39,7 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
     CheckboxEditorComponent,
     FilterComponent,
     PagerComponent,
-    TitleComponent,
+    ...NG2_SMART_TABLE_THEAD_DIRECTIVES,
     ...NG2_SMART_TABLE_DIRECTIVES
   ],
   exports: [
