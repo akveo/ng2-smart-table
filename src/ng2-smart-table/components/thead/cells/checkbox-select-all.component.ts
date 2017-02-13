@@ -1,16 +1,16 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Grid } from '../../lib/grid';
+import { Grid } from '../../../lib/grid';
 
 @Component({
-  selector: 'checkbox-select-all-ng2-st',
+  selector: '[ng2-st-checkbox-select-all]',
   template: `
-    <th (click)="selectAllRows()">
-      <input type="checkbox" [ngModel]="isAllSelected">0
-    </th>      
+    <div (click)="selectAllRows()">
+      <input type="checkbox" [ngModel]="isAllSelected">
+    </div>      
   `
 })
-export class FeatureComponent {
+export class CheckboxSelectAllComponent {
 
   isAllSelected: boolean = false;
   @Input() grid: Grid;
