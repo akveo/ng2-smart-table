@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { DataSource } from '../../lib/data-source/data-source';
-import { Column } from '../../lib/data-set/column';
+import { DataSource } from '../../../../lib/data-source/data-source';
+import { Column } from '../../../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-title',
