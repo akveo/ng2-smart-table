@@ -22,15 +22,14 @@ export class AddButtonComponent implements AfterViewInit {
     this.ref.nativeElement.classList.add('ng2-smart-actions-title', 'ng2-smart-actions-title-add');
   }
 
-  onAdd(event): boolean {
+  onAdd(event: any) {
+    event.preventDefault();
     event.stopPropagation();
     if (this.grid.getSetting('mode') === 'external') {
       this.create.emit({
         source: this.source
       });
-    } else {
+    } else
       this.grid.createFormShown = true;
-    }
-    return false;
   }
 }

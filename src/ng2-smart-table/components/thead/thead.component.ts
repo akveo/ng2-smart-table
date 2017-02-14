@@ -6,7 +6,8 @@ import { Grid } from '../../lib/grid';
     selector: '[ng2-st-thead]',
     templateUrl: './thead.html'
 })
-export class TheadComponent {
+export class Ng2SmartTableTheadComponent {
+
     @Input() grid: Grid;
     @Input() source: any;
     @Input() isAllSelected: boolean;
@@ -16,5 +17,4 @@ export class TheadComponent {
     @Output() selectAllRows = new EventEmitter<any>();
     @Output() create = new EventEmitter<any>();
     @Output() filter = new EventEmitter<any>();
-
 }

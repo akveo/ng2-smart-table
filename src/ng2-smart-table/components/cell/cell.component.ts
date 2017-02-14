@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { Cell } from '../../lib/data-set/cell';
@@ -21,7 +21,6 @@ export class CellComponent {
   @Input() editConfirm: EventEmitter<any>;
   @Input() createConfirm: EventEmitter<any>;
   @Input() isNew: boolean;
-
   @Input() cell: Cell;
   @Input() inputClass: string = '';
   @Input() mode: string = 'inline';
@@ -29,13 +28,10 @@ export class CellComponent {
 
   @Output() edited = new EventEmitter<any>();
 
-  onEdited(event): boolean {
-    // this.edited.emit(event);
+  onEdited(event) {
     if (this.isNew)
       this.grid.create(this.grid.getNewRow(), this.createConfirm);
     else
       this.grid.save(this.row, this.editConfirm);
-
-    return false;
   }
 }

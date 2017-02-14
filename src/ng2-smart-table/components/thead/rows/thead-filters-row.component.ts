@@ -14,7 +14,8 @@ import { Grid } from '../../../lib/grid';
       <ng2-smart-table-filter [source]="source"
                               [column]="column"
                               [inputClass]="grid.getSetting('filter.inputClass')"
-                              (filter)="filter.emit($event)"></ng2-smart-table-filter>
+                              (filter)="filter.emit($event)">
+      </ng2-smart-table-filter>
     </th>
     <th ng2-st-add-button *ngIf="grid.showActionColumn('right')"
                           [grid]="grid"
@@ -29,5 +30,4 @@ export class TheadFitlersRowComponent {
   @Input() source: any;
   @Output() create = new EventEmitter<any>();
   @Output() filter = new EventEmitter<any>();
-
 }

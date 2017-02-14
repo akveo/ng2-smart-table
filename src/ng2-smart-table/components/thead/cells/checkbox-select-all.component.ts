@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
 
@@ -9,8 +9,8 @@ import { Grid } from '../../../lib/grid';
   `
 })
 export class CheckboxSelectAllComponent {
+
   @Input() grid: Grid;
   @Input() source: any;
   @Input() isAllSelected: boolean;
-
 }

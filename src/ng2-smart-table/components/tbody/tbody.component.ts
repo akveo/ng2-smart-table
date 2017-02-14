@@ -1,12 +1,12 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 
 @Component({
     selector: '[ng2-st-tbody]',
-    templateUrl: './tbody.html',
+    templateUrl: './tbody.html'
 })
-export class TbodyComponent {
+export class Ng2SmartTableTbodyComponent {
     @Input() grid: Grid;
     @Input() source: any;
     @Input() deleteConfirm: EventEmitter<any>;
@@ -20,5 +20,4 @@ export class TbodyComponent {
     @Output() userSelectRow = new EventEmitter<any>();
     @Output() editRowSelect = new EventEmitter<any>();
     @Output() multipleSelectRow = new EventEmitter<any>();
-
 }

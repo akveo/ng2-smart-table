@@ -18,17 +18,17 @@ export class TbodyCreateCancelComponent {
   @Input() row: Row;
   @Input() editConfirm: EventEmitter<any>;
 
-  onSave(event): boolean {
+  onSave(event: any) {
+    event.preventDefault();
     event.stopPropagation();
 
     this.grid.save(this.row, this.editConfirm);
-    return false;
   }
 
-  onCancelEdit(event): boolean {
+  onCancelEdit(event: any) {
+    event.preventDefault();
     event.stopPropagation();
 
     this.row.isInEditing = false;
-    return false;
   }
 }

@@ -1,6 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
 import { Column } from '../../../lib/data-set/column';
 
 @Component({
@@ -13,7 +12,6 @@ import { Column } from '../../../lib/data-set/column';
 })
 export class ColumnTitleComponent {
 
-  @Input() grid: Grid;
   @Input() column: Column;
   @Input() source: any;
   @Output() sort = new EventEmitter<any>();

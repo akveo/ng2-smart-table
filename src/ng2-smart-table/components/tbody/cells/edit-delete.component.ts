@@ -24,10 +24,8 @@ export class TbodyEditDeleteComponent {
   @Output() delete = new EventEmitter<any>();
   @Output() editRowSelect = new EventEmitter<any>();
 
-
-  // @Output() deleteConfirm = new EventEmitter<any>();
-
-  onEdit(event: any): boolean {
+  onEdit(event: any) {
+    event.preventDefault();
     event.stopPropagation();
 
     this.editRowSelect.emit(this.row);
@@ -40,10 +38,10 @@ export class TbodyEditDeleteComponent {
     } else {
       this.grid.edit(this.row);
     }
-    return false;
   }
 
-  onDelete(event: any): boolean {
+  onDelete(event: any) {
+    event.preventDefault();
     event.stopPropagation();
 
     if (this.grid.getSetting('mode') === 'external') {
@@ -52,9 +50,7 @@ export class TbodyEditDeleteComponent {
         source: this.source
       });
     } else {
-      console.log('dovrei eliminare');
       this.grid.delete(this.row, this.deleteConfirm);
     }
-    return false;
   }
 }

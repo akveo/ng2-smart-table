@@ -8,9 +8,7 @@ import { Row } from '../../../lib/data-set/row';
   template: `
       <td *ngIf="grid.isMultiSelectVisible()"></td>
       <td class="ng2-smart-actions">
-        <ng2-st-actions [grid]="grid"
-                        (create)="onCreate($event)">
-        </ng2-st-actions>
+        <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
       <td *ngFor="let cell of grid.getNewRow().getCells()">
         <ng2-smart-table-cell [cell]="cell"
@@ -31,10 +29,9 @@ export class TheadFormRowComponent {
   @Input() createConfirm: EventEmitter<any>;
   @Output() create = new EventEmitter<any>();
 
-  onCreate(event): boolean {
+  onCreate(event: any) {
     event.stopPropagation();
 
     this.grid.create(this.grid.getNewRow(), this.createConfirm);
-    return false;
   }
 }

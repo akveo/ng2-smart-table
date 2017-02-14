@@ -9,6 +9,7 @@ import {
   TheadFitlersRowComponent,
   TheadFormRowComponent,
   TheadTitlesRowComponent } from './rows';
+import { Ng2SmartTableTheadComponent } from './thead.component';
 
 export const NG2_SMART_TABLE_THEAD_DIRECTIVES = [
   ActionsComponent,
@@ -20,4 +21,5 @@ export const NG2_SMART_TABLE_THEAD_DIRECTIVES = [
   TheadFitlersRowComponent,
   TheadFormRowComponent,
   TheadTitlesRowComponent,
+  Ng2SmartTableTheadComponent,
 ];
