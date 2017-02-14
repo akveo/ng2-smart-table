@@ -76,7 +76,8 @@
       </td>
       <td *ngFor="let cell of row.getCells()">
         <ng2-smart-table-cell [cell]="cell" [mode]="grid.getSetting('mode')"
-                              [inputClass]="grid.getSetting('edit.inputClass')" [isInEditing]="row.isInEditing"
+                              [inputClass]="grid.getSetting('edit.inputClass')"
+                              [isInEditing]="row.isInEditing || cell.getColumn().inPlaceEdit"
                               (edited)="onSave(row, $event)"></ng2-smart-table-cell>
       </td>
       <td *ngIf="!row.isInEditing && grid.showActionColumn('right')" class="ng2-smart-actions">

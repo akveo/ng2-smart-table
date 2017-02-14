@@ -21,6 +21,7 @@ import { AdvancedExampleServerComponent } from './demo/components/advanced-examp
 import { AdvancedExamplesTypesComponent } from './demo/components/advanced-example-types.component';
 import { AdvancedExamplesCustomEditorComponent } from './demo/components/advanced-example-custom-editor.component';
 import { CustomEditorComponent } from './demo/components/custom-editor.component';
+import { InPlaceEditComponent } from './demo/components/in-place-edit-example.component';
 
 @NgModule({
   imports: [
@@ -47,6 +48,7 @@ import { CustomEditorComponent } from './demo/components/custom-editor.component
     AdvancedExamplesCustomEditorComponent,
     ScrollPositionDirective,
     CustomEditorComponent,
+    InPlaceEditComponent
   ],
 })
 export class PagesModule {

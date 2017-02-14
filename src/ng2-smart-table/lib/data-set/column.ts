@@ -10,6 +10,7 @@ export class Column {
   public isFilterable: boolean = false;
   public sortDirection: string = '';
   public defaultSortDirection: string = '';
+  public inPlaceEdit: boolean = false;
   public editor: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
   compareFunction: Function;
   valuePrepareFunction: Function;
@@ -51,6 +52,7 @@ export class Column {
     this.isSortable = typeof this.settings['sort'] === 'undefined' ? true : !!this.settings['sort'];
     this.isEditable = typeof this.settings['editable'] === 'undefined' ? true : !!this.settings['editable'];
     this.sortDirection = this.prepareSortDirection();
+    this.inPlaceEdit = typeof this.settings['inPlaceEdit'] === 'undefined' ? false: !!this.settings['inPlaceEdit'];
 
     this.compareFunction = this.settings['compareFunction'];
     this.valuePrepareFunction = this.settings['valuePrepareFunction'];
