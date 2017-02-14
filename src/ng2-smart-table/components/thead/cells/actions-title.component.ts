@@ -8,7 +8,7 @@ import { Grid } from '../../../lib/grid';
     <div class="ng2-smart-title">{{ grid.getSetting('actions.columnTitle') }}</div>
   `
 })
-export class ActionsTitleComponent {
+export class ActionsTitleComponent implements AfterViewInit {
 
   @Input() grid: Grid;
 

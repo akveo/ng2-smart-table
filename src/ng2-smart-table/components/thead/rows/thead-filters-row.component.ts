@@ -8,7 +8,7 @@ import { Grid } from '../../../lib/grid';
     <th *ngIf="grid.isMultiSelectVisible()"></th>
     <th ng2-st-add-button *ngIf="grid.showActionColumn('left')"
                           [grid]="grid"
-                          (add)="add.emit($event)">
+                          (create)="create.emit($event)">
     </th>
     <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
       <ng2-smart-table-filter [source]="source"
@@ -18,7 +18,8 @@ import { Grid } from '../../../lib/grid';
     </th>
     <th ng2-st-add-button *ngIf="grid.showActionColumn('right')"
                           [grid]="grid"
-                          (add)="add.emit($event)">
+                          [source]="source"                          
+                          (create)="create.emit($event)">
     </th>
     `
 })
@@ -26,6 +27,7 @@ export class TheadFitlersRowComponent {
 
   @Input() grid: Grid;
   @Input() source: any;
-  @Output() add = new EventEmitter<any>();
+  @Output() create = new EventEmitter<any>();
   @Output() filter = new EventEmitter<any>();
+
 }

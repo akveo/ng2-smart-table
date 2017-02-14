@@ -1,5 +1,5 @@
 import {
-  Component, Input, Output, SimpleChange, EventEmitter,
+  Component, Input, Output, SimpleChange, EventEmitter, ViewEncapsulation,
   OnChanges
 } from '@angular/core';
 
@@ -14,6 +14,7 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
   selector: 'ng2-smart-table',
   styleUrls: ['ng2-smart-table.scss'],
   templateUrl: 'ng2-smart-table.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class Ng2SmartTableComponent implements OnChanges {
 
@@ -92,19 +93,27 @@ export class Ng2SmartTableComponent implements OnChanges {
     }
   }
 
-  onAdd(event): boolean {
-    event.stopPropagation();
-    if (this.grid.getSetting('mode') === 'external') {
-      this.create.emit({
-        source: this.source
-      });
-    } else {
-      this.grid.createFormShown = true;
-    }
-    return false;
+  // onAdd(event): boolean {
+  //   event.stopPropagation();
+  //   if (this.grid.getSetting('mode') === 'external') {
+  //     this.create.emit({
+  //       source: this.source
+  //     });
+  //   } else {
+  //     this.grid.createFormShown = true;
+  //   }
+  //   return false;
+  // }
+
+  editRowSelect(row: Row) {
+    if (this.grid.getSetting('selectMode') === 'multi')
+      this.onMultipleSelectRow(row);
+    else
+      this.onSelectRow(row);
   }
 
   onUserSelectRow(row: Row): void {
+    console.log('row is', row);
     if (this.grid.getSetting('selectMode') !== 'multi') {
       this.grid.selectRow(row);
       this._onUserSelectRow(row.getData());
@@ -126,7 +135,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     this._onSelectRow(row.getData());
   }
 
-  selectAllRows() {
+  onSelectAllRows($event) {
     this.isAllSelected = !this.isAllSelected;
     this.grid.selectAllRows(this.isAllSelected);
     let selectedRows = this.grid.getSelectedRows();
@@ -151,60 +160,60 @@ export class Ng2SmartTableComponent implements OnChanges {
     });
   }
 
-  onEdit(row: Row, event): boolean {
-    event.stopPropagation();
+  // onEdit(row: Row): boolean {
+  //   // event.stopPropagation();
 
-    if (this.grid.getSetting('selectMode') === 'multi') {
-      this.onMultipleSelectRow(row);
-    } else {
-      this.onSelectRow(row);
-    }
+  //   if (this.grid.getSetting('selectMode') === 'multi') {
+  //     this.onMultipleSelectRow(row);
+  //   } else {
+  //     this.onSelectRow(row);
+  //   }
 
-    if (this.grid.getSetting('mode') === 'external') {
-      this.edit.emit({
-        data: row.getData(),
-        source: this.source
-      });
-    } else {
-      this.grid.edit(row);
-    }
-    return false;
-  }
+  //   if (this.grid.getSetting('mode') === 'external') {
+  //     this.edit.emit({
+  //       data: row.getData(),
+  //       source: this.source
+  //     });
+  //   } else {
+  //     this.grid.edit(row);
+  //   }
+  //   return false;
+  // }
 
-  onDelete(row: Row, event): boolean {
-    event.stopPropagation();
+  // onDelete(row: Row): boolean {
+  //   // event.stopPropagation();
 
-    if (this.grid.getSetting('mode') === 'external') {
-      this.delete.emit({
-        data: row.getData(),
-        source: this.source
-      });
-    } else {
-      this.grid.delete(row, this.deleteConfirm);
-    }
-    return false;
-  }
+  //   if (this.grid.getSetting('mode') === 'external') {
+  //     this.delete.emit({
+  //       data: row.getData(),
+  //       source: this.source
+  //     });
+  //   } else {
+  //     this.grid.delete(row, this.deleteConfirm);
+  //   }
+  //   return false;
+  // }
 
-  onCreate(row: Row, event): boolean {
-    event.stopPropagation();
+  // onCreate(row: Row, event): boolean {
+  //   event.stopPropagation();
 
-    this.grid.create(row, this.createConfirm);
-    return false;
-  }
+  //   this.grid.create(row, this.createConfirm);
+  //   return false;
+  // }
 
-  onSave(row: Row, event): boolean {
-    event.stopPropagation();
+  // onSave(row: Row): boolean {
+  //   // event.stopPropagation();
 
-    this.grid.save(row, this.editConfirm);
-    return false;
-  }
+  //   this.grid.save(row, this.editConfirm);
+  //   return false;
+  // }
 
-  onCancelEdit(row, event): boolean {
-    event.stopPropagation();
+  // onCancelEdit(row): boolean {
+  //   // event.stopPropagation();
 
-    row.isInEditing = false;
-    return false;
-  }
+  //   row.isInEditing = false;
+  //   return false;
+  // }
 
   initGrid(): void {
     this.source = this.prepareSource();

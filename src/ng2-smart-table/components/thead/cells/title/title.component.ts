@@ -1,11 +1,11 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { DataSource } from '../../../../lib/data-source/data-source';
 import { Column } from '../../../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-title',
-  styleUrls: ['title.scss'],
+  styleUrls: ['./title.component.scss'],
   template: `
     <a href="#"
       *ngIf="column.isSortable"
@@ -17,7 +17,7 @@ import { Column } from '../../../../lib/data-set/column';
     <span class="ng2-smart-sort" *ngIf="!column.isSortable">{{ column.title }}</span>
   `
 })
-export class TitleComponent {
+export class TitleComponent implements OnInit {
 
   @Input() column: Column;
   @Input() source: DataSource;
@@ -42,7 +42,8 @@ export class TitleComponent {
     });
   }
 
-  _sort(): boolean {
+  _sort(event: any): boolean {
+    event.preventDefault();
     this.changeSortDirection();
     this.source.setSort([
       {

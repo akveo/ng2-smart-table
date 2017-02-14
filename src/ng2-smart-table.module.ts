@@ -18,7 +18,10 @@ import {
   CheckboxEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
 import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
+import { TheadComponent } from './ng2-smart-table/components/thead/thead.component';
 import { NG2_SMART_TABLE_THEAD_DIRECTIVES } from './ng2-smart-table/components/thead/thead.directives';
+import { TbodyComponent } from './ng2-smart-table/components/tbody/tbody.component';
+import { NG2_SMART_TABLE_TBODY_DIRECTIVES } from './ng2-smart-table/components/tbody/tbody.directives';
 
 @NgModule({
   imports: [
@@ -40,6 +43,9 @@ import { NG2_SMART_TABLE_THEAD_DIRECTIVES } from './ng2-smart-table/components/t
     FilterComponent,
     PagerComponent,
     ...NG2_SMART_TABLE_THEAD_DIRECTIVES,
+    ...NG2_SMART_TABLE_TBODY_DIRECTIVES,
+    TheadComponent,
+    TbodyComponent,
     ...NG2_SMART_TABLE_DIRECTIVES
   ],
   exports: [
