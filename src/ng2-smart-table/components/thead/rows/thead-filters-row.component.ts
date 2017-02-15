@@ -11,7 +11,8 @@ import { Grid } from '../../../lib/grid';
                           (create)="create.emit($event)">
     </th>
     <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
-      <ng2-smart-table-filter [source]="source"
+      <ng2-smart-table-filter [grid]="grid"
+                              [source]="source"
                               [column]="column"
                               [inputClass]="grid.getSetting('filter.inputClass')"
                               (filter)="filter.emit($event)">

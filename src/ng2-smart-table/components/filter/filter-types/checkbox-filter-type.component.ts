@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { DefaultFilter } from './default-filter';
+import { Grid } from '../../../lib/grid';
 
 @Component({
   selector: 'checkbox-filter-type',
@@ -16,13 +17,14 @@ import { DefaultFilter } from './default-filter';
            type="checkbox"
            class="form-control"
            (change)="onChange($event)"><br>
-    <a href="#" class="reset-button" *ngIf="hasChanged" (click)="reset($event)">reset</a>
+    <a href="#" class="reset-button" *ngIf="hasChanged" (click)="reset($event)">{{ grid.getSetting('filter.resetCheckboxContent') }}</a>
     `
 })
 export class CheckboxFilterTypeComponent extends DefaultFilter {
 
   checkboxValue: boolean;
   hasChanged: boolean = false;
+  @Input() grid: Grid;
 
   onChange(event: any) {
     this.hasChanged = true;

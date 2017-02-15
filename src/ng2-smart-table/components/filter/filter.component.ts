@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit } from '@
 
 import { DataSource } from '../../lib/data-source/data-source';
 import { Column } from '../../lib/data-set/column';
+import { Grid } from '../../lib/grid';
 
 @Component({
   selector: 'ng2-smart-table-filter',
@@ -9,7 +10,13 @@ import { Column } from '../../lib/data-set/column';
   template: `
     <div class="ng2-smart-filter" *ngIf="column.isFilterable">
       <div [ngSwitch]="filterType">
+        <select-filter-type *ngSwitchCase="'list'"
+                      [column]="column"
+                      [inputClass]="inputClass"
+                      (valueChange)="_filter($event)">
+        </select-filter-type>
         <checkbox-filter-type *ngSwitchCase="'checkbox'"
+                      [grid]="grid"
                       [column]="column"
                       [inputClass]="inputClass"
                       (valueChange)="_filter($event)">
@@ -26,6 +33,7 @@ import { Column } from '../../lib/data-set/column';
 export class FilterComponent implements OnInit, AfterViewInit {
 
   filterType: string = '';
+  @Input() grid: Grid;
   @Input() column: Column;
   @Input() source: DataSource;
   @Input() inputClass: string = '';

@@ -41,6 +41,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     },
     filter: {
       inputClass: '',
+      resetCheckboxContent: 'reset'
     },
     edit: {
       inputClass: '',

@@ -28,7 +28,7 @@ export class AdvancedExamplesTypesComponent {
     {
       id: 3,
       name: "Clementine Bauch",
-      username: "Samantha",
+      username: "<b>Samantha</b>",
       email: "Nathan@yesenia.net",
       comments: "Mollis latine intellegebat ei usu, veri exerci intellegebat vel cu. Eu nec ferri copiosae.",
       passed: "No",
@@ -129,6 +129,9 @@ export class AdvancedExamplesTypesComponent {
               title: 'Samantha'
             }]
           }
+        },
+        filter: {
+          useEditorConfig: true
         }
       },
       email: {
