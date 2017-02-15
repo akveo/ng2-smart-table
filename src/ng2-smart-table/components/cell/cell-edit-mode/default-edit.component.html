@@ -31,6 +31,14 @@
                       [cell]="cell">
     </completer-editor>
 
+    <number-editor *ngSwitchCase="'number'"
+                [cell]="cell"
+                [inputClass]="inputClass"
+                (onClick)="onClick($event)"
+                (onEdited)="onEdited($event)"
+                (onStopEditing)="onStopEditing()">
+    </number-editor>
+
     <input-editor *ngSwitchDefault
                   [cell]="cell"
                   [inputClass]="inputClass"
@@ -38,12 +46,4 @@
                   (onEdited)="onEdited($event)"
                   (onStopEditing)="onStopEditing()">
     </input-editor>
-
-    <number-editor *ngSwitchDefault
-                  [cell]="cell"
-                  [inputClass]="inputClass"
-                  (onClick)="onClick($event)"
-                  (onEdited)="onEdited($event)"
-                  (onStopEditing)="onStopEditing()">
-    </number-editor>
 </div>

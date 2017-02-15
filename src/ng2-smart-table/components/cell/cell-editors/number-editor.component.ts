@@ -7,7 +7,7 @@ import { DefaultEditor } from './default-editor';
   styleUrls: ['./editor.component.scss'],
   template: `
     <input [ngClass]="inputClass"
-           type='number'
+           type="number"
            class="form-control"
            [(ngModel)]="cell.newValue"
            [name]="cell.getId()"

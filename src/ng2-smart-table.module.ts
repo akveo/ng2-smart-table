@@ -40,6 +40,7 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
     SelectEditorComponent,
     TextareaEditorComponent,
     CheckboxEditorComponent,
+    NumberEditorComponent,
     FilterComponent,
     PagerComponent,
     TitleComponent,

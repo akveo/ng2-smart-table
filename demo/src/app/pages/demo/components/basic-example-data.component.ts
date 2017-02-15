@@ -11,7 +11,10 @@ export class BasicExampleDataComponent {
   settings = {
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        editor: {
+          type: 'number'
+        }
       },
       name: {
         title: 'Full Name'
