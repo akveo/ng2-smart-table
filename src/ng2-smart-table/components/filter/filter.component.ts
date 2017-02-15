@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, AfterViewInit } from '@angular/core';
 
 import { DataSource } from '../../lib/data-source/data-source';
 import { Column } from '../../lib/data-set/column';
@@ -8,18 +8,24 @@ import { Column } from '../../lib/data-set/column';
   styleUrls: ['filter.scss'],
   template: `
     <div class="ng2-smart-filter" *ngIf="column.isFilterable">
-      <input 
-        [(ngModel)]="query"
-        (keyup)="_filter($event)"
-        [ngClass]="inputClass"
-        class="form-control"
-        type="text" 
-        placeholder="{{ column.title }}" />
+      <div [ngSwitch]="filterType">
+        <checkbox-filter-type *ngSwitchCase="'checkbox'"
+                      [column]="column"
+                      [inputClass]="inputClass"
+                      (valueChange)="_filter($event)">
+        </checkbox-filter-type>
+        <input-filter-type *ngSwitchDefault
+                           [column]="column"
+                           [inputClass]="inputClass"
+                           (valueChange)="_filter($event)">
+        </input-filter-type>
+      </div>
     </div>
   `
 })
-export class FilterComponent implements AfterViewInit {
+export class FilterComponent implements OnInit, AfterViewInit {
 
+  filterType: string = '';
   @Input() column: Column;
   @Input() source: DataSource;
   @Input() inputClass: string = '';
@@ -30,7 +36,13 @@ export class FilterComponent implements AfterViewInit {
   timeout: any;
   delay: number = 300;
 
-  ngAfterViewInit(): void {
+  ngOnInit() {
+    if (this.column.filter && this.column.filter.useEditorConfig && this.column.editor) {
+      this.filterType = this.column.editor.type;
+    }
+  }
+
+  ngAfterViewInit() {
     this.source.onChanged().subscribe((elements) => {
       let filterConf = this.source.getFilter();
       if (filterConf && filterConf.filters && filterConf.filters.length === 0) {
@@ -39,23 +51,19 @@ export class FilterComponent implements AfterViewInit {
     });
   }
 
-  _filter(event): boolean {
-    if (event.which === 13) {
-      this.addFilter();
-      // ignore tab component
-    } else if (event.which !== 9) {
-      if (this.timeout) {
-        clearTimeout(this.timeout);
-      }
-      this.timeout = setTimeout(() => {
-        this.addFilter();
-      }, this.delay);
+  _filter(query: string): boolean {
+    this.query = query;
+    if (this.timeout) {
+      clearTimeout(this.timeout);
     }
+    this.timeout = setTimeout(() => {
+      this.addFilter();
+    }, this.delay);
     this.filter.emit(null);
     return false;
   }
 
-  addFilter(): void {
+  addFilter() {
     this.source.addFilter({
       field: this.column.id,
       search: this.query,

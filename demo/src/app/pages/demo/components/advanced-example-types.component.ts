@@ -149,6 +149,9 @@ export class AdvancedExamplesTypesComponent {
             true: 'Yes',
             false: 'No'
           }
+        },
+        filter: {
+          useEditorConfig: true
         }
       }
     }
