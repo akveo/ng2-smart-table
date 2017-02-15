@@ -4,9 +4,10 @@ import { Grid } from '../../lib/grid';
 
 @Component({
     selector: '[ng2-st-tbody]',
-    templateUrl: './tbody.html'
+    templateUrl: './tbody.component.html'
 })
 export class Ng2SmartTableTbodyComponent {
+
     @Input() grid: Grid;
     @Input() source: any;
     @Input() deleteConfirm: EventEmitter<any>;

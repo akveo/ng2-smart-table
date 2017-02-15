@@ -9,8 +9,7 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['ng2-smart-table.scss'],
-  templateUrl: 'ng2-smart-table.html',
-  encapsulation: ViewEncapsulation.None
+  templateUrl: 'ng2-smart-table.html'
 })
 export class Ng2SmartTableComponent implements OnChanges {
 
