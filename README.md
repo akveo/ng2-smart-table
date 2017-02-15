@@ -21,7 +21,7 @@ npm version patch
 ```
 npm run build:package
 ```
-* publish pachage
+* publish package
 ```
 npm publish
 ```
