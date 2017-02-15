@@ -38,4 +38,12 @@
                   (onEdited)="onEdited($event)"
                   (onStopEditing)="onStopEditing()">
     </input-editor>
+
+    <number-editor *ngSwitchDefault
+                  [cell]="cell"
+                  [inputClass]="inputClass"
+                  (onClick)="onClick($event)"
+                  (onEdited)="onEdited($event)"
+                  (onStopEditing)="onStopEditing()">
+    </number-editor>
 </div>
