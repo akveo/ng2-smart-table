@@ -94,7 +94,7 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   onAdd(event): boolean {
     event.stopPropagation();
-    if (this.grid.getSetting('mode') === 'external') {
+    if (this.grid.getSetting('mode') === 'external' && typeof this.create !== 'undefined') {
       this.create.emit({
         source: this.source
       });
@@ -160,7 +160,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       this.onSelectRow(row);
     }
 
-    if (this.grid.getSetting('mode') === 'external') {
+    if (this.grid.getSetting('mode') === 'external' && typeof this.edit !== 'undefined') {
       this.edit.emit({
         data: row.getData(),
         source: this.source
@@ -174,7 +174,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   onDelete(row: Row, event): boolean {
     event.stopPropagation();
 
-    if (this.grid.getSetting('mode') === 'external') {
+    if (this.grid.getSetting('mode') === 'external' && typeof this.delete !== 'undefined') {
       this.delete.emit({
         data: row.getData(),
         source: this.source
