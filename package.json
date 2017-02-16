@@ -8,7 +8,9 @@
   "main": "./eko-point-ng2-smart-table.js",
   "typings": "./eko-point-ng2-smart-table.d.ts",
   "dependencies": {
-    "ng2-completer": "^1.0.0"
+    "dragula": "^3.7.2",
+    "ng2-completer": "^1.0.0",
+    "ng2-dragula": "^1.3.0"
   },
   "save-prefix": "^",
   "peerDependencies": {

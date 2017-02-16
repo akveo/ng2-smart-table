@@ -9,6 +9,7 @@ import { Row } from './lib/data-set/row';
 
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -16,6 +17,9 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
   templateUrl: 'ng2-smart-table.html',
 })
 export class Ng2SmartTableComponent implements OnChanges {
+  @Input() public dragulaRows: string;
+  @Input() public dragulaRowsOptions: any;
+  @Output() public dragulaRowsDropModel: EventEmitter<any> = new EventEmitter();
 
   @Input() source: any;
   @Input() settings: Object = {};
@@ -78,6 +82,23 @@ export class Ng2SmartTableComponent implements OnChanges {
   };
 
   isAllSelected: boolean = false;
+
+  constructor(private dragulaService: DragulaService) {
+    this.dragulaService.dropModel.subscribe(args => this.onDropModel(args));
+  }
+
+  private onDropModel(args: any): void {
+    const [bagName, el, target, source] = args;
+    const newRowIndex = Array.prototype.indexOf.call(target.children, el);
+    const bag = this.dragulaService.find(bagName);
+    const drake = bag.drake;
+    const model = drake.models[0];
+
+    this.dragulaRowsDropModel.emit({
+      newRowIndex: newRowIndex,
+      model: model
+    });
+  }
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {
     if (this.grid) {
