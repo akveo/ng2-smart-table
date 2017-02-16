@@ -1,6 +1,6 @@
 import {
   Component, Input, Output, SimpleChange, EventEmitter,
-  OnChanges
+  OnChanges, OnInit
 } from '@angular/core';
 
 import { Grid } from './lib/grid';
@@ -16,10 +16,10 @@ import { DragulaService } from 'ng2-dragula';
   styleUrls: ['ng2-smart-table.scss'],
   templateUrl: 'ng2-smart-table.html',
 })
-export class Ng2SmartTableComponent implements OnChanges {
+export class Ng2SmartTableComponent implements OnChanges, OnInit {
   @Input() public dragulaRows: string;
   @Input() public dragulaRowsOptions: any;
-  @Output() public dragulaRowsDropModel: EventEmitter<any> = new EventEmitter();
+  @Output() public dragulaRowDrop: EventEmitter<any> = new EventEmitter();
 
   @Input() source: any;
   @Input() settings: Object = {};
@@ -82,22 +82,42 @@ export class Ng2SmartTableComponent implements OnChanges {
   };
 
   isAllSelected: boolean = false;
+  private oldRowIndex: number | null = null;
 
   constructor(private dragulaService: DragulaService) {
-    this.dragulaService.dropModel.subscribe(args => this.onDropModel(args));
   }
 
-  private onDropModel(args: any): void {
+  ngOnInit(): void {
+    if (this.dragulaRows) {
+      this.dragulaService.drag.subscribe(args => this.onDragRow(args));
+      this.dragulaService.dropModel.subscribe(args => this.onDropRow(args));
+    }
+    else {
+      this.dragulaService = null;
+    }
+  }
+
+  private onDragRow(args: any): void {
+    const [bagName, el, source] = args;
+    this.oldRowIndex = this.getDomIndexOf(el, source);
+  }
+
+  private onDropRow(args: any): void {
     const [bagName, el, target, source] = args;
-    const newRowIndex = Array.prototype.indexOf.call(target.children, el);
+    const newRowIndex = this.getDomIndexOf(el, target);
     const bag = this.dragulaService.find(bagName);
     const drake = bag.drake;
     const model = drake.models[0];
 
-    this.dragulaRowsDropModel.emit({
+    this.dragulaRowDrop.emit({
+      oldRowIndex: this.oldRowIndex,
       newRowIndex: newRowIndex,
       model: model
     });
+  }
+
+  private getDomIndexOf(child, parent) {
+    return Array.prototype.indexOf.call(parent.children, child);
   }
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }): void {
