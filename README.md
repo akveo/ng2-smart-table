@@ -9,7 +9,23 @@ ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/).
 <a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
 
 ![alt tag](demo/src/assets/img/demo.gif)
- 
+
+## Publish to npm
+
+* commit changes
+* update you version according to your changes (patch, for example)
+```
+npm version patch
+```
+* build package
+```
+npm run build:package
+```
+* publish package
+```
+npm publish
+```
+
 ## Installation
 
 The library is available as npm package, so all you need to do is to run the following command:
