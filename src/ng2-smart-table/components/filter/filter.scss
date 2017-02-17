@@ -1,5 +1,5 @@
-.ng2-smart-filter {
-  input {
+/deep/ .ng2-smart-filter {
+  input, select {
     width: 100%;
     line-height: normal;
     padding: .375rem .75rem;
