@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { CustomFormsModule } from 'ng2-validation'
 
 import { DragulaModule } from 'ng2-dragula';
 
@@ -31,7 +32,8 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
     CommonModule,
     Ng2CompleterModule,
     FormsModule,
-    DragulaModule
+    DragulaModule,
+    CustomFormsModule
   ],
   declarations: [
     CellComponent,

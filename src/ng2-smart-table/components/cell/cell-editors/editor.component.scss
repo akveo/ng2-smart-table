@@ -2,4 +2,14 @@ input, textarea {
   width: 100%;
   line-height: normal;
   padding: .375rem .75rem;
+};
+
+input.ng-invalid {
+  border-color: red;
+};
+
+input.ng-valid {
+  border-color: green;
 }
+
+

@@ -15,7 +15,11 @@ import { DefaultEditor } from './default-editor';
            [disabled]="!cell.isEditable()"
            (click)="onClick.emit($event)"
            (keydown.enter)="onEdited.emit($event)"
-           (keydown.esc)="onStopEditing.emit()">
+           (keydown.esc)="onStopEditing.emit()"
+           number
+           required
+           [min]="10"
+           #field="ngModel">
     `,
 })
 export class NumberEditorComponent extends DefaultEditor {

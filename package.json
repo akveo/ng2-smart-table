@@ -93,7 +93,8 @@
     "webpack-dev-server": "2.2.0",
     "webpack-dll-bundles-plugin": "^1.0.0-beta.5",
     "webpack-merge": "2.4.0",
-    "zone.js": "~0.7.4"
+    "zone.js": "~0.7.4",
+    "ng2-validation": "^3.8.0"
   },
   "scripts": {
     "rimraf": "rimraf",
