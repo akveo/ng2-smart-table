@@ -13,6 +13,7 @@ const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplaceme
 const ProvidePlugin = require('webpack/lib/ProvidePlugin');
 const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 /**
  * Webpack Constants
@@ -24,7 +25,8 @@ const METADATA = webpackMerge(commonConfig({env: ENV}).metadata, {
   host: HOST,
   port: PORT,
   ENV: ENV,
-  HMR: false
+  HMR: false,
+  ghRedirectPath: '/ng2-smart-table/',
 });
 
 module.exports = function (env) {
@@ -211,6 +213,28 @@ module.exports = function (env) {
       //   regExp: /\.css$|\.html$|\.js$|\.map$/,
       //   threshold: 2 * 1024
       // })
+
+      /*
+       * Plugin: HtmlWebpackPlugin
+       * Description: Simplifies creation of HTML files to serve your webpack bundles.
+       * This is especially useful for webpack bundles that include a hash in the filename
+       * which changes every compilation.
+       *
+       * See: https://github.com/ampedandwired/html-webpack-plugin
+       */
+      new HtmlWebpackPlugin({
+        template: 'demo/src/index.html',
+        title: METADATA.title,
+        chunksSortMode: 'dependency',
+        metadata: METADATA,
+        inject: 'head'
+      }),
+      new HtmlWebpackPlugin({
+        template: 'demo/src/404.html',
+        filename: '404.html',
+        metadata: METADATA,
+        inject: false
+      }),
 
       /**
        * Plugin LoaderOptionsPlugin (experimental)
