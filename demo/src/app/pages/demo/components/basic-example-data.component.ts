@@ -13,7 +13,12 @@ export class BasicExampleDataComponent {
       id: {
         title: 'ID',
         editor: {
-          type: 'number'
+          type: 'number',
+          config: {
+            required: true,
+            min: 0,
+            max: 100
+          }
         }
       },
       name: {

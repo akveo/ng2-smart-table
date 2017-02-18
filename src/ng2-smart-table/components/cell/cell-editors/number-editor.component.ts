@@ -16,9 +16,12 @@ import { DefaultEditor } from './default-editor';
            (click)="onClick.emit($event)"
            (keydown.enter)="onEdited.emit($event)"
            (keydown.esc)="onStopEditing.emit()"
-           number
-           required
-           [min]="10"
+           required="{{cell.getColumn().getConfig()?.required?true:false}}"
+           [min]="cell.getColumn().getConfig()?.min"
+           [max]="cell.getColumn().getConfig()?.max"
+           [gt]="cell.getColumn().getConfig()?.gt"
+           [lt]="cell.getColumn().getConfig()?.lt"
+           [range]="cell.getColumn().getConfig()?.range"
            #field="ngModel">
     `,
 })
