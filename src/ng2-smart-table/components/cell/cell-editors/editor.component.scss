@@ -2,14 +2,27 @@ input, textarea {
   width: 100%;
   line-height: normal;
   padding: .375rem .75rem;
-};
-
-input.ng-invalid {
-  border-color: red;
-};
-
-input.ng-valid {
-  border-color: green;
 }
 
+  $success: #90b900 !default;
+  $danger: #e85656 !default;
 
+  $success-bg: tint($success, 20%);
+  $danger-bg: tint($danger, 20%);
+
+  @mixin validationState($color, $focusColor) {
+      border: 1px solid $color;
+      &:focus {
+        box-shadow: none;
+        border-color: $focusColor;
+      }
+      background-color: $color;
+  }
+
+  input.ng-valid {
+    @include validationState($success-bg, $success);
+  }
+
+  input.ng-invalid {
+    @include validationState($danger-bg, $danger);
+  }
