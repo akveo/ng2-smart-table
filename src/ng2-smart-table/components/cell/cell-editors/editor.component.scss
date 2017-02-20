@@ -7,22 +7,15 @@ input, textarea {
   $success: #90b900 !default;
   $danger: #e85656 !default;
 
-  $success-bg: tint($success, 20%);
-  $danger-bg: tint($danger, 20%);
-
-  @mixin validationState($color, $focusColor) {
-      border: 1px solid $color;
-      &:focus {
+  @mixin validationState($color) {
         box-shadow: none;
-        border-color: $focusColor;
-      }
-      background-color: $color;
+        border-color: $color;
   }
 
   input.ng-valid {
-    @include validationState($success-bg, $success);
+    @include validationState($success);
   }
 
   input.ng-invalid {
-    @include validationState($danger-bg, $danger);
+    @include validationState($danger);
   }
