@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ViewEncapsulation, OnInit } from '@angular/core';
 
 
 import { Grid } from './lib/grid';
