@@ -14,7 +14,12 @@ import { DefaultEditor } from './default-editor';
            [disabled]="!cell.isEditable()"
            (click)="onClick.emit($event)"
            (keydown.enter)="onEdited.emit($event)"
-           (keydown.esc)="onStopEditing.emit()">
+           (keydown.esc)="onStopEditing.emit()"
+           required="{{cell.getColumn().getConfig()?.required?true:false}}"
+           minlength="{{cell.getColumn().getConfig()?.minLength}}"
+           maxlength="{{cell.getColumn().getConfig()?.maxLength}}"
+           pattern="{{cell.getColumn().getConfig()?.pattern}}"   
+           >
     `,
 })
 export class InputEditorComponent extends DefaultEditor {

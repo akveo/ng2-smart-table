@@ -38,7 +38,7 @@ export class Column {
   }
 
   public getConfig(): any {
-    return this.editor.config;
+    return this.editor?this.editor.config:undefined;
   }
 
   protected process(): void {

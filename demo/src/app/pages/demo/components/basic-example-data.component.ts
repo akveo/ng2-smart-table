@@ -22,7 +22,13 @@ export class BasicExampleDataComponent {
         }
       },
       name: {
-        title: 'Full Name'
+        title: 'Full Name',
+        editor: {
+          config: {
+            required: true,
+            minLength: 5
+          }
+        }
       },
       username: {
         title: 'User Name'
