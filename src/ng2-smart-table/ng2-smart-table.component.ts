@@ -1,17 +1,22 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ViewEncapsulation, OnInit } from '@angular/core';
+
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import { DragulaService } from 'ng2-dragula';
 
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['ng2-smart-table.scss'],
   templateUrl: 'ng2-smart-table.html'
 })
-export class Ng2SmartTableComponent implements OnChanges {
+export class Ng2SmartTableComponent implements OnChanges, OnInit {
+  @Input() public dragulaRows: string;
+  @Input() public dragulaRowsOptions: any;
+  @Output() public dragulaRowDrop: EventEmitter<any> = new EventEmitter();
 
   @Input() source: any;
   @Input() settings: Object = {};
@@ -73,6 +78,43 @@ export class Ng2SmartTableComponent implements OnChanges {
   };
 
   isAllSelected: boolean = false;
+  private oldRowIndex: number | null = null;
+
+  constructor(private dragulaService: DragulaService) {
+  }
+
+  ngOnInit(): void {
+    if (this.dragulaRows) {
+      this.dragulaService.drag.subscribe(args => this.onDragRow(args));
+      this.dragulaService.dropModel.subscribe(args => this.onDropRow(args));
+    }
+    else {
+      this.dragulaService = null;
+    }
+  }
+
+  private onDragRow(args: any): void {
+    const [bagName, el, source] = args;
+    this.oldRowIndex = this.getDomIndexOf(el, source);
+  }
+
+  private onDropRow(args: any): void {
+    const [bagName, el, target, source] = args;
+    const newRowIndex = this.getDomIndexOf(el, target);
+    const bag = this.dragulaService.find(bagName);
+    const drake = bag.drake;
+    const model = drake.models[0];
+
+    this.dragulaRowDrop.emit({
+      oldRowIndex: this.oldRowIndex,
+      newRowIndex: newRowIndex,
+      model: model
+    });
+  }
+
+  private getDomIndexOf(child, parent) {
+    return Array.prototype.indexOf.call(parent.children, child);
+  }
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (this.grid) {

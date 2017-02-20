@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { CustomFormsModule } from 'ng2-validation'
+
+import { DragulaModule } from 'ng2-dragula';
 
 import { NG2_SMART_TABLE_DIRECTIVES } from './ng2-smart-table.directives';
 import { CellComponent } from './ng2-smart-table/components/cell/cell.component';
@@ -9,13 +12,17 @@ import { ViewCellComponent } from './ng2-smart-table/components/cell/cell-view-m
 import {
   EditCellComponent,
   DefaultEditComponent,
-  CustomEditComponent } from './ng2-smart-table/components/cell/cell-edit-mode';
+  CustomEditComponent
+} from './ng2-smart-table/components/cell/cell-edit-mode';
 import {
   CompleterEditorComponent,
   InputEditorComponent,
+  PasswordEditorComponent,
   SelectEditorComponent,
   TextareaEditorComponent,
-  CheckboxEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
+  CheckboxEditorComponent,
+  NumberEditorComponent
+} from './ng2-smart-table/components/cell/cell-editors';
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
 import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
 import { NG2_SMART_TABLE_THEAD_DIRECTIVES } from './ng2-smart-table/components/thead/thead.directives';
@@ -25,7 +32,9 @@ import { NG2_SMART_TABLE_TBODY_DIRECTIVES } from './ng2-smart-table/components/t
   imports: [
     CommonModule,
     Ng2CompleterModule,
-    FormsModule
+    FormsModule,
+    DragulaModule,
+    CustomFormsModule
   ],
   declarations: [
     CellComponent,
@@ -35,9 +44,11 @@ import { NG2_SMART_TABLE_TBODY_DIRECTIVES } from './ng2-smart-table/components/t
     EditCellComponent,
     CompleterEditorComponent,
     InputEditorComponent,
+    PasswordEditorComponent,
     SelectEditorComponent,
     TextareaEditorComponent,
     CheckboxEditorComponent,
+    NumberEditorComponent,
     FilterComponent,
     PagerComponent,
     ...NG2_SMART_TABLE_THEAD_DIRECTIVES,

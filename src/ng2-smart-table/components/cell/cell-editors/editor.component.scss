@@ -3,3 +3,19 @@ input, textarea {
   line-height: normal;
   padding: .375rem .75rem;
 }
+
+  $success: #90b900 !default;
+  $danger: #e85656 !default;
+
+  @mixin validationState($color) {
+        box-shadow: none;
+        border-color: $color;
+  }
+
+  input.ng-valid {
+    @include validationState($success);
+  }
+
+  input.ng-invalid {
+    @include validationState($danger);
+  }

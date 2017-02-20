@@ -3,10 +3,11 @@ import { Component } from '@angular/core';
 import { DefaultEditor } from './default-editor';
 
 @Component({
-  selector: 'input-editor',
+  selector: 'number-editor',
   styleUrls: ['./editor.component.scss'],
   template: `
     <input [ngClass]="inputClass"
+           type="number"
            class="form-control"
            [(ngModel)]="cell.newValue"
            [name]="cell.getId()"
@@ -16,13 +17,15 @@ import { DefaultEditor } from './default-editor';
            (keydown.enter)="onEdited.emit($event)"
            (keydown.esc)="onStopEditing.emit()"
            required="{{cell.getColumn().getConfig()?.required?true:false}}"
-           minlength="{{cell.getColumn().getConfig()?.minLength}}"
-           maxlength="{{cell.getColumn().getConfig()?.maxLength}}"
-           pattern="{{cell.getColumn().getConfig()?.pattern}}"   
-           >
+           [min]="cell.getColumn().getConfig()?.min"
+           [max]="cell.getColumn().getConfig()?.max"
+           [gt]="cell.getColumn().getConfig()?.gt"
+           [lt]="cell.getColumn().getConfig()?.lt"
+           [range]="cell.getColumn().getConfig()?.range"
+           #field="ngModel">
     `,
 })
-export class InputEditorComponent extends DefaultEditor {
+export class NumberEditorComponent extends DefaultEditor {
 
   constructor() {
     super();

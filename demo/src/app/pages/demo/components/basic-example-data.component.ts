@@ -11,10 +11,24 @@ export class BasicExampleDataComponent {
   settings = {
     columns: {
       id: {
-        title: 'ID'
+        title: 'ID',
+        editor: {
+          type: 'number',
+          config: {
+            required: true,
+            min: 0,
+            max: 100
+          }
+        }
       },
       name: {
-        title: 'Full Name'
+        title: 'Full Name',
+        editor: {
+          config: {
+            required: true,
+            minLength: 5
+          }
+        }
       },
       username: {
         title: 'User Name'

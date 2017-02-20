@@ -34,4 +34,4 @@ script:
   - yarn run build:aot
 
 notifications:
-  slack: akveo:xIPk24AvCI0y7zu943uSgaOh
+  slack: eko-point:TMIbgKa6KbgUp2MMDDY8Auye

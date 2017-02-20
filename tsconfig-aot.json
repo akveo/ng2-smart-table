@@ -13,7 +13,7 @@
     ]
   },
   "files": [
-    "./ng2-smart-table.ts"
+    "./eko-point-ng2-smart-table.ts"
   ],
   "exclude": [
     "src/**/*.d.ts"
