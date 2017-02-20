@@ -134,7 +134,7 @@
     "start": "npm run server:dev",
     "start:hmr": "npm run server:dev:hmr",
     "build:package": "node_modules/.bin/ngc -p tsconfig-aot.json",
-    "gh-pages": "npm run build:prod && gh-pages -d demo-dist"
+    "gh-pages": "npm run build:aot && gh-pages -d demo-dist"
   },
   "repository": {
     "type": "git",
