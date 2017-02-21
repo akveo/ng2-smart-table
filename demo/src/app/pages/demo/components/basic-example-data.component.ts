@@ -14,17 +14,7 @@ export class BasicExampleDataComponent {
         title: 'ID'
       },
       name: {
-        title: 'Full Name',
-        filter: {
-          type: 'list',
-          config: {
-            selectText: 'Select...',
-            list: [{ value: 'leanne', title: 'Leanne' }, { value: 'ervi', title: 'Ervin' }, {
-              value: 'patri',
-              title: 'Patricia'
-            }]
-          }
-        }
+        title: 'Full Name'
       },
       username: {
         title: 'User Name'

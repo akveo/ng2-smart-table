@@ -21,6 +21,7 @@ export class InputFilterComponent extends DefaultFilter implements OnInit {
   }
 
   ngOnInit() {
-    this.setupFilter('keyup', (ev: any) => ev.which !== 9);
+    this.changesSubscription = this.setupFilter('keyup', (ev: any) => ev.which !== 9) // filter out tab events
+      .subscribe((value: string) => this.setFilter());
   }
 }

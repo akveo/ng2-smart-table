@@ -14,6 +14,18 @@ import { Column } from '../../lib/data-set/column';
                      [column]="column"
                      (filter)="onFilter($event)">
       </select-filter>
+      <checkbox-filter *ngSwitchCase="'checkbox'"
+                     [query]="query"
+                     [ngClass]="inputClass"
+                     [column]="column"
+                     (filter)="onFilter($event)">
+      </checkbox-filter>
+      <completer-filter *ngSwitchCase="'completer'"
+                     [query]="query"
+                     [ngClass]="inputClass"
+                     [column]="column"
+                     (filter)="onFilter($event)">
+      </completer-filter>
       <input-filter *ngSwitchDefault
                     [query]="query"
                     [ngClass]="inputClass"
@@ -34,7 +46,6 @@ export class FilterComponent implements AfterViewInit {
   query: string = '';
 
   ngAfterViewInit() {
-    console.log('filter type', this.column.getFilterType());
     this.source.onChanged().subscribe((elements) => {
       let filterConf = this.source.getFilter();
       if (filterConf && filterConf.filters && filterConf.filters.length === 0) {

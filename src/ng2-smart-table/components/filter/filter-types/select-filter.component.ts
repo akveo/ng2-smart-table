@@ -24,6 +24,7 @@ export class SelectFilterComponent extends DefaultFilter implements OnInit {
   }
 
   ngOnInit() {
-    this.setupFilter('change');
+    this.changesSubscription = this.setupFilter('change')
+      .subscribe((value: string) => this.setFilter());
   }
 }

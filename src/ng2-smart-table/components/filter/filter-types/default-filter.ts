@@ -14,21 +14,23 @@ export class DefaultFilter implements Filter, OnDestroy {
   @Input() column: Column;
   @Output() filter = new EventEmitter<string>();
 
-  setupFilter(event: string, filterFn: (ev: any) => boolean = (ev: any) => ev) {
-    this.changesSubscription = Observable.fromEvent(this.filterEl.nativeElement, event)
-      .filter(filterFn)
-      .map((ev: any) => ev.target.value)
-      .distinctUntilChanged()
-      .debounceTime(this.delay)
-      .do((ev: any) => console.log('event', ev))
-      .subscribe((value: string) => this.setFilter());
+  setupFilter(
+    event: string,
+    filterFn: (ev: any) => boolean = (ev: any) => ev,
+    mapFn: (ev: any) => any = (ev: any) => ev.target.value) {
+      return Observable.fromEvent(this.filterEl.nativeElement, event)
+        .filter(filterFn)
+        .map(mapFn)
+        .distinctUntilChanged()
+        .debounceTime(this.delay);
   }
 
   ngOnDestroy() {
-    this.changesSubscription.unsubscribe();
+    if (this.changesSubscription)
+      this.changesSubscription.unsubscribe();
   }
 
-  private setFilter() {
+  setFilter() {
     this.filter.emit(this.query);
   }
 }
@@ -42,9 +44,4 @@ export interface Filter {
   inputClass: string;
   column: Column;
   filter: EventEmitter<string>;
-
-  // setupFilter: (event: string, filterFn: (ev: any) => boolean) => void;
-  // ngOnDestroy: () => void;
-  // setFilter: () => void;
-  // ngOnInit: () => void;
 }
