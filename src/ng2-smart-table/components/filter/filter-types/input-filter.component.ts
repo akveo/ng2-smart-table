@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { DefaultFilter } from './default-filter';
 import { Column } from '../../../lib/data-set/column';
@@ -6,22 +7,26 @@ import { Column } from '../../../lib/data-set/column';
 @Component({
   selector: 'input-filter',
   template: `
-    <input #filterEl
-    [(ngModel)]="query"
-    [ngClass]="inputClass"
-    class="form-control"
-    type="text" 
-    placeholder="{{ column.title }}" />
+    <input [(ngModel)]="query"
+           [ngClass]="inputClass"
+           [formControl]="inputControl"
+           class="form-control"
+           type="text" 
+           placeholder="{{ column.title }}" />
   `
 })
 export class InputFilterComponent extends DefaultFilter implements OnInit {
+
+  inputControl = new FormControl();
 
   constructor() {
     super();
   }
 
   ngOnInit() {
-    this.changesSubscription = this.setupFilter('keyup', (ev: any) => ev.which !== 9) // filter out tab events
+    this.inputControl.valueChanges
+      .distinctUntilChanged()
+      .debounceTime(this.delay)
       .subscribe((value: string) => this.setFilter());
   }
 }

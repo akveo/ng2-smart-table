@@ -7,14 +7,6 @@ import { Column } from '../../../lib/data-set/column';
 
 @Component({
   selector: 'completer-filter',
-  styles: [`
-    /deep/ input[type="search"] {
-      box-sizing: inherit;
-    }
-    /deep/ .completer-dropdown-holder {
-      font-weight: normal;
-    }
-  `],
   template: `
     <ng2-completer [(ngModel)]="query"
                    (ngModelChange)="inputTextChanged($event)"
@@ -34,7 +26,7 @@ export class CompleterFilterComponent extends DefaultFilter implements OnInit {
     super();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     let config = this.column.getFilterConfig().completer;
     config.dataService = this.completerService.local(config.data, config.searchFields, config.titleField);
     config.dataService.descriptionField(config.descriptionField);

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
 
 import { NG2_SMART_TABLE_DIRECTIVES } from './ng2-smart-table.directives';
@@ -30,7 +30,8 @@ import { NG2_SMART_TABLE_TBODY_DIRECTIVES } from './ng2-smart-table/components/t
   imports: [
     CommonModule,
     Ng2CompleterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CellComponent,

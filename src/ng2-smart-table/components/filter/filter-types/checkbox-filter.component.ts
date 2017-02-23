@@ -1,32 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { FormControl } from '@angular/forms';
 
 import { DefaultFilter } from './default-filter';
 import { Column } from '../../../lib/data-set/column';
 
 @Component({
   selector: 'checkbox-filter',
-  styles: [`
-    a {
-      font-weight: normal;
-    }
-  `],
   template: `
-    <input type="checkbox" #filterEl [ngClass]="inputClass" class="form-control">
+    <input type="checkbox" [formControl]="inputControl" [ngClass]="inputClass" class="form-control">
     <a href="#" *ngIf="filterActive" (click)="resetFilter($event)">{{column.getFilterConfig()?.resetText || 'reset'}}</a>
   `
 })
 export class CheckboxFilterComponent extends DefaultFilter implements OnInit {
 
   filterActive: boolean = false;
+  inputControl = new FormControl();
 
   constructor() {
     super();
   }
 
   ngOnInit() {
-    this.changesSubscription = Observable.fromEvent(this.filterEl.nativeElement, 'change')
-      .map((ev: any) => ev.target.checked)
+    this.changesSubscription = this.inputControl.valueChanges
       .debounceTime(this.delay)
       .subscribe((checked: boolean) => {
         this.filterActive = true;
@@ -40,7 +35,7 @@ export class CheckboxFilterComponent extends DefaultFilter implements OnInit {
   resetFilter(event) {
     event.preventDefault();
     this.query = '';
-    this.filterEl.nativeElement.checked = false;
+    this.inputControl.setValue(false, { emitEvent: false });
     this.filterActive = false;
     this.setFilter();
   }

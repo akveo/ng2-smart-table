@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { DefaultFilter } from './default-filter';
 import { Column } from '../../../lib/data-set/column';
@@ -6,9 +7,10 @@ import { Column } from '../../../lib/data-set/column';
 @Component({
   selector: 'select-filter',
   template: `
-    <select #filterEl [ngClass]="inputClass"
+    <select [ngClass]="inputClass"
             class="form-control"
-            [(ngModel)]="query">
+            [(ngModel)]="query"
+            [formControl]="inputControl">
 
         <option value="">{{ column.getFilterConfig().selectText }}</option>
         <option *ngFor="let option of column.getFilterConfig().list" [value]="option.value">
@@ -19,12 +21,16 @@ import { Column } from '../../../lib/data-set/column';
 })
 export class SelectFilterComponent extends DefaultFilter implements OnInit {
 
+  inputControl = new FormControl();
+
   constructor() {
     super();
   }
 
   ngOnInit() {
-    this.changesSubscription = this.setupFilter('change')
+    this.inputControl.valueChanges
+      .distinctUntilChanged()
+      .debounceTime(this.delay)
       .subscribe((value: string) => this.setFilter());
   }
 }
