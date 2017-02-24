@@ -22,6 +22,7 @@ import { AdvancedExamplesTypesComponent } from './demo/components/advanced-examp
 import { AdvancedExamplesCustomEditorComponent } from './demo/components/advanced-example-custom-editor.component';
 import { AdvancedExampleFiltersComponent } from './demo/components/advanced-example-filters.component';
 import { CustomEditorComponent } from './demo/components/custom-editor.component';
+import { CustomRenderComponent } from './demo/components/custom-render.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,10 @@ import { CustomEditorComponent } from './demo/components/custom-editor.component
     Ng2SmartTableModule,
     routing,
   ],
-  entryComponents: [CustomEditorComponent],
+  entryComponents: [
+    CustomEditorComponent,
+    CustomRenderComponent,
+  ],
   declarations: [
     DemoComponent,
     DocumentationComponent,
@@ -49,6 +53,7 @@ import { CustomEditorComponent } from './demo/components/custom-editor.component
     AdvancedExampleFiltersComponent,
     ScrollPositionDirective,
     CustomEditorComponent,
+    CustomRenderComponent,
   ],
 })
 export class PagesModule {

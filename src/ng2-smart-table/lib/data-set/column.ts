@@ -12,10 +12,10 @@ export class Column {
   public defaultSortDirection: string = '';
   public editor: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
   public filter: { type: string, config: any } = { type: '', config: {} };
+  public renderComponent: any = null;
   compareFunction: Function;
   valuePrepareFunction: Function;
   filterFunction: Function;
-  cellRenderFunction: Function;
 
   constructor(public id: string, protected settings: any, protected dataSet: DataSet) {
     this.process();
@@ -31,10 +31,6 @@ export class Column {
 
   public getFilterFunction(): Function {
     return this.filterFunction;
-  }
-
-  public getCellRenderFunction(): Function {
-    return this.cellRenderFunction;
   }
 
   public getConfig(): any {
@@ -55,6 +51,7 @@ export class Column {
     this.type = this.prepareType();
     this.editor = this.settings['editor'];
     this.filter = this.settings['filter'];
+    this.renderComponent = this.settings['renderComponent'];
 
     this.isFilterable = typeof this.settings['filter'] === 'undefined' ? true : !!this.settings['filter'];
     this.defaultSortDirection = ['asc', 'desc'].indexOf(this.settings['sortDirection']) !== -1 ? this.settings['sortDirection'] : '';
@@ -65,7 +62,6 @@ export class Column {
     this.compareFunction = this.settings['compareFunction'];
     this.valuePrepareFunction = this.settings['valuePrepareFunction'];
     this.filterFunction = this.settings['filterFunction'];
-    this.cellRenderFunction = this.settings['cellRenderFunction'];
   }
 
   prepareType(): string {

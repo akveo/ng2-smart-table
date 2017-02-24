@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CustomEditorComponent } from './custom-editor.component';
+import { CustomRenderComponent } from './custom-render.component';
 
 @Component({
   selector: 'advanced-example-custom-editor',
@@ -42,7 +43,9 @@ export class AdvancedExamplesCustomEditorComponent {
         title: 'ID'
       },
       name: {
-        title: 'Full Name'
+        title: 'Full Name',
+        type: 'custom',
+        renderComponent: CustomRenderComponent
       },
       username: {
         title: 'User Name',

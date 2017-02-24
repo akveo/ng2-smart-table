@@ -2,9 +2,10 @@
   imports: [
     // ...
   ],
-  entryComponents: [CustomEditorComponent],
+  entryComponents: [CustomEditorComponent, CustomRenderComponent],
   declarations: [
     // ...
     CustomEditorComponent,
+    CustomRenderComponent,
   ],
 })
