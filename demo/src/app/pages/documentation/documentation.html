@@ -200,6 +200,18 @@
       </td>
     </tr>
     <tr>
+      <td>filter</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Column filter attributes settings. This object accepts the same properties as the <code>editor</code> object.<br>
+        The available types are: <code>checkbox</code>, <code>select</code>, <code>completer</code>.<br>
+        The <code>checkbox</code> type accepts one more optional property compared to the <code>editor</code> version: <span class="highlight">resetText: string</span>.
+        It defines the text of the button to reset the checkbox selection.<br>
+        <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/advanced-example-filters.component.ts">Click here to see an example</a> on how to configure it.
+      </td>
+    </tr>
+    <tr>
       <td>valuePrepareFunction</td>
       <td><span class="highlight">Function</span></td>
       <td>

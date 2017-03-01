@@ -20,6 +20,7 @@ import { AdvancedExampleConfirmComponent } from './demo/components/advanced-exam
 import { AdvancedExampleServerComponent } from './demo/components/advanced-example-server.component';
 import { AdvancedExamplesTypesComponent } from './demo/components/advanced-example-types.component';
 import { AdvancedExamplesCustomEditorComponent } from './demo/components/advanced-example-custom-editor.component';
+import { AdvancedExampleFiltersComponent } from './demo/components/advanced-example-filters.component';
 import { CustomEditorComponent } from './demo/components/custom-editor.component';
 
 @NgModule({
@@ -45,6 +46,7 @@ import { CustomEditorComponent } from './demo/components/custom-editor.component
     AdvancedExampleServerComponent,
     AdvancedExamplesTypesComponent,
     AdvancedExamplesCustomEditorComponent,
+    AdvancedExampleFiltersComponent,
     ScrollPositionDirective,
     CustomEditorComponent,
   ],
