@@ -28,7 +28,7 @@
           <li><a href="#confirm">Confirm Action Example</a></li>
           <li><a href="#server">Load From Server Example</a></li>
           <li><a href="#types">Completer and other built-in editors</a></li>
-          <li><a href="#custom-editor">Using a custom editor</a></li>
+          <li><a href="#custom-editor-renderer">Using a custom editor or renderer</a></li>
           <li><a href="#multiselect">Multi select</a></li>
           <li><a href="#filters">Completer and other built-in filters</a></li>
         </ul>
@@ -202,17 +202,22 @@
     <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/advanced-example-types.component.ts" target="_blank">Demo Source</a>
     <advanced-example-types></advanced-example-types>
   </div>
-  <h3><a id="custom-editor" class="anchor" href="#custom-editor" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom editor column type</h3>
-  <p>An example on how to use a custom editor during cell edit mode:</p>
+  <h3><a id="custom-editor-renderer" class="anchor" href="#custom-editor-renderer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom editor/renderer column type</h3>
+  <p>An example on how to use a custom cell editor and/or custom cell renderer:</p>
   <div class="with-source">
     <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/advanced-example-custom-editor.component.ts" target="_blank">Demo Source</a>
     <advanced-example-custom-editor></advanced-example-custom-editor>
   </div>
-  <p>When implementing a custom editor remember to add it to the <code>entryComponents</code> and to the <code>declarations</code> part of your module</p>
+  <p>When implementing a custom editor or renderer remember to add it to the <code>entryComponents</code> and to the <code>declarations</code> part of your module</p>
   <pre>
     <code class="typescript">{{ snippets.customEditorModule }}</code>
   </pre>
-  <p>To inherit the methods needed to interact with the table you can either extend the component with the <code>DefaultEditor</code> class or implement the <code>Editor</code> interface and reproduce the same methods on your component.</p>
+  <p>
+    <b>For the custom cell editor:</b><br>
+    To inherit the methods needed to interact with the table you can either extend the component with the <code>DefaultEditor</code> class or implement the <code>Editor</code> interface and reproduce the same methods on your component.<br>
+    <b>For the custom cell renderer:</b><br>
+    In this example the custom component is applying a <code>.toUpperCase()</code> to one of the columns. You can implement the ViewCell interface to make sure you are setting up your component correctly.
+  </p>
   <h3><a id="multiselect" class="anchor" href="#multiselect" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Multi select</h3>
   <p>An example on how to use multi select mode:</p>
   <div class="with-source">

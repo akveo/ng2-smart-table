@@ -97,11 +97,22 @@
     </tr>
     <tr>
       <td>type</td>
-      <td><span class="highlight">'text'</span>|<span class="highlight">'html'</span></td>
+      <td><span class="highlight">'text'</span>|<span class="highlight">'html'</span>|<span class="highlight">'custom'</span></td>
       <td>'text'</td>
       <td>
-        Column data type. NOTE: currently not fully supported.<br>
-        If type is <span class="highlight">html</span> then cell value will be inserted as html.
+        If type is <span class="highlight">text</span> then cell value will be inserted as text.<br>
+        If type is <span class="highlight">html</span> then cell value will be inserted as html.<br>
+        If type is <span class="highlight">custom</span> the <code>renderComponent</code> property must be defined.
+      </td>
+    </tr>
+    <tr>
+      <td>renderComponent</td>
+      <td><span class="highlight">any</span></td>
+      <td>null</td>
+      <td>
+        Custom component that will be responsible for rendering the cell content while in view mode.<br>
+        Type must be <span class="highlight">custom</span> in order for this to work.<br>
+        You can see an <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/demo/src/app/pages/demo/components/advanced-example-custom-editor.component.ts">example here</a>
       </td>
     </tr>
     <tr>
