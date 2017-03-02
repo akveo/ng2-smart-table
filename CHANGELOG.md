@@ -13,7 +13,7 @@
 
 ### Code Refactoring
 
-* **core:** group components by section ([#172](https://github.com/akveo/ng2-smart-table/pull/172))
+* **core:** grouping components by section ([#172](https://github.com/akveo/ng2-smart-table/pull/172))
 
 <a name="0.3.1"></a>
 # 0.3.1 (2016-09-19)
