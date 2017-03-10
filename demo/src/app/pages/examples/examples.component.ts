@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'examples',
-    templateUrl: 'examples.html'
+    templateUrl: 'examples.component.html'
 })
 export class ExamplesComponent {
 }
