@@ -15,17 +15,6 @@ import { ScrollPositionDirective } from '../theme/directives/scrollPosition.dire
 import { BasicExampleComponent } from './demo/components/basic-example.component';
 import { BasicExampleDataComponent } from './demo/components/basic-example-data.component';
 
-import { BasicExampleSourceComponent } from './examples/tables/basic-example-source.component';
-import { BasicExampleLoadComponent } from './examples/tables/basic-example-load.component';
-import { BasicExampleMultiSelectComponent } from './examples/tables/basic-example-multi-select.component';
-import { AdvancedExampleConfirmComponent } from './examples/tables/advanced-example-confirm.component';
-import { AdvancedExampleServerComponent } from './examples/tables/advanced-example-server.component';
-import { AdvancedExamplesTypesComponent } from './examples/tables/advanced-example-types.component';
-import { AdvancedExamplesCustomEditorComponent } from './examples/tables/advanced-example-custom-editor.component';
-import { AdvancedExampleFiltersComponent } from './examples/tables/advanced-example-filters.component';
-import { CustomEditorComponent } from './examples/tables/custom-editor.component';
-import { CustomRenderComponent } from './examples/tables/custom-render.component';
-
 @NgModule({
   imports: [
     FormsModule,
