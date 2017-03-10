@@ -4,17 +4,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { routing }       from './pages.routing';
+import { SharedModule } from '../shared/shared.module';
 
 import { DemoComponent } from './demo';
 import { DocumentationComponent } from './documentation';
 import { HomeComponent } from './home';
-import { HeaderComponent } from '../components';
-import { ExamplesComponent,
-         FilterExamplesComponent,
-         DefaultExampleComponent,
-         ServerExamplesComponent,
-         CustomViewEditExamplesComponent,
-         VariousExamplesComponent } from './examples';
 import { Ng2SmartTableModule } from '../../../../src/ng2-smart-table.module';
 import { ScrollPositionDirective } from '../theme/directives/scrollPosition.directive';
 
@@ -34,41 +28,20 @@ import { CustomRenderComponent } from './examples/tables/custom-render.component
 
 @NgModule({
   imports: [
-    CommonModule,
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
     Ng2SmartTableModule,
+    SharedModule,
     routing,
   ],
-  entryComponents: [
-    CustomEditorComponent,
-    CustomRenderComponent,
-  ],
   declarations: [
-    HeaderComponent,
     DemoComponent,
     DocumentationComponent,
     HomeComponent,
-    ExamplesComponent,
-    DefaultExampleComponent,
-    FilterExamplesComponent,
-    ServerExamplesComponent,
-    CustomViewEditExamplesComponent,
-    VariousExamplesComponent,
     BasicExampleComponent,
     BasicExampleDataComponent,
-    BasicExampleSourceComponent,
-    BasicExampleLoadComponent,
-    BasicExampleMultiSelectComponent,
-    AdvancedExampleConfirmComponent,
-    AdvancedExampleServerComponent,
-    AdvancedExamplesTypesComponent,
-    AdvancedExamplesCustomEditorComponent,
-    AdvancedExampleFiltersComponent,
     ScrollPositionDirective,
-    CustomEditorComponent,
-    CustomRenderComponent,
   ],
 })
 export class PagesModule {

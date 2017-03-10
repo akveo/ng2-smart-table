@@ -21,8 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'examples',
-    component: ExamplesComponent,
-    children: examplesRoutes
+    loadChildren: './examples/examples.module#ExamplesModule'
   }
 ];
 
