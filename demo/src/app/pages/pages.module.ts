@@ -9,6 +9,13 @@ import { SharedModule } from '../shared/shared.module';
 import { DemoComponent } from './demo';
 import { DocumentationComponent } from './documentation';
 import { HomeComponent } from './home';
+import { HeaderComponent } from '../components';
+import { ExamplesComponent,
+         FilterExamplesComponent,
+         DefaultExampleComponent,
+         ServerExamplesComponent,
+         CustomViewEditExamplesComponent,
+         VariousExamplesComponent } from './examples';
 import { Ng2SmartTableModule } from '../../../../src/ng2-smart-table.module';
 import { ScrollPositionDirective } from '../theme/directives/scrollPosition.directive';
 
@@ -36,9 +43,16 @@ import { CustomRenderComponent } from './examples/tables/custom-render.component
     routing,
   ],
   declarations: [
+    HeaderComponent,
     DemoComponent,
     DocumentationComponent,
     HomeComponent,
+    ExamplesComponent,
+    DefaultExampleComponent,
+    FilterExamplesComponent,
+    ServerExamplesComponent,
+    CustomViewEditExamplesComponent,
+    VariousExamplesComponent,
     BasicExampleComponent,
     BasicExampleDataComponent,
     ScrollPositionDirective,
