@@ -3,11 +3,11 @@ import * as hljs from 'highlight.js';
 
 import 'style-loader!../../../../../node_modules/highlight.js/styles/dracula.css';
 
-import 'style-loader!./demo.scss';
+import 'style-loader!./demo.component.scss';
 
 @Component({
   selector: 'demo',
-  templateUrl: 'demo.html',
+  templateUrl: './demo.component.html',
 })
 export class DemoComponent {
 

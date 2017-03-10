@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'header-component',
-  templateUrl: 'header.html'
+  templateUrl: './header.component.html'
 })
 export class HeaderComponent {
 

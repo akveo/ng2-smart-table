@@ -3,7 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { DemoComponent } from './demo/demo.component';
 import { ExamplesComponent } from './examples/examples.component';
 import { DocumentationComponent } from './documentation/documentation.component';
-import { examplesRoutes } from './examples/examples-routes';
+import { examplesRoutes } from './examples/examples.routes';
 
 // noinspection TypeScriptValidateTypes
 const routes: Routes = [
