@@ -57,7 +57,7 @@
     <tbody>
 
     <tr *ngFor="let row of grid.getRows()" (click)="onUserSelectRow(row)" class="ng2-smart-row"
-        [ngClass]="{selected: row.isSelected}">
+        [ngClass]="{selected: row.isSelected, 'sm-highlighted': grid.getSetting('isHighlighted')(row), 'sm-priority': grid.getSetting('isPriority')(row)}">
       <td *ngIf="grid.isMultiSelectVisible()" class="ng2-smart-actions ng2-smart-action-multiple-select"
           (click)="multipleSelectRow(row)">
         <input type="checkbox" class="form-control" [ngModel]="row.isSelected">
