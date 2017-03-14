@@ -37,6 +37,14 @@ export class Grid {
     return this.getSetting('selectMode') === 'multi';
   }
 
+  isHighlighted(): boolean {
+    return false;
+  }
+
+  isPriority(): boolean {
+    return false;
+  }
+
   getNewRow(): Row {
     return this.dataSet.newRow;
   }
