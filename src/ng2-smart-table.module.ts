@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
 
 import { NG2_SMART_TABLE_DIRECTIVES } from './ng2-smart-table.directives';
 import { CellComponent } from './ng2-smart-table/components/cell/cell.component';
-import { ViewCellComponent } from './ng2-smart-table/components/cell/cell-view-mode/view-cell.component';
+import {
+  ViewCellComponent,
+  CustomViewComponent } from './ng2-smart-table/components/cell/cell-view-mode';
 import {
   EditCellComponent,
   DefaultEditComponent,
@@ -17,20 +19,28 @@ import {
   TextareaEditorComponent,
   CheckboxEditorComponent } from './ng2-smart-table/components/cell/cell-editors';
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
+import {
+  InputFilterComponent,
+  SelectFilterComponent,
+  CheckboxFilterComponent,
+  CompleterFilterComponent } from './ng2-smart-table/components/filter/filter-types';
 import { PagerComponent } from './ng2-smart-table/components/pager/pager.component';
-import { TitleComponent } from './ng2-smart-table/components/title/title.component';
+import { NG2_SMART_TABLE_THEAD_DIRECTIVES } from './ng2-smart-table/components/thead/thead.directives';
+import { NG2_SMART_TABLE_TBODY_DIRECTIVES } from './ng2-smart-table/components/tbody/tbody.directives';
 
 @NgModule({
   imports: [
     CommonModule,
     Ng2CompleterModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     CellComponent,
     ViewCellComponent,
     DefaultEditComponent,
     CustomEditComponent,
+    CustomViewComponent,
     EditCellComponent,
     CompleterEditorComponent,
     InputEditorComponent,
@@ -38,8 +48,13 @@ import { TitleComponent } from './ng2-smart-table/components/title/title.compone
     TextareaEditorComponent,
     CheckboxEditorComponent,
     FilterComponent,
+    InputFilterComponent,
+    SelectFilterComponent,
+    CheckboxFilterComponent,
+    CompleterFilterComponent,
     PagerComponent,
-    TitleComponent,
+    ...NG2_SMART_TABLE_THEAD_DIRECTIVES,
+    ...NG2_SMART_TABLE_TBODY_DIRECTIVES,
     ...NG2_SMART_TABLE_DIRECTIVES
   ],
   exports: [

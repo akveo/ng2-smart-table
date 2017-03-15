@@ -1,59 +1,18 @@
 <div class="ng2-smart-table-container">
   <table class="ng2-smart-table table" [id]="grid.getSetting('attr.id')" [ngClass]="grid.getSetting('attr.class')">
-    <thead *ngIf="!grid.getSetting('hideHeader') || !grid.getSetting('hideSubHeader')">
 
-    <tr class="ng2-smart-titles" *ngIf="!grid.getSetting('hideHeader')">
-      <th *ngIf="grid.isMultiSelectVisible()" (click)="selectAllRows()">
-        <input type="checkbox" [ngModel]="isAllSelected">
-      </th>
-      <th *ngIf="grid.showActionColumn('left')" class="ng2-smart-actions">
-        <div class="ng2-smart-title">{{ grid.getSetting('actions.columnTitle') }}</div>
-      </th>
-      <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class">
-        <div class="ng2-smart-title">
-          <ng2-smart-table-title [source]="source" [column]="column" (sort)="sort($event)"></ng2-smart-table-title>
-        </div>
-      </th>
-      <th *ngIf="grid.showActionColumn('right')" class="ng2-smart-actions">
-        <div class="ng2-smart-title">{{ grid.getSetting('actions.columnTitle') }}</div>
-      </th>
-    </tr>
-
-    <tr class="ng2-smart-filters" *ngIf="!grid.getSetting('hideSubHeader')">
-      <th *ngIf="grid.isMultiSelectVisible()"></th>
-      <th *ngIf="grid.showActionColumn('left')" class="ng2-smart-actions-title ng2-smart-actions-title-add">
-        <a *ngIf="grid.getSetting('actions.add')" href="#" class="ng2-smart-action ng2-smart-action-add-add"
-           [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
-      </th>
-      <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
-        <ng2-smart-table-filter [source]="source"
-                                [column]="column"
-                                [inputClass]="grid.getSetting('filter.inputClass')"
-                                (filter)="filter($event)"></ng2-smart-table-filter>
-      </th>
-      <th *ngIf="grid.showActionColumn('right')" class="ng2-smart-actions-title ng2-smart-actions-title-add">
-        <a *ngIf="grid.getSetting('actions.add')" href="#" class="ng2-smart-action ng2-smart-action-add-add"
-           [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
-      </th>
-    </tr>
-
-    <tr *ngIf="grid.createFormShown">
-      <td *ngIf="grid.isMultiSelectVisible()"></td>
-      <td class="ng2-smart-actions">
-        <a href="#" class="ng2-smart-action ng2-smart-action-add-create"
-           [innerHTML]="grid.getSetting('add.createButtonContent')" (click)="onCreate(grid.getNewRow(), $event)"></a>
-        <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel"
-           [innerHTML]="grid.getSetting('add.cancelButtonContent')" (click)="grid.createFormShown = false;"></a>
-      </td>
-      <td *ngFor="let cell of grid.getNewRow().getCells()">
-        <ng2-smart-table-cell [cell]="cell" [inputClass]="grid.getSetting('add.inputClass')"
-                              [isInEditing]="grid.getNewRow().isInEditing"
-                              (edited)="onCreate(grid.getNewRow(), $event)"></ng2-smart-table-cell>
-      </td>
-    </tr>
-
+    <thead ng2-st-thead *ngIf="!grid.getSetting('hideHeader') || !grid.getSetting('hideSubHeader')"
+                        [grid]="grid"
+                        [isAllSelected]="isAllSelected"
+                        [source]="source"
+                        [createConfirm]="createConfirm"
+                        (create)="create.emit($event)"
+                        (selectAllRows)="onSelectAllRows($event)"
+                        (sort)="sort($event)"
+                        (filter)="filter($event)">
     </thead>
 
+<<<<<<< HEAD
     <tbody>
 
     <tr *ngFor="let row of grid.getRows()" (click)="onUserSelectRow(row)" class="ng2-smart-row"
@@ -95,11 +54,24 @@
       </td>
     </tr>
 
+=======
+    <tbody ng2-st-tbody [grid]="grid"
+                        [source]="source"
+                        [deleteConfirm]="deleteConfirm"
+                        [editConfirm]="editConfirm"
+                        (edit)="edit.emit($event)"
+                        (delete)="delete.emit($event)"
+                        (userSelectRow)="onUserSelectRow($event)"
+                        (editRowSelect)="editRowSelect($event)"
+                        (multipleSelectRow)="multipleSelectRow($event)">
+>>>>>>> upstream/master
     </tbody>
+
   </table>
 
   <ng2-smart-table-pager *ngIf="grid.getSetting('pager.display')"
                          [source]="source"
                          [perPage]="grid.getSetting('pager.perPage')"
-                         (changePage)="changePage($event)"></ng2-smart-table-pager>
+                         (changePage)="changePage($event)">
+  </ng2-smart-table-pager>
 </div>

@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-const path = require('path');
 const helpers = require('./helpers');
 
 /*
@@ -178,7 +177,7 @@ module.exports = function (options) {
         {
           test: /\.html$/,
           use: 'raw-loader',
-          exclude: [helpers.root('demo/src/index.html')]
+          exclude: [helpers.root('demo/src/index.html'), helpers.root('demo/src/404.html')]
         },
 
         /* File loader for supporting images, for example, in CSS files.
@@ -276,6 +275,7 @@ module.exports = function (options) {
       new HtmlWebpackPlugin({
         template: 'demo/src/404.html',
         filename: '404.html',
+        metadata: METADATA,
         inject: false
       }),
 

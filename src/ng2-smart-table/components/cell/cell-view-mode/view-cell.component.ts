@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef, OnChanges, AfterViewInit } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
 
@@ -6,29 +6,13 @@ import { Cell } from '../../../lib/data-set/cell';
   selector: 'table-cell-view-mode',
   template: `
     <div [ngSwitch]="cell.getColumn().type">
-        <div *ngSwitchCase="'html'" #cellContainer [innerHTML]="cell.getValue()"></div>
-
-        <div *ngSwitchDefault #cellContainer>{{ cell.getValue() }}</div>
+        <custom-view-component *ngSwitchCase="'custom'" [cell]="cell"></custom-view-component>
+        <div *ngSwitchCase="'html'" [innerHTML]="cell.getValue()"></div>
+        <div *ngSwitchDefault>{{ cell.getValue() }}</div>
     </div>
     `
 })
-export class ViewCellComponent implements OnChanges, AfterViewInit {
+export class ViewCellComponent {
 
   @Input() cell: Cell;
-  @ViewChild('cellContainer') cellRef: ElementRef;
-
-  ngOnChanges(changes): void {
-    setTimeout(() => this.renderCustomValue());
-  }
-
-  ngAfterViewInit(): void {
-    this.renderCustomValue();
-  }
-
-  renderCustomValue(): void {
-    const cellRenderFunc = this.cell.getColumn().getCellRenderFunction();
-
-    if (cellRenderFunc && this.cellRef)
-      cellRenderFunc.call(null, this.cell, this.cellRef.nativeElement);
-  }
 }
