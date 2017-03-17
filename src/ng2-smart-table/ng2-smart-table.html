@@ -27,7 +27,6 @@
 
   <ng2-smart-table-pager *ngIf="grid.getSetting('pager.display')"
                          [source]="source"
-                         [perPage]="grid.getSetting('pager.perPage')"
                          (changePage)="changePage($event)">
   </ng2-smart-table-pager>
 </div>
