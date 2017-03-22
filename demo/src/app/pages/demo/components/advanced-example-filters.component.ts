@@ -13,53 +13,61 @@ export class AdvancedExampleFiltersComponent {
       id: 4,
       name: 'Patricia Lebsack',
       email: 'Julianne.OConner@kory.org',
-      passed: 'Yes'
+      passed: 'Yes',
+      deadline: '2017-02-01'
     },
     {
       id: 5,
       name: 'Chelsey Dietrich',
       email: 'Lucio_Hettinger@annie.ca',
-      passed: 'No'
+      passed: 'No',
+      deadline: '2017-02-01'
     },
     {
       id: 6,
       name: 'Mrs. Dennis Schulist',
       email: 'Karley_Dach@jasper.info',
-      passed: 'Yes'
+      passed: 'Yes',
+      deadline: '2017-01-22'
     },
     {
       id: 7,
       name: 'Kurtis Weissnat',
       email: 'Telly.Hoeger@billy.biz',
-      passed: 'No'
+      passed: 'No',
+      deadline: '2017-03-22'
     },
     {
       id: 8,
       name: 'Nicholas Runolfsdottir V',
       email: 'Sherwood@rosamond.me',
-      passed: 'Yes'
+      passed: 'Yes',
+      deadline: '2017-02-02'
     },
     {
       id: 9,
       name: 'Glenna Reichert',
       email: 'Chaim_McDermott@dana.io',
-      passed: 'No'
+      passed: 'No',
+      deadline: '2017-01-11'
     },
     {
       id: 10,
       name: 'Clementina DuBuque',
       email: 'Rey.Padberg@karina.biz',
-      passed: 'No'
+      passed: 'No',
+      deadline: '2017-02-16'
     },
     {
       id: 11,
       name: 'Nicholas DuBuque',
       email: 'Rey.Padberg@rosamond.biz',
-      passed: 'Yes'
+      passed: 'Yes',
+      deadline: '2017-01-01'
     }
   ];
 
-    settings = {
+  settings = {
     columns: {
       id: {
         title: 'ID'
@@ -100,6 +108,12 @@ export class AdvancedExampleFiltersComponent {
             false: 'No',
             resetText: 'clear'
           }
+        }
+      },
+      deadline: {
+        title: 'Deadline',
+        filter: {
+          type: 'date'
         }
       }
     }

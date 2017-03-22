@@ -26,6 +26,12 @@ import { Column } from '../../lib/data-set/column';
                         [column]="column"
                         (filter)="onFilter($event)">
       </completer-filter>
+      <input-date-filter *ngSwitchCase="'date'"
+                    [query]="query"
+                    [ngClass]="inputClass"
+                    [column]="column"
+                    (filter)="onFilter($event)">
+      </input-date-filter>
       <input-filter *ngSwitchDefault
                     [query]="query"
                     [ngClass]="inputClass"
