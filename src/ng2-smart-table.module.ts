@@ -21,6 +21,7 @@ import {
 import { FilterComponent } from './ng2-smart-table/components/filter/filter.component';
 import {
   InputFilterComponent,
+  InputDateFilterComponent,
   SelectFilterComponent,
   CheckboxFilterComponent,
   CompleterFilterComponent } from './ng2-smart-table/components/filter/filter-types';
@@ -49,6 +50,7 @@ import { NG2_SMART_TABLE_TBODY_DIRECTIVES } from './ng2-smart-table/components/t
     CheckboxEditorComponent,
     FilterComponent,
     InputFilterComponent,
+    InputDateFilterComponent,
     SelectFilterComponent,
     CheckboxFilterComponent,
     CompleterFilterComponent,
