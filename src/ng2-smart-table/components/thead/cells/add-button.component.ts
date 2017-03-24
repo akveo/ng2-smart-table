@@ -7,7 +7,7 @@ import { Grid } from '../../../lib/grid';
   template: `
     <a *ngIf="grid.getSetting('actions.add')" href="#" class="ng2-smart-action ng2-smart-action-add-add"
         [innerHTML]="grid.getSetting('add.addButtonContent')" (click)="onAdd($event)"></a>
-  `
+  `,
 })
 export class AddButtonComponent implements AfterViewInit {
 
@@ -27,9 +27,10 @@ export class AddButtonComponent implements AfterViewInit {
     event.stopPropagation();
     if (this.grid.getSetting('mode') === 'external') {
       this.create.emit({
-        source: this.source
+        source: this.source,
       });
-    } else
+    } else {
       this.grid.createFormShown = true;
+    }
   }
 }

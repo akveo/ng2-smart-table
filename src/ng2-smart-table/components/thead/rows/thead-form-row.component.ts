@@ -20,13 +20,14 @@ import { Row } from '../../../lib/data-set/row';
                               (edited)="onCreate($event)">
         </ng2-smart-table-cell>
       </td>
-    `
+  `,
 })
 export class TheadFormRowComponent {
 
   @Input() grid: Grid;
   @Input() row: Row;
   @Input() createConfirm: EventEmitter<any>;
+
   @Output() create = new EventEmitter<any>();
 
   onCreate(event: any) {
@@ -34,4 +35,5 @@ export class TheadFormRowComponent {
 
     this.grid.create(this.grid.getNewRow(), this.createConfirm);
   }
+
 }

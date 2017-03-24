@@ -17,7 +17,8 @@ a.sort {
   }
 
   &.desc::after {
-    transform: rotate(-180deg);
+    -webkit-transform: rotate(-180deg);
+            transform: rotate(-180deg);
     margin-bottom: -2px;
   }
 }

@@ -6,7 +6,7 @@ import { Grid } from '../../../lib/grid';
   selector: '[ng2-st-actions-title]',
   template: `
     <div class="ng2-smart-title">{{ grid.getSetting('actions.columnTitle') }}</div>
-  `
+  `,
 })
 export class ActionsTitleComponent implements AfterViewInit {
 

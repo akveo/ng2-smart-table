@@ -1,11 +1,28 @@
+<a name="1.0.0"></a>
+# 1.0.0 (2017-03-27)
+
+### Features
+
+* **table:** update to angular 4.0.0
+* **demo:** @angular/cli integration
+
+### Bug fixes
+
+* **table:** ng2-completer failed with empty value ([b0e1797](https://github.com/akveo/ng2-smart-table/commit/b0e1797e9d22ca4a076e01120525f16628e3e6a6)), closes ([#164](https://github.com/akveo/ng2-smart-table/issues/164))
+
+### Code Refactoring
+
+* **table:** move the components to the modules
+* **demo:** move some examples to new /examples route ([#213](https://github.com/akveo/ng2-smart-table/pull/213))
+
 <a name="0.6.0-0"></a>
 # 0.6.0-0 (2017-03-02)
 
 ### Features
 
-* **core:** configuring column filters ([#185](https://github.com/akveo/ng2-smart-table/pull/185))
-* **core:** custom cell view component ([#193](https://github.com/akveo/ng2-smart-table/pull/193))
-* **core:** update to angular 2.4.9
+* **table:** configuring column filters ([#185](https://github.com/akveo/ng2-smart-table/pull/185))
+* **table:** custom cell view component ([#193](https://github.com/akveo/ng2-smart-table/pull/193))
+* **table:** update to angular 2.4.9
 
 ### Bug Fixes
 
@@ -13,14 +30,14 @@
 
 ### Code Refactoring
 
-* **core:** grouping components by section ([#172](https://github.com/akveo/ng2-smart-table/pull/172))
+* **table:** grouping components by section ([#172](https://github.com/akveo/ng2-smart-table/pull/172))
 
 <a name="0.3.1"></a>
 # 0.3.1 (2016-09-19)
 
 ### Features
 
-* **core:** update to angular 2.0
+* **table:** update to angular 2.0
 
 ### How to update
 
@@ -32,7 +49,7 @@
 
 ### Features
 
-* **core:** update to angular rc.5
+* **table:** update to angular rc.5
 
 ### How to update
 

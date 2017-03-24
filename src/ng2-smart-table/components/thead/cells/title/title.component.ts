@@ -8,13 +8,13 @@ import { Column } from '../../../../lib/data-set/column';
   styleUrls: ['./title.component.scss'],
   template: `
     <a href="#" *ngIf="column.isSortable"
-                (click)="_sort($event, column)" 
+                (click)="_sort($event, column)"
                 class="ng2-smart-sort-link sort"
                 [ngClass]="currentDirection">
       {{ column.title }}
     </a>
     <span class="ng2-smart-sort" *ngIf="!column.isSortable">{{ column.title }}</span>
-  `
+  `,
 })
 export class TitleComponent implements OnInit {
 
@@ -25,14 +25,15 @@ export class TitleComponent implements OnInit {
 
   ngOnInit() {
     this.source.onChanged().subscribe((elements) => {
-      let sortConf = this.source.getSort();
+      const sortConf = this.source.getSort();
 
-      if (sortConf.length > 0 && sortConf[0]['field'] === this.column.id)
+      if (sortConf.length > 0 && sortConf[0]['field'] === this.column.id) {
         this.currentDirection = sortConf[0]['direction'];
-      else
+      } else {
         this.currentDirection = '';
+      }
 
-      sortConf.forEach((fieldConf) => {
+      sortConf.forEach((fieldConf: any) => {
 
       });
     });
@@ -45,15 +46,15 @@ export class TitleComponent implements OnInit {
       {
         field: this.column.id,
         direction: this.currentDirection,
-        compare: this.column.getCompareFunction()
-      }
+        compare: this.column.getCompareFunction(),
+      },
     ]);
     this.sort.emit(null);
   }
 
   changeSortDirection(): string {
     if (this.currentDirection) {
-      let newDirection = this.currentDirection === 'asc' ? 'desc' : 'asc';
+      const newDirection = this.currentDirection === 'asc' ? 'desc' : 'asc';
       this.currentDirection = newDirection;
     } else {
       this.currentDirection = this.column.sortDirection;
