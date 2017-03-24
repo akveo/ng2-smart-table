@@ -10,7 +10,7 @@ import { Row } from '../../../lib/data-set/row';
         [innerHTML]="grid.getSetting('edit.editButtonContent')" (click)="onEdit($event)"></a>
     <a href="#" *ngIf="grid.getSetting('actions.delete')" class="ng2-smart-action ng2-smart-action-delete-delete"
         [innerHTML]="grid.getSetting('delete.deleteButtonContent')" (click)="onDelete($event)"></a>
-  `
+  `,
 })
 export class TbodyEditDeleteComponent {
 

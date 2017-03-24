@@ -45,7 +45,7 @@ export class Column {
     return this.filter && this.filter.config;
   }
 
-  protected process(): void {
+  protected process() {
     this.title = this.settings['title'];
     this.class = this.settings['class'];
     this.type = this.prepareType();
@@ -54,7 +54,8 @@ export class Column {
     this.renderComponent = this.settings['renderComponent'];
 
     this.isFilterable = typeof this.settings['filter'] === 'undefined' ? true : !!this.settings['filter'];
-    this.defaultSortDirection = ['asc', 'desc'].indexOf(this.settings['sortDirection']) !== -1 ? this.settings['sortDirection'] : '';
+    this.defaultSortDirection = ['asc', 'desc']
+      .indexOf(this.settings['sortDirection']) !== -1 ? this.settings['sortDirection'] : '';
     this.isSortable = typeof this.settings['sort'] === 'undefined' ? true : !!this.settings['sort'];
     this.isEditable = typeof this.settings['editable'] === 'undefined' ? true : !!this.settings['editable'];
     this.sortDirection = this.prepareSortDirection();
