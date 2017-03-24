@@ -35,6 +35,12 @@
   }
 }
 
+.examples-menu {
+  a.active {
+    font-weight: bold;
+  }
+}
+
 @media screen and (max-width: 64em) {
   .with-sidebar {
     
