@@ -19,15 +19,17 @@ import { Grid } from '../../../lib/grid';
     </th>
     <th ng2-st-add-button *ngIf="grid.showActionColumn('right')"
                           [grid]="grid"
-                          [source]="source"                          
+                          [source]="source"
                           (create)="create.emit($event)">
     </th>
-    `
+  `,
 })
 export class TheadFitlersRowComponent {
 
   @Input() grid: Grid;
   @Input() source: any;
+
   @Output() create = new EventEmitter<any>();
   @Output() filter = new EventEmitter<any>();
+
 }

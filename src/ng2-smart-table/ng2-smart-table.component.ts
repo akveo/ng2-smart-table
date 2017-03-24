@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges } from '@angular/core';
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
@@ -9,21 +9,21 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['ng2-smart-table.scss'],
-  templateUrl: 'ng2-smart-table.html'
+  templateUrl: 'ng2-smart-table.html',
 })
 export class Ng2SmartTableComponent implements OnChanges {
 
   @Input() source: any;
   @Input() settings: Object = {};
 
-  @Output() public rowSelect: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public userRowSelect: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public delete: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public edit: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public create: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public deleteConfirm: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public editConfirm: EventEmitter<any> = new EventEmitter<any>();
-  @Output() public createConfirm: EventEmitter<any> = new EventEmitter<any>();
+  @Output() rowSelect = new EventEmitter<any>();
+  @Output() userRowSelect = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
+  @Output() edit = new EventEmitter<any>();
+  @Output() create = new EventEmitter<any>();
+  @Output() deleteConfirm = new EventEmitter<any>();
+  @Output() editConfirm = new EventEmitter<any>();
+  @Output() createConfirm = new EventEmitter<any>();
 
   grid: Grid;
   defaultSettings: Object = {
@@ -37,7 +37,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       add: true,
       edit: true,
       delete: true,
-      position: 'left' // left|right
+      position: 'left', // left|right
     },
     filter: {
       inputClass: '',
@@ -47,18 +47,18 @@ export class Ng2SmartTableComponent implements OnChanges {
       editButtonContent: 'Edit',
       saveButtonContent: 'Update',
       cancelButtonContent: 'Cancel',
-      confirmSave: false
+      confirmSave: false,
     },
     add: {
       inputClass: '',
       addButtonContent: 'Add New',
       createButtonContent: 'Create',
       cancelButtonContent: 'Cancel',
-      confirmCreate: false
+      confirmCreate: false,
     },
     delete: {
       deleteButtonContent: 'Delete',
-      confirmDelete: false
+      confirmDelete: false,
     },
     attr: {
       id: '',
@@ -68,8 +68,8 @@ export class Ng2SmartTableComponent implements OnChanges {
     columns: {},
     pager: {
       display: true,
-      perPage: 10
-    }
+      perPage: 10,
+    },
   };
 
   isAllSelected: boolean = false;
@@ -88,10 +88,11 @@ export class Ng2SmartTableComponent implements OnChanges {
   }
 
   editRowSelect(row: Row) {
-    if (this.grid.getSetting('selectMode') === 'multi')
+    if (this.grid.getSetting('selectMode') === 'multi') {
       this.onMultipleSelectRow(row);
-    else
+    } else {
       this.onSelectRow(row);
+    }
   }
 
   onUserSelectRow(row: Row) {
@@ -111,7 +112,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   onSelectAllRows($event: any) {
     this.isAllSelected = !this.isAllSelected;
     this.grid.selectAllRows(this.isAllSelected);
-    let selectedRows = this.grid.getSelectedRows();
+    const selectedRows = this.grid.getSelectedRows();
 
     this._onUserSelectRow(selectedRows[0], selectedRows);
     this._onSelectRow(selectedRows[0]);

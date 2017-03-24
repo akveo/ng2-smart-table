@@ -28,7 +28,7 @@ export class CellComponent {
 
   @Output() edited = new EventEmitter<any>();
 
-  onEdited(event) {
+  onEdited(event: any) {
     if (this.isNew) {
       this.grid.create(this.grid.getNewRow(), this.createConfirm);
     } else {

@@ -1,0 +1,35 @@
+{
+  "name": "ng2-smart-table",
+  "version": "1.0.0",
+  "description": "Angular Smart Table",
+  "main": "./bundles/table.umd.js",
+  "module": "./index.js",
+  "typings": "./index.d.ts",
+  "author": "akveo",
+  "license": "MIT",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akveo/ng2-admin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akveo/ng2-admin/issues"
+  },
+  "homepage": "https://github.com/akveo/ng2-admin#readme",
+  "keywords": [
+    "angular",
+    "typescript",
+    "ng2-admin",
+    "ngx-admin",
+    "table",
+    "akveo"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0",
+    "lodash": "^4.17.4",
+    "ng2-completer": "^1.2.2"
+  }
+}

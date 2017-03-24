@@ -5,9 +5,9 @@ import { Row } from './row';
 export class Cell {
 
   newValue: any = '';
-  protected static PREPARE = (value) => value;
+  protected static PREPARE = (value: any) => value;
 
-  constructor(protected value: any, protected row: Row, protected column, protected dataSet: DataSet) {
+  constructor(protected value: any, protected row: Row, protected column: any, protected dataSet: DataSet) {
     this.newValue = value;
   }
 
@@ -20,8 +20,8 @@ export class Cell {
   }
 
   getValue(): any {
-    let valid = this.column.getValuePrepareFunction() instanceof Function;
-    let prepare = valid ? this.column.getValuePrepareFunction() : Cell.PREPARE;
+    const valid = this.column.getValuePrepareFunction() instanceof Function;
+    const prepare = valid ? this.column.getValuePrepareFunction() : Cell.PREPARE;
     return prepare.call(null, this.value, this.row.getData());
   }
 
