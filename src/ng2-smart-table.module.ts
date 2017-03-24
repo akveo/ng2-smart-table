@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
@@ -59,7 +59,8 @@ import { NG2_SMART_TABLE_TBODY_DIRECTIVES } from './ng2-smart-table/components/t
   ],
   exports: [
     ...NG2_SMART_TABLE_DIRECTIVES
-  ]
+  ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class Ng2SmartTableModule {
 }
