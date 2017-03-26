@@ -76,6 +76,12 @@ export class LocalDataSource extends DataSource {
     return Promise.resolve(this.prepareData(data));
   }
 
+  getFilteredAndSorted(): Promise<any> {
+    let data = this.data.slice(0);
+    this.prepareData(data);
+    return Promise.resolve(this.filteredAndSorted);
+  }
+
   getAll(): Promise<any> {
     let data = this.data.slice(0);
     return Promise.resolve(data);
@@ -155,7 +161,7 @@ export class LocalDataSource extends DataSource {
     }
     this.filterConf.andOperator = andOperator;
     this.pagingConf['page'] = 1;
-    
+
     super.setFilter(conf, andOperator, doEmit);
     return this;
   }
