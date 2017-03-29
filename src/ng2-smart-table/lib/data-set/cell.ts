@@ -4,17 +4,11 @@ import { Row } from './row';
 
 export class Cell {
 
-  newValue = '';
-  protected static PREPARE = (value) => value;
+  newValue: any = '';
+  protected static PREPARE = (value: any) => value;
 
-  constructor(protected value: any, protected row: Row, protected column, protected dataSet: DataSet) {
+  constructor(protected value: any, protected row: Row, protected column: any, protected dataSet: DataSet) {
     this.newValue = value;
-  }
-
-  getValue(): any {
-    let valid = this.column.getValuePrepareFunction() instanceof Function;
-    let prepare = valid ? this.column.getValuePrepareFunction() : Cell.PREPARE;
-    return prepare.call(null, this.value, this.row.getData());
   }
 
   getColumn(): Column {
@@ -23,5 +17,27 @@ export class Cell {
 
   getRow(): Row {
     return this.row;
+  }
+
+  getValue(): any {
+    const valid = this.column.getValuePrepareFunction() instanceof Function;
+    const prepare = valid ? this.column.getValuePrepareFunction() : Cell.PREPARE;
+    return prepare.call(null, this.value, this.row.getData());
+  }
+
+  setValue(value: any): any {
+    this.newValue = value;
+  }
+
+  getId(): string {
+    return this.getColumn().id;
+  }
+
+  getTitle(): string {
+    return this.getColumn().title;
+  }
+
+  isEditable(): boolean {
+    return this.getColumn().isEditable;
   }
 }

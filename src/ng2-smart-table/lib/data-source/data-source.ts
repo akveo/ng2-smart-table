@@ -1,4 +1,5 @@
-import { Subject, Observable } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 export abstract class DataSource {
 
@@ -14,7 +15,7 @@ export abstract class DataSource {
   abstract getPaging(): any;
   abstract count(): number;
 
-  refresh(): void {
+  refresh() {
     this.emitOnChanged('refresh');
   }
 
@@ -74,55 +75,55 @@ export abstract class DataSource {
     return Promise.resolve();
   }
 
-  setSort(conf: Array<any>, doEmit?: boolean): void {
+  setSort(conf: Array<any>, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('sort');
     }
   }
 
-  setFilter(conf: Array<any>, andOperator?: boolean, doEmit?: boolean): void {
+  setFilter(conf: Array<any>, andOperator?: boolean, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('filter');
     }
   }
 
-  addFilter(fieldConf: {}, andOperator?: boolean, doEmit?: boolean): void {
+  addFilter(fieldConf: {}, andOperator?: boolean, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('filter');
     }
   }
 
-  setPaging(page: number, perPage: number, doEmit?: boolean): void {
+  setPaging(page: number, perPage: number, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('paging');
     }
   }
 
-  setPage(page: number, doEmit?: boolean): void {
+  setPage(page: number, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('page');
     }
   }
 
-  protected emitOnRemoved(element: any): void {
+  protected emitOnRemoved(element: any) {
     this.onRemovedSource.next(element);
   }
 
-  protected emitOnUpdated(element: any): void {
+  protected emitOnUpdated(element: any) {
     this.onUpdatedSource.next(element);
   }
 
-  protected emitOnAdded(element: any): void {
+  protected emitOnAdded(element: any) {
     this.onAddedSource.next(element);
   }
 
-  protected emitOnChanged(action: string): void {
+  protected emitOnChanged(action: string) {
     this.getElements().then((elements) => this.onChangedSource.next({
       action: action,
       elements: elements,
       paging: this.getPaging(),
       filter: this.getFilter(),
-      sort: this.getSort()
+      sort: this.getSort(),
     }));
   }
 }

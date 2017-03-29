@@ -3,7 +3,7 @@ import { Column } from './column';
 
 export class DataSet {
 
-  public newRow: Row;
+  newRow: Row;
 
   protected data: Array<any> = [];
   protected columns: Array<Column> = [];
@@ -18,7 +18,7 @@ export class DataSet {
     this.createNewRow();
   }
 
-  setData(data: Array<any>): void {
+  setData(data: Array<any>) {
     this.data = data;
     this.createRows();
   }
@@ -31,11 +31,11 @@ export class DataSet {
     return this.rows;
   }
 
-  findRowByData(data): Row {
+  findRowByData(data: any): Row {
     return this.rows.find((row: Row) => row.getData() === data);
   }
 
-  deselectAll(): void {
+  deselectAll() {
     this.rows.forEach((row) => {
       row.isSelected = false;
     });
@@ -46,6 +46,13 @@ export class DataSet {
     this.deselectAll();
 
     row.isSelected = !previousIsSelected;
+    this.selectedRow = row;
+
+    return this.selectedRow;
+  }
+
+  multipleSelectRow(row: Row): Row {
+    row.isSelected = !row.isSelected;
     this.selectedRow = row;
 
     return this.selectedRow;
@@ -76,11 +83,11 @@ export class DataSet {
     }
   }
 
-  willSelectFirstRow(): void {
+  willSelectFirstRow() {
     this.willSelect = 'first';
   }
 
-  willSelectLastRow(): void {
+  willSelectLastRow() {
     this.willSelect = 'last';
   }
 
@@ -103,7 +110,7 @@ export class DataSet {
     return this.selectedRow;
   }
 
-  createNewRow(): void {
+  createNewRow() {
     this.newRow = new Row(0, {}, this);
     this.newRow.isInEditing = true;
   }
@@ -113,8 +120,8 @@ export class DataSet {
    * @param settings
    * @private
    */
-  protected createColumns(settings) {
-    for (let id in settings) {
+  createColumns(settings: any) {
+    for (const id in settings) {
       if (settings.hasOwnProperty(id)) {
         this.columns.push(new Column(id, settings[id], this));
       }
@@ -125,7 +132,7 @@ export class DataSet {
    * Create rows based on current data prepared in data source
    * @private
    */
-  protected createRows() {
+  createRows() {
     this.rows = [];
     this.data.forEach((el, index) => {
       this.rows.push(new Row(index, el, this));

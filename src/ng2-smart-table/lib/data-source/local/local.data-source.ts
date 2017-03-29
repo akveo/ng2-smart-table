@@ -9,11 +9,11 @@ export class LocalDataSource extends DataSource {
   protected data: Array<any> = [];
   protected filteredAndSorted: Array<any> = [];
   protected sortConf: Array<any> = [];
-  protected filterConf = {
+  protected filterConf: any = {
     filters: [],
-    andOperator: true
+    andOperator: true,
   };
-  protected pagingConf = {};
+  protected pagingConf: any = {};
 
   constructor(data: Array<any> = []) {
     super();
@@ -63,7 +63,7 @@ export class LocalDataSource extends DataSource {
   }
 
   find(element: any): Promise<any> {
-    let found = this.data.find(el => el === element);
+    const found = this.data.find(el => el === element);
     if (found) {
       return Promise.resolve(found);
     }
@@ -72,20 +72,26 @@ export class LocalDataSource extends DataSource {
   }
 
   getElements(): Promise<any> {
-    let data = this.data.slice(0);
+    const data = this.data.slice(0);
     return Promise.resolve(this.prepareData(data));
   }
 
-  getAll(): Promise<any> {
+  getFilteredAndSorted(): Promise<any> {
     let data = this.data.slice(0);
+    this.prepareData(data);
+    return Promise.resolve(this.filteredAndSorted);
+  }
+
+  getAll(): Promise<any> {
+    const data = this.data.slice(0);
     return Promise.resolve(data);
   }
 
-  reset(silent = false): void {
+  reset(silent = false) {
     if (silent) {
       this.filterConf = {
         filters: [],
-        andOperator: true
+        andOperator: true,
       };
       this.sortConf = [];
       this.pagingConf['page'] = 1;
@@ -120,7 +126,7 @@ export class LocalDataSource extends DataSource {
     if (conf !== null) {
 
       conf.forEach((fieldConf) => {
-        if (!fieldConf['field'] || typeof fieldConf['direction']  === 'undefined') {
+        if (!fieldConf['field'] || typeof fieldConf['direction'] === 'undefined') {
           throw new Error('Sort configuration object is not valid');
         }
       });
@@ -150,23 +156,23 @@ export class LocalDataSource extends DataSource {
     } else {
       this.filterConf = {
         filters: [],
-        andOperator: true
+        andOperator: true,
       };
     }
     this.filterConf.andOperator = andOperator;
     this.pagingConf['page'] = 1;
-    
+
     super.setFilter(conf, andOperator, doEmit);
     return this;
   }
 
-  addFilter(fieldConf, andOperator = true, doEmit: boolean = true): LocalDataSource {
+  addFilter(fieldConf: any, andOperator = true, doEmit: boolean = true): LocalDataSource {
     if (!fieldConf['field'] || typeof fieldConf['search'] === 'undefined') {
       throw new Error('Filter configuration object is not valid');
     }
 
     let found = false;
-    this.filterConf.filters.forEach((currentFieldConf, index) => {
+    this.filterConf.filters.forEach((currentFieldConf: any, index: any) => {
       if (currentFieldConf['field'] === fieldConf['field']) {
         this.filterConf.filters[index] = fieldConf;
         found = true;
@@ -228,18 +234,18 @@ export class LocalDataSource extends DataSource {
   protected filter(data: Array<any>): Array<any> {
     if (this.filterConf.filters) {
       if (this.filterConf.andOperator) {
-        this.filterConf.filters.forEach((fieldConf) => {
+        this.filterConf.filters.forEach((fieldConf: any) => {
           data = LocalFilter
             .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']);
         });
       } else {
-        let mergedData = [];
-        this.filterConf.filters.forEach((fieldConf) => {
+        let mergedData: any = [];
+        this.filterConf.filters.forEach((fieldConf: any) => {
           mergedData = mergedData.concat(LocalFilter
             .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']));
         });
         // remove non unique items
-        data = mergedData.filter((elem, pos, arr) => {
+        data = mergedData.filter((elem: any, pos: any, arr: any) => {
           return arr.indexOf(elem) === pos;
         });
       }

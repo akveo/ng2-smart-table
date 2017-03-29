@@ -1,7 +1,7 @@
 import { Http } from '@angular/http';
 import { LocalDataSource } from '../local/local.data-source';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
-import { URLSearchParams } from '@angular/http/src/url_search_params';
+import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 import { ServerSourceConf } from './server-source.conf';
 import { getDeepFromObject } from '../../helpers';
@@ -12,7 +12,7 @@ export class ServerDataSource extends LocalDataSource {
 
   protected lastRequestCount: number = 0;
 
-  constructor(protected http: Http, conf: ServerSourceConf|{} = {}) {
+  constructor(protected http: Http, conf: ServerSourceConf | {} = {}) {
     super();
 
     this.conf = new ServerSourceConf(conf);
@@ -40,15 +40,16 @@ export class ServerDataSource extends LocalDataSource {
    * @param res
    * @returns {any}
    */
-  protected extractDataFromResponse(res): Array<any> {
+  protected extractDataFromResponse(res: any): Array<any> {
     const rawData = res.json();
-    let data = !!this.conf.dataKey ? getDeepFromObject(rawData, this.conf.dataKey, []) : rawData;
+    const data = !!this.conf.dataKey ? getDeepFromObject(rawData, this.conf.dataKey, []) : rawData;
 
     if (data instanceof Array) {
       return data;
     }
 
-    throw new Error(`Data must be an array. Please check that data extracted from the server response by the key '${this.conf.dataKey}' exists and is array.`);
+    throw new Error(`Data must be an array.
+    Please check that data extracted from the server response by the key '${this.conf.dataKey}' exists and is array.`);
   }
 
   /**
@@ -57,12 +58,12 @@ export class ServerDataSource extends LocalDataSource {
    * @param res
    * @returns {any}
    */
-  protected extractTotalFromResponse(res): number {
+  protected extractTotalFromResponse(res: any): number {
     if (res.headers.has(this.conf.totalKey)) {
       return +res.headers.get(this.conf.totalKey);
     } else {
       const rawData = res.json();
-      return getDeepFromObject(rawData, this.conf.totalKey, 0)
+      return getDeepFromObject(rawData, this.conf.totalKey, 0);
     }
   }
 
@@ -80,7 +81,7 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addSortRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    let searchParams: URLSearchParams = <URLSearchParams> requestOptions.search;
+    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
 
     if (this.sortConf) {
       this.sortConf.forEach((fieldConf) => {
@@ -93,10 +94,10 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addFilterRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    let searchParams: URLSearchParams = <URLSearchParams> requestOptions.search;
+    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
 
     if (this.filterConf.filters) {
-      this.filterConf.filters.forEach((fieldConf) => {
+      this.filterConf.filters.forEach((fieldConf: any) => {
         if (fieldConf['search']) {
           searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
         }
@@ -107,7 +108,7 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addPagerRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    let searchParams: URLSearchParams = <URLSearchParams> requestOptions.search;
+    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
 
     if (this.pagingConf && this.pagingConf['page'] && this.pagingConf['perPage']) {
       searchParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
