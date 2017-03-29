@@ -34,7 +34,7 @@ export class Column {
   }
 
   getConfig(): any {
-    return this.editor.config;
+    return this.editor && this.editor.config;
   }
 
   getFilterType(): any {
