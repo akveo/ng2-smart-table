@@ -11,9 +11,9 @@ import { Column } from '../../../lib/data-set/column';
            [ngClass]="inputClass"
            [formControl]="inputControl"
            class="form-control"
-           type="text" 
+           type="text"
            placeholder="{{ column.title }}" />
-  `
+  `,
 })
 export class InputFilterComponent extends DefaultFilter implements OnInit {
 

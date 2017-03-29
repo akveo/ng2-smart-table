@@ -17,7 +17,7 @@ import { Column } from '../../../lib/data-set/column';
           {{ option.title }}
         </option>
     </select>
-  `
+  `,
 })
 export class SelectFilterComponent extends DefaultFilter implements OnInit {
 

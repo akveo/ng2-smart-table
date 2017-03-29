@@ -9,7 +9,7 @@ import { Cell } from '../../../lib/data-set/cell';
 })
 export class DefaultEditComponent extends EditCellDefault {
 
-  constructor(){
+  constructor() {
     super();
   }
 

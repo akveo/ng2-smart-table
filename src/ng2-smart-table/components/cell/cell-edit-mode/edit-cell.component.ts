@@ -3,8 +3,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Cell } from '../../../lib/data-set/cell';
 
 @Component({
-    selector: 'table-cell-edit-mode',
-    template: `
+  selector: 'table-cell-edit-mode',
+  template: `
       <div [ngSwitch]="getEditorType()">
         <table-cell-custom-editor *ngSwitchCase="'custom'"
                                   [cell]="cell"
@@ -17,7 +17,7 @@ import { Cell } from '../../../lib/data-set/cell';
                                   (edited)="onEdited($event)">
         </table-cell-default-editor>
       </div>
-    `
+    `,
 })
 export class EditCellComponent {
 
@@ -26,7 +26,7 @@ export class EditCellComponent {
 
   @Output() edited = new EventEmitter<any>();
 
-  onEdited(event): boolean {
+  onEdited(event: any): boolean {
     this.edited.next(event);
     return false;
   }
