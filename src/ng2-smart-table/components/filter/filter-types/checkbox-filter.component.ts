@@ -8,8 +8,9 @@ import { Column } from '../../../lib/data-set/column';
   selector: 'checkbox-filter',
   template: `
     <input type="checkbox" [formControl]="inputControl" [ngClass]="inputClass" class="form-control">
-    <a href="#" *ngIf="filterActive" (click)="resetFilter($event)">{{column.getFilterConfig()?.resetText || 'reset'}}</a>
-  `
+    <a href="#" *ngIf="filterActive"
+                (click)="resetFilter($event)">{{column.getFilterConfig()?.resetText || 'reset'}}</a>
+  `,
 })
 export class CheckboxFilterComponent extends DefaultFilter implements OnInit {
 
@@ -32,7 +33,7 @@ export class CheckboxFilterComponent extends DefaultFilter implements OnInit {
       });
   }
 
-  resetFilter(event) {
+  resetFilter(event: any) {
     event.preventDefault();
     this.query = '';
     this.inputControl.setValue(false, { emitEvent: false });

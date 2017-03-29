@@ -4,7 +4,7 @@ import { Grid } from '../../lib/grid';
 
 @Component({
     selector: '[ng2-st-thead]',
-    templateUrl: './thead.component.html'
+    templateUrl: './thead.component.html',
 })
 export class Ng2SmartTableTheadComponent {
 

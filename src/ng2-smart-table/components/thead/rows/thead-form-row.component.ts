@@ -23,13 +23,14 @@ import { Row } from '../../../lib/data-set/row';
       <td  *ngIf= "grid.showActionColumn('right')"  class="ng2-smart-actions">
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
-    `
+  `,
 })
 export class TheadFormRowComponent {
 
   @Input() grid: Grid;
   @Input() row: Row;
   @Input() createConfirm: EventEmitter<any>;
+
   @Output() create = new EventEmitter<any>();
 
   onCreate(event: any) {
@@ -37,4 +38,5 @@ export class TheadFormRowComponent {
 
     this.grid.create(this.grid.getNewRow(), this.createConfirm);
   }
+
 }
