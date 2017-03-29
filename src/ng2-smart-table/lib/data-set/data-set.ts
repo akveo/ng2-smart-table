@@ -31,6 +31,14 @@ export class DataSet {
     return this.rows;
   }
 
+  getFirstRow(): Row {
+    return this.rows[0];
+  }
+
+  getLastRow(): Row {
+    return this.rows[this.rows.length - 1];
+  }
+
   findRowByData(data: any): Row {
     return this.rows.find((row: Row) => row.getData() === data);
   }
@@ -42,7 +50,7 @@ export class DataSet {
   }
 
   selectRow(row: Row): Row {
-    let previousIsSelected = row.isSelected;
+    const previousIsSelected = row.isSelected;
     this.deselectAll();
 
     row.isSelected = !previousIsSelected;

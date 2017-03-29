@@ -98,29 +98,23 @@ export class Ng2SmartTableComponent implements OnChanges {
   onUserSelectRow(row: Row) {
     if (this.grid.getSetting('selectMode') !== 'multi') {
       this.grid.selectRow(row);
-      this._onUserSelectRow(row);
+      this.emitUserSelectRow(row);
       this.emitSelectRow(row);
     }
-  }
-   
-  onSelectRow(row: Row): void {
-    this.grid.selectRow(row);
-    this.emitSelectRow(row);
   }
 
   multipleSelectRow(row: Row) {
     this.grid.multipleSelectRow(row);
-    this._onUserSelectRow(row);
+    this.emitUserSelectRow(row);
     this.emitSelectRow(row);
   }
 
   onSelectAllRows($event: any) {
     this.isAllSelected = !this.isAllSelected;
     this.grid.selectAllRows(this.isAllSelected);
-    const selectedRows = this.grid.getSelectedRows();
 
-    this._onUserSelectRow(selectedRows[0], selectedRows);
-    this.emitSelectRow(selectedRows[0]);
+    this.emitUserSelectRow(null);
+    this.emitSelectRow(null);
   }
 
   onSelectRow(row: Row) {
@@ -164,25 +158,27 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.resetAllSelector();
   }
 
-  private _onUserSelectRow(row: Row, selected: Array<any> = []) {
-    this.userRowSelect.emit({
-      data: row.getData(),
-      isSelected: row.getIsSelected(),
-      source: this.source,
-      selected: selected.length ? selected : this.grid.getSelectedRows(),
-    });
-  }
-
   private resetAllSelector() {
     this.isAllSelected = false;
   }
-   
-  private emitSelectRow(row: Row): void {
+
+  private emitUserSelectRow(row: Row) {
+    const selectedRows = this.grid.getSelectedRows();
+
+    this.userRowSelect.emit({
+      data: row ? row.getData() : null,
+      isSelected: row ? row.getIsSelected() : null,
+      source: this.source,
+      selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
+    });
+  }
+
+  private emitSelectRow(row: Row) {
     this.rowSelect.emit({
-      data: row.getData(),
-      isSelected: row.getIsSelected(),
+      data: row ? row.getData() : null,
+      isSelected: row ? row.getIsSelected() : null,
       source: this.source,
     });
   }
-   
+
 }

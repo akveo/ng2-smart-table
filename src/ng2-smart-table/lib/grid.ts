@@ -244,12 +244,20 @@ export class Grid {
 
   getSelectedRows(): Array<any> {
     return this.dataSet.getRows()
-      .filter(r => r.isSelected)
-      .map(r => r.getData());
+      .filter(r => r.isSelected);
   }
 
   selectAllRows(status: any) {
     this.dataSet.getRows()
       .forEach(r => r.isSelected = status);
   }
+
+  getFirstRow(): Row {
+    return this.dataSet.getFirstRow();
+  }
+
+  getLastRow(): Row {
+    return this.dataSet.getLastRow();
+  }
+
 }
