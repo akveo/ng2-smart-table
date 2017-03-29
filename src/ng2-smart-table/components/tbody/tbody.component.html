@@ -13,7 +13,7 @@
                               [source]="source">
     </ng2-st-tbody-edit-delete>
   </td>
-  <td *ngIf="row.isInEditing" class="ng2-smart-actions">
+   <td *ngIf="row.isInEditing && grid.showActionColumn('left')"  class="ng2-smart-actions">
     <ng2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></ng2-st-tbody-create-cancel>
   </td>
   <td *ngFor="let cell of row.getCells()">
@@ -27,6 +27,11 @@
                           [isInEditing]="row.isInEditing">
     </ng2-smart-table-cell>
   </td>
+  
+  <td *ngIf="row.isInEditing && grid.showActionColumn('right')"  class="ng2-smart-actions">
+    <ng2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></ng2-st-tbody-create-cancel>
+  </td>
+  
   <td *ngIf="!row.isInEditing && grid.showActionColumn('right')" class="ng2-smart-actions">
     <ng2-st-tbody-edit-delete [grid]="grid"
                               [deleteConfirm]="deleteConfirm"

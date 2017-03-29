@@ -7,7 +7,7 @@ import { Row } from '../../../lib/data-set/row';
   selector: '[ng2-st-thead-form-row]',
   template: `
       <td *ngIf="grid.isMultiSelectVisible()"></td>
-      <td class="ng2-smart-actions">
+      <td  *ngIf= "grid.showActionColumn('left')"  class="ng2-smart-actions">
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
       <td *ngFor="let cell of grid.getNewRow().getCells()">
@@ -19,6 +19,9 @@ import { Row } from '../../../lib/data-set/row';
                               [isInEditing]="grid.getNewRow().isInEditing"
                               (edited)="onCreate($event)">
         </ng2-smart-table-cell>
+      </td>
+      <td  *ngIf= "grid.showActionColumn('right')"  class="ng2-smart-actions">
+        <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
   `,
 })
