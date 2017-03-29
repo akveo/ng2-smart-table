@@ -1,0 +1,60 @@
+$table-font-color: #606c71;
+$table-border-color: #e9ebec;
+
+:host {
+  /deep/ {
+    * {
+      box-sizing: border-box;
+      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      color: inherit;
+      font: inherit;
+      margin: 0;
+    }
+
+    table {
+      font-size: 16px;
+      line-height: 1.5;
+      color: $table-font-color;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: table;
+      width: 100%;
+      max-width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all;
+
+      tr {
+        th {
+          font-weight: bold;
+        }
+        section {
+          font-size: .75rem;
+          font-weight: bold;
+        }
+        td,
+        th {
+          font-size: .875rem;
+          margin: 0;
+          padding: 0.5rem 1rem;
+          border: 1px solid $table-border-color;
+        }
+      }
+    }
+
+    a {
+      color: #1e6bb8;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
