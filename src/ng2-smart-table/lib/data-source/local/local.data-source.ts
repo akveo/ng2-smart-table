@@ -76,6 +76,12 @@ export class LocalDataSource extends DataSource {
     return Promise.resolve(this.prepareData(data));
   }
 
+  getFilteredAndSorted(): Promise<any> {
+    let data = this.data.slice(0);
+    this.prepareData(data);
+    return Promise.resolve(this.filteredAndSorted);
+  }
+
   getAll(): Promise<any> {
     const data = this.data.slice(0);
     return Promise.resolve(data);
