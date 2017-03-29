@@ -98,15 +98,20 @@ export class Ng2SmartTableComponent implements OnChanges {
   onUserSelectRow(row: Row) {
     if (this.grid.getSetting('selectMode') !== 'multi') {
       this.grid.selectRow(row);
-      this._onUserSelectRow(row.getData());
-      this.onSelectRow(row);
+      this._onUserSelectRow(row);
+      this.emitSelectRow(row);
     }
+  }
+   
+  onSelectRow(row: Row): void {
+    this.grid.selectRow(row);
+    this.emitSelectRow(row);
   }
 
   multipleSelectRow(row: Row) {
     this.grid.multipleSelectRow(row);
-    this._onUserSelectRow(row.getData());
-    this._onSelectRow(row.getData());
+    this._onUserSelectRow(row);
+    this.emitSelectRow(row);
   }
 
   onSelectAllRows($event: any) {
@@ -115,22 +120,22 @@ export class Ng2SmartTableComponent implements OnChanges {
     const selectedRows = this.grid.getSelectedRows();
 
     this._onUserSelectRow(selectedRows[0], selectedRows);
-    this._onSelectRow(selectedRows[0]);
+    this.emitSelectRow(selectedRows[0]);
   }
 
   onSelectRow(row: Row) {
     this.grid.selectRow(row);
-    this._onSelectRow(row.getData());
+    this.emitSelectRow(row);
   }
 
   onMultipleSelectRow(row: Row) {
-    this._onSelectRow(row.getData());
+    this.emitSelectRow(row);
   }
 
   initGrid() {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
-    this.grid.onSelectRow().subscribe((row) => this.onSelectRow(row));
+    this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
   }
 
   prepareSource(): DataSource {
@@ -159,16 +164,10 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.resetAllSelector();
   }
 
-  private _onSelectRow(data: any) {
-    this.rowSelect.emit({
-      data: data || null,
-      source: this.source,
-    });
-  }
-
-  private _onUserSelectRow(data: any, selected: Array<any> = []) {
+  private _onUserSelectRow(row: Row, selected: Array<any> = []) {
     this.userRowSelect.emit({
-      data: data || null,
+      data: row.getData(),
+      isSelected: row.getIsSelected(),
       source: this.source,
       selected: selected.length ? selected : this.grid.getSelectedRows(),
     });
@@ -177,4 +176,13 @@ export class Ng2SmartTableComponent implements OnChanges {
   private resetAllSelector() {
     this.isAllSelected = false;
   }
+   
+  private emitSelectRow(row: Row): void {
+    this.rowSelect.emit({
+      data: row.getData(),
+      isSelected: row.getIsSelected(),
+      source: this.source,
+    });
+  }
+   
 }

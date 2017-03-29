@@ -42,9 +42,10 @@ export class DataSet {
   }
 
   selectRow(row: Row): Row {
+    let previousIsSelected = row.isSelected;
     this.deselectAll();
 
-    row.isSelected = true;
+    row.isSelected = !previousIsSelected;
     this.selectedRow = row;
 
     return this.selectedRow;
