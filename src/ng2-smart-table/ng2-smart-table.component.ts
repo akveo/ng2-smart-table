@@ -99,8 +99,8 @@ export class Ng2SmartTableComponent implements OnChanges {
   onUserSelectRow(row: Row) {
     if (this.grid.getSetting('selectMode') !== 'multi') {
       this.grid.selectRow(row);
-      this._onUserSelectRow(row.getData());
-      this.onSelectRow(row);
+      this.emitUserSelectRow(row);
+      this.emitSelectRow(row);
     }
   }
 
@@ -110,32 +110,31 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   multipleSelectRow(row: Row) {
     this.grid.multipleSelectRow(row);
-    this._onUserSelectRow(row.getData());
-    this._onSelectRow(row.getData());
+    this.emitUserSelectRow(row);
+    this.emitSelectRow(row);
   }
 
   onSelectAllRows($event: any) {
     this.isAllSelected = !this.isAllSelected;
     this.grid.selectAllRows(this.isAllSelected);
-    const selectedRows = this.grid.getSelectedRows();
 
-    this._onUserSelectRow(selectedRows[0], selectedRows);
-    this._onSelectRow(selectedRows[0]);
+    this.emitUserSelectRow(null);
+    this.emitSelectRow(null);
   }
 
   onSelectRow(row: Row) {
     this.grid.selectRow(row);
-    this._onSelectRow(row.getData());
+    this.emitSelectRow(row);
   }
 
   onMultipleSelectRow(row: Row) {
-    this._onSelectRow(row.getData());
+    this.emitSelectRow(row);
   }
 
   initGrid() {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
-    this.grid.onSelectRow().subscribe((row) => this.onSelectRow(row));
+    this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
   }
 
   prepareSource(): DataSource {
@@ -164,22 +163,27 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.resetAllSelector();
   }
 
-  private _onSelectRow(data: any) {
-    this.rowSelect.emit({
-      data: data || null,
-      source: this.source,
-    });
-  }
-
-  private _onUserSelectRow(data: any, selected: Array<any> = []) {
-    this.userRowSelect.emit({
-      data: data || null,
-      source: this.source,
-      selected: selected.length ? selected : this.grid.getSelectedRows(),
-    });
-  }
-
   private resetAllSelector() {
     this.isAllSelected = false;
   }
+
+  private emitUserSelectRow(row: Row) {
+    const selectedRows = this.grid.getSelectedRows();
+
+    this.userRowSelect.emit({
+      data: row ? row.getData() : null,
+      isSelected: row ? row.getIsSelected() : null,
+      source: this.source,
+      selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
+    });
+  }
+
+  private emitSelectRow(row: Row) {
+    this.rowSelect.emit({
+      data: row ? row.getData() : null,
+      isSelected: row ? row.getIsSelected() : null,
+      source: this.source,
+    });
+  }
+
 }

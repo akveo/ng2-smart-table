@@ -25,6 +25,10 @@ export class Row {
     return this.data;
   }
 
+  getIsSelected(): boolean {
+    return this.isSelected;
+  }
+
   getNewData(): any {
     const values = Object.assign({}, this.data);
     this.getCells().forEach((cell) => values[cell.getColumn().id] = cell.newValue);
