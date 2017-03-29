@@ -24,6 +24,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() deleteConfirm = new EventEmitter<any>();
   @Output() editConfirm = new EventEmitter<any>();
   @Output() createConfirm = new EventEmitter<any>();
+  @Output() public rowHover: EventEmitter<any> = new EventEmitter<any>();
 
   grid: Grid;
   defaultSettings: Object = {
@@ -101,6 +102,10 @@ export class Ng2SmartTableComponent implements OnChanges {
       this._onUserSelectRow(row.getData());
       this.onSelectRow(row);
     }
+  }
+
+  onRowHover(row: Row) {
+      this.rowHover.emit(row);
   }
 
   multipleSelectRow(row: Row) {
