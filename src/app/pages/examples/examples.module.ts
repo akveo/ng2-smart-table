@@ -21,6 +21,7 @@ import { FilterExamplesComponent } from './filter/filter-examples.component';
 import { ServerExamplesComponent } from './server/server-examples.component';
 import { CustomViewEditExamplesComponent } from './custom-edit-view/custom-edit-view-examples.component';
 import { VariousExamplesComponent } from './various/various-examples.component';
+import { BasicExampleButtonViewComponent, ButtonViewComponent } from './various/basic-example-button-view.component';
 
 const EXAMPLES_COMPONENTS = [
   AdvancedExampleFiltersComponent,
@@ -37,6 +38,8 @@ const EXAMPLES_COMPONENTS = [
   ServerExamplesComponent,
   CustomViewEditExamplesComponent,
   VariousExamplesComponent,
+  BasicExampleButtonViewComponent,
+  ButtonViewComponent,
 ];
 
 @NgModule({
@@ -51,6 +54,7 @@ const EXAMPLES_COMPONENTS = [
   entryComponents: [
     CustomEditorComponent,
     CustomRenderComponent,
+    ButtonViewComponent,
   ],
   declarations: [
     ExamplesComponent,
