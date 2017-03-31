@@ -21,7 +21,10 @@ import { FilterExamplesComponent } from './filter/filter-examples.component';
 import { ServerExamplesComponent } from './server/server-examples.component';
 import { CustomViewEditExamplesComponent } from './custom-edit-view/custom-edit-view-examples.component';
 import { VariousExamplesComponent } from './various/various-examples.component';
-import { BasicExampleButtonViewComponent, ButtonViewComponent } from './various/basic-example-button-view.component';
+import {
+  BasicExampleButtonViewComponent,
+  ButtonViewComponent,
+} from './custom-edit-view/basic-example-button-view.component';
 
 const EXAMPLES_COMPONENTS = [
   AdvancedExampleFiltersComponent,

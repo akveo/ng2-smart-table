@@ -1,11 +1,11 @@
 .with-sidebar {
   position: relative;
-  padding-right: 16rem;
+  padding-left: 16rem;
   .fixed-sidebar {
     padding: 0 1rem;
     margin-top: 2rem;
-    position: absolute;
-    right: 0;
+    position: fixed;
+    left: 25px;
     width: 16rem;
     font-size: 0.875rem;
     .back-top {
