@@ -16,7 +16,7 @@ import { Grid } from '../../../lib/grid';
       <ng2-st-column-title [source]="source" [column]="column" (sort)="sort.emit($event)"></ng2-st-column-title>
     </th>
     <th ng2-st-actions-title *ngIf="grid.showActionColumn('right')" [grid]="grid"></th>
-    `
+  `,
 })
 export class TheadTitlesRowComponent {
 
@@ -26,4 +26,5 @@ export class TheadTitlesRowComponent {
 
   @Output() sort = new EventEmitter<any>();
   @Output() selectAllRows = new EventEmitter<any>();
+
 }

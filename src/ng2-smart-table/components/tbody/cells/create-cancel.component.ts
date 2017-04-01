@@ -10,7 +10,7 @@ import { Row } from '../../../lib/data-set/row';
         [innerHTML]="grid.getSetting('edit.saveButtonContent')" (click)="onSave($event)"></a>
     <a href="#" class="ng2-smart-action ng2-smart-action-edit-cancel"
         [innerHTML]="grid.getSetting('edit.cancelButtonContent')" (click)="onCancelEdit($event)"></a>
-  `
+  `,
 })
 export class TbodyCreateCancelComponent {
 

@@ -25,27 +25,31 @@ export class Row {
     return this.data;
   }
 
+  getIsSelected(): boolean {
+    return this.isSelected;
+  }
+
   getNewData(): any {
-    let values = Object.assign({}, this.data);
+    const values = Object.assign({}, this.data);
     this.getCells().forEach((cell) => values[cell.getColumn().id] = cell.newValue);
     return values;
   }
 
-  setData(data): any {
+  setData(data: any): any {
     this.data = data;
     this.process();
   }
 
-  process(): void {
+  process() {
     this.cells = [];
     this._dataSet.getColumns().forEach((column: Column) => {
-      let cell = this.createCell(column);
+      const cell = this.createCell(column);
       this.cells.push(cell);
     });
   }
 
   createCell(column: Column): Cell {
-    let value = typeof this.data[column.id] === 'undefined' ? '' : this.data[column.id];
+    const value = typeof this.data[column.id] === 'undefined' ? '' : this.data[column.id];
     return new Cell(value, this, column, this._dataSet);
   }
 }

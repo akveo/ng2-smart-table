@@ -5,7 +5,7 @@ import { Column } from '../../lib/data-set/column';
 
 @Component({
   selector: 'ng2-smart-table-filter',
-  styleUrls: ['filter.scss'],
+  styleUrls: ['./filter.component.scss'],
   template: `
     <div class="ng2-smart-filter" *ngIf="column.isFilterable" [ngSwitch]="column.getFilterType()">
       <select-filter *ngSwitchCase="'list'"
@@ -33,7 +33,7 @@ import { Column } from '../../lib/data-set/column';
                     (filter)="onFilter($event)">
       </input-filter>
     </div>
-  `
+  `,
 })
 export class FilterComponent implements AfterViewInit {
 
@@ -47,9 +47,18 @@ export class FilterComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this.source.onChanged().subscribe((elements) => {
-      let filterConf = this.source.getFilter();
+      const filterConf = this.source.getFilter();
       if (filterConf && filterConf.filters && filterConf.filters.length === 0) {
         this.query = '';
+
+        // add a check for existing filters an set the query if one exists for this column
+        // this covers instances where the filter is set by user code while maintaining existing functionality
+      } else if (filterConf && filterConf.filters && filterConf.filters.length > 0) {
+        filterConf.filters.forEach((k: any, v: any) => {
+          if (k.field == this.column.id) {
+            this.query = k.search;
+          }
+        });
       }
     });
   }
@@ -58,7 +67,7 @@ export class FilterComponent implements AfterViewInit {
     this.source.addFilter({
       field: this.column.id,
       search: query,
-      filter: this.column.getFilterFunction()
+      filter: this.column.getFilterFunction(),
     });
   }
 }
