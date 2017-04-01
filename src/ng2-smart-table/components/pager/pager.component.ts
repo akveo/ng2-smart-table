@@ -37,7 +37,6 @@ import { DataSource } from '../../lib/data-source/data-source';
 })
 export class PagerComponent implements OnInit {
 
-  @Input() perPage: number;
   @Input() source: DataSource;
 
   @Output() changePage = new EventEmitter<any>();
@@ -45,12 +44,14 @@ export class PagerComponent implements OnInit {
   protected pages: Array<any>;
   protected page: number;
   protected count: number = 0;
+  protected perPage: number;
+
 
   ngOnInit() {
     this.source.onChanged().subscribe((changes) => {
       this.page = this.source.getPaging().page;
+      this.perPage = this.source.getPaging().perPage;
       this.count = this.source.count();
-
       if (this.isPageOutOfBounce()) {
         this.source.setPage(--this.page);
       }
