@@ -100,10 +100,14 @@ export class Grid {
     const deferred = new Deferred();
     deferred.promise.then((newData) => {
       newData = newData ? newData : row.getNewData();
+      if (deferred.resolve.skipAdd) {
+        this.createFormShown = false;
+      } else {
       this.source.prepend(newData).then(() => {
         this.createFormShown = false;
         this.dataSet.createNewRow();
-      });
+      });       
+      }
     }).catch((err) => {
       // doing nothing
     });
