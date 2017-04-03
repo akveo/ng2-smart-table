@@ -134,6 +134,7 @@ export class Grid {
         this.source.update(row.getData(), newData).then(() => {
           row.isInEditing = false;
       });
+      }
     }).catch((err) => {
       // doing nothing
     });
