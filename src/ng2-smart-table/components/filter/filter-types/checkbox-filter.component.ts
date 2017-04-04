@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 
 import { DefaultFilter } from './default-filter';
 import { Column } from '../../../lib/data-set/column';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'checkbox-filter',
