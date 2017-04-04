@@ -4,6 +4,8 @@ import { CompleterService } from 'ng2-completer';
 
 import { DefaultFilter } from './default-filter';
 import { Column } from '../../../lib/data-set/column';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'completer-filter',
