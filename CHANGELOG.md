@@ -1,3 +1,10 @@
+<a name="1.0.2"></a>
+# 1.0.2 (2017-04-04)
+
+### Bug fixes
+
+* **build:** move ng2-completer and lodash from peerDependencies to dependencies
+
 <a name="1.0.1"></a>
 # 1.0.1 (2017-03-29)
 
