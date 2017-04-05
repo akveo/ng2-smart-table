@@ -10,6 +10,7 @@ import { EditCellComponent } from './cell-edit-mode/edit-cell.component';
 import { CheckboxEditorComponent } from './cell-editors/checkbox-editor.component';
 import { CompleterEditorComponent } from './cell-editors/completer-editor.component';
 import { InputEditorComponent } from './cell-editors/input-editor.component';
+import { InputDateEditorComponent } from './cell-editors/input-date-editor.component';
 import { SelectEditorComponent } from './cell-editors/select-editor.component';
 import { TextareaEditorComponent } from './cell-editors/textarea-editor.component';
 import { CustomViewComponent } from './cell-view-mode/custom-view.component';
@@ -21,6 +22,7 @@ const CELL_COMPONENTS = [
   DefaultEditComponent,
   EditCellComponent,
   CheckboxEditorComponent,
+  InputDateEditorComponent,
   CompleterEditorComponent,
   InputEditorComponent,
   SelectEditorComponent,

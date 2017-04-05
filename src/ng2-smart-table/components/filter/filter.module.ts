@@ -7,6 +7,7 @@ import { FilterComponent } from './filter.component';
 import { CheckboxFilterComponent } from './filter-types/checkbox-filter.component';
 import { CompleterFilterComponent } from './filter-types/completer-filter.component';
 import { InputFilterComponent } from './filter-types/input-filter.component';
+import { InputDateFilterComponent } from './filter-types/input-date-filter.component';
 import { SelectFilterComponent } from './filter-types/select-filter.component';
 
 const FILTER_COMPONENTS = [
@@ -14,6 +15,7 @@ const FILTER_COMPONENTS = [
   CheckboxFilterComponent,
   CompleterFilterComponent,
   InputFilterComponent,
+  InputDateFilterComponent,
   SelectFilterComponent,
 ];
 

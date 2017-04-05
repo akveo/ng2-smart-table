@@ -16,6 +16,7 @@ export class AdvancedExamplesTypesComponent {
       email: 'Sincere@april.biz',
       comments: 'Lorem ipsum dolor sit amet, ex dolorem officiis convenire usu.',
       passed: 'Yes',
+      deadline: '2017-02-01',
     },
     {
       id: 2,
@@ -25,6 +26,7 @@ export class AdvancedExamplesTypesComponent {
       comments: `Vix iudico graecis in? Malis eirmod consectetuer duo ut?
                 Mel an aeterno vivendum accusata, qui ne amet stet definitiones.`,
       passed: 'Yes',
+      deadline: '2017-03-01',
     },
     {
       id: 3,
@@ -33,6 +35,7 @@ export class AdvancedExamplesTypesComponent {
       email: 'Nathan@yesenia.net',
       comments: 'Mollis latine intellegebat ei usu, veri exerci intellegebat vel cu. Eu nec ferri copiosae.',
       passed: 'No',
+      deadline: '2017-04-01',
     },
     {
       id: 4,
@@ -41,6 +44,7 @@ export class AdvancedExamplesTypesComponent {
       email: 'Julianne.OConner@kory.org',
       comments: 'Eu sea graece corrumpit, et tation nominavi philosophia eam, veri posidonium ex mea?',
       passed: 'Yes',
+      deadline: '2017-05-01',
     },
     {
       id: 5,
@@ -51,6 +55,7 @@ export class AdvancedExamplesTypesComponent {
                 timeam omittam comprehensam ad eam? Eos id dico gubergren,
                 cum dicant qualisque ea, id vim ferri moderatius?`,
       passed: 'No',
+      deadline: '2016-01-01',
     },
     {
       id: 6,
@@ -59,6 +64,7 @@ export class AdvancedExamplesTypesComponent {
       email: 'Karley_Dach@jasper.info',
       comments: 'Audire appareat sententiae qui no. Sed no rebum vitae quidam.',
       passed: 'No',
+      deadline: '2017-01-01',
     },
     {
       id: 7,
@@ -68,6 +74,7 @@ export class AdvancedExamplesTypesComponent {
       comments: `Mel dicat sanctus accusata ut! Eu sit choro vituperata,
                 qui cu quod gubergren elaboraret, mollis vulputate ex cum!`,
       passed: 'Yes',
+      deadline: '2017-01-01',
     },
     {
       id: 8,
@@ -76,6 +83,7 @@ export class AdvancedExamplesTypesComponent {
       email: 'Sherwood@rosamond.me',
       comments: 'Cu usu nostrum quaerendum, no eripuit sanctus democritum cum.',
       passed: 'No',
+      deadline: '2017-04-06',
     },
     {
       id: 9,
@@ -84,6 +92,7 @@ export class AdvancedExamplesTypesComponent {
       email: 'Chaim_McDermott@dana.io',
       comments: 'In iisque oporteat vix, amet volutpat constituto sit ut. Habeo suavitate vis ei.',
       passed: 'No',
+      deadline: '2017-04-04',
     },
     {
       id: 10,
@@ -93,6 +102,7 @@ export class AdvancedExamplesTypesComponent {
       comments: `Lorem ipsum dolor sit amet, causae fuisset ea has, adhuc tantas interesset per id.
                  Ne vocibus persequeris has, meis lucilius ex mea, illum labores contentiones pro in?`,
       passed: 'Yes',
+      deadline: '2017-04-02',
     },
     {
       id: 11,
@@ -101,6 +111,7 @@ export class AdvancedExamplesTypesComponent {
       email: 'Rey.Padberg@rosamond.biz',
       comments: 'Lorem ipsum dolor sit amet, mea dolorum detraxit ea?',
       passed: 'No',
+      deadline: '2017-08-18',
     },
   ];
 
@@ -154,6 +165,12 @@ export class AdvancedExamplesTypesComponent {
             true: 'Yes',
             false: 'No',
           },
+        },
+      },
+      deadline: {
+        title: 'Deadline',
+        editor: {
+          type: 'date',
         },
       },
     },

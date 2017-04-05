@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 
 import { DefaultFilter } from './default-filter';
 import { Column } from '../../../lib/data-set/column';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'input-date-filter',
@@ -11,9 +13,9 @@ import { Column } from '../../../lib/data-set/column';
            [ngClass]="inputClass"
            [formControl]="inputControl"
            class="form-control"
-           type="date" 
+           type="date"
            placeholder="{{ column.title }}" />
-  `
+  `,
 })
 export class InputDateFilterComponent extends DefaultFilter implements OnInit {
 
