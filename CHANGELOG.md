@@ -1,3 +1,11 @@
+<a name="1.0.3"></a>
+# 1.0.3 (2017-04-05)
+
+### Bug fixes
+
+* **build:** added mising rxjs imports ([86de89f](https://github.com/akveo/ng2-smart-table/commit/86de89fffccffa8002d16ad17754c1a07574adc5)), ([#283](https://github.com/akveo/ng2-smart-table/pull/283)), closes ([#229](https://github.com/akveo/ng2-smart-table/issues/229))
+
+
 <a name="1.0.2"></a>
 # 1.0.2 (2017-04-04)
 
