@@ -5,28 +5,29 @@ import {
   ViewChild,
   ViewContainerRef,
   OnInit,
-  OnDestroy } from '@angular/core';
+  OnDestroy,
+} from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
 
 @Component({
   selector: 'custom-view-component',
   template: `
-    <template #dynamicTarget></template>
+    <ng-template #dynamicTarget></ng-template>
   `,
 })
-export class CustomViewComponent implements OnInit {
+export class CustomViewComponent implements OnInit, OnDestroy {
 
   customComponent: any;
   @Input() cell: Cell;
-  @ViewChild('dynamicTarget', {read: ViewContainerRef}) dynamicTarget: any;
+  @ViewChild('dynamicTarget', { read: ViewContainerRef }) dynamicTarget: any;
 
   constructor(private resolver: ComponentFactoryResolver) {
   }
 
-  ngOnInit(): void {
-    if (this.cell && !this.customComponent){
-      let componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().renderComponent);
+  ngOnInit() {
+    if (this.cell && !this.customComponent) {
+      const componentFactory = this.resolver.resolveComponentFactory(this.cell.getColumn().renderComponent);
       this.customComponent = this.dynamicTarget.createComponent(componentFactory);
 
       // set @Inputs and @Outputs of custom component

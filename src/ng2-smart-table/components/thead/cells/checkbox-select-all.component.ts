@@ -6,7 +6,7 @@ import { Grid } from '../../../lib/grid';
   selector: '[ng2-st-checkbox-select-all]',
   template: `
     <input type="checkbox" [ngModel]="isAllSelected">
-  `
+  `,
 })
 export class CheckboxSelectAllComponent {
 

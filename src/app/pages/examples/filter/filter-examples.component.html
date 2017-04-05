@@ -1,0 +1,71 @@
+<h2>Customized filters examples</h2>
+<h3><a id="separate-filter" class="anchor" href="#separate-filter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Standalone Filter Example</h3>
+<p>
+  Say you don't need to have a filter field in the each table column or the requirements says that search field should be placed outside of the table?<br>
+  Fortunately this is super easy to achieve, to do this we need to slightly modify our basic component example.
+</p>
+<h4><a id="data-source" class="anchor" href="#data-source" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Source</h4>
+<p>
+  First thing you need to know is that all the data operations against the table <i>must</i> be done using the <strong>DataSource</strong> table property. DataSource is an abstraction around your data which allows you easily modify the table data or subscribe to events to modify the table behaviour.
+</p>
+<p>
+  To access the DataSource we either can take it from the table or pass it instead of our <i>data array</i>. Let's do the second option as it requires less code and is more demonstrative. Let's import the DataSource class by modifying the import statement:
+</p>
+<pre>
+  <code highlight class="typescript">{{ snippets.sourceRequire }}</code>
+</pre>
+<p>
+  Note that the import now contains a <strong>LocalDataSource</strong> class (the word <i>Local</i> here means that the data is processed locally in a browser, not on the server side).<br>
+  Then let's create a DataSource instance and pass our data array into it as a constructor parameter:
+</p>
+<pre>
+  <code highlight class="typescript">{{ snippets.createSource }}</code>
+</pre>
+<p>
+  Now let's pass the source to the table instead of the data array:
+</p>
+<pre>
+  <code highlight class="typescript">{{ snippets.sourceTemplate }}</code>
+</pre>
+<p>
+  At this point if you look at the result there will be no difference comparing to the first example. Basically if you pass an array to the table component first thing it will do is wrap LocalDataSource object around your array as we did here manually.<br>
+  Now, having the DataSource we basically could change the table data in any way we need to - filter it, sort, paginate to some page, create/delete/modify the rows. In our example we need to be able to filter the data outside of the table, firstly let's add a search filed to the template with a listener:
+</p>
+<pre>
+  <code highlight class="typescript">{{ snippets.search }}</code>
+</pre>
+<p>
+  And the listener code which asks the DataSource to filter the data:
+</p>
+<pre>
+  <code highlight class="typescript">{{ snippets.searchTable }}</code>
+</pre>
+<p>
+  Last thing, let's hide the default table filters to not conflict with our standalone one:
+</p>
+<pre>
+  <code highlight class="typescript">{{ snippets.hideFilters }}</code>
+</pre>
+<p>
+  And done! Now the table has a standalone search field:
+</p>
+<div>
+  <basic-example-source></basic-example-source>
+</div>
+<p>
+  Same way you can modify the data of the table, for example by adding a row from a third party form or listening to some external event.
+  Here's a full component code:
+</p>
+<pre class="with-source">
+  <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/filter/basic-example-source.component.ts" target="_blank">Demo Source</a>
+  <code highlight class="typescript">{{ snippets.sourceFull }}</code>
+</pre>
+
+<h3><a id="filters" class="anchor" href="#filters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Checkbox, Select and Completer filter types</h3>
+<p>
+  An example on how to use the built-in column filter types:
+</p>
+<div class="with-source">
+  <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/filter/advanced-example-filters.component.ts" target="_blank">Demo Source</a>
+  <advanced-example-filters></advanced-example-filters>
+</div>

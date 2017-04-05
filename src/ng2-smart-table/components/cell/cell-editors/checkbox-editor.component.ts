@@ -22,7 +22,7 @@ export class CheckboxEditorComponent extends DefaultEditor {
     super();
   }
 
-  onChange(event: any): void {
+  onChange(event: any) {
     const trueVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().true) || true;
     const falseVal = (this.cell.getColumn().getConfig() && this.cell.getColumn().getConfig().false) || false;
     this.cell.newValue = event.target.checked ? trueVal : falseVal;

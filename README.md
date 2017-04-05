@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/akveo/ng2-smart-table.svg?branch=master)](https://travis-ci.org/akveo/ng2-smart-table)
 
-# Angular 2 Smart Table Component
+# Angular Smart Table Component
 
 ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this component first!
 
@@ -8,7 +8,7 @@ ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/).
 
 <a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
 
-![alt tag](demo/src/assets/img/demo.gif)
+![alt tag](src/assets/img/demo.gif)
 
 ## Installation
 

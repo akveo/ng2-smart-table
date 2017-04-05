@@ -18,7 +18,7 @@ import { DefaultEditor } from './default-editor';
                 [selected]="option.value === cell.getValue()">{{ option.title }}
         </option>
     </select>
-    `
+    `,
 })
 export class SelectEditorComponent extends DefaultEditor {
 

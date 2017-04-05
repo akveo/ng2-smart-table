@@ -3,6 +3,8 @@ import { FormControl } from '@angular/forms';
 
 import { DefaultFilter } from './default-filter';
 import { Column } from '../../../lib/data-set/column';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'input-filter',
@@ -11,9 +13,9 @@ import { Column } from '../../../lib/data-set/column';
            [ngClass]="inputClass"
            [formControl]="inputControl"
            class="form-control"
-           type="text" 
+           type="text"
            placeholder="{{ column.title }}" />
-  `
+  `,
 })
 export class InputFilterComponent extends DefaultFilter implements OnInit {
 

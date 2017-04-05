@@ -4,6 +4,8 @@ import { CompleterService } from 'ng2-completer';
 
 import { DefaultFilter } from './default-filter';
 import { Column } from '../../../lib/data-set/column';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
   selector: 'completer-filter',
@@ -16,7 +18,7 @@ import { Column } from '../../../lib/data-set/column';
                    [placeholder]="column.getFilterConfig().completer.placeholder || 'Start typing...'"
                    (selected)="completerContent.next($event)">
     </ng2-completer>
-  `
+  `,
 })
 export class CompleterFilterComponent extends DefaultFilter implements OnInit {
 
@@ -27,7 +29,7 @@ export class CompleterFilterComponent extends DefaultFilter implements OnInit {
   }
 
   ngOnInit() {
-    let config = this.column.getFilterConfig().completer;
+    const config = this.column.getFilterConfig().completer;
     config.dataService = this.completerService.local(config.data, config.searchFields, config.titleField);
     config.dataService.descriptionField(config.descriptionField);
 
@@ -45,7 +47,8 @@ export class CompleterFilterComponent extends DefaultFilter implements OnInit {
     // workaround to trigger the search event when the home/end buttons are clicked
     // when this happens the [(ngModel)]="query" is set to "" but the (selected) method is not called
     // so here it gets called manually
-    if (event === '')
+    if (event === '') {
       this.completerContent.next(event);
+    }
   }
 }

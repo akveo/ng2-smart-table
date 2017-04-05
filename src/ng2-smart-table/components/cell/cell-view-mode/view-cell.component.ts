@@ -10,7 +10,7 @@ import { Cell } from '../../../lib/data-set/cell';
         <div *ngSwitchCase="'html'" [innerHTML]="cell.getValue()"></div>
         <div *ngSwitchDefault>{{ cell.getValue() }}</div>
     </div>
-    `
+    `,
 })
 export class ViewCellComponent {
 
