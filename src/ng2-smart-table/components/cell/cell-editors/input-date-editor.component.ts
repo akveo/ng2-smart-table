@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { DefaultEditor } from './default-editor';
 
 @Component({
-  selector: 'date-editor',
+  selector: 'input-date-editor',
   styleUrls: ['./editor.component.scss'],
   template: `
     <input [ngClass]="inputClass"

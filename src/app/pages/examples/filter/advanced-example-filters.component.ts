@@ -115,9 +115,6 @@ export class AdvancedExampleFiltersComponent {
         filter: {
           type: 'date',
         },
-        editor: {
-          type: 'date',
-        },
       },
     },
   };
