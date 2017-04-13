@@ -1,10 +1,13 @@
 import { Http } from '@angular/http';
-import { LocalDataSource } from '../local/local.data-source';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
+
+import { LocalDataSource } from '../local/local.data-source';
 import { ServerSourceConf } from './server-source.conf';
 import { getDeepFromObject } from '../../helpers';
+
+import 'rxjs/add/operator/toPromise';
 
 export class ServerDataSource extends LocalDataSource {
 
