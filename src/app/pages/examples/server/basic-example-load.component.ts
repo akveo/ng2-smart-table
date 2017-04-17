@@ -18,7 +18,11 @@ export class BasicExampleLoadComponent {
     columns: {
       id: {
         title: 'ID',
+        editable: false,
+        addable: false,
       },
+
+
       name: {
         title: 'Full Name',
       },

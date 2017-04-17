@@ -38,6 +38,12 @@ export class Cell {
   }
 
   isEditable(): boolean {
-    return this.getColumn().isEditable;
+    if (this.getRow().index === -1) {
+      return this.getColumn().isAddable;
+    }
+    else {
+      return this.getColumn().isEditable;
+    }
   }
+
 }
