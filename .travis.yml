@@ -5,10 +5,8 @@ language: node_js
 node_js:
   - "6"
 
-cache:
+-cache:
   directories:
-    - node_modules
-    - $HOME/.npm
     - $HOME/.cache/yarn
 
 addons:
@@ -21,9 +19,6 @@ addons:
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH=$HOME/.yarn/bin:$PATH
-
-  - npm config set spin false
-  - npm i -g npm@latest
 
 install:
   - yarn
