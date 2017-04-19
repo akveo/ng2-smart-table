@@ -8,6 +8,7 @@ export class Column {
   width: string = '';
   isSortable: boolean = false;
   isEditable: boolean = true;
+  isAddable: boolean = true;
   isFilterable: boolean = false;
   sortDirection: string = '';
   defaultSortDirection: string = '';
@@ -60,6 +61,7 @@ export class Column {
       .indexOf(this.settings['sortDirection']) !== -1 ? this.settings['sortDirection'] : '';
     this.isSortable = typeof this.settings['sort'] === 'undefined' ? true : !!this.settings['sort'];
     this.isEditable = typeof this.settings['editable'] === 'undefined' ? true : !!this.settings['editable'];
+    this.isAddable=typeof this.settings['addable'] === 'undefined' ? true : !!this.settings['addable'];
     this.sortDirection = this.prepareSortDirection();
 
     this.compareFunction = this.settings['compareFunction'];

@@ -119,7 +119,7 @@ export class DataSet {
   }
 
   createNewRow() {
-    this.newRow = new Row(0, {}, this);
+    this.newRow = new Row(-1, {}, this);
     this.newRow.isInEditing = true;
   }
 
