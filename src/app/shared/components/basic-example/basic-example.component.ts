@@ -12,9 +12,11 @@ export class BasicExampleComponent {
     columns: {
       id: {
         title: 'ID',
+        width: '60px',
       },
       name: {
         title: 'Full Name',
+        width: '40%',
       },
       username: {
         title: 'User Name',
