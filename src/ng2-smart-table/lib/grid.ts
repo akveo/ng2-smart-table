@@ -100,10 +100,14 @@ export class Grid {
     const deferred = new Deferred();
     deferred.promise.then((newData) => {
       newData = newData ? newData : row.getNewData();
+      if (deferred.resolve.skipAdd) {
+        this.createFormShown = false;
+      } else {
       this.source.prepend(newData).then(() => {
         this.createFormShown = false;
         this.dataSet.createNewRow();
-      });
+      });       
+      }
     }).catch((err) => {
       // doing nothing
     });
@@ -124,9 +128,13 @@ export class Grid {
     const deferred = new Deferred();
     deferred.promise.then((newData) => {
       newData = newData ? newData : row.getNewData();
-      this.source.update(row.getData(), newData).then(() => {
+      if (deferred.resolve.skipEdit) {
         row.isInEditing = false;
+      } else {
+        this.source.update(row.getData(), newData).then(() => {
+          row.isInEditing = false;
       });
+      }
     }).catch((err) => {
       // doing nothing
     });
