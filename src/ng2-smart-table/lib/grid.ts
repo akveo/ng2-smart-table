@@ -14,6 +14,7 @@ export class Grid {
 
   source: DataSource;
   settings: any;
+  prevCell: any;
   dataSet: DataSet;
 
   onSelectRowSource = new Subject<any>();
