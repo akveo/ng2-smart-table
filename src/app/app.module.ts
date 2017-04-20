@@ -23,7 +23,7 @@ import { ScrollPositionDirective } from './theme/directives/scrollPosition.direc
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes, { useHash: true }),
+    RouterModule.forRoot(routes, { useHash: false }),
     Ng2SmartTableModule,
     PagesModule,
   ],
