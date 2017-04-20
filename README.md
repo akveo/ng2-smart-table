@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/akveo/ng2-smart-table.svg?branch=master)](https://travis-ci.org/akveo/ng2-smart-table)
+[![Build Status](https://travis-ci.org/gaurav8547/ng2-smart-table.svg?branch=master)](https://travis-ci.org/akveo/ng2-smart-table)
 
 # Angular Smart Table Component
 
