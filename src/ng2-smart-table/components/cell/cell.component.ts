@@ -7,7 +7,7 @@ import { Row } from '../../lib/data-set/row';
 @Component({
   selector: 'ng2-smart-table-cell',
   template: `
-    <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell"></table-cell-view-mode>
+    <table-cell-view-mode *ngIf="!isInEditing" (click)="onClick(this)" [cell]="cell"></table-cell-view-mode>
     <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell"
                           [inputClass]="inputClass"
                           (edited)="onEdited($event)">
@@ -28,6 +28,9 @@ export class CellComponent {
 
   @Output() edited = new EventEmitter<any>();
 
+  onClick(cc: CellComponent){
+    this.isInEditing = true;
+  }
   onEdited(event: any) {
     if (this.isNew) {
       this.grid.create(this.grid.getNewRow(), this.createConfirm);
