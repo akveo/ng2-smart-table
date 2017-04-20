@@ -30,6 +30,13 @@ export class CellComponent {
 
   onClick(cc: CellComponent){
     this.isInEditing = true;
+    if(this.grid.prevCell === undefined){
+      this.grid.prevCell = cc;
+    }
+    else{
+      cc.isInEditing = false;
+      this.grid.prevCell = cc;
+    }
   }
   onEdited(event: any) {
     if (this.isNew) {
