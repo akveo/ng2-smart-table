@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+http://akveo.github.io/ng2-smart-table.git"
+    "url": "git+http://gaurav8547.github.io/ng2-smart-table.git"
   },
   "bugs": {
-    "url": "http://akveo.github.io/ng2-smart-table/issues"
+    "url": "http://gaurav8547.github.io/ng2-smart-table/issues"
   },
-  "homepage": "http://akveo.github.io/ng2-smart-table/#readme",
+  "homepage": "http://gaurav8547.github.io/ng2-smart-table/#readme",
   "keywords": [
     "angular",
     "typescript",
