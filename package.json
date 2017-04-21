@@ -95,5 +95,6 @@
     "tslint": "4.5.1",
     "tslint-eslint-rules": "3.4.0",
     "typescript": "2.2.1"
-  }
+  },
+  "version": "0.23.3"
 }
