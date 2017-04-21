@@ -12,7 +12,7 @@ export class BasicExampleComponent {
     columns: {
       id: {
         title: 'ID',
-        width: '60px',
+        width: '100px',
       },
       name: {
         title: 'Full Name',

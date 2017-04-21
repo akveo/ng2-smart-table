@@ -1,11 +1,9 @@
-$table-font-color: #606c71;
-$table-border-color: #e9ebec;
-
 :host {
+  font-size: 1rem;
+
   /deep/ {
     * {
       box-sizing: border-box;
-      font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     }
 
     button,
@@ -19,9 +17,7 @@ $table-border-color: #e9ebec;
     }
 
     table {
-      font-size: 16px;
-      line-height: 1.5;
-      color: $table-font-color;
+      line-height: 1.5em;
       border-collapse: collapse;
       border-spacing: 0;
       display: table;
@@ -36,15 +32,14 @@ $table-border-color: #e9ebec;
           font-weight: bold;
         }
         section {
-          font-size: .75rem;
+          font-size: .75em;
           font-weight: bold;
         }
         td,
         th {
-          font-size: .875rem;
+          font-size: .875em;
           margin: 0;
-          padding: 0.5rem 1rem;
-          border: 1px solid $table-border-color;
+          padding: 0.5em 1em;
         }
       }
     }
