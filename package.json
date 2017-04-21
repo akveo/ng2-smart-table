@@ -65,6 +65,7 @@
     "@types/run-sequence": "0.0.29",
     "@types/rx": "2.5.33",
     "angular-cli-ghpages": "0.5.0",
+    "angular-cli-github-pages": "^0.2.0",
     "chalk": "1.1.3",
     "codelyzer": "2.0.1",
     "gulp": "3.9.1",
