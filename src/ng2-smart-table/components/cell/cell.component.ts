@@ -30,7 +30,8 @@ export class CellComponent {
 
   onClick(cel: CellComponent){
       if(cel.cell.isEditable()){
-        cel.isInEditing = true;  
+        cel.isInEditing = true;
+        console.log(cel);  
       }
             
       if(this.grid.prevCell === undefined){
