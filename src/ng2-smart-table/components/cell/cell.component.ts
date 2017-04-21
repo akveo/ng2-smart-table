@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
+import { Observable } from 'rxjs/Observable';
 import { Grid } from '../../lib/grid';
 import { Cell } from '../../lib/data-set/cell';
 import { Row } from '../../lib/data-set/row';
@@ -28,16 +28,32 @@ export class CellComponent {
 
   @Output() edited = new EventEmitter<any>();
 
-  onClick(cc: CellComponent){
-    this.isInEditing = true;
-    if(this.grid.prevCell === undefined){
-      this.grid.prevCell = cc;
-    }
-    else{
-      cc.isInEditing = false;
-      this.grid.prevCell = cc;
-    }
+  onClick(cel: CellComponent){
+      if(cel.cell.isEditable()){
+        cel.isInEditing = true;  
+      }
+      
+      
+      if(this.grid.prevCell === undefined){
+        this.grid.prevCell = new Observable(observer=>{
+          observer.next(cel);
+        });
+      }
+      else
+      {
+
+        let subscription = this.grid.prevCell.distinctUntilChanged().subscribe(cc => {
+          if(cc.cell.isEditable()){
+            cc.isInEditing = false;           
+           this.grid.save(cc.cell.getRow(), this.editConfirm) 
+        }        
+        this.grid.prevCell = new Observable(observer=>{
+          observer.next(cel);
+        });
+        });
+      }
   }
+
   onEdited(event: any) {
     if (this.isNew) {
       this.grid.create(this.grid.getNewRow(), this.createConfirm);
