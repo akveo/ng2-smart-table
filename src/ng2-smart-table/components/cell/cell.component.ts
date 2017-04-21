@@ -32,8 +32,7 @@ export class CellComponent {
       if(cel.cell.isEditable()){
         cel.isInEditing = true;  
       }
-      
-      
+            
       if(this.grid.prevCell === undefined){
         this.grid.prevCell = new Observable(observer=>{
           observer.next(cel);

@@ -29,7 +29,7 @@ export class BasicExampleDataComponent {
     {
       id: 1,
       name: 'Leanne Graham',
-      username: 'Bret',
+      username: '',
       email: 'Sincere@april.biz',
     },
     {
