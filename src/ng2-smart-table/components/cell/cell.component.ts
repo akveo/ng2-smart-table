@@ -45,10 +45,10 @@ export class CellComponent {
           if(cc.cell.isEditable()){
             cc.isInEditing = false;           
            this.grid.save(cc.cell.getRow(), this.editConfirm) 
-        }        
-        this.grid.prevCell = new Observable(observer=>{
-          observer.next(cel);
-        });
+          }        
+          this.grid.prevCell = new Observable(observer=>{
+            observer.next(cel);
+          });
         });
       }
   }
