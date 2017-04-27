@@ -147,7 +147,7 @@ Yes!  Visit [our homepage](http://akveo.com/) or simply leave us a note to [cont
 * Inline Add/Edit/Delete
 * Flexible event model
 
-##License
+## License
 [MIT](LICENSE.txt) license.
 
 ## Special thanks to our awesome contributors!
