@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { DataSource } from '../../lib/data-source/data-source';
 
@@ -35,7 +36,7 @@ import { DataSource } from '../../lib/data-source/data-source';
     </nav>
   `,
 })
-export class PagerComponent implements OnInit {
+export class PagerComponent implements OnChanges {
 
   @Input() source: DataSource;
 
@@ -46,19 +47,25 @@ export class PagerComponent implements OnInit {
   protected count: number = 0;
   protected perPage: number;
 
+  protected dataChangedSub: Subscription;
 
-  ngOnInit() {
-    this.source.onChanged().subscribe((changes) => {
-      this.page = this.source.getPaging().page;
-      this.perPage = this.source.getPaging().perPage;
-      this.count = this.source.count();
-      if (this.isPageOutOfBounce()) {
-        this.source.setPage(--this.page);
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.source) {
+      if (!changes.source.firstChange) {
+        this.dataChangedSub.unsubscribe();
       }
+      this.dataChangedSub = this.source.onChanged().subscribe((dataChanges) => {
+        this.page = this.source.getPaging().page;
+        this.perPage = this.source.getPaging().perPage;
+        this.count = this.source.count();
+        if (this.isPageOutOfBounce()) {
+          this.source.setPage(--this.page);
+        }
 
-      this.processPageChange(changes);
-      this.initPages();
-    });
+        this.processPageChange(dataChanges);
+        this.initPages();
+      });
+    }
   }
 
   /**
