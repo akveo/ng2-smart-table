@@ -1,4 +1,5 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { DataSource } from '../../../../lib/data-source/data-source';
 import { Column } from '../../../../lib/data-set/column';
@@ -16,27 +17,34 @@ import { Column } from '../../../../lib/data-set/column';
     <span class="ng2-smart-sort" *ngIf="!column.isSortable">{{ column.title }}</span>
   `,
 })
-export class TitleComponent implements OnInit {
+export class TitleComponent implements OnChanges {
 
   currentDirection = '';
   @Input() column: Column;
   @Input() source: DataSource;
   @Output() sort = new EventEmitter<any>();
 
-  ngOnInit() {
-    this.source.onChanged().subscribe((elements) => {
-      const sortConf = this.source.getSort();
+  protected dataChangedSub: Subscription;
 
-      if (sortConf.length > 0 && sortConf[0]['field'] === this.column.id) {
-        this.currentDirection = sortConf[0]['direction'];
-      } else {
-        this.currentDirection = '';
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.source) {
+      if (!changes.source.firstChange) {
+        this.dataChangedSub.unsubscribe();
       }
+      this.dataChangedSub = this.source.onChanged().subscribe((dataChanges) => {
+        const sortConf = this.source.getSort();
 
-      sortConf.forEach((fieldConf: any) => {
+        if (sortConf.length > 0 && sortConf[0]['field'] === this.column.id) {
+          this.currentDirection = sortConf[0]['direction'];
+        } else {
+          this.currentDirection = '';
+        }
 
+        sortConf.forEach((fieldConf: any) => {
+
+        });
       });
-    });
+    }
   }
 
   _sort(event: any) {
