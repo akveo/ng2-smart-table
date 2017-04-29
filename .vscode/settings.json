@@ -2,5 +2,6 @@
     "typescript.tsdk": "./node_modules/typescript/lib",
     "files.exclude": {
         ".vscode/chrome": true
-    }
+    },
+    "tslint.enable": false
 }
