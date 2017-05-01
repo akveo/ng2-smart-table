@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
 import { Row } from '../../../lib/data-set/row';
+import { DataSource } from '../../../lib/data-source/data-source';
 
 @Component({
   selector: 'ng2-st-tbody-edit-delete',
@@ -16,7 +17,7 @@ export class TbodyEditDeleteComponent {
 
   @Input() grid: Grid;
   @Input() row: Row;
-  @Input() source: any;
+  @Input() source: DataSource;
   @Input() deleteConfirm: EventEmitter<any>;
   @Input() editConfirm: EventEmitter<any>;
 

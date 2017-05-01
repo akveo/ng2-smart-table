@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, AfterViewInit, ElementRef } from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
+import { DataSource } from '../../../lib/data-source/data-source';
 
 @Component({
   selector: '[ng2-st-add-button]',
@@ -12,7 +13,7 @@ import { Grid } from '../../../lib/grid';
 export class AddButtonComponent implements AfterViewInit {
 
   @Input() grid: Grid;
-  @Input() source: any;
+  @Input() source: DataSource;
   @Output() create = new EventEmitter<any>();
 
   constructor(private ref: ElementRef) {

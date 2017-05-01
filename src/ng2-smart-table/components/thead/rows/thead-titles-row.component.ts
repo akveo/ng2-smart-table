@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
+import { DataSource } from '../../../lib/data-source/data-source';
 
 @Component({
   selector: '[ng2-st-thead-titles-row]',
@@ -23,7 +24,7 @@ export class TheadTitlesRowComponent {
 
   @Input() grid: Grid;
   @Input() isAllSelected: boolean;
-  @Input() source: any;
+  @Input() source: DataSource;
 
   @Output() sort = new EventEmitter<any>();
   @Output() selectAllRows = new EventEmitter<any>();
