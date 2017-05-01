@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
+import { DataSource } from '../../lib/data-source/data-source';
 
 @Component({
   selector: '[ng2-st-tbody]',
@@ -10,7 +11,7 @@ import { Grid } from '../../lib/grid';
 export class Ng2SmartTableTbodyComponent {
 
   @Input() grid: Grid;
-  @Input() source: any;
+  @Input() source: DataSource;
   @Input() deleteConfirm: EventEmitter<any>;
   @Input() editConfirm: EventEmitter<any>;
 

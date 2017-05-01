@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Column } from '../../../lib/data-set/column';
+import { DataSource } from '../../../lib/data-source/data-source';
 
 @Component({
   selector: 'ng2-st-column-title',
@@ -13,7 +14,7 @@ import { Column } from '../../../lib/data-set/column';
 export class ColumnTitleComponent {
 
   @Input() column: Column;
-  @Input() source: any;
+  @Input() source: DataSource;
 
   @Output() sort = new EventEmitter<any>();
 
