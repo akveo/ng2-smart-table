@@ -1,26 +1,27 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { ViewCell } from '../../../../ng2-smart-table';
 
 @Component({
   selector: 'button-view',
   template: `
-    <button (click)="showAlert()">{{ renderValue }}</button>
+    <button (click)="onClick()">{{ renderValue }}</button>
   `,
 })
 export class ButtonViewComponent implements ViewCell, OnInit {
   renderValue: string;
 
   @Input() value: string | number;
+  @Input() rowData: any;
 
-  constructor() { }
+  @Output() save: EventEmitter<any> = new EventEmitter();
 
   ngOnInit() {
     this.renderValue = this.value.toString().toUpperCase();
   }
 
-  showAlert() {
-    alert(this.renderValue);
+  onClick() {
+    this.save.emit(this.rowData);
   }
 }
 
@@ -50,6 +51,11 @@ export class BasicExampleButtonViewComponent implements OnInit {
         title: 'Button',
         type: 'custom',
         renderComponent: ButtonViewComponent,
+        onComponentInitFunction(instance) {
+          instance.save.subscribe(row => {
+            alert(`${row.name} saved!`)
+          });
+        }
       },
     },
   };
