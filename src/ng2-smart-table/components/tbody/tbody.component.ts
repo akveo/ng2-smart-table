@@ -19,6 +19,7 @@ export class Ng2SmartTableTbodyComponent {
   @Output() cancel = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
+  @Output() custom = new EventEmitter<any>();
   @Output() edited = new EventEmitter<any>();
   @Output() userSelectRow = new EventEmitter<any>();
   @Output() editRowSelect = new EventEmitter<any>();
