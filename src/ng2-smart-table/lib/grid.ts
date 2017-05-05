@@ -32,7 +32,7 @@ export class Grid {
   }
 
   isActionsVisible(): boolean {
-    return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete');
+    return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete') || this.getSetting('actions.custom');
   }
 
   isMultiSelectVisible(): boolean {

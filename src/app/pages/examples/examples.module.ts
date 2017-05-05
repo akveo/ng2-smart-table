@@ -20,7 +20,9 @@ import { CustomRenderComponent } from './custom-edit-view/custom-render.componen
 import { FilterExamplesComponent } from './filter/filter-examples.component';
 import { ServerExamplesComponent } from './server/server-examples.component';
 import { CustomViewEditExamplesComponent } from './custom-edit-view/custom-edit-view-examples.component';
+import { BasicExampleCustomActionsComponent } from './custom-edit-view/basic-example-custom-actions.component';
 import { VariousExamplesComponent } from './various/various-examples.component';
+
 import {
   BasicExampleButtonViewComponent,
   ButtonViewComponent,
@@ -42,6 +44,7 @@ const EXAMPLES_COMPONENTS = [
   CustomViewEditExamplesComponent,
   VariousExamplesComponent,
   BasicExampleButtonViewComponent,
+  BasicExampleCustomActionsComponent,
   ButtonViewComponent,
 ];
 
