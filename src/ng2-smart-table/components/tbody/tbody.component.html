@@ -35,6 +35,8 @@
   </td>
   
   <td *ngIf="!row.isInEditing && grid.showActionColumn('right')" class="ng2-smart-actions">
+    <ng2-st-tbody-custom [grid]="grid" (custom)="custom.emit($event)" [row]="row" [source]="source"></ng2-st-tbody-custom>
+
     <ng2-st-tbody-edit-delete [grid]="grid"
                               [deleteConfirm]="deleteConfirm"
                               [editConfirm]="editConfirm"
@@ -45,9 +47,9 @@
                               (editRowSelect)="editRowSelect.emit($event)">
     </ng2-st-tbody-edit-delete>
   </td>
-  </tr>
+</tr>
 
-  <tr *ngIf="grid.getRows().length == 0">
+<tr *ngIf="grid.getRows().length == 0">
   <td [attr.colspan]="grid.getColumns().length + (grid.getSetting('actions.add') || grid.getSetting('actions.edit') || grid.getSetting('actions.delete'))">
     {{ grid.getSetting('noDataMessage') }}
   </td>
