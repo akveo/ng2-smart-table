@@ -10,18 +10,25 @@ export class BasicExampleCustomActionsComponent {
 
   settings = {
     actions: {
-      add: false,
-      edit: false,
-      delete: false,
-      custom: true
+      custom: [
+        {
+          name: 'view',
+          title: 'View ',
+        },
+        {
+          name: 'edit',
+          title: 'Edit ',
+        },
+        {
+          name: 'delete',
+          title: 'Delete ',
+        },
+        {
+          name: 'duplicate',
+          title: 'Duplicate ',
+        },
+      ],
     },
-    custom: [{
-      action: 'view',
-      buttonContent: `view `
-    }, {
-      action: 'duplicate',
-      buttonContent: 'duplicate '
-    }],
     columns: {
       id: {
         title: 'ID',
@@ -71,9 +78,7 @@ export class BasicExampleCustomActionsComponent {
     },
   ];
 
-  constructor() { }
-
   onCustom(event) {
-    console.log(event);
+    alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`)
   }
 }

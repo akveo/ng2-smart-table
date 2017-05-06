@@ -29,7 +29,6 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   grid: Grid;
   defaultSettings: Object = {
-
     mode: 'inline', // inline|external|click-to-edit
     selectMode: 'single', // single|multi
     hideHeader: false,
@@ -39,7 +38,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       add: true,
       edit: true,
       delete: true,
-      custom: false,
+      custom: [],
       position: 'left', // left|right
     },
     filter: {
