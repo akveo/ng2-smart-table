@@ -29,7 +29,7 @@ export class CustomViewComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.cell && !this.customComponent) {
       this.createCustomComponent();
-      this.decorateNgOnInit();
+      this.callOnComponentInit();
       this.patchInstance();
     }
   }
@@ -45,22 +45,9 @@ export class CustomViewComponent implements OnInit, OnDestroy {
     this.customComponent = this.dynamicTarget.createComponent(componentFactory);
   }
 
-  protected decorateNgOnInit() {
-    const baseInit = this.customComponent.instance.ngOnInit;
-
-    this.customComponent.instance.ngOnInit = () => {
-      this.callOnComponentInit();
-      this.callBaseInit(baseInit);
-    };
-  }
-
   protected callOnComponentInit() {
     const onComponentInitFunction = this.cell.getColumn().getOnComponentInitFunction();
     onComponentInitFunction && onComponentInitFunction(this.customComponent.instance);
-  }
-
-  protected callBaseInit(baseInit: Function) {
-    baseInit && baseInit.call(this.customComponent.instance);
   }
 
   protected patchInstance() {
