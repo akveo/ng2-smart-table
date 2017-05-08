@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
@@ -78,9 +78,24 @@ export class ServerDataSource extends LocalDataSource {
     let requestOptions: RequestOptionsArgs = {};
     requestOptions.search = new URLSearchParams();
 
+    requestOptions = this.addHeadersRequestOptions(requestOptions);
     requestOptions = this.addSortRequestOptions(requestOptions);
     requestOptions = this.addFilterRequestOptions(requestOptions);
     return this.addPagerRequestOptions(requestOptions);
+  }
+
+  protected addHeadersRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
+    let confHeaders: any = this.conf.reqHeaders;
+    let headers: Headers = new Headers();
+
+    for (let header in confHeaders) {
+      if (confHeaders.hasOwnProperty(header)) {
+        headers.append(header, confHeaders[header]);
+      }
+    }
+
+    requestOptions.headers = headers;
+    return requestOptions;
   }
 
   protected addSortRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
