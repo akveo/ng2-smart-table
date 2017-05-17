@@ -1,27 +1,26 @@
 {
-  "name": "ng2-smart-table",
+  "name": "to-smart-table",
   "version": "1.1.0",
   "description": "Angular Smart Table",
   "main": "./bundles/table.umd.js",
   "module": "./index.js",
   "typings": "./index.d.ts",
-  "author": "akveo",
+  "author": "Toolito",
   "license": "MIT",
   "scripts": {
   },
   "repository": {
     "type": "git",
-    "url": "git+http://akveo.github.io/ng2-smart-table.git"
+    "url": "git+http://toolito.github.io/ng2-smart-table.git"
   },
   "bugs": {
-    "url": "http://akveo.github.io/ng2-smart-table/issues"
+    "url": "http://toolito.github.io/ng2-smart-table/issues"
   },
-  "homepage": "http://akveo.github.io/ng2-smart-table/#readme",
+  "homepage": "http://toolito.github.io/ng2-smart-table/#readme",
   "keywords": [
     "angular",
     "typescript",
-    "table",
-    "akveo"
+    "table"
   ],
   "dependencies": {
     "lodash": "^4.17.4",
