@@ -71,7 +71,8 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected requestElements(): Observable<any> {
-    return this.http.get(this.conf.endPoint, this.createRequestOptions());
+      // standard mode, the HTTP request is handled internally
+      return this.http.get(this.conf.endPoint, this.createRequestOptions());
   }
 
   protected createRequestOptions(): RequestOptionsArgs {
@@ -81,6 +82,7 @@ export class ServerDataSource extends LocalDataSource {
     requestOptions = this.addHeadersRequestOptions(requestOptions);
     requestOptions = this.addSortRequestOptions(requestOptions);
     requestOptions = this.addFilterRequestOptions(requestOptions);
+
     return this.addPagerRequestOptions(requestOptions);
   }
 
@@ -99,12 +101,16 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addSortRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
+    let searchParams: URLSearchParams = <URLSearchParams> requestOptions.search;
 
     if (this.sortConf) {
       this.sortConf.forEach((fieldConf) => {
-        searchParams.set(this.conf.sortFieldKey, fieldConf.field);
-        searchParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
+        if (this.conf.sortKey) {
+          searchParams.set(this.conf.sortKey, `${fieldConf.field} ${fieldConf.direction.toUpperCase()}`);
+        } else {
+          searchParams.set(this.conf.sortFieldKey, fieldConf.field);
+          searchParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
+        }
       });
     }
 
@@ -112,12 +118,13 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addFilterRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
+    let searchParams: URLSearchParams = <URLSearchParams> requestOptions.search;
 
     if (this.filterConf.filters) {
-      this.filterConf.filters.forEach((fieldConf: any) => {
+      this.filterConf.filters.forEach((fieldConf) => {
         if (fieldConf['search']) {
-          searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
+          searchParams.set(this.conf.filterFieldKey
+          .replace('#field#', fieldConf['field']), fieldConf['search']);
         }
       });
     }
@@ -126,10 +133,14 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addPagerRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
+    let searchParams: URLSearchParams = <URLSearchParams> requestOptions.search;
 
     if (this.pagingConf && this.pagingConf['page'] && this.pagingConf['perPage']) {
-      searchParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
+      if (this.conf.pagerSkipKey) {
+        searchParams.set(this.conf.pagerSkipKey, `${(this.pagingConf['page'] - 1) * this.pagingConf['perPage']}`);
+      } else {
+        searchParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
+      }
       searchParams.set(this.conf.pagerLimitKey, this.pagingConf['perPage']);
     }
 
