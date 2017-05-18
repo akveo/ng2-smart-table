@@ -13,13 +13,13 @@ export class Row {
     this.process();
   }
 
-  function getProperty(data, property) {
-    var parts = property.split(".");
-    var prop = data;
+  getProperty(data:any,property:string):any {
+    let parts = property.split(".");
+    let prop = data;
     for (var i = 0; i < parts.length && typeof prop !== 'undefined'; i++) {
         prop = prop[parts[i]];
     }
-    return prop;
+    return prop;    
   }
 
   getCell(column: Column): Cell {
@@ -59,7 +59,7 @@ export class Row {
 
   createCell(column: Column): Cell {
     const defValue = (column as any).settings.defaultValue ? (column as any).settings.defaultValue : '';
-    var value = getProperty(this.data,column.id);
+    var value = this.getProperty(this.data,column.id);
     value = typeof value === 'undefined' ? defValue : value;
     return new Cell(value, this, column, this._dataSet);
   }
