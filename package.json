@@ -2,13 +2,13 @@
   "name": "ng2-smart-table-demo",
   "description": "Angular Smart Table",
   "author": "Akveo <contact@akveo.com>",
-  "homepage": "http://akveo.github.io/ng2-smart-table/",
+  "homepage": "http://gaurav8547.github.io/ng2-smart-table/",
   "repository": {
     "type": "git",
-    "url": "https://github.com/akveo/ng2-smart-table.git"
+    "url": "https://github.com/gaurav8547/ng2-smart-table.git"
   },
   "bugs": {
-    "url": "https://github.com/akveo/ng2-smart-table/issues"
+    "url": "https://github.com/gaurav8547/ng2-smart-table/issues"
   },
   "license": "MIT",
   "scripts": {
@@ -22,7 +22,7 @@
     "build:prod": "npm run build -- --prod",
     "build:prod:aot": "npm run build -- --prod --aot",
     "build:ci": "npm run build:prod && npm run build:prod:aot && npm run build:release",
-    "build:ghpages": "npm run build:prod:aot -- --base-href \"https://akveo.github.io/ng2-smart-table/\" && ngh",
+    "build:ghpages": "npm run build:prod:aot -- --base-href \"https://gaurav8547.github.io/ng2-smart-table/\" && ngh",
     "build:release": "gulp build:release",
     "test": "ng test -sr",
     "test:coverage": "npm run clean:coverage && ng test -sr -cc",
@@ -65,6 +65,7 @@
     "@types/run-sequence": "0.0.29",
     "@types/rx": "2.5.33",
     "angular-cli-ghpages": "0.5.0",
+    "angular-cli-github-pages": "^0.2.0",
     "chalk": "1.1.3",
     "codelyzer": "2.0.1",
     "gulp": "3.9.1",
@@ -95,5 +96,6 @@
     "tslint-eslint-rules": "3.4.0",
     "tslint-language-service": "0.9.2",
     "typescript": "2.2.1"
-  }
+  },
+  "version": "0.23.3"
 }

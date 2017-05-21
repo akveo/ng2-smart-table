@@ -29,7 +29,7 @@ export class BasicExampleDataComponent {
     {
       id: 1,
       name: 'Leanne Graham',
-      username: 'Bret',
+      username: '',
       email: 'Sincere@april.biz',
     },
     {
@@ -72,7 +72,7 @@ export class BasicExampleDataComponent {
       id: 8,
       name: 'Nicholas Runolfsdottir V',
       username: 'Maxime_Nienow',
-      email: 'Sherwood@rosamond.me',
+      email: 'Sherwood@rosamond.me'
     },
     {
       id: 9,
