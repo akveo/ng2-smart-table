@@ -76,7 +76,7 @@ export class ServerDataSource extends LocalDataSource {
 
   protected createRequestOptions(): RequestOptionsArgs {
     let requestOptions: RequestOptionsArgs = {};
-    requestOptions.search = new URLSearchParams();
+    requestOptions.params = new URLSearchParams();
 
     requestOptions = this.addSortRequestOptions(requestOptions);
     requestOptions = this.addFilterRequestOptions(requestOptions);
@@ -84,7 +84,7 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addSortRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
+    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
 
     if (this.sortConf) {
       this.sortConf.forEach((fieldConf) => {
@@ -97,7 +97,7 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addFilterRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
+    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
 
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {
@@ -111,7 +111,7 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected addPagerRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.search;
+    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
 
     if (this.pagingConf && this.pagingConf['page'] && this.pagingConf['perPage']) {
       searchParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
