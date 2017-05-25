@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-
-import { DefaultFilter } from './default-filter';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/skip';
+
+import { DefaultFilter } from './default-filter';
 
 @Component({
   selector: 'select-filter',
