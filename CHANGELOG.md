@@ -1,3 +1,18 @@
+<a name="1.2.1"></a>
+# [1.2.1](https://github.com/akveo/ng2-smart-table/compare/v1.2.0...v1.2.1) (2017-05-25)
+
+
+### Bug Fixes
+
+* **table:** add the missed rxjs imports ([cc6a678](https://github.com/akveo/ng2-smart-table/commit/cc6a678))
+
+
+### Features
+
+* add rxjs rollup globals ([7ad6b98](https://github.com/akveo/ng2-smart-table/commit/7ad6b98))
+
+
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/akveo/ng2-smart-table/compare/v1.1.0...v1.2.0) (2017-05-25)
 
