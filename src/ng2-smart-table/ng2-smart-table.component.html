@@ -15,6 +15,7 @@
                       [source]="source"
                       [deleteConfirm]="deleteConfirm"
                       [editConfirm]="editConfirm"
+                      [rowClassFunction]="grid.getSetting('rowClassFunction')"
                       (edit)="edit.emit($event)"
                       (delete)="delete.emit($event)"
                       (custom)="custom.emit($event)"
