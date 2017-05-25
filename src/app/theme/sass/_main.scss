@@ -196,7 +196,8 @@ span.highlight {
 }
 
 .main-content {
-  padding: 20px 0;
+  font-size: 1rem;
+  padding: 2rem 3rem;
 }
 
 .main-content :first-child {
@@ -300,13 +301,6 @@ span.highlight {
   .main-content {
     padding: 2rem 4rem;
     font-size: 1.1rem;
-  }
-}
-
-@media screen and (max-width: 42em) {
-  .main-content {
-    padding: 2rem 1rem;
-    font-size: 1rem;
   }
 }
 
