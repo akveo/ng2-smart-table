@@ -1,3 +1,34 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/akveo/ng2-smart-table/compare/v1.1.0...v1.2.0) (2017-05-25)
+
+
+### Bug Fixes
+
+* **readme:** fix broken license link ([f5496e0](https://github.com/akveo/ng2-smart-table/commit/f5496e0))
+* **table:** custom action when action position: 'right' ([bc5f5b4](https://github.com/akveo/ng2-smart-table/commit/bc5f5b4))
+* **table:** deprecated the search key ([#366](https://github.com/akveo/ng2-smart-table/issues/366)) ([e8cf1d9](https://github.com/akveo/ng2-smart-table/commit/e8cf1d9))
+* **table:** fix a bug where source changes and pager doesn't get updated ([#329](https://github.com/akveo/ng2-smart-table/issues/329)) ([086cd1f](https://github.com/akveo/ng2-smart-table/commit/086cd1f))
+* **table:** fix a bug where source changes and title sort configuration doesn't get updated ([#330](https://github.com/akveo/ng2-smart-table/issues/330)) ([89e4bec](https://github.com/akveo/ng2-smart-table/commit/89e4bec))
+* **table:** fix a bug where source changes but filter doesn't get updated ([#331](https://github.com/akveo/ng2-smart-table/issues/331)) ([c48818f](https://github.com/akveo/ng2-smart-table/commit/c48818f))
+* **table:** fix an issue where pager is vertical (fix [#343](https://github.com/akveo/ng2-smart-table/issues/343)) ([04c896e](https://github.com/akveo/ng2-smart-table/commit/04c896e))
+* **table:** fix bug when source changes and it's type is Array ([#327](https://github.com/akveo/ng2-smart-table/issues/327)) ([b72c29f](https://github.com/akveo/ng2-smart-table/commit/b72c29f))
+* **table:** hide actions when no actions ([27abbb5](https://github.com/akveo/ng2-smart-table/commit/27abbb5))
+* **table:** make `source` input property properly annotated as DataSource in dependent components ([#332](https://github.com/akveo/ng2-smart-table/issues/332)) ([9be34fc](https://github.com/akveo/ng2-smart-table/commit/9be34fc))
+* **table:** onComponentInit hook didn't called when OnInit didn't implemented ([067a346](https://github.com/akveo/ng2-smart-table/commit/067a346))
+* **table:** only perform filter if search string is present ([#358](https://github.com/akveo/ng2-smart-table/issues/358)) ([3886007](https://github.com/akveo/ng2-smart-table/commit/3886007))
+* **table:** performance improve ([#367](https://github.com/akveo/ng2-smart-table/issues/367)), (fix [#189](https://github.com/akveo/ng2-smart-table/issues/189), fix [#300](https://github.com/akveo/ng2-smart-table/issues/300)) ([69e883c](https://github.com/akveo/ng2-smart-table/commit/69e883c))
+* **table:** remove unused dependecies for filter-types ([#334](https://github.com/akveo/ng2-smart-table/issues/334)) ([fd98bfc](https://github.com/akveo/ng2-smart-table/commit/fd98bfc))
+
+
+### Features
+
+* **custom-actions:** add the custom actions feature ([#338](https://github.com/akveo/ng2-smart-table/issues/338)) ([af8e00e](https://github.com/akveo/ng2-smart-table/commit/af8e00e))
+* **docs:** add onComponentInitFunction description in docs ([2bb9bd8](https://github.com/akveo/ng2-smart-table/commit/2bb9bd8))
+* **table:** add custom render component on init function hook ([e06fa09](https://github.com/akveo/ng2-smart-table/commit/e06fa09))
+* **table:** add rowClassFunction ([#355](https://github.com/akveo/ng2-smart-table/issues/355)) ([845c8cf](https://github.com/akveo/ng2-smart-table/commit/845c8cf))
+
+
+
 <a name="1.1.0"></a>
 # 1.1.0 (2017-04-21)
 
