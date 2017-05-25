@@ -235,14 +235,18 @@ export class LocalDataSource extends DataSource {
     if (this.filterConf.filters) {
       if (this.filterConf.andOperator) {
         this.filterConf.filters.forEach((fieldConf: any) => {
-          data = LocalFilter
-            .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']);
+          if (fieldConf['search'].length > 0) {
+            data = LocalFilter
+              .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']);
+          }
         });
       } else {
         let mergedData: any = [];
         this.filterConf.filters.forEach((fieldConf: any) => {
-          mergedData = mergedData.concat(LocalFilter
-            .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']));
+          if (fieldConf['search'].length > 0) {
+            mergedData = mergedData.concat(LocalFilter
+              .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']));
+          }
         });
         // remove non unique items
         data = mergedData.filter((elem: any, pos: any, arr: any) => {

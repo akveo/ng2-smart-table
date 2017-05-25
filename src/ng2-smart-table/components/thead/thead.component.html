@@ -1,4 +1,4 @@
-<tr ng2-st-thead-titles-row *ngIf="!grid.getSetting('hideHeader')"
+<tr ng2-st-thead-titles-row *ngIf="!isHideHeader"
                             class="ng2-smart-titles"
                             [grid]="grid"
                             [isAllSelected]="isAllSelected"
@@ -7,7 +7,7 @@
                             (selectAllRows)="selectAllRows.emit($event)">
 </tr>
 
-<tr ng2-st-thead-filters-row *ngIf="!grid.getSetting('hideSubHeader')"
+<tr ng2-st-thead-filters-row *ngIf="!isHideSubHeader"
                               class="ng2-smart-filters"
                               [grid]="grid"
                               [source]="source"

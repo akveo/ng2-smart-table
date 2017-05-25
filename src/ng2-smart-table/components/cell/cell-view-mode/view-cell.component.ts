@@ -1,9 +1,10 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import {Component, Input, ChangeDetectionStrategy } from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
 
 @Component({
   selector: 'table-cell-view-mode',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div [ngSwitch]="cell.getColumn().type">
         <custom-view-component *ngSwitchCase="'custom'" [cell]="cell"></custom-view-component>
