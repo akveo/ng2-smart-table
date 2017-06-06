@@ -25,6 +25,14 @@
                       [cell]="cell">
     </completer-editor>
 
+    <input-date-editor *ngSwitchCase="'date'"
+                  [cell]="cell"
+                  [inputClass]="inputClass"
+                  (onClick)="onClick($event)"
+                  (onEdited)="onEdited($event)"
+                  (onStopEditing)="onStopEditing()">
+    </input-date-editor>
+
     <input-editor *ngSwitchDefault
                   [cell]="cell"
                   [inputClass]="inputClass"

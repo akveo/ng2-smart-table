@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/skip';
 
 import { DefaultFilter } from './default-filter';
+import { Column } from '../../../lib/data-set/column';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/debounceTime';
 
 @Component({
-  selector: 'input-filter',
+  selector: 'input-date-filter',
   template: `
     <input [(ngModel)]="query"
            [ngClass]="inputClass"
            [formControl]="inputControl"
            class="form-control"
-           type="text"
+           type="date"
            placeholder="{{ column.title }}" />
   `,
 })
-export class InputFilterComponent extends DefaultFilter implements OnInit {
+export class InputDateFilterComponent extends DefaultFilter implements OnInit {
 
   inputControl = new FormControl();
 
@@ -27,7 +27,6 @@ export class InputFilterComponent extends DefaultFilter implements OnInit {
 
   ngOnInit() {
     this.inputControl.valueChanges
-      .skip(1)
       .distinctUntilChanged()
       .debounceTime(this.delay)
       .subscribe((value: string) => this.setFilter());
