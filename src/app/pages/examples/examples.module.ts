@@ -21,6 +21,7 @@ import { FilterExamplesComponent } from './filter/filter-examples.component';
 import { ServerExamplesComponent } from './server/server-examples.component';
 import { CustomViewEditExamplesComponent } from './custom-edit-view/custom-edit-view-examples.component';
 import { BasicExampleCustomActionsComponent } from './custom-edit-view/basic-example-custom-actions.component';
+import { BasicExampleCustomEventsComponent } from './custom-edit-view/basic-example-custom-events.component';
 import { VariousExamplesComponent } from './various/various-examples.component';
 
 import {
@@ -45,6 +46,7 @@ const EXAMPLES_COMPONENTS = [
   VariousExamplesComponent,
   BasicExampleButtonViewComponent,
   BasicExampleCustomActionsComponent,
+  BasicExampleCustomEventsComponent,
   ButtonViewComponent,
 ];
 
