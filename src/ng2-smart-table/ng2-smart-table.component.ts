@@ -18,6 +18,7 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
+  @Output() dblClickRow = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() create = new EventEmitter<any>();
@@ -118,6 +119,19 @@ export class Ng2SmartTableComponent implements OnChanges {
       this.grid.selectRow(row);
       this.emitUserSelectRow(row);
       this.emitSelectRow(row);
+    }
+  }
+
+  onDblClickRow(row: Row) {
+    if (this.grid.getSetting('selectMode') !== 'multi') {
+      this.grid.selectRow(row);
+      const selectedRows = this.grid.getSelectedRows();
+      this.dblClickRow.emit({
+        data: row ? row.getData() : null,
+        isSelected: row ? row.getIsSelected() : null,
+        source: this.source,
+        selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
+      });
     }
   }
 
