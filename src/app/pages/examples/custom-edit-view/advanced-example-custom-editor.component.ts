@@ -6,7 +6,7 @@ import { CustomRenderComponent } from './custom-render.component';
 @Component({
   selector: 'advanced-example-custom-editor',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ng2-first-table [settings]="settings" [source]="data"></ng2-first-table>
   `,
 })
 export class AdvancedExamplesCustomEditorComponent {
@@ -28,7 +28,7 @@ export class AdvancedExamplesCustomEditorComponent {
       id: 3,
       name: 'Clementine Bauch',
       username: 'Samantha',
-      link: '<a href="https://github.com/akveo/ng2-smart-table">Ng2 smart table</a>',
+      link: '<a href="https://github.com/akveo/ng2-first-table">Ng2 smart table</a>',
     },
     {
       id: 4,

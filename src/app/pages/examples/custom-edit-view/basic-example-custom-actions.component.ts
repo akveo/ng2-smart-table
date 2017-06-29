@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'basic-example-custom-actions',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)"></ng2-smart-table>
+    <ng2-first-table [settings]="settings" [source]="data" (custom)="onCustom($event)"></ng2-first-table>
   `,
 })
 export class BasicExampleCustomActionsComponent {

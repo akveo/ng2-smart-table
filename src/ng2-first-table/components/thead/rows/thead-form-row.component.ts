@@ -11,14 +11,14 @@ import { Row } from '../../../lib/data-set/row';
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
       <td *ngFor="let cell of grid.getNewRow().getCells()">
-        <ng2-smart-table-cell [cell]="cell"
+        <ng2-first-table-cell [cell]="cell"
                               [grid]="grid"
                               [isNew]="true"
                               [createConfirm]="createConfirm"
                               [inputClass]="addInputClass"
                               [isInEditing]="grid.getNewRow().isInEditing"
                               (edited)="onCreate($event)">
-        </ng2-smart-table-cell>
+        </ng2-first-table-cell>
       </td>
       <td  *ngIf="showActionColumnRight"  class="ng2-smart-actions">
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>

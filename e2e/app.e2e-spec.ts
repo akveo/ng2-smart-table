@@ -1,6 +1,6 @@
 import { Ng2SmartTableDemoPage } from './app.po';
 
-describe('ng2-smart-table-demo App', () => {
+describe('ng2-first-table-demo App', () => {
   let page: Ng2SmartTableDemoPage;
 
   beforeEach(() => {

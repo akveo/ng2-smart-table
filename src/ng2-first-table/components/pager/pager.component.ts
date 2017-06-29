@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { DataSource } from '../../lib/data-source/data-source';
 
 @Component({
-  selector: 'ng2-smart-table-pager',
+  selector: 'ng2-first-table-pager',
   styleUrls: ['./pager.component.scss'],
   template: `
     <nav *ngIf="shouldShow()" class="ng2-smart-pagination-nav">

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { Ng2SmartTableModule } from '../ng2-smart-table';
+import { Ng2SmartTableModule } from '../ng2-first-table';
 
 import { PagesModule } from './pages/pages.module';
 

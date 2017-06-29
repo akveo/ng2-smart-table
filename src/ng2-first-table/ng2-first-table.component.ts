@@ -7,9 +7,9 @@ import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
-  selector: 'ng2-smart-table',
-  styleUrls: ['./ng2-smart-table.component.scss'],
-  templateUrl: './ng2-smart-table.component.html',
+  selector: 'ng2-first-table',
+  styleUrls: ['./ng2-first-table.component.scss'],
+  templateUrl: './ng2-first-table.component.html',
 })
 export class Ng2SmartTableComponent implements OnChanges {
 
