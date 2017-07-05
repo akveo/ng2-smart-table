@@ -1,6 +1,6 @@
-<table [id]="grid.getSetting('attr.id')" [ngClass]="grid.getSetting('attr.class')">
+<table [id]="tableId" [ngClass]="tableClass">
 
-  <thead ng2-st-thead *ngIf="!grid.getSetting('hideHeader') || !grid.getSetting('hideSubHeader')"
+  <thead ng2-st-thead *ngIf="!isHideHeader || !isHideSubHeader"
                       [grid]="grid"
                       [isAllSelected]="isAllSelected"
                       [source]="source"
@@ -15,6 +15,7 @@
                       [source]="source"
                       [deleteConfirm]="deleteConfirm"
                       [editConfirm]="editConfirm"
+                      [rowClassFunction]="rowClassFunction"
                       (edit)="edit.emit($event)"
                       (delete)="delete.emit($event)"
                       (custom)="custom.emit($event)"
@@ -26,7 +27,7 @@
 
 </table>
 
-<ng2-smart-table-pager *ngIf="grid.getSetting('pager.display')"
+<ng2-smart-table-pager *ngIf="isPagerDisplay"
                         [source]="source"
                         (changePage)="changePage($event)">
 </ng2-smart-table-pager>
