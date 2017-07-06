@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
@@ -71,16 +71,33 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected requestElements(): Observable<any> {
-    return this.http.get(this.conf.endPoint, this.createRequestOptions());
+      // standard mode, the HTTP request is handled internally
+      return this.http.get(this.conf.endPoint, this.createRequestOptions());
   }
 
   protected createRequestOptions(): RequestOptionsArgs {
     let requestOptions: RequestOptionsArgs = {};
     requestOptions.params = new URLSearchParams();
 
+    requestOptions = this.addHeadersRequestOptions(requestOptions);
     requestOptions = this.addSortRequestOptions(requestOptions);
     requestOptions = this.addFilterRequestOptions(requestOptions);
+
     return this.addPagerRequestOptions(requestOptions);
+  }
+
+  protected addHeadersRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
+    let confHeaders: any = this.conf.reqHeaders;
+    let headers: Headers = new Headers();
+
+    for (let header in confHeaders) {
+      if (confHeaders.hasOwnProperty(header)) {
+        headers.append(header, confHeaders[header]);
+      }
+    }
+
+    requestOptions.headers = headers;
+    return requestOptions;
   }
 
   protected addSortRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
@@ -88,8 +105,12 @@ export class ServerDataSource extends LocalDataSource {
 
     if (this.sortConf) {
       this.sortConf.forEach((fieldConf) => {
-        searchParams.set(this.conf.sortFieldKey, fieldConf.field);
-        searchParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
+        if (this.conf.sortKey) {
+          searchParams.set(this.conf.sortKey, `${fieldConf.field} ${fieldConf.direction.toUpperCase()}`);
+        } else {
+          searchParams.set(this.conf.sortFieldKey, fieldConf.field);
+          searchParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
+        }
       });
     }
 
@@ -100,9 +121,10 @@ export class ServerDataSource extends LocalDataSource {
     const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
 
     if (this.filterConf.filters) {
-      this.filterConf.filters.forEach((fieldConf: any) => {
+      this.filterConf.filters.forEach((fieldConf) => {
         if (fieldConf['search']) {
-          searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
+          searchParams.set(this.conf.filterFieldKey
+          .replace('#field#', fieldConf['field']), fieldConf['search']);
         }
       });
     }
@@ -114,7 +136,11 @@ export class ServerDataSource extends LocalDataSource {
     const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
 
     if (this.pagingConf && this.pagingConf['page'] && this.pagingConf['perPage']) {
-      searchParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
+      if (this.conf.pagerSkipKey) {
+        searchParams.set(this.conf.pagerSkipKey, `${(this.pagingConf['page'] - 1) * this.pagingConf['perPage']}`);
+      } else {
+        searchParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
+      }
       searchParams.set(this.conf.pagerLimitKey, this.pagingConf['perPage']);
     }
 

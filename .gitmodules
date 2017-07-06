@@ -1,0 +1,3 @@
+[submodule "ng2-smart-table"]
+	path = src/ng2-smart-table
+	url = https://github.com/Toolito/ng2-smart-table/src/ng2-smart-table
