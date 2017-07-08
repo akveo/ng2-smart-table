@@ -45,6 +45,7 @@ export class PagerComponent implements OnChanges {
   protected pages: Array<any>;
   protected page: number;
   protected count: number = 0;
+  protected countdata: number = 0;
   protected perPage: number;
 
   protected dataChangedSub: Subscription;
@@ -57,7 +58,12 @@ export class PagerComponent implements OnChanges {
       this.dataChangedSub = this.source.onChanged().subscribe((dataChanges) => {
         this.page = this.source.getPaging().page;
         this.perPage = this.source.getPaging().perPage;
-        this.count = this.source.count();
+        if(this.countdata > this.perPage) {
+          this.count = this.countdata;
+        }
+        else {
+          this.count = this.source.count();
+        }
         if (this.isPageOutOfBounce()) {
           this.source.setPage(--this.page);
         }
@@ -104,6 +110,10 @@ export class PagerComponent implements OnChanges {
 
   getLast(): number {
     return Math.ceil(this.count / this.perPage);
+  }
+   
+  setCount(countdata: number) {
+    this.count = countdata;
   }
 
   isPageOutOfBounce(): boolean {
