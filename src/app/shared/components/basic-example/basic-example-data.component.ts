@@ -23,6 +23,20 @@ export class BasicExampleDataComponent {
         title: 'Email',
       },
     },
+    rowcolor: {
+      alternate: false,
+      normalcolor: '#00aa00',
+      alternatecolor: '#aa0000',
+    },
+    toolsline: [
+      {
+        icon: '',
+        text: '删除',
+        operate: function () {
+          console.log("delete");
+        },
+      },
+    ],
   };
 
   data = [
