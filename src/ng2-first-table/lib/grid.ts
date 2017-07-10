@@ -35,6 +35,18 @@ export class Grid {
     return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete') || this.getSetting('actions.custom').length;
   }
 
+  isAlternate(): boolean {
+    return this.getSetting('rowcolor.alternate');
+  }
+
+  getNormalRowColor(): string {
+    return this.getSetting('rowcolor.normalcolor');
+  }
+
+  getAlternateRowColor(): string {
+    return this.getSetting('rowcolor.alternatecolor');
+  }
+
   isMultiSelectVisible(): boolean {
     return this.getSetting('selectMode') === 'multi';
   }
