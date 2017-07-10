@@ -116,7 +116,7 @@ export class PagerComponent implements OnChanges {
   }
 
   getPageEnd(): number {
-    if (this.page * this.perPage > this.count) {
+    if (this.page * this.perPage >= this.count) {
       return this.count;
     }
     return this.page * this.perPage;
