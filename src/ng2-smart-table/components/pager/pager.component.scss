@@ -3,6 +3,14 @@
   font-size: .875em;
   padding: 0;
 
+  &.summary {
+    float: left;
+  }
+
+  &.pagination {
+    float: right;
+  }
+
   .sr-only {
     position: absolute;
     width: 1px;
