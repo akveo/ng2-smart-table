@@ -19,6 +19,10 @@ export class Grid {
   onSelectRowSource = new Subject<any>();
 
   constructor(source: DataSource, settings: any) {
+    // source = settings.getdata();
+
+    // console.log("---------------gridConstructor");
+    // console.dir(source);
     this.setSettings(settings);
     this.setSource(source);
   }
@@ -33,18 +37,6 @@ export class Grid {
 
   isActionsVisible(): boolean {
     return this.getSetting('actions.add') || this.getSetting('actions.edit') || this.getSetting('actions.delete') || this.getSetting('actions.custom').length;
-  }
-
-  isAlternate(): boolean {
-    return this.getSetting('rowcolor.alternate');
-  }
-
-  getNormalRowColor(): string {
-    return this.getSetting('rowcolor.normalcolor');
-  }
-
-  getAlternateRowColor(): string {
-    return this.getSetting('rowcolor.alternatecolor');
   }
 
   isMultiSelectVisible(): boolean {
@@ -279,5 +271,29 @@ export class Grid {
   getLastRow(): Row {
     return this.dataSet.getLastRow();
   }
+
+/* 自定义区域------------begin:  */
+
+  /**
+   * 设置交替行背景色相关
+   */
+  isAlternate(): boolean {
+    return this.getSetting('rowcolor.alternate');
+  }
+
+  getNormalRowColor(): string {
+    return this.getSetting('rowcolor.normalcolor');
+  }
+
+  getAlternateRowColor(): string {
+    return this.getSetting('rowcolor.alternatecolor');
+  }
+
+  getToolslineObj(): Array<any> {
+    return this.getSetting('toolsline');
+  }
+/* 自定义区域-------------end. */
+
+
 
 }
