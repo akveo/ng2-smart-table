@@ -5,7 +5,7 @@ import { Cell } from '../../lib/data-set/cell';
 import { Row } from '../../lib/data-set/row';
 
 @Component({
-  selector: 'ng2-smart-table-cell',
+  selector: 'ng2-first-table-cell',
   template: `
     <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell"></table-cell-view-mode>
     <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell"

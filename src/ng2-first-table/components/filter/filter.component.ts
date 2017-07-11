@@ -5,7 +5,7 @@ import { Column } from '../../lib/data-set/column';
 import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: 'ng2-smart-table-filter',
+  selector: 'ng2-first-table-filter',
   styleUrls: ['./filter.component.scss'],
   template: `
     <div class="ng2-smart-filter" *ngIf="column.isFilterable" [ngSwitch]="column.getFilterType()">

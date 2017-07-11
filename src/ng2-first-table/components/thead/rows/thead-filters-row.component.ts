@@ -13,11 +13,11 @@ import { Column } from "../../../lib/data-set/column";
                           (create)="create.emit($event)">
     </th>
     <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
-      <ng2-smart-table-filter [source]="source"
+      <ng2-first-table-filter [source]="source"
                               [column]="column"
                               [inputClass]="filterInputClass"
                               (filter)="filter.emit($event)">
-      </ng2-smart-table-filter>
+      </ng2-first-table-filter>
     </th>
     <th ng2-st-add-button *ngIf="showActionColumnRight"
                           [grid]="grid"

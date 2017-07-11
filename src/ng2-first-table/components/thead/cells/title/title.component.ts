@@ -5,7 +5,7 @@ import { DataSource } from '../../../../lib/data-source/data-source';
 import { Column } from '../../../../lib/data-set/column';
 
 @Component({
-  selector: 'ng2-smart-table-title',
+  selector: 'ng2-first-table-title',
   styleUrls: ['./title.component.scss'],
   template: `
     <a href="#" *ngIf="column.isSortable"
