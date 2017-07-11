@@ -1,21 +1,21 @@
 {
     "name": "ng2-first-table",
-    "version": "1.2.1",
-    "description": "Angular Smart Table",
+    "version": "1.0.4",
+    "description": "Upgrade to Angular Smart Table",
     "main": "./bundles/table.umd.js",
     "module": "./index.js",
     "typings": "./index.d.ts",
-    "author": "akveo",
+    "author": "金飞",
     "license": "MIT",
     "scripts": {},
     "repository": {
         "type": "git",
-        "url": "git+http://akveo.github.io/ng2-first-table.git"
+        "url": "git+https://github.com/ascode/ng2-first-table.git"
     },
     "bugs": {
-        "url": "http://akveo.github.io/ng2-first-table/issues"
+        "url": "https://github.com/ascode/ng2-first-table/issues"
     },
-    "homepage": "http://akveo.github.io/ng2-first-table/#readme",
+    "homepage": "https://github.com/ascode/ng2-first-table#readme",
     "keywords": [
         "angular",
         "typescript",

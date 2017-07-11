@@ -9,6 +9,7 @@ import { Column } from "../../../lib/data-set/column";
   template: `
     <th [attr.colspan]="colsNum">
     <button>删除</button>
+    <!--<button *ngFor="let tool of toolsbars" (click)="">删除</button>-->
     </th>
   `,
 })
@@ -26,6 +27,7 @@ export class TheadToolslineRowComponent implements OnChanges {
   showActionColumnRight: boolean;
 
   colsNum: number;
+  toolsbars: Array<any>;
 
   ngOnChanges() {
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
@@ -35,6 +37,8 @@ export class TheadToolslineRowComponent implements OnChanges {
     console.log("一共有【"+this.colsNum+"】个列----begin:");
     console.dir(this.grid.getColumns());
     console.log("查看列完毕----end.");
+
+    this.toolsbars = this.grid.getToolslineObj();
   }
 
 }

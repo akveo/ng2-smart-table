@@ -15,6 +15,7 @@ import { TitleComponent } from './cells/title/title.component';
 import { TheadFitlersRowComponent } from './rows/thead-filters-row.component';
 import { TheadFormRowComponent } from './rows/thead-form-row.component';
 import { TheadTitlesRowComponent } from './rows/thead-titles-row.component';
+import { TheadToolslineRowComponent } from './rows/thead-toolsline-row.component';
 
 const THEAD_COMPONENTS = [
   ActionsComponent,
@@ -27,6 +28,7 @@ const THEAD_COMPONENTS = [
   TheadFormRowComponent,
   TheadTitlesRowComponent,
   Ng2SmartTableTheadComponent,
+  TheadToolslineRowComponent,
 ];
 
 @NgModule({
