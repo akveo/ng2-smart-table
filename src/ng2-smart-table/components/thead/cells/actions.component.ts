@@ -10,7 +10,7 @@ import { Grid } from '../../../lib/grid';
         (click)="$event.preventDefault();create.emit($event)"></a>
     <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel"
         [innerHTML]="cancelButtonContent"
-        (click)="$event.preventDefault();grid.createFormShown = false;"></a>
+        (click)="$event.preventDefault();grid.createFormShown = false; grid.dataSet.newRowValidator.reset();"></a>
   `,
 })
 export class ActionsComponent implements OnChanges {

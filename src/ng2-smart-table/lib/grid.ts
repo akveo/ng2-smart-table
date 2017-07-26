@@ -7,6 +7,7 @@ import { Column } from './data-set/column';
 import { Row } from './data-set/row';
 import { DataSet } from './data-set/data-set';
 import { DataSource } from './data-source/data-source';
+import { ValidatorService } from './validator.service';
 
 export class Grid {
 
@@ -18,8 +19,8 @@ export class Grid {
 
   onSelectRowSource = new Subject<any>();
 
-  constructor(source: DataSource, settings: any) {
-    this.setSettings(settings);
+  constructor(source: DataSource, settings: any, validator: ValidatorService) {
+    this.setSettings(settings, validator);
     this.setSource(source);
   }
 
@@ -43,9 +44,9 @@ export class Grid {
     return this.dataSet.newRow;
   }
 
-  setSettings(settings: Object) {
+  setSettings(settings: Object, validator: ValidatorService) {
     this.settings = settings;
-    this.dataSet = new DataSet([], this.getSetting('columns'));
+    this.dataSet = new DataSet([], this.getSetting('columns'), validator);
 
     if (this.source) {
       this.source.refresh();
@@ -96,7 +97,7 @@ export class Grid {
   }
 
   create(row: Row, confirmEmitter: EventEmitter<any>) {
-
+    
     const deferred = new Deferred();
     deferred.promise.then((newData) => {
       newData = newData ? newData : row.getNewData();
@@ -105,6 +106,7 @@ export class Grid {
       } else {
         this.source.prepend(newData).then(() => {
           this.createFormShown = false;
+          this.dataSet.addInsertedRowValidator();
           this.dataSet.createNewRow();
         });
       }
@@ -117,38 +119,47 @@ export class Grid {
         newData: row.getNewData(),
         source: this.source,
         confirm: deferred,
+        validator: this.dataSet.newRowValidator,
       });
     } else {
-      deferred.resolve();
+      if(this.dataSet.newRowValidator.invalid)
+        deferred.reject();
+      else
+        deferred.resolve();
     }
   }
 
   save(row: Row, confirmEmitter: EventEmitter<any>) {
 
-    const deferred = new Deferred();
-    deferred.promise.then((newData) => {
-      newData = newData ? newData : row.getNewData();
-      if (deferred.resolve.skipEdit) {
-        row.isInEditing = false;
-      } else {
-        this.source.update(row.getData(), newData).then(() => {
+      const deferred = new Deferred();
+      deferred.promise.then((newData) => {
+        newData = newData ? newData : row.getNewData();
+        if (deferred.resolve.skipEdit) {
           row.isInEditing = false;
-        });
-      }
-    }).catch((err) => {
-      // doing nothing
-    });
-
-    if (this.getSetting('edit.confirmSave')) {
-      confirmEmitter.emit({
-        data: row.getData(),
-        newData: row.getNewData(),
-        source: this.source,
-        confirm: deferred,
+        } else {
+          this.source.update(row.getData(), newData).then(() => {
+            row.isInEditing = false;
+            this.dataSet.newRowValidator.reset();
+          });
+        }
+      }).catch((err) => {
+        // doing nothing
       });
-    } else {
-      deferred.resolve();
-    }
+
+      if (this.getSetting('edit.confirmSave')) {
+        confirmEmitter.emit({
+          data: row.getData(),
+          newData: row.getNewData(),
+          source: this.source,
+          confirm: deferred,
+          validator: this.dataSet.getRowValidator(row.index),
+        });
+      } else {
+        if(this.dataSet.getRowValidator(row.index).invalid)
+          deferred.reject();
+        else
+          deferred.resolve();
+      }
   }
 
   delete(row: Row, confirmEmitter: EventEmitter<any>) {
@@ -156,6 +167,7 @@ export class Grid {
     const deferred = new Deferred();
     deferred.promise.then(() => {
       this.source.remove(row.getData());
+      this.dataSet.editRowValidators = this.dataSet.editRowValidators.splice(row.index, 1);
     }).catch((err) => {
       // doing nothing
     });

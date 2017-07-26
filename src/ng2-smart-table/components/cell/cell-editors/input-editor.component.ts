@@ -8,6 +8,7 @@ import { DefaultEditor } from './default-editor';
   template: `
     <input [ngClass]="inputClass"
            class="form-control"
+           [formControl]="cell.getValidator()"
            [(ngModel)]="cell.newValue"
            [name]="cell.getId()"
            [placeholder]="cell.getTitle()"

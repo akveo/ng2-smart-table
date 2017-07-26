@@ -5,6 +5,7 @@ import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import { ValidatorService } from './lib/validator.service';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -34,6 +35,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   isPagerDisplay: boolean;
   rowClassFunction: Function;
 
+  constructor(private validator: ValidatorService) { }
 
   grid: Grid;
   defaultSettings: Object = {
@@ -88,7 +90,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (this.grid) {
       if (changes['settings']) {
-        this.grid.setSettings(this.prepareSettings());
+        this.grid.setSettings(this.prepareSettings(), this.validator);
       }
       if (changes['source']) {
         this.source = this.prepareSource();
@@ -150,8 +152,8 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   initGrid() {
     this.source = this.prepareSource();
-    this.grid = new Grid(this.source, this.prepareSettings());
-    this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
+    this.grid = new Grid(this.source, this.prepareSettings(), this.validator);
+    this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));  
   }
 
   prepareSource(): DataSource {

@@ -1,3 +1,5 @@
+import { AbstractControl } from '@angular/forms';
+
 import { Column } from './column';
 import { DataSet } from './data-set';
 import { Row } from './row';
@@ -13,6 +15,10 @@ export class Cell {
 
   getColumn(): Column {
     return this.column;
+  }
+
+  getValidator(): AbstractControl {
+    return this.dataSet.getRowValidator(this.getRow().index).controls[this.getId()];
   }
 
   getRow(): Row {
