@@ -36,7 +36,7 @@ const assetFiles = [
 ];
 
 /** Builds components to UMD bundle. */
-task('build:table', [':build:table:bundle:umd']);
+task('build:table', sequenceTask(':build:table:bundle:umd'));
 
 /** Builds components for ng2-smart-table releases */
 task(':build:table:release', sequenceTask(
@@ -96,8 +96,9 @@ task(':build:table:inline', sequenceTask(
 task(':inline-resources', () => inlineResources(TABLE_DIST_ROOT));
 
 /** Generates metadata.json files for all of the components. */
-task(':build:table:ngc', ['build:table'], execNodeTask(
-  '@angular/compiler-cli', 'ngc', ['-p', tsconfigPath],
+task('build:table');
+task(':build:table:ngc',  execNodeTask(
+  '@angular/compiler-cli', 'ngc', ['-p', tsconfigPath]
 ));
 
 /** [Watch task] Rebuilds (ESM output) whenever ts, scss, or html sources change. */
