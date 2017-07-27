@@ -8,6 +8,11 @@ import { DataSource } from '../../lib/data-source/data-source';
   styleUrls: ['./pager.component.scss'],
   template: `
     <nav *ngIf="shouldShow()" class="ng2-smart-pagination-nav">
+      <span class="ng2-smart-pagination summary">
+        <span>{{ getPageStart() }}</span>&nbsp;-&nbsp;
+        <span>{{ getPageEnd() }}</span>&nbsp;/&nbsp;
+        <span>{{ count }}</span>
+      </span>
       <ul class="ng2-smart-pagination pagination">
         <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
           <a class="ng2-smart-page-link page-link" href="#"
@@ -33,7 +38,7 @@ import { DataSource } from '../../lib/data-source/data-source';
           </a>
         </li>
       </ul>
-    </nav>
+    </nav><br>
   `,
 })
 export class PagerComponent implements OnChanges {
@@ -130,5 +135,15 @@ export class PagerComponent implements OnChanges {
         this.pages.push(i);
       }
     }
+  }
+  getPageStart(): number {
+    return (this.page - 1) * this.perPage + 1;
+  }
+
+  getPageEnd(): number {
+    if (this.page * this.perPage > this.count) {
+      return this.count;
+    }
+    return this.page * this.perPage;
   }
 }
