@@ -20,6 +20,6 @@ export class CheckboxViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.renderValue = (this.cell.getValue() === true) ? true : false;
+    this.renderValue = (this.cell.getValue() === true);
   }
 }
