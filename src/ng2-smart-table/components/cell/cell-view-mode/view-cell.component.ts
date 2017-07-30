@@ -8,7 +8,6 @@ import { Cell } from '../../../lib/data-set/cell';
   template: `
     <div [ngSwitch]="cell.getColumn().type">
         <custom-view-component *ngSwitchCase="'custom'" [cell]="cell"></custom-view-component>
-        <checkbox-view-component *ngSwitchCase="'checkbox'" [cell]="cell"></checkbox-view-component>
         <div *ngSwitchCase="'html'" [innerHTML]="cell.getValue()"></div>
         <div *ngSwitchDefault>{{ cell.getValue() }}</div>
     </div>
