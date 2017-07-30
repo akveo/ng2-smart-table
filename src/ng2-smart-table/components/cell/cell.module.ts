@@ -14,6 +14,7 @@ import { SelectEditorComponent } from './cell-editors/select-editor.component';
 import { TextareaEditorComponent } from './cell-editors/textarea-editor.component';
 import { CustomViewComponent } from './cell-view-mode/custom-view.component';
 import { ViewCellComponent } from './cell-view-mode/view-cell.component';
+import { CheckboxViewComponent } from './cell-view-mode/checkbox-view.component';
 
 const CELL_COMPONENTS = [
   CellComponent,
@@ -26,7 +27,8 @@ const CELL_COMPONENTS = [
   SelectEditorComponent,
   TextareaEditorComponent,
   CustomViewComponent,
-  ViewCellComponent
+  ViewCellComponent,
+  CheckboxViewComponent
 ];
 
 @NgModule({
