@@ -5,7 +5,6 @@ import { Cell } from '../../../lib/data-set/cell';
   selector: 'checkbox-view-component',
   template: `    
     <input type="checkbox" 
-           [ngClass]="inputClass" 
            class="form-control"
            [checked] = "renderValue"
            onclick="return false;"/>
