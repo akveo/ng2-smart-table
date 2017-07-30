@@ -13,7 +13,7 @@ import { Cell } from '../../../lib/data-set/cell';
 export class CheckboxViewComponent implements OnInit {
 
   @Input() cell: Cell;
-  renderValue;
+  renderValue: boolean;
 
   constructor() {
   }
