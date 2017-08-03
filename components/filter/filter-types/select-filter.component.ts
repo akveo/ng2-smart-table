@@ -19,6 +19,8 @@ import { DefaultFilter } from './default-filter';
           {{ option.title }}
         </option>
     </select>
+    <input type="hidden" class="filter-key" [value]="column.id"/>
+    <input type="hidden" class="filter-value" [value]="query"/>
   `,
 })
 export class SelectFilterComponent extends DefaultFilter implements OnInit {

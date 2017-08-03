@@ -13,24 +13,28 @@ import { Subscription } from 'rxjs/Subscription';
                      [query]="query"
                      [ngClass]="inputClass"
                      [column]="column"
+                     class="column.id"
                      (filter)="onFilter($event)">
       </select-filter>
       <checkbox-filter *ngSwitchCase="'checkbox'"
                        [query]="query"
                        [ngClass]="inputClass"
                        [column]="column"
+                       class="column.id"
                        (filter)="onFilter($event)">
       </checkbox-filter>
       <completer-filter *ngSwitchCase="'completer'"
                         [query]="query"
                         [ngClass]="inputClass"
                         [column]="column"
+                        class="column.id"
                         (filter)="onFilter($event)">
       </completer-filter>
       <input-filter *ngSwitchDefault
                     [query]="query"
                     [ngClass]="inputClass"
                     [column]="column"
+                    class="column.id"
                     (filter)="onFilter($event)">
       </input-filter>
     </div>

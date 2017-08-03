@@ -15,6 +15,8 @@ import { DefaultFilter } from './default-filter';
            class="form-control"
            type="text"
            placeholder="{{ column.title }}" />
+     <input type="hidden" class="filter-key" [value]="column.id"/>
+     <input type="hidden" class="filter-value" [value]="query"/>
   `,
 })
 export class InputFilterComponent extends DefaultFilter implements OnInit {
