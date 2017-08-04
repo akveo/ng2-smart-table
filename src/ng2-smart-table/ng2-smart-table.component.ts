@@ -82,7 +82,8 @@ export class Ng2SmartTableComponent implements OnChanges {
       display: true,
       perPage: 10,
     },
-    rowClassFunction: () => ""
+    rowClassFunction: () => "",
+    insertMethod: 'prepend'
   };
 
   isAllSelected: boolean = false;

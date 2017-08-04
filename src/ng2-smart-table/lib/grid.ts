@@ -104,11 +104,7 @@ export class Grid {
       if (deferred.resolve.skipAdd) {
         this.createFormShown = false;
       } else {
-        this.source.prepend(newData).then(() => {
-          this.createFormShown = false;
-          this.dataSet.addInsertedRowValidator();
-          this.dataSet.createNewRow();
-        });
+          this.insert(newData);   
       }
     }).catch((err) => {
       // doing nothing
@@ -127,6 +123,40 @@ export class Grid {
       else
         deferred.resolve();
     }
+  }
+
+  insert(newData: any){
+    switch(this.getSetting('insertMethod')){
+      case 'prepend': {
+          this.source.prepend(newData).then(() => {
+          this.insertRow();          
+        });
+        break;
+      }
+      case 'append': {
+        this.source.append(newData).then(() => {
+        this.insertRow();
+        });
+        break;
+      }
+      case 'add': {
+        this.source.add(newData).then(() => {
+        this.insertRow();
+        });
+        break;
+      }
+      default: {
+        this.source.prepend(newData).then(() => {
+          this.insertRow();
+          });
+      }
+    }        
+  }
+
+  insertRow(){
+    this.createFormShown = false;
+    this.dataSet.addInsertedRowValidator();
+    this.dataSet.createNewRow();
   }
 
   save(row: Row, confirmEmitter: EventEmitter<any>) {
