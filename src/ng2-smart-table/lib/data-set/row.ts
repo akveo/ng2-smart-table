@@ -49,7 +49,7 @@ export class Row {
   }
 
   createCell(column: Column): Cell {
-    const defValue = (column as any).settings.defaultValue ? (column as any).settings.defaultValue : '';
+    const defValue = (column as any).settings.defaultValue || (column as any).settings.defaultValue === false ? (column as any).settings.defaultValue : '';
     const value = typeof this.data[column.id] === 'undefined' ? defValue : this.data[column.id];
     return new Cell(value, this, column, this._dataSet);
   }
