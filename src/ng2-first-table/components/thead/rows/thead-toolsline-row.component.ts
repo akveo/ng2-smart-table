@@ -8,6 +8,7 @@ import { Column } from "../../../lib/data-set/column";
   selector: '[ng2-st-thead-toolsline-row]',
   template: `
     <th [attr.colspan]="colsNum">
+    <button>删除</button>
     <!--<button *ngFor="let tool of toolsbars" (click)="">删除</button>-->
     </th>
   `,

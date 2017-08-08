@@ -1,6 +1,5 @@
-<tr *ngFor="let row of grid.getRows(); let i = index" class="ng2-smart-row" (click)="userSelectRow.emit(row)"
-    [className]="rowClassFunction(row)" [ngClass]="{selected: row.isSelected}" (dblclick)="dbSelect.emit(row)"
-    [style.background]='rowBgc.isShow ? (i % 2 == 0 ? rowBgc.oddBgc : rowBgc.evenBgc) : "" '>
+<tr *ngFor="let row of grid.getRows(); let i = index" [style.background-color]="grid.isAlternate() ? (i % 2 == 0 ? grid.getAlternateRowColor(): grid.getNormalRowColor()) : ''" (click)="userSelectRow.emit(row)" (mouseover)="rowHover.emit(row)" class="ng2-smart-row"
+    [className]="rowClassFunction(row)" [ngClass]="{selected: row.isSelected}">
     <td *ngIf="isMultiSelectVisible" class="ng2-smart-actions ng2-smart-action-multiple-select" (click)="multipleSelectRow.emit(row)">
         <input type="checkbox" class="form-control" [ngModel]="row.isSelected">
     </td>
@@ -35,5 +34,3 @@
         {{ noDataMessage }}
     </td>
 </tr>
-
-<!-- [style.background-color]="grid.isAlternate() ? (i % 2 == 0 ? grid.getAlternateRowColor(): grid.getNormalRowColor()) : ''" (click)="userSelectRow.emit(row)" (mouseover)="rowHover.emit(row)"  -->

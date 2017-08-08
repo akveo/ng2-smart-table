@@ -51,9 +51,11 @@ export class DataSet {
 
   selectRow(row: Row): Row {
     const previousIsSelected = row.isSelected;
-    this.deselectAll();  
+    this.deselectAll();
+
     row.isSelected = !previousIsSelected;
     this.selectedRow = row;
+
     return this.selectedRow;
   }
 

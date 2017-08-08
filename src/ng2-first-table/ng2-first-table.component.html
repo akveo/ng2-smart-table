@@ -4,11 +4,12 @@
         (filter)="filter($event)">
     </thead>
 
-    <tbody ng2-st-tbody [grid]="grid" [source]="source" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" [rowClassFunction]="rowClassFunction" [rowBgc]='rowBgc' (edit)="edit.emit($event)" (delete)="delete.emit($event)" (custom)="custom.emit($event)" (userSelectRow)="onUserSelectRow($event)"
-        (editRowSelect)="editRowSelect($event)" (multipleSelectRow)="multipleSelectRow($event)" (rowHover)="onRowHover($event)" (dbSelect)="ondblclick($event)">
+    <tbody ng2-st-tbody [grid]="grid" [source]="source" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" [rowClassFunction]="rowClassFunction" (edit)="edit.emit($event)" (delete)="delete.emit($event)" (custom)="custom.emit($event)" (userSelectRow)="onUserSelectRow($event)"
+        (editRowSelect)="editRowSelect($event)" (multipleSelectRow)="multipleSelectRow($event)" (rowHover)="onRowHover($event)">
     </tbody>
 
 </table>
 
 <ng2-first-table-pager *ngIf="isPagerDisplay" [source]="source" (changePage)="changePage($event)">
 </ng2-first-table-pager>
+jinfei
