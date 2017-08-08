@@ -33,7 +33,7 @@ this.athis = this;
       },
     },
     rowcolor: {
-      alternate: false,
+      alternate: true,
       normalcolor: '#00aa00',
       alternatecolor: '#aa0000',
     },
