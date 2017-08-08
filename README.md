@@ -149,7 +149,5 @@ And pass the data to the table:
 [<img alt="nureha" src="https://avatars2.githubusercontent.com/u/7064537?v=3&s=60" width="60">](https://github.com/nureha)[<img alt="vlupu10" src="https://avatars1.githubusercontent.com/u/3597512?v=3&s=60" width="60">](https://github.com/vlupu10)[<img alt="zhouhao27" src="https://avatars1.githubusercontent.com/u/8099731?v=3&s=60" width="60">](https://github.com/zhouhao27)[<img alt="hkb1990" src="https://avatars1.githubusercontent.com/u/2637138?v=3&s=60" width="60">](https://github.com/hkb1990)[<img alt="liaosong" src="https://avatars0.githubusercontent.com/u/3927282?v=3&s=60" width="60">](https://github.com/liaosong)[<img alt="ktriek" src="https://avatars2.githubusercontent.com/u/4461059?v=3&s=60" width="60">](https://github.com/ktriek)
 
 ## 特别感谢我们的现有维护者！ 
-[<img alt="nnixaa" src="https://avatars0.githubusercontent.com/u/2718661?v=4&s=400" width="60">](https://github.com/ascode)
-
-[<img alt="nnixaa" src="https://avatars3.githubusercontent.com/u/24467663?v=4&s=400" width="60">](https://github.com/wangraoji)
+[<img alt="nnixaa" src="https://avatars0.githubusercontent.com/u/2718661?v=4&s=400" width="60">](https://github.com/ascode)[<img alt="nnixaa" src="https://avatars3.githubusercontent.com/u/24467663?v=4&s=400" width="60">](https://github.com/wangraoji)
 
