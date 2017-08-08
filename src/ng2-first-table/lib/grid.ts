@@ -271,8 +271,7 @@ export class Grid {
   getLastRow(): Row {
     return this.dataSet.getLastRow();
   }
-
-/* 自定义区域------------begin:  */
+  /* 自定义区域------------begin:  */
 
   /**
    * 设置交替行背景色相关
@@ -292,8 +291,5 @@ export class Grid {
   getToolslineObj(): Array<any> {
     return this.getSetting('toolsline');
   }
-/* 自定义区域-------------end. */
-
-
-
+  /* 自定义区域-------------end. */
 }

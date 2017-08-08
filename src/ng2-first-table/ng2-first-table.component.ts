@@ -18,6 +18,8 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
+  // 自定义单元行 双击事件
+  @Output() dbSelect = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() create = new EventEmitter<any>();
@@ -33,7 +35,8 @@ export class Ng2SmartTableComponent implements OnChanges {
   isHideSubHeader: boolean;
   isPagerDisplay: boolean;
   rowClassFunction: Function;
-
+  // 自定义隔行换色
+  rowBgc: object;
 
   grid: Grid;
   defaultSettings: Object = {
@@ -80,7 +83,15 @@ export class Ng2SmartTableComponent implements OnChanges {
       display: true,
       perPage: 10,
     },
-    rowClassFunction: () => ""
+    rowClassFunction: () => "",
+
+    // 自定义隔行换色
+    rowBgc: {
+      isShow: false,
+      oddBgc: 'red',
+      evenBgc: 'blue'
+    },
+
   };
 
   isAllSelected: boolean = false;
@@ -103,6 +114,8 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
     this.isPagerDisplay = this.grid.getSetting('pager.display');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
+    // 自定义隔行换色
+    this.rowBgc = this.grid.getSetting('rowBgc');
   }
 
   editRowSelect(row: Row) {
@@ -113,35 +126,41 @@ export class Ng2SmartTableComponent implements OnChanges {
     }
   }
 
+
   onUserSelectRow(row: Row) {
-    if (this.grid.getSetting('selectMode') !== 'multi') {
+    if (this.grid.getSetting('selectMode') === 'single') {
       this.grid.selectRow(row);
       this.emitUserSelectRow(row);
       this.emitSelectRow(row);
     }
   }
-
-  onRowHover(row: Row) {
-    this.rowHover.emit(row);
+  // 自定义单元行 双击事件
+  ondblclick(row: Row) {
+    if (this.grid.getSetting('selectMode') === 'dblclick') {
+      this.grid.selectRow(row);
+      this.emitDblSelectRow(row);
+    }
   }
 
   multipleSelectRow(row: Row) {
     this.grid.multipleSelectRow(row);
     this.emitUserSelectRow(row);
     this.emitSelectRow(row);
+    this.emitDblSelectRow(row);
   }
 
   onSelectAllRows($event: any) {
     this.isAllSelected = !this.isAllSelected;
     this.grid.selectAllRows(this.isAllSelected);
-
     this.emitUserSelectRow(null);
     this.emitSelectRow(null);
+    this.emitDblSelectRow(null);
   }
 
   onSelectRow(row: Row) {
     this.grid.selectRow(row);
     this.emitSelectRow(row);
+
   }
 
   onMultipleSelectRow(row: Row) {
@@ -186,7 +205,6 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   private emitUserSelectRow(row: Row) {
     const selectedRows = this.grid.getSelectedRows();
-
     this.userRowSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
@@ -203,4 +221,11 @@ export class Ng2SmartTableComponent implements OnChanges {
     });
   }
 
+  private emitDblSelectRow(row: Row) {
+    this.dbSelect.emit({
+      data: row ? row.getData() : null,
+      isSelected: row ? row.getIsSelected() : null,
+      source: this.source,
+    })
+  }
 }

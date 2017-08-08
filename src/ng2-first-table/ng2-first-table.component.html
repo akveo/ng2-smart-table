@@ -4,8 +4,8 @@
         (filter)="filter($event)">
     </thead>
 
-    <tbody ng2-st-tbody [grid]="grid" [source]="source" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" [rowClassFunction]="rowClassFunction" (edit)="edit.emit($event)" (delete)="delete.emit($event)" (custom)="custom.emit($event)" (userSelectRow)="onUserSelectRow($event)"
-        (editRowSelect)="editRowSelect($event)" (multipleSelectRow)="multipleSelectRow($event)" (rowHover)="onRowHover($event)">
+    <tbody ng2-st-tbody [grid]="grid" [source]="source" [deleteConfirm]="deleteConfirm" [editConfirm]="editConfirm" [rowClassFunction]="rowClassFunction" [rowBgc]='rowBgc' (edit)="edit.emit($event)" (delete)="delete.emit($event)" (custom)="custom.emit($event)" (userSelectRow)="onUserSelectRow($event)"
+        (editRowSelect)="editRowSelect($event)" (multipleSelectRow)="multipleSelectRow($event)" (rowHover)="onRowHover($event)" (dbSelect)="ondblclick($event)">
     </tbody>
 
 </table>

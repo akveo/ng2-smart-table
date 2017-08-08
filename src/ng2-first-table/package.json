@@ -1,34 +1,36 @@
 {
-    "name": "ng2-first-table",
-    "version": "1.0.4",
-    "description": "Upgrade to Angular Smart Table",
-    "main": "./bundles/table.umd.js",
-    "module": "./index.js",
-    "typings": "./index.d.ts",
-    "author": "金飞",
-    "license": "MIT",
-    "scripts": {},
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/ascode/ng2-first-table.git"
-    },
-    "bugs": {
-        "url": "https://github.com/ascode/ng2-first-table/issues"
-    },
-    "homepage": "https://github.com/ascode/ng2-first-table#readme",
-    "keywords": [
-        "angular",
-        "typescript",
-        "table",
-        "akveo"
-    ],
-    "dependencies": {
-        "lodash": "^4.17.4",
-        "ng2-completer": "^1.2.2"
-    },
-    "peerDependencies": {
-        "@angular/common": "^4.0.0",
-        "@angular/core": "^4.0.0",
-        "@angular/forms": "^4.0.0"
-    }
+  "name": "ng2-first-table",
+  "version": "1.0.5",
+  "description": "Upgrade to Angular Smart Table",
+  "main": "./bundles/table.umd.js",
+  "module": "./index.js",
+  "typings": "./index.d.ts",
+  "author": "金飞",
+  "license": "MIT",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ascode/ng2-first-table.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ascode/ng2-first-table/issues"
+  },
+  "homepage": "https://github.com/ascode/ng2-first-table#readme",
+  "keywords": [
+    "angular",
+    "typescript",
+    "table",
+    "akveo"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "ng2-completer": "^1.2.2"
+  },
+  "peerDependencies": {
+    "@angular/common": "^4.0.0",
+    "@angular/core": "^4.0.0",
+    "@angular/forms": "^4.0.0"
+  },
+  "_from": "ng2-first-table@1.0.5",
+  "_resolved": "http://registry.npm.taobao.org/ng2-first-table/download/ng2-first-table-1.0.5.tgz"
 }
