@@ -14,7 +14,7 @@ export class GhhsExampleComponent {
     settings = {
         // 自定义隔行换色
         rowBgc: {
-          isShow: true,  // 为ture则开启  颜色自定义
+          isShow: true,  // 为true则开启  颜色自定义
           oddBgc: '#ccc',    
           evenBgc: '#ddd',
         },
