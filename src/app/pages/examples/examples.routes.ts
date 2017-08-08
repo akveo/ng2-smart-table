@@ -7,6 +7,9 @@ import { ServerExamplesComponent } from './server/server-examples.component';
 import { CustomViewEditExamplesComponent } from './custom-edit-view/custom-edit-view-examples.component';
 import { VariousExamplesComponent } from './various/various-examples.component';
 
+// 单击/双击 事件
+import { ClickEventComponent } from './clickEvent/clickEvent.component';
+
 export const routes: Routes = [
   {
     path: '',
@@ -14,7 +17,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'using-filters',
+        redirectTo: 'clickEvent',
       },
       {
         path: 'using-filters',
@@ -31,6 +34,10 @@ export const routes: Routes = [
       {
         path: 'various',
         component: VariousExamplesComponent,
+      },
+      {
+        path: 'clickEvent',
+        component: ClickEventComponent,
       },
     ],
   },

@@ -52,7 +52,6 @@ export class DataSet {
   selectRow(row: Row): Row {
     const previousIsSelected = row.isSelected;
     this.deselectAll();
-
     row.isSelected = !previousIsSelected;
     this.selectedRow = row;
 
@@ -61,8 +60,8 @@ export class DataSet {
 
   multipleSelectRow(row: Row): Row {
     row.isSelected = !row.isSelected;
+    
     this.selectedRow = row;
-
     return this.selectedRow;
   }
 

@@ -28,6 +28,17 @@ import {
   ButtonViewComponent,
 } from './custom-edit-view/basic-example-button-view.component';
 
+// 单击/双击 事件
+import { ClickEventComponent } from './clickEvent/clickEvent.component';
+import { ClickExampleComponent } from './clickEvent/click-example.component';
+import { DblclickExampleComponent } from './clickEvent/dblclick-example.component';
+// 新的组件
+const NEW_COMPNENTS = [
+    ClickEventComponent,
+    ClickExampleComponent,
+    DblclickExampleComponent,
+];
+
 const EXAMPLES_COMPONENTS = [
   AdvancedExampleFiltersComponent,
   AdvancedExampleConfirmComponent,
@@ -65,6 +76,7 @@ const EXAMPLES_COMPONENTS = [
   declarations: [
     ExamplesComponent,
     ...EXAMPLES_COMPONENTS,
+    ...NEW_COMPNENTS,
   ],
 })
 export class ExamplesModule { }
