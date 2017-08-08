@@ -34,14 +34,19 @@ import { ClickExampleComponent } from './clickEvent/click-example.component';
 import { DblclickExampleComponent } from './clickEvent/dblclick-example.component';
 import { CbeExampleComponent } from './clickEvent/cbe-example.component';
 
+// 隔行换色
+import { GhhsComponent } from './ghhs/ghhs.component';
+import { GhhsExampleComponent } from './ghhs/ghhs.eample.component';
 // 新的组件
 const NEW_COMPNENTS = [
-    // 单击/双击
+    // 单击/双击/复选框
     ClickEventComponent,
     ClickExampleComponent,
     DblclickExampleComponent,
-    // checkBoxEvent 复选框事件
     CbeExampleComponent,
+    // 隔行换色
+    GhhsComponent,
+    GhhsExampleComponent
 ];
 
 const EXAMPLES_COMPONENTS = [
