@@ -11,7 +11,7 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
   styleUrls: ['./ng2-first-table.component.scss'],
   templateUrl: './ng2-first-table.component.html',
 })
-export class Ng2SmartTableComponent implements OnChanges {
+export class Ng2FirstTableComponent implements OnChanges {
 
   @Input() source: any;
   @Input() settings: Object = {};
@@ -57,20 +57,20 @@ export class Ng2SmartTableComponent implements OnChanges {
     },
     edit: {
       inputClass: '',
-      editButtonContent: 'Edit',
-      saveButtonContent: 'Update',
-      cancelButtonContent: 'Cancel',
+      editButtonContent: '编辑',
+      saveButtonContent: '确定',
+      cancelButtonContent: '取消',
       confirmSave: false,
     },
     add: {
       inputClass: '',
-      addButtonContent: 'Add New',
-      createButtonContent: 'Create',
-      cancelButtonContent: 'Cancel',
+      addButtonContent: '新增',
+      createButtonContent: '确定',
+      cancelButtonContent: '取消',
       confirmCreate: false,
     },
     delete: {
-      deleteButtonContent: 'Delete',
+      deleteButtonContent: '删除',
       confirmDelete: false,
     },
     attr: {

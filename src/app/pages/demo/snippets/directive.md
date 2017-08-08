@@ -1,13 +1,11 @@
-// ...
 
-@NgModule({
-  imports: [
-    // ...
-    
-    Ng2SmartTableModule,
-    
-    // ...
-  ],
-  declarations: [ ... ]
-})
-// ...
+      @NgModule({
+          imports: [
+            // ...
+            
+            Ng2FirstTableModule,
+            
+            // ...
+          ],
+          declarations: [ ... ]
+      })

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../../shared/shared.module';
-import { Ng2SmartTableModule } from '../../../ng2-first-table';
+import { Ng2FirstTableModule } from '../../../ng2-first-table';
 import { routes } from './examples.routes';
 import { ExamplesComponent } from './examples.component';
 import { AdvancedExampleFiltersComponent } from './filter/advanced-example-filters.component';
@@ -54,7 +54,7 @@ const EXAMPLES_COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    Ng2SmartTableModule,
+    Ng2FirstTableModule,
     SharedModule,
   ],
   entryComponents: [

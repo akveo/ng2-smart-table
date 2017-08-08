@@ -1,1 +1,1 @@
-import { Ng2SmartTableModule } from 'ng2-first-table';
+import { Ng2FirstTableModule } from 'ng2-first-table';
