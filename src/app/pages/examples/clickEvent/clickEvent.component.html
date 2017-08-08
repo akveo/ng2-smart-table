@@ -1,4 +1,6 @@
-<h2>单击/双击 事件例子</h2>
+<h2>单击/双击/复选框勾选 事件例子</h2>
+
+<!-- 单击事件 -->
 <h3><a id="confirm" class="anchor" href="#confirm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>单击事件示例</h3>
 <p>
     前提条件：selectMode：‘single’ （如果不是设置，默认就是‘single’）
@@ -11,10 +13,10 @@
 </div>
 <p>查看事件请 F12 看 console　输出</p>
 
-
+<!-- 双击事件 -->
 <h3><a id="confirm" class="anchor" href="#confirm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>双击事件示例</h3>
 <p>
-    前提条件：selectMode：‘single’ （如果不是设置，默认就是‘single’）
+    前提条件：selectMode：‘dblclick’ 
 </p>
 <div class="with-source">
     <a class="source" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/clickEvent/dblclick-example.component.ts"
@@ -22,4 +24,16 @@
 
     <dblclick-example-table></dblclick-example-table>
 </div>
-<p>查看事件请 F12 看 console　输出</p>
+
+<!-- 复选框勾选事件 -->
+<h3><a id="confirm" class="anchor" href="#confirm" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>复选框 勾选例子</h3>
+<p>
+    前提条件：selectMode：‘multi’ 
+</p>
+<div class="with-source">
+     <a class="source" href="https://github.com/wangraoji/ng2-first-table/tree/master/src/app/pages/examples/clickEvent/cbe-example.component.ts"
+        target="_blank">演示源</a> 
+    
+    <cbe-example-table></cbe-example-table>
+</div>
+<p>查看事件请 F12 看 console　输出</p

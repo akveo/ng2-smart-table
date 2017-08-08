@@ -35,6 +35,7 @@ export const routes: Routes = [
         path: 'various',
         component: VariousExamplesComponent,
       },
+      // 单击/双击 
       {
         path: 'clickEvent',
         component: ClickEventComponent,

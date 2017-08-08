@@ -32,11 +32,16 @@ import {
 import { ClickEventComponent } from './clickEvent/clickEvent.component';
 import { ClickExampleComponent } from './clickEvent/click-example.component';
 import { DblclickExampleComponent } from './clickEvent/dblclick-example.component';
+import { CbeExampleComponent } from './clickEvent/cbe-example.component';
+
 // 新的组件
 const NEW_COMPNENTS = [
+    // 单击/双击
     ClickEventComponent,
     ClickExampleComponent,
     DblclickExampleComponent,
+    // checkBoxEvent 复选框事件
+    CbeExampleComponent,
 ];
 
 const EXAMPLES_COMPONENTS = [

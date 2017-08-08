@@ -143,10 +143,12 @@ export class Ng2FirstTableComponent implements OnChanges {
   }
 
   multipleSelectRow(row: Row) {
-    this.grid.multipleSelectRow(row);
-    this.emitUserSelectRow(row);
-    this.emitSelectRow(row);
-    this.emitDblSelectRow(row);
+    if (this.grid.getSetting('selectMode') === 'multi') {
+      this.grid.multipleSelectRow(row);
+      this.emitUserSelectRow(row);
+      this.emitSelectRow(row);
+      this.emitDblSelectRow(row);
+    }
   }
 
   onSelectAllRows($event: any) {
@@ -204,20 +206,21 @@ export class Ng2FirstTableComponent implements OnChanges {
   }
 
   private emitUserSelectRow(row: Row) {
-    const selectedRows = this.grid.getSelectedRows();
+
     this.userRowSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
-      selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
     });
   }
 
   private emitSelectRow(row: Row) {
+    const selectedRows = this.grid.getSelectedRows();
     this.rowSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
+      selected: selectedRows && selectedRows.length ? selectedRows.map((r: Row) => r.getData()) : [],
     });
   }
 
@@ -226,6 +229,6 @@ export class Ng2FirstTableComponent implements OnChanges {
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
-    })
+    });
   }
 }
