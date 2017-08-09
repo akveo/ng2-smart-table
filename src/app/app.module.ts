@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import { Ng2SmartTableModule } from '../ng2-first-table';
+import { Ng2FirstTableModule } from '../ng2-first-table';
 
 import { PagesModule } from './pages/pages.module';
 
@@ -24,7 +24,7 @@ import { ScrollPositionDirective } from './theme/directives/scrollPosition.direc
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    Ng2SmartTableModule,
+    Ng2FirstTableModule,
     PagesModule,
   ],
   providers: [],

@@ -1,592 +1,390 @@
-<header-component tagline="Documentation"></header-component>
+<header-component tagline="文档（0807更新）"></header-component>
 
 <section class="main-content">
-    <h2><a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+    <h2><a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>文档</h2>
 
-    <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component Inputs</h3>
+    <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>组件输入</h3>
 
     <table>
         <tr>
-            <th>Input</th>
+            <th>输入</th>
             <th>Type</th>
-            <th>Description</th>
+            <th>描述</th>
         </tr>
         <tr>
             <td>[settings]</td>
             <td><span class="highlight">Object</span></td>
-            <td>Table component configuration object, properties described below</td>
+            <td>表组件配置对象，属性描述如下</td>
         </tr>
         <tr>
             <td>[source]</td>
             <td><span class="highlight">Array</span>|<span class="highlight">DataSource</span></td>
-            <td>Table data, either an array or DataSource object (LocalDataSource currently supported)</td>
+            <td>表数据，数组或DataSource对象（当前支持的LocalDataSource）</td>
         </tr>
     </table>
 
-    <h3><a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table Configuration</h3>
+    <h3><a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>表格配置</h3>
 
     <table>
-        <tr>
-            <th>Property</th>
-            <th>Type</th>
-            <th>Default</th>
-            <th>Description</th>
-        </tr>
-        <tr class="section">
-            <td>Required Table Settings</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>columns</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Table column settings, by default an empty object.<br> Example format:<br>
-                <code>
-          columns: {{ '{' }}
-            <b>columnKey</b>: {{ '{' }}
-              title: 'Some Title'
-            {{ '}' }}
-          {{ '}' }}
-        </code>
-                <br> Please note, <b>columnKey</b> must be the same as a key in data array objects.
-            </td>
-        </tr>
-        <tr class="section">
-            <td>Column Settings</td>
-            <td></td>
-            <td></td>
-            <td>
-                List of a column's settings
-            </td>
-        </tr>
-        <tr>
-            <td>title</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Column title
-            </td>
-        </tr>
-        <tr>
-            <td>class</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Column class
-            </td>
-        </tr>
-        <tr>
-            <td>width</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Column width, example: <span class="highlight">'20px'</span>, <span class="highlight">'20%'</span>
-            </td>
-        </tr>
-        <tr>
-            <td>editable</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>true</td>
-            <td>
-                Whether this column is editable or not
-            </td>
-        </tr>
-        <tr>
-            <td>type</td>
-            <td><span class="highlight">'text'</span>|<span class="highlight">'html'</span>|<span class="highlight">'custom'</span></td>
-            <td>'text'</td>
-            <td>
-                If type is <span class="highlight">text</span> then cell value will be inserted as text.<br> If type is <span class="highlight">html</span> then cell value will be inserted as html.<br> If type is <span class="highlight">custom</span>                the <code>renderComponent</code> property must be defined.
-            </td>
-        </tr>
-        <tr>
-            <td>renderComponent</td>
-            <td><span class="highlight">any</span></td>
-            <td>null</td>
-            <td>
-                Custom component that will be responsible for rendering the cell content while in view mode.<br> Type must be <span class="highlight">custom</span> in order for this to work.<br> You can see an <a class="source" href="https://github.com/akveo/ng2-first-table/blob/master/src/app/pages/examples/custom-edit-view/advanced-example-custom-editor.component.ts">example here</a>
-            </td>
-        </tr>
-        <tr>
-            <td>onComponentInitFunction</td>
-            <td><span class="highlight">Function</span></td>
-            <td>null</td>
-            <td>
-                Function which will be invoked after <span class="highlight">renderComponent</span> instantiated and before ngOnInit hook. This function gets <span class="highlight">renderComponent</span> instance in first param.
-            </td>
-        </tr>
-        <tr>
-            <td>editor</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Editor attributes settings
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor</span>.type</td>
-            <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox'</span></td>
-            <td>'text'</td>
-            <td>
-                Editor used when new row is added or edited
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor</span>.config</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Editor configuration settings. Mandatory only for editor types <span class="highlight">completer</span>, <span class="highlight">list</span>
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor.config</span>.true</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Only on <span class="highlight">checkbox</span> type.<br> Defines the value to assign when the checkbox is checked. This parameter is optional, if omitted, <code>true</code> will be used.
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor.config</span>.false</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Only on <span class="highlight">checkbox</span> type.<br> Defines the value to assign when the checkbox is not checked. This parameter is optional, if omitted, <code>false</code> will be used.
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor.config</span>.list</td>
-            <td><span class="highlight">Array</span></td>
-            <td>[ ]</td>
-            <td>
-                Only on <span class="highlight">list</span> type. Example format:<br>
-                <code>{{ '{' }} value: 'Element Value', title: 'Element Title' {{ '}' }}</code><br> Html is supported if column type is <span class="highlight">'html'</span>
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor.config</span>.completer</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Only on <span class="highlight">completer</span> type. Example format:<br> Completer configuration settings
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor.config.completer</span>.data</td>
-            <td><span class="highlight">Array</span></td>
-            <td>[ ]</td>
-            <td>
-                Autocomplete list data source.<br> Example format:<br>
-                <code>{{ '{' }} id: 10, name: 'Nick', email: 'rey@karina.biz' {{ '}' }}</code>
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor.config.completer</span>.searchFields</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Comma separated list of fields to search on. Fields may contain dots for nested attributes; if empty or null all data will be returned
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor.config.completer</span>.titleField</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Name of the field to use as title for the list item
-            </td>
-        </tr>
-        <tr>
-            <td><span class="nested-obj">editor.config.completer</span>.descriptionField</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Name of the field to use as description for the list item
-            </td>
-        </tr>
-        <tr>
-            <td>filter</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Column filter attributes settings. This object accepts the same properties as the <code>editor</code> object.<br> The available types are: <code>checkbox</code>, <code>select</code>, <code>completer</code>.<br> The <code>checkbox</code>                type accepts one more optional property compared to the <code>editor</code> version: <span class="highlight">resetText: string</span>. It defines the text of the button to reset the checkbox selection.<br>
-                <a class="source" href="https://github.com/akveo/ng2-first-table/blob/master/src/app/pages/examples/filter/advanced-example-filters.component.ts">Click here to see an example</a> on how to configure it.
-            </td>
-        </tr>
-        <tr>
-            <td>valuePrepareFunction</td>
-            <td><span class="highlight">Function</span></td>
-            <td>
-                n/a
-            </td>
-            <td>
-                Function run against a value before it gets inserted into a cell. You can use it to modify how a value is displayed in the cell.
-                <br> This function will be invoked with 2 parameters: cell, row
-            </td>
-        </tr>
-        <tr>
-            <td>sort</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>true</td>
-            <td>
-                Column sort settings, enable/disable.
-            </td>
-        </tr>
-        <tr>
-            <td>sortDirection</td>
-            <td><span class="highlight">'asc'|'desc'</span></td>
-            <td>n/a</td>
-            <td>
-                Sort table by this column with this direction by default.<br> Applied only when <span class="highlight">sort</span> = true. Note: multiple sort option is not supported yet, so sortDirection can be applied to only one column per table.
-            </td>
-        </tr>
-        <tr>
-            <td>compareFunction</td>
-            <td><span class="highlight">Function</span></td>
-            <td>
-                n/a
-            </td>
-            <td>
-                Function run against the values to sort the table
-            </td>
-        </tr>
-        <tr>
-            <td>filter</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>true</td>
-            <td>
-                Column filter settings, enable/disable
-            </td>
-        </tr>
-        <tr>
-            <td>filterFunction</td>
-            <td><span class="highlight">Function</span></td>
-            <td>n/a</td>
-            <td>
-                Function run against the column value when filtering is happening
-            </td>
-        </tr>
-        <tr class="section">
-            <td>Other Table Settings</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>mode</td>
-            <td><span class="highlight">'external'</span>|<span class="highlight">'inline'</span></td>
-            <td>'inline'</td>
-            <td>
-                Determines how to react on action links (Add, Edit, Delete).<br>
-                <span class="highlight">'external'</span> - just trigger the events (LINK HERE).<br>
-                <span class="highlight">'inline'</span> - process internally, show forms/inputs/etc<br>
-            </td>
-        </tr>
-        <tr>
-            <td>hideHeader</td>
-            <td><span class="highlight">'boolean'</span></td>
-            <td>false</td>
-            <td>
-                Set to true to not display the table header (which includes table column titles)
-            </td>
-        </tr>
-        <tr>
-            <td>hideSubHeader</td>
-            <td><span class="highlight">'boolean'</span></td>
-            <td>false</td>
-            <td>
-                Set to true to not display the table sub-header (which includes filters and global table actions (currently - Add action))
-            </td>
-        </tr>
-        <tr>
-            <td>noDataMessage</td>
-            <td><span class="highlight">string</span></td>
-            <td>'No data found'</td>
-            <td>
-                Message shown when there is no data in the table
-            </td>
-        </tr>
-        <tr>
-            <td>attr</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Table attributes settings
-            </td>
-        </tr>
-        <tr>
-            <td>attr.id</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Table element id
-            </td>
-        </tr>
-        <tr>
-            <td>attr.class</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Table element class
-            </td>
-        </tr>
-        <tr>
-            <td>actions</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Settings for the table actions
-            </td>
-        </tr>
-        <tr>
-            <td>actions.columnTitle</td>
-            <td><span class="highlight">string</span></td>
-            <td>'Actions'</td>
-            <td>
-                Actions column title
-            </td>
-        </tr>
-        <tr>
-            <td>actions.add</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>true</td>
-            <td>
-                Show/not show Add button
-            </td>
-        </tr>
-        <tr>
-            <td>actions.edit</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>true</td>
-            <td>
-                Show/not show Edit button
-            </td>
-        </tr>
-        <tr>
-            <td>actions.delete</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>true</td>
-            <td>
-                Show/not show Delete button
-            </td>
-        </tr>
-        <tr>
-            <td>actions.position</td>
-            <td><span class="highlight">'left'</span>|<span class="highlight">'right'</span></td>
-            <td>'left'</td>
-            <td>
-                Choose actions column position
-            </td>
-        </tr>
-        <tr>
-            <td>filter</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Settings for the table filter
-            </td>
-        </tr>
-        <tr>
-            <td>filter.inputClass</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Filter input class
-            </td>
-        </tr>
-        <tr>
-            <td>edit</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Edit action settings
-            </td>
-        </tr>
-        <tr>
-            <td>edit.inputClass</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                Editing form input class
-            </td>
-        </tr>
-        <tr>
-            <td>edit.editButtonContent</td>
-            <td><span class="highlight">string</span></td>
-            <td>'Edit'</td>
-            <td>
-                Edit row button content/title
-            </td>
-        </tr>
-        <tr>
-            <td>edit.saveButtonContent</td>
-            <td><span class="highlight">string</span></td>
-            <td>'Update'</td>
-            <td>
-                Update button content/title
-            </td>
-        </tr>
-        <tr>
-            <td>edit.cancelButtonContent</td>
-            <td><span class="highlight">string</span></td>
-            <td>'Cancel'</td>
-            <td>
-                Cancel button content/title
-            </td>
-        </tr>
-        <tr>
-            <td>edit.confirmSave</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>false</td>
-            <td>
-                Enable/disable <span class="highlight">(confirmEdit)</span> event. If enabled data will be edited only if confirm.resolve() called.
-            </td>
-        </tr>
-        <tr>
-            <td>add</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Add action settings
-            </td>
-        </tr>
-        <tr>
-            <td>add.inputClass</td>
-            <td><span class="highlight">string</span></td>
-            <td>''</td>
-            <td>
-                New row input class
-            </td>
-        </tr>
-        <tr>
-            <td>add.addButtonContent</td>
-            <td><span class="highlight">string</span></td>
-            <td>'Add New'</td>
-            <td>
-                Add New button content/title
-            </td>
-        </tr>
-        <tr>
-            <td>add.createButtonContent</td>
-            <td><span class="highlight">string</span></td>
-            <td>'Create'</td>
-            <td>
-                Create button content/title
-            </td>
-        </tr>
-        <tr>
-            <td>add.cancelButtonContent</td>
-            <td><span class="highlight">string</span></td>
-            <td>'Cancel'</td>
-            <td>
-                Cancel button content/title
-            </td>
-        </tr>
-        <tr>
-            <td>add.confirmCreate</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>false</td>
-            <td>
-                Enable/disable <span class="highlight">(confirmCreate)</span> event. If enabled data will be added only if confirm.resolve() called.
-            </td>
-        </tr>
-        <tr>
-            <td>delete</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Delete action settings
-            </td>
-        </tr>
-        <tr>
-            <td>delete.deleteButtonContent</td>
-            <td><span class="highlight">string</span></td>
-            <td>'Delete'</td>
-            <td>
-                Delete row input class
-            </td>
-        </tr>
-        <tr>
-            <td>delete.confirmDelete</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>false</td>
-            <td>
-                Enable/disable <span class="highlight">(confirmDelete)</span> event. If enabled data will be deleted only if confirm.resolve() called.
-            </td>
-        </tr>
-        <tr>
-            <td>pager</td>
-            <td><span class="highlight">Object</span></td>
-            <td>n/a</td>
-            <td>
-                Pager settings
-            </td>
-        </tr>
-        <tr>
-            <td>pager.display</td>
-            <td><span class="highlight">boolean</span></td>
-            <td>true</td>
-            <td>
-                Whether to display the pager or not
-            </td>
-        </tr>
-        <tr>
-            <td>pager.perPage</td>
-            <td><span class="highlight">number</span></td>
-            <td>10</td>
-            <td>
-                Rows per page
-            </td>
-        </tr>
-        <tr>
-            <td>rowClassFunction</td>
-            <td><span class="highlight">Function</span></td>
-            <td>row</td>
-            <td>
-                Handle css class for each row in the table
-            </td>
-        </tr>
+        <thead>
+            <tr>
+                <th>属性</th>
+                <th>Type</th>
+                <th>默认</th>
+                <th>描述</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>mode</td>
+                <td>'inline' | 'external'</td>
+                <td>'inline'</td>
+                <td>内联和外联（超链接）</td>
+            </tr>
+            <tr>
+                <td>selectMode<span class="gengxin">（0807更新）</span></td>
+                <td>'string'</td>
+                <td>'single' | 'multi' | 'dblclick'</td>
+                <td>
+                    1：single 第1列没有复选框，可使用 （userRowSelect）选中行单击事件。<br/> 2：dblclick 第1列没有复选框，可使用 （dbSelect）选中行双击事件事件。<br/>                    3：multi 第1列有复选框，1 2 不可使用， 可使用 (rowSelect) 复选框选中事件。
+                </td>
+            </tr>
+            <tr>
+                <td>hideHeader</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>隐藏标题(表头)</td>
+            </tr>
+            <tr>
+                <td>hideSubHeader</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>隐藏第二行(搜索的)</td>
+            </tr>
+            <tr>
+                <td>noDataMessage</td>
+                <td>string</td>
+                <td>'No data found'</td>
+                <td>数据没加载时显示的内容</td>
+            </tr>
+            <!-- attr -->
+            <tr>
+                <th class="teshu" colspan="4">attr 对象</th>
+            </tr>
+            <tr>
+                <td>attr</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置 table 属性的</td>
+            </tr>
+            <tr>
+                <td>attr.id</td>
+                <td>string</td>
+                <td>''</td>
+                <td>设置 table ID</td>
+            </tr>
+            <tr>
+                <td>attr.class</td>
+                <td>string</td>
+                <td>''</td>
+                <td>设置 table class类名</td>
+            </tr>
+
+            <!-- pager -->
+            <tr>
+                <th class="teshu" colspan="4">pager 对象</th>
+            </tr>
+            <tr>
+                <td>pager</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置 分页</td>
+            </tr>
+            <tr>
+                <td>pager.display</td>
+                <td>布尔值</td>
+                <td>true</td>
+                <td>分页是否显示</td>
+            </tr>
+            <tr>
+                <td>pager.perPage</td>
+                <td>number</td>
+                <td>10</td>
+                <td>每页默认10条</td>
+            </tr>
+
+            <!-- Actions -->
+            <tr>
+                <th class="teshu" colspan="4">actions 对象</th>
+            </tr>
+            <tr>
+                <td>actions</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置 actions 列</td>
+            </tr>
+            <tr>
+                <td>actions.columnTitle</td>
+                <td>string</td>
+                <td>'Actions'</td>
+                <td>设置 actions 列名</td>
+            </tr>
+            <tr>
+                <td>actions.add</td>
+                <td>布尔值</td>
+                <td>'true'</td>
+                <td>这列的 add添加 是否显示</td>
+            </tr>
+            <tr>
+                <td>actions.edit</td>
+                <td>布尔值</td>
+                <td>true</td>
+                <td>这列的 edit编辑 是否显示</td>
+            </tr>
+            <tr>
+                <td>actions.delete</td>
+                <td>布尔值</td>
+                <td>true</td>
+                <td>这列的 delete删除 是否显示</td>
+            </tr>
+            <tr>
+                <td>actions.position</td>
+                <td>string</td>
+                <td>'left' | 'right'</td>
+                <td>这列的位置在 左 | 右</td>
+            </tr>
+            <!-- filter -->
+            <tr>
+                <th class="teshu" colspan="4">filter 对象</th>
+            </tr>
+            <tr>
+                <td>filter</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置 过滤器 行（搜索）</td>
+            </tr>
+            <tr>
+                <td>filter.inputClass</td>
+                <td>string</td>
+                <td>默认</td>
+                <td>设置 过滤器 input的 类名</td>
+            </tr>
+            <!-- Add -->
+            <tr>
+                <th class="teshu" colspan="4">Add 对象</th>
+            </tr>
+            <tr>
+                <td>Add</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置 Add 添加</td>
+            </tr>
+            <tr>
+                <td>add.inputClass</td>
+                <td>string</td>
+                <td>默认</td>
+                <td>暂时没发现用处（08/02）</td>
+            </tr>
+            <tr>
+                <td>add.addButtonContent</td>
+                <td>string</td>
+                <td>'Add New'</td>
+                <td>添加按钮名称，可以任意定义，如需改图标 <strong> &lt;i class='xxx'&gt;&lt;/i&gt;</strong></td>
+            </tr>
+            <tr>
+                <td>add.createButtonContent</td>
+                <td>string</td>
+                <td>'Create'</td>
+                <td>点击添加按钮后，确认按钮名称</td>
+            </tr>
+            <tr>
+                <td>add.Cancel</td>
+                <td>string</td>
+                <td>'Cancel'</td>
+                <td>点击添加按钮后，取消按钮名称</td>
+            </tr>
+            <tr>
+                <td>add.confirmCreate</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>点击添加按钮是否触发的事件</td>
+            </tr>
+            <!-- Edit -->
+            <tr>
+                <th class="teshu" colspan="4">edit</th>
+            </tr>
+            <tr>
+                <td>edit</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置 edit 编辑按钮</td>
+            </tr>
+            <tr>
+                <td>edit.inputClass</td>
+                <td>string</td>
+                <td>默认</td>
+                <td>暂时没发现用处（08/02）</td>
+            </tr>
+            <tr>
+                <td>edit.editButtonContent</td>
+                <td>string</td>
+                <td>'Edit'</td>
+                <td>设置编辑按钮内容</td>
+            </tr>
+            <tr>
+                <td>edit.saveButtonContent</td>
+                <td>string</td>
+                <td>'Update'</td>
+                <td>点击编辑按钮后 确认按钮内容</td>
+            </tr>
+            <tr>
+                <td>edit.cancelButtonContent</td>
+                <td>string</td>
+                <td>'Cancel'</td>
+                <td>点击编辑按钮后 取消按钮内容</td>
+            </tr>
+            <tr>
+                <td>edit.confirmSave</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>点击编辑按钮是否触发的事件</td>
+            </tr>
+            <!-- Delete -->
+            <tr>
+                <th class="teshu" colspan="4">delete</th>
+            </tr>
+            <tr>
+                <td>delete</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置 delete 删除按钮</td>
+            </tr>
+            <tr>
+                <td>edit.deleteButtonContent</td>
+                <td>string</td>
+                <td>'Delete'</td>
+                <td>设置删除按钮内容</td>
+            </tr>
+            <tr>
+                <td>Delete.confirmDelete</td>
+                <td>布尔值</td>
+                <td>false</td>
+                <td>点击删除按钮是否触发的事件</td>
+            </tr>
+            <!-- rowBgc -->
+            <tr>
+                <th class="teshu" colspan="4">rowBgc 对象 <span class="gengxin">（0807更新）</span></th>
+            </tr>
+            <tr>
+                <td>rowBgc</td>
+                <td>objerc</td>
+                <td>默认</td>
+                <td>设置 隔行换色</td>
+            </tr>
+            <tr>
+                <td>rowBgc.oddBgc</td>
+                <td>string</td>
+                <td>'red'</td>
+                <td>设置奇行颜色</td>
+            </tr>
+            <tr>
+                <td>rowBgc.evenBgc</td>
+                <td>string</td>
+                <td>'blue'</td>
+                <td>设置偶行颜色</td>
+            </tr>
+        </tbody>
     </table>
 
-    <h3><a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component Outputs/Events</h3>
+    <h3><a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>        组件输出/事件
+    </h3>
 
     <table>
         <tr>
-            <th>Event</th>
-            <th>Arguments</th>
-            <th>Description</th>
+            <th>事件</th>
+            <th>返回参数</th>
+            <th>描述</th>
         </tr>
         <tr>
             <td>(rowSelect)</td>
             <td>
-                event: <span class="highlight">Object</span>, consist of:
+                事件: <span class="highlight">Object</span>, <br/> 包括:
                 <ul>
-                    <li>data: <span class="highlight">Object</span> - selected row data object</li>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
+                    <li>data: <span class="highlight">Object</span> - 选择的行数据对象</li>
+                    <li>source: <span class="highlight">DataSource</span> - 表数据源</li>
                 </ul>
             </td>
             <td>
-                Triggered once a row is selected (either clicked or selected automatically (after page is changed, after some row is deleted, etc)).
+                当 <strong>selectMode：</strong> 设置为 <strong>'multi'</strong> 时，第1列有复选框， 可使用复选框选中事件。<br/>不可使用单击/双击事件。
             </td>
         </tr>
         <tr>
             <td>(userRowSelect)</td>
             <td>
-                event: <span class="highlight">Object</span>, consist of:
+                事件: <span class="highlight">Object</span>, <br/> 包括:
                 <ul>
-                    <li>data: <span class="highlight">Object</span> - selected row data object</li>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
+                    <li>data: <span class="highlight">Object</span> - 选择的行数据对象</li>
+                    <li>source: <span class="highlight">DataSource</span> - 表数据源</li>
                 </ul>
             </td>
             <td>
-                Triggered <strong>only</strong> on a user click event.
+                当 <strong>selectMode：</strong> 设置为 <strong>'single'（默认）</strong> 时，第1列没有复选框， 可使用选中行单击事件。<br/>不可使用双击/复选框勾选事件。
             </td>
         </tr>
         <tr>
+            <td>(dbSelect)</td>
+            <td>
+                事件: <span class="highlight">Object</span>, <br/> 包括:
+                <ul>
+                    <li>data: <span class="highlight">Object</span> - 选择的行数据对象</li>
+                    <li>source: <span class="highlight">DataSource</span> - 表数据源</li>
+                </ul>
+            </td>
+            <td>
+                当 <strong>selectMode：</strong> 设置为 <strong>'dblclick'</strong> 时，第1列没有复选框， 可使用选中行双击事件。<br/>不可使用单击/复选框勾选事件。
+            </td>
+        </tr>
+        <tr>
+            <td>(createConfirm)</td>
+            <td>
+                事件: <span class="highlight">Object</span>, <br/> 包括:
+                <ul>
+                    <li>data: <span class="highlight">Object</span> - 选择的行数据对象</li>
+                    <li>source: <span class="highlight">DataSource</span> - 表数据源</li>
+                </ul>
+            </td>
+            <td>
+                当 <strong>confirmCreate = true 且 mode = inline</strong>时，<br/> 触发创建按钮事件。
+            </td>
+        </tr>
+        <tr>
+            <td>(editConfirm)</td>
+            <td>
+                事件: <span class="highlight">Object</span>, <br/> 包括:
+                <ul>
+                    <li>data: <span class="highlight">Object</span> - 选择的行数据对象</li>
+                    <li>source: <span class="highlight">DataSource</span> - 表数据源</li>
+                </ul>
+            </td>
+            <td>
+                当 <strong>confirmCreate = true 且 mode = inline</strong>时，<br/> 触发编辑按钮事件。
+            </td>
+        </tr>
+        <tr>
+            <td>(deleteConfirm)</td>
+            <td>
+                事件: <span class="highlight">Object</span>, <br/> 包括:
+                <ul>
+                    <li>data: <span class="highlight">Object</span> - 选择的行数据对象</li>
+                    <li>source: <span class="highlight">DataSource</span> - 表数据源</li>
+                </ul>
+            </td>
+            <td>
+                当 <strong>confirmCreate = true 且 mode = inline</strong>时，<br/> 触发删除按钮事件。
+            </td>
+        </tr>
+        <!-- <tr>
             <td>(mouseover)</td>
             <td>
                 event: <span class="highlight">Object</span>, consist of:
@@ -598,8 +396,8 @@
             <td>
                 Triggered <strong>only</strong> on a user mouseover event.
             </td>
-        </tr>
-        <tr>
+        </tr> -->
+        <!-- <tr>
             <td>(create)</td>
             <td>
                 event: <span class="highlight">Object</span>, consist of:
@@ -610,22 +408,9 @@
             <td>
                 Triggered once a Create button clicked. Triggered only if table <strong>mode = external</strong>.
             </td>
-        </tr>
-        <tr>
-            <td>(createConfirm)</td>
-            <td>
-                event: <span class="highlight">Object</span>, consist of:
-                <ul>
-                    <li>newData: <span class="highlight">Object</span> - data entered in a new row</li>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
-                    <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve(newData: Object) and reject() methods.</li>
-                </ul>
-            </td>
-            <td>
-                Triggered once a Create button clicked. Triggered only if table <strong>confirmCreate = true and mode = inline</strong>. Allows you to confirm changes before they are applied to the table data source.
-            </td>
-        </tr>
-        <tr>
+        </tr> -->
+
+        <!-- <tr>
             <td>(edit)</td>
             <td>
                 event: <span class="highlight">Object</span>, consist of:
@@ -637,23 +422,9 @@
             <td>
                 Triggered once an Edit button clicked on a row. Triggered only if table <strong>mode = external</strong>.
             </td>
-        </tr>
-        <tr>
-            <td>(editConfirm)</td>
-            <td>
-                event: <span class="highlight">Object</span>, consist of:
-                <ul>
-                    <li>data: <span class="highlight">Object</span> - original row data</li>
-                    <li>newData: <span class="highlight">Object</span> - edited data</li>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
-                    <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve(newData: Object) and reject() methods.</li>
-                </ul>
-            </td>
-            <td>
-                Triggered once a Save button clicked. Triggered only if table <strong>confirmSave = true and mode = inline</strong>. Allows you to confirm changes before they are applied to the table data source.
-            </td>
-        </tr>
-        <tr>
+        </tr> -->
+
+        <!-- <tr>
             <td>(delete)</td>
             <td>
                 event: <span class="highlight">Object</span>, consist of:
@@ -665,100 +436,89 @@
             <td>
                 Triggered once a Delete button clicked on a row. Triggered only if table <strong>mode = external</strong>.
             </td>
-        </tr>
-        <tr>
-            <td>(deleteConfirm)</td>
-            <td>
-                event: <span class="highlight">Object</span>, consist of:
-                <ul>
-                    <li>data: <span class="highlight">Object</span> - data object to delete</li>
-                    <li>source: <span class="highlight">DataSource</span> - table data source</li>
-                    <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve() and reject() methods.</li>
-                </ul>
-            </td>
-            <td>
-                Triggered once a Delete button clicked. Triggered only if table <strong>confirmDelete = true and mode = inline</strong>. Allows you to confirm changes before they are applied to the table data source.
-            </td>
-        </tr>
+        </tr> -->
+
     </table>
 
-    <h3><a id="source-method" class="anchor" href="#source-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Source Methods</h3>
+    <h3><a id="source-method" class="anchor" href="#source-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+        数据源方法
+    </h3>
 
     <table>
         <tr>
-            <th>Method</th>
-            <th>Arguments</th>
-            <th>Description</th>
+            <th>方法</th>
+            <th>参数</th>
+            <th>描述</th>
         </tr>
         <tr>
             <td>load</td>
             <td>
                 <ul>
-                    <li>data: <span class="highlight">Array</span> - data to load into the table</li>
+                    <li>data: <span class="highlight">Array</span> - 数据加载到表中</li>
                 </ul>
                 <td>
-                    Reload table with new data. For example if some data has received from the server.
+                    用新数据重新载入表。 例如，如果从服务器收到一些数据。
                 </td>
         </tr>
         <tr>
             <td>prepend</td>
             <td>
                 <ul>
-                    <li>element: <span class="highlight">Object</span> - object to add</li>
+                    <li>element: <span class="highlight">Object</span> - 对象添加</li>
                 </ul>
                 <td>
-                    Add a new element to the beginning of the table.
+                    将新元素添加到表的开头。
                 </td>
         </tr>
         <tr>
             <td>append</td>
             <td>
                 <ul>
-                    <li>element: <span class="highlight">Object</span> - object to add</li>
+                    <li>element: <span class="highlight">Object</span> - 对象添加</li>
                 </ul>
                 <td>
-                    Add a new element to the end of the table. This also will switch current page to the last one.
+                    在表的末尾添加一个新元素。 这也将切换当前页面到最后一页。
                 </td>
         </tr>
         <tr>
             <td>add</td>
             <td>
                 <ul>
-                    <li>element: <span class="highlight">Object</span> - object to add</li>
+                    <li>element: <span class="highlight">Object</span> - 对象添加</li>
                 </ul>
                 <td>
-                    Add a new element to the table.
+                    在表中添加一个新元素。
                 </td>
         </tr>
         <tr>
             <td>remove</td>
             <td>
                 <ul>
-                    <li>element: <span class="highlight">Object</span> - object to remove</li>
+                    <li>element: <span class="highlight">Object</span> - 对象删除</li>
                 </ul>
                 <td>
-                    Remove the element from the table.
+                    从表中删除元素。
                 </td>
         </tr>
         <tr>
             <td>update</td>
             <td>
                 <ul>
-                    <li>element: <span class="highlight">Object</span> - object to update</li>
-                    <li>values: <span class="highlight">Object</span> - object with new values</li>
+                    <li>element: <span class="highlight">Object</span> - 对象更新</li>
+                    <li>values: <span class="highlight">Object</span> - 对象的新值</li>
                 </ul>
                 <td>
-                    Update the element in the table.
+                    更新表中的元素。
                 </td>
         </tr>
         <tr>
             <td>find</td>
             <td>
                 <ul>
-                    <li>element: <span class="highlight">Object</span> - object to find</li>
+                    <li>element: <span class="highlight">Object</span> - 对象查找</li>
                 </ul>
                 <td>
-                    Find the element in the table.
+                    查找表中的元素。
                 </td>
         </tr>
         <tr>
@@ -766,7 +526,7 @@
             <td>
                 n/a
                 <td>
-                    Get elements for current sort, filter and page.
+                    获取当前排序，过滤器和页面的元素。
                 </td>
         </tr>
         <tr>
@@ -774,7 +534,7 @@
             <td>
                 n/a
                 <td>
-                    Get sorted, filtered and not paginated elements.
+                    获取排序，筛选和不分页元素。
                 </td>
         </tr>
         <tr>
@@ -782,7 +542,7 @@
             <td>
                 n/a
                 <td>
-                    Get all data source elements.
+                    获取所有数据源元素。
                 </td>
         </tr>
         <tr>
@@ -790,19 +550,20 @@
             <td>
                 <ul>
                     <li>
-                        conf: <span class="highlight">Array</span> - array of sort setting objects, object format is:
+                        conf: <span class="highlight">Array</span> - 排序设置对象数组，对象格式为：
                         <ul>
-                            <li>field - <span class="highlight">string</span> - columnKey</li>
-                            <li>direction - <span class="string">string|null</span> - 'asc'|'desc'|null - sort direction</li>
-                            <li>compare - <span class="string">Function|null</span> - custom compare function</li>
+                            <li>field - <span class="highlight">string</span> - 列键</li>
+                            <li>direction - <span class="string">string|null</span> - 'asc'|'desc'|null - 排序方向（asc升序，desc降序）</li>
+                            <li>compare - <span class="string">Function|null</span> - 定制比较功能</li>
                         </ul>
                     </li>
                     <li>
-                        doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+                        doEmit: <span class="highlight">boolean</span> - 发出事件（刷新表），否则， default
+                        = true
                     </li>
                 </ul>
                 <td>
-                    Set table sorts, example: <br>
+                    设置表排序，示例： <br>
                     <code>this.source.setSort([{{ '{' }} field: 'id', direction: 'asc' {{ '}' }}]);</code>
                 </td>
         </tr>
@@ -811,22 +572,24 @@
             <td>
                 <ul>
                     <li>
-                        conf: <span class="highlight">Array</span> - array of filter setting objects, object format is:
+                        conf: <span class="highlight">Array</span> - 数组滤镜设置对象，对象格式为：
                         <ul>
-                            <li>field - <span class="highlight">string</span> - columnKey</li>
-                            <li>search - <span class="string">string</span> - search query</li>
-                            <li>filter - <span class="string">Function|null</span> - custom filter function</li>
+                            <li>field - <span class="highlight">string</span> - 列键</li>
+                            <li>search - <span class="string">string</span> - 搜索查询</li>
+                            <li>filter - <span class="string">Function|null</span> - 自定义过滤功能</li>
                         </ul>
                     </li>
                     <li>
-                        andOperator: <span class="highlight">boolean</span> - how to process multiple filters (as AND or as OR), default = true (AND)
+                        andOperator: <span class="highlight">boolean</span> - 如何处理多个过滤器 (as AND or
+                        as OR), default = true (AND)
                     </li>
                     <li>
-                        doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+                        doEmit: <span class="highlight">boolean</span> - 发出事件（刷新表），否则, default
+                        = true
                     </li>
                 </ul>
                 <td>
-                    Set table filters, example: <br>
+                    设置表过滤器，例如： <br>
                     <code>this.source.setFilter([{{ '{' }} field: 'id', search: 'foobar' {{ '}' }}, {{ '{' }} field: 'name', search: 'foobar' {{ '}' }}]);</code>
                 </td>
         </tr>
@@ -835,22 +598,24 @@
             <td>
                 <ul>
                     <li>
-                        conf: <span class="highlight">Object</span> - one filter object, format is:
+                        conf: <span class="highlight">Object</span> - 一个过滤器对象，格式为：
                         <ul>
-                            <li>field - <span class="highlight">string</span> - columnKey</li>
-                            <li>search - <span class="string">string</span> - search query</li>
-                            <li>filter - <span class="string">Function|null</span> - custom filter function</li>
+                            <li>field - <span class="highlight">string</span> - 列键</li>
+                            <li>search - <span class="string">string</span> - 搜索查询</li>
+                            <li>filter - <span class="string">Function|null</span> - 自定义过滤功能</li>
                         </ul>
                     </li>
                     <li>
-                        andOperator: <span class="highlight">boolean</span> - how to process multiple filters (as AND or as OR), default = true (AND)
+                        andOperator: <span class="highlight">boolean</span> - 如何处理多个过滤器 (as AND or
+                        as OR), default = true (AND)
                     </li>
                     <li>
-                        doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+                        doEmit: <span class="highlight">boolean</span> - 发出事件（刷新表），否则, default
+                        = true
                     </li>
                 </ul>
                 <td>
-                    Set table filter for one column, example: <br>
+                    为一列设置表过滤器，示例： <br>
                     <code>this.source.addFilter({{ '{' }} field: 'id', search: 'foobar' {{ '}' }});</code>
                 </td>
         </tr>
@@ -859,17 +624,18 @@
             <td>
                 <ul>
                     <li>
-                        page: <span class="highlight">number</span> - page number
+                        page: <span class="highlight">number</span> - 页码
                     </li>
                     <li>
-                        perPage: <span class="highlight">number</span> - about per page
+                        perPage: <span class="highlight">number</span> - 关于每页
                     </li>
                     <li>
-                        doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+                        doEmit: <span class="highlight">boolean</span> - 发出事件（刷新表），否则, default
+                        = true
                     </li>
                 </ul>
                 <td>
-                    Set table pagination settings
+                    设置表分页设置
                 </td>
         </tr>
         <tr>
@@ -877,24 +643,25 @@
             <td>
                 <ul>
                     <li>
-                        page: <span class="highlight">number</span> - page number
+                        page: <span class="highlight">number</span> - 页码
                     </li>
                     <li>
-                        doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+                        doEmit: <span class="highlight">boolean</span> - 发出事件（刷新表），否则, default
+                        = true
                     </li>
                 </ul>
                 <td>
-                    Set table page
+                    设置表页面
                 </td>
         </tr>
         <tr>
             <td>reset</td>
             <td>
                 <ul>
-                    <li>silent: <span class="highlight">boolean</span> - if true - you have to additionally call `refresh` to reflect the changes</li>
+                    <li>silent: <span class="highlight">boolean</span> - if true - 你必须另外刷新观察变化</li>
                 </ul>
                 <td>
-                    Set data source to first page with empty filter and empty sort.
+                    将数据源设置为具有空过滤器和空排序的第一页。
                 </td>
         </tr>
         <tr>
@@ -902,7 +669,7 @@
             <td>
                 n/a
                 <td>
-                    Refresh data in the data source. In most cases you won't need this method.
+                   刷新数据源中的数据。 在大多数情况下，您不需要这种方法。
                 </td>
         </tr>
         <tr>
@@ -910,7 +677,7 @@
             <td>
                 n/a
                 <td>
-                    Return count of element in the data source.
+                    返回数据源中的元素数。
                 </td>
         </tr>
         <tr>
@@ -918,7 +685,7 @@
             <td>
                 n/a
                 <td>
-                    Empty the data source.
+                    清空数据源。
                 </td>
         </tr>
     </table>

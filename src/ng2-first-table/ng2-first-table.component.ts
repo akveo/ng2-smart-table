@@ -11,13 +11,15 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
   styleUrls: ['./ng2-first-table.component.scss'],
   templateUrl: './ng2-first-table.component.html',
 })
-export class Ng2SmartTableComponent implements OnChanges {
+export class Ng2FirstTableComponent implements OnChanges {
 
   @Input() source: any;
   @Input() settings: Object = {};
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
+  // 自定义单元行 双击事件
+  @Output() dbSelect = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() create = new EventEmitter<any>();
@@ -33,7 +35,8 @@ export class Ng2SmartTableComponent implements OnChanges {
   isHideSubHeader: boolean;
   isPagerDisplay: boolean;
   rowClassFunction: Function;
-
+  // 自定义隔行换色
+  rowBgc: object;
 
   grid: Grid;
   defaultSettings: Object = {
@@ -54,20 +57,20 @@ export class Ng2SmartTableComponent implements OnChanges {
     },
     edit: {
       inputClass: '',
-      editButtonContent: 'Edit',
-      saveButtonContent: 'Update',
-      cancelButtonContent: 'Cancel',
+      editButtonContent: '编辑',
+      saveButtonContent: '确定',
+      cancelButtonContent: '取消',
       confirmSave: false,
     },
     add: {
       inputClass: '',
-      addButtonContent: 'Add New',
-      createButtonContent: 'Create',
-      cancelButtonContent: 'Cancel',
+      addButtonContent: '新增',
+      createButtonContent: '确定',
+      cancelButtonContent: '取消',
       confirmCreate: false,
     },
     delete: {
-      deleteButtonContent: 'Delete',
+      deleteButtonContent: '删除',
       confirmDelete: false,
     },
     attr: {
@@ -80,7 +83,15 @@ export class Ng2SmartTableComponent implements OnChanges {
       display: true,
       perPage: 10,
     },
-    rowClassFunction: () => ""
+    rowClassFunction: () => "",
+
+    // 自定义隔行换色
+    rowBgc: {
+      isShow: false,
+      oddBgc: 'red',
+      evenBgc: 'blue'
+    },
+
   };
 
   isAllSelected: boolean = false;
@@ -103,6 +114,8 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
     this.isPagerDisplay = this.grid.getSetting('pager.display');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
+    // 自定义隔行换色
+    this.rowBgc = this.grid.getSetting('rowBgc');
   }
 
   editRowSelect(row: Row) {
@@ -113,35 +126,43 @@ export class Ng2SmartTableComponent implements OnChanges {
     }
   }
 
+
   onUserSelectRow(row: Row) {
-    if (this.grid.getSetting('selectMode') !== 'multi') {
+    if (this.grid.getSetting('selectMode') === 'single') {
       this.grid.selectRow(row);
       this.emitUserSelectRow(row);
       this.emitSelectRow(row);
     }
   }
-
-  onRowHover(row: Row) {
-    this.rowHover.emit(row);
+  // 自定义单元行 双击事件
+  ondblclick(row: Row) {
+    if (this.grid.getSetting('selectMode') === 'dblclick') {
+      this.grid.selectRow(row);
+      this.emitDblSelectRow(row);
+    }
   }
 
   multipleSelectRow(row: Row) {
-    this.grid.multipleSelectRow(row);
-    this.emitUserSelectRow(row);
-    this.emitSelectRow(row);
+    if (this.grid.getSetting('selectMode') === 'multi') {
+      this.grid.multipleSelectRow(row);
+      this.emitUserSelectRow(row);
+      this.emitSelectRow(row);
+      this.emitDblSelectRow(row);
+    }
   }
 
   onSelectAllRows($event: any) {
     this.isAllSelected = !this.isAllSelected;
     this.grid.selectAllRows(this.isAllSelected);
-
     this.emitUserSelectRow(null);
     this.emitSelectRow(null);
+    this.emitDblSelectRow(null);
   }
 
   onSelectRow(row: Row) {
     this.grid.selectRow(row);
     this.emitSelectRow(row);
+
   }
 
   onMultipleSelectRow(row: Row) {
@@ -185,9 +206,17 @@ export class Ng2SmartTableComponent implements OnChanges {
   }
 
   private emitUserSelectRow(row: Row) {
-    const selectedRows = this.grid.getSelectedRows();
 
     this.userRowSelect.emit({
+      data: row ? row.getData() : null,
+      isSelected: row ? row.getIsSelected() : null,
+      source: this.source,
+    });
+  }
+
+  private emitSelectRow(row: Row) {
+    const selectedRows = this.grid.getSelectedRows();
+    this.rowSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
@@ -195,12 +224,11 @@ export class Ng2SmartTableComponent implements OnChanges {
     });
   }
 
-  private emitSelectRow(row: Row) {
-    this.rowSelect.emit({
+  private emitDblSelectRow(row: Row) {
+    this.dbSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
     });
   }
-
 }
