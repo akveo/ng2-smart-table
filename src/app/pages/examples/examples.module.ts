@@ -36,7 +36,11 @@ import { CbeExampleComponent } from './clickEvent/cbe-example.component';
 
 // 隔行换色
 import { GhhsComponent } from './ghhs/ghhs.component';
-import { GhhsExampleComponent } from './ghhs/ghhs.eample.component';
+import { GhhsExampleComponent } from './ghhs/ghhs-example.component';
+
+// 工具栏
+import { ToolComponent } from './tool/tool.component';
+import { ToolExampleComponent } from './tool/tool-example.component';
 // 新的组件
 const NEW_COMPNENTS = [
     // 单击/双击/复选框
@@ -46,7 +50,10 @@ const NEW_COMPNENTS = [
     CbeExampleComponent,
     // 隔行换色
     GhhsComponent,
-    GhhsExampleComponent
+    GhhsExampleComponent,
+    // 工具栏
+    ToolComponent,
+    ToolExampleComponent,
 ];
 
 const EXAMPLES_COMPONENTS = [
