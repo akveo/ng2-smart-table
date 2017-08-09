@@ -11,6 +11,8 @@ import { VariousExamplesComponent } from './various/various-examples.component';
 import { ClickEventComponent } from './clickEvent/clickEvent.component';
 // 隔行换色
 import { GhhsComponent } from './ghhs/ghhs.component';
+// 工具栏
+import { ToolComponent } from './tool/tool.component';
 
 export const routes: Routes = [
   {
@@ -19,7 +21,7 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'clickEvent',
+        redirectTo: 'tool',
       },
       {
         path: 'using-filters',
@@ -46,6 +48,11 @@ export const routes: Routes = [
       {
         path: 'ghhs',
         component: GhhsComponent,
+      },
+      // 工具栏.
+      {
+        path: 'tool',
+        component: ToolComponent,
       },
     ],
   },
