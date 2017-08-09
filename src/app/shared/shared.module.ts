@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { Ng2SmartTableModule } from '../../ng2-smart-table';
+import { Ng2FirstTableModule } from '../../ng2-first-table';
 
 import { HeaderComponent } from './components/header/header.component';
 import { BasicExampleDataComponent } from './components/basic-example/basic-example-data.component';
@@ -25,7 +25,7 @@ const SHARED_DIRECTIVES = [
   imports: [
     RouterModule,
     CommonModule,
-    Ng2SmartTableModule,
+    Ng2FirstTableModule,
   ],
   declarations: [
     ...SHARED_COMPONENTS,

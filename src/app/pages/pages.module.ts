@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { routes } from './pages.routes';
 import { SharedModule } from '../shared/shared.module';
 
-import { Ng2SmartTableModule } from '../../ng2-smart-table/ng2-smart-table.module';
+import { Ng2FirstTableModule } from '../../ng2-first-table/ng2-first-table.module';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import { Ng2SmartTableModule } from '../../ng2-smart-table/ng2-smart-table.modul
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    Ng2SmartTableModule,
+    Ng2FirstTableModule,
     SharedModule,
   ],
 })

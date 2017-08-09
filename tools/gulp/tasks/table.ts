@@ -23,7 +23,7 @@ const gulpRollup = require('gulp-better-rollup');
 const gulpMinifyHtml = require('gulp-htmlmin');
 const gulpIf = require('gulp-if');
 
-/** Path to tsconfig file for the ng2-smart-table. */
+/** Path to tsconfig file for the ng2-first-table. */
 const tsconfigPath = path.join(TABLE_DIR, 'tsconfig.json');
 
 /** Asset files to be added to the components output. */
@@ -36,9 +36,9 @@ const assetFiles = [
 ];
 
 /** Builds components to UMD bundle. */
-task('build:table', [':build:table:bundle:umd']);
+task('build:table', sequenceTask(':build:table:bundle:umd'));
 
-/** Builds components for ng2-smart-table releases */
+/** Builds components for ng2-first-table releases */
 task(':build:table:release', sequenceTask(
   ':build:table:bundle:umd',
   ':build:table:bundle:esm',
@@ -96,8 +96,9 @@ task(':build:table:inline', sequenceTask(
 task(':inline-resources', () => inlineResources(TABLE_DIST_ROOT));
 
 /** Generates metadata.json files for all of the components. */
-task(':build:table:ngc', ['build:table'], execNodeTask(
-  '@angular/compiler-cli', 'ngc', ['-p', tsconfigPath],
+task('build:table');
+task(':build:table:ngc',  execNodeTask(
+  '@angular/compiler-cli', 'ngc', ['-p', tsconfigPath]
 ));
 
 /** [Watch task] Rebuilds (ESM output) whenever ts, scss, or html sources change. */
@@ -261,7 +262,7 @@ const ROLLUP_GLOBALS = {
   'lodash': 'lodash',
 };
 
-/** Creates a rollup bundles of the ng2-smart-table components.*/
+/** Creates a rollup bundles of the ng2-first-table components.*/
 function createRollupBundle(format: string, outFile: string) {
   const rollupOptions = {
     context: 'this',
@@ -271,7 +272,7 @@ function createRollupBundle(format: string, outFile: string) {
   const rollupGenerateOptions = {
     // Keep the moduleId empty because we don't want to force developers to a specific moduleId.
     moduleId: '',
-    moduleName: 'ng2-smart-table',
+    moduleName: 'ng2-first-table',
     banner: TABLE_LICENSE_BANNER,
     format: format,
     dest: outFile,

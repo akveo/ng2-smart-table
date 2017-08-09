@@ -1,8 +1,6 @@
-// ...
 
-@Component({
-  template: `
-    <ng2-smart-table [settings]="settings"></ng2-smart-table>
-  `
-})
-// ...
+      @Component({
+        template: `
+          <ng2-first-table [settings]="settings"></ng2-first-table>
+        `
+      })

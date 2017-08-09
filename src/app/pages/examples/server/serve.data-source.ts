@@ -1,7 +1,7 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 
-import { LocalDataSource } from '../../../../ng2-smart-table/lib/data-source/local/local.data-source';
+import { LocalDataSource } from '../../../../ng2-first-table/lib/data-source/local/local.data-source';
 
 @Injectable()
 export class CustomServerDataSource extends LocalDataSource {

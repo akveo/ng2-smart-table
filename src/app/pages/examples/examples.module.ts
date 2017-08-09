@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../../shared/shared.module';
-import { Ng2SmartTableModule } from '../../../ng2-smart-table';
+import { Ng2FirstTableModule } from '../../../ng2-first-table';
 import { routes } from './examples.routes';
 import { ExamplesComponent } from './examples.component';
 import { AdvancedExampleFiltersComponent } from './filter/advanced-example-filters.component';
@@ -27,6 +27,34 @@ import {
   BasicExampleButtonViewComponent,
   ButtonViewComponent,
 } from './custom-edit-view/basic-example-button-view.component';
+
+// 单击/双击 事件
+import { ClickEventComponent } from './clickEvent/clickEvent.component';
+import { ClickExampleComponent } from './clickEvent/click-example.component';
+import { DblclickExampleComponent } from './clickEvent/dblclick-example.component';
+import { CbeExampleComponent } from './clickEvent/cbe-example.component';
+
+// 隔行换色
+import { GhhsComponent } from './ghhs/ghhs.component';
+import { GhhsExampleComponent } from './ghhs/ghhs-example.component';
+
+// 工具栏
+import { ToolComponent } from './tool/tool.component';
+import { ToolExampleComponent } from './tool/tool-example.component';
+// 新的组件
+const NEW_COMPNENTS = [
+    // 单击/双击/复选框
+    ClickEventComponent,
+    ClickExampleComponent,
+    DblclickExampleComponent,
+    CbeExampleComponent,
+    // 隔行换色
+    GhhsComponent,
+    GhhsExampleComponent,
+    // 工具栏
+    ToolComponent,
+    ToolExampleComponent,
+];
 
 const EXAMPLES_COMPONENTS = [
   AdvancedExampleFiltersComponent,
@@ -54,7 +82,7 @@ const EXAMPLES_COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    Ng2SmartTableModule,
+    Ng2FirstTableModule,
     SharedModule,
   ],
   entryComponents: [
@@ -65,6 +93,7 @@ const EXAMPLES_COMPONENTS = [
   declarations: [
     ExamplesComponent,
     ...EXAMPLES_COMPONENTS,
+    ...NEW_COMPNENTS,
   ],
 })
 export class ExamplesModule { }
