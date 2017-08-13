@@ -1,11 +1,11 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
-import { LocalDataSource } from '../local/local.data-source';
-import { ServerSourceConf } from './server-source.conf';
-import { getDeepFromObject } from '../../helpers';
+import { LocalDataSource } from 'ng2-smart-table';
+import { ServerSourceConf } from 'ng2-smart-table/lib/data-source/server/server-source.conf';
+import { getDeepFromObject } from 'ng2-smart-table/lib/helpers';
 
 import 'rxjs/add/operator/toPromise';
 
@@ -13,9 +13,9 @@ export class ServerDataSource extends LocalDataSource {
 
   protected conf: ServerSourceConf;
 
-  protected lastRequestCount: number = 0;
+  protected lastRequestCount = 0;
 
-  constructor(protected http: Http, conf: ServerSourceConf | {} = {}) {
+  constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}) {
     super();
 
     this.conf = new ServerSourceConf(conf);
@@ -44,7 +44,7 @@ export class ServerDataSource extends LocalDataSource {
    * @returns {any}
    */
   protected extractDataFromResponse(res: any): Array<any> {
-    const rawData = res.json();
+    const rawData = res;
     const data = !!this.conf.dataKey ? getDeepFromObject(rawData, this.conf.dataKey, []) : rawData;
 
     if (data instanceof Array) {
@@ -62,19 +62,15 @@ export class ServerDataSource extends LocalDataSource {
    * @returns {any}
    */
   protected extractTotalFromResponse(res: any): number {
-    if (res.headers.has(this.conf.totalKey)) {
-      return +res.headers.get(this.conf.totalKey);
-    } else {
-      const rawData = res.json();
-      return getDeepFromObject(rawData, this.conf.totalKey, 0);
-    }
+    const rawData = res;
+    return getDeepFromObject(rawData, this.conf.totalKey, 0);
   }
 
   protected requestElements(): Observable<any> {
     return this.http.get(this.conf.endPoint, this.createRequestOptions());
   }
 
-  protected createRequestOptions(): RequestOptionsArgs {
+  protected createRequestOptions(): any {
     let requestOptions: RequestOptionsArgs = {};
     requestOptions.params = new URLSearchParams();
 
