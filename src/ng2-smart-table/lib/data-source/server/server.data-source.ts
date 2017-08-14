@@ -3,9 +3,9 @@ import { RequestOptionsArgs } from '@angular/http/src/interfaces';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-import { LocalDataSource } from 'ng2-smart-table';
-import { ServerSourceConf } from 'ng2-smart-table/lib/data-source/server/server-source.conf';
-import { getDeepFromObject } from 'ng2-smart-table/lib/helpers';
+import { LocalDataSource } from '../local/local.data-source';
+import { ServerSourceConf } from './server-source.conf';
+import { getDeepFromObject } from '../../helpers';
 
 import 'rxjs/add/operator/toPromise';
 
