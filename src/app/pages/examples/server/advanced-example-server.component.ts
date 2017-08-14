@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { ServerDataSource } from '../../../../../src/ng2-smart-table';
 
@@ -30,7 +30,7 @@ export class AdvancedExampleServerComponent {
 
   source: ServerDataSource;
 
-  constructor(http: Http) {
+  constructor(http: HttpClient) {
     this.source = new ServerDataSource(http, { endPoint: 'https://jsonplaceholder.typicode.com/photos' });
   }
 }
