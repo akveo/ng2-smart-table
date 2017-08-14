@@ -67,6 +67,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       createButtonContent: 'Create',
       cancelButtonContent: 'Cancel',
       confirmCreate: false,
+      insertMethod: 'prepend',
     },
     delete: {
       deleteButtonContent: 'Delete',
@@ -82,7 +83,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       display: true,
       perPage: 10,
     },
-    rowClassFunction: () => ""
+    rowClassFunction: () => ""    
   };
 
   isAllSelected: boolean = false;
