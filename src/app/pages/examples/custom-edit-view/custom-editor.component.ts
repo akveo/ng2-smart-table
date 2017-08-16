@@ -33,6 +33,8 @@ export class CustomEditorComponent extends DefaultEditor implements AfterViewIni
   @ViewChild('url') url: ElementRef;
   @ViewChild('htmlValue') htmlValue: ElementRef;
 
+  openInNewWindow: boolean;
+
   constructor() {
     super();
   }
@@ -42,12 +44,26 @@ export class CustomEditorComponent extends DefaultEditor implements AfterViewIni
       this.name.nativeElement.value = this.getUrlName();
       this.url.nativeElement.value = this.getUrlHref();
     }
+
+    this.openInNewWindow = this.cell.getColumn().getConfig()
+      ? this.cell.getColumn().getConfig().openInNewWindow || false
+      : false;
   }
 
   updateValue() {
     const href = this.url.nativeElement.value;
     const name = this.name.nativeElement.value;
-    this.cell.newValue = `<a href='${href}'>${name}</a>`;
+
+    let value;
+
+    if (this.openInNewWindow) {
+      value = `<a href='${href}' target="_blank">${name}</a>`;
+    } else {
+      value = `<a href='${href}'>${name}</a>`;
+    }
+
+    this.cell.newValue = value;
+
   }
 
   getUrlName(): string {
