@@ -57,6 +57,9 @@ export class AdvancedExamplesCustomEditorComponent {
         editor: {
           type: 'custom',
           component: CustomEditorComponent,
+          config: {
+            openInNewWindow: true,
+          },
         },
       },
     },
