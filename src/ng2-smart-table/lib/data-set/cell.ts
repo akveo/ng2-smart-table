@@ -17,7 +17,7 @@ export class Cell {
     return this.column;
   }
 
-  getValidator(): AbstractControl {
+  getValidator(): any {
     return this.dataSet.getRowValidator(this.getRow().index).controls[this.getId()];
   }
 
