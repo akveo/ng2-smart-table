@@ -32,7 +32,9 @@ export class CompleterEditorComponent extends DefaultEditor implements OnInit {
   }
 
   onEditedCompleter(event: { title: '' }): boolean {
-    this.cell.newValue = event.title;
+    if (event && event.hasOwnProperty('title')) {
+      this.cell.newValue = event.title;
+    }
     return false;
   }
 }
