@@ -21,6 +21,7 @@ import { FilterExamplesComponent } from './filter/filter-examples.component';
 import { ServerExamplesComponent } from './server/server-examples.component';
 import { CustomViewEditExamplesComponent } from './custom-edit-view/custom-edit-view-examples.component';
 import { BasicExampleCustomActionsComponent } from './custom-edit-view/basic-example-custom-actions.component';
+import { CellStylingComponent } from './various/cell-styling.component';
 import { VariousExamplesComponent } from './various/various-examples.component';
 
 import {
@@ -36,6 +37,7 @@ const EXAMPLES_COMPONENTS = [
   AdvancedExampleServerComponent,
   BasicExampleLoadComponent,
   BasicExampleMultiSelectComponent,
+  CellStylingComponent,
   BasicExampleSourceComponent,
   CustomEditorComponent,
   CustomRenderComponent,
