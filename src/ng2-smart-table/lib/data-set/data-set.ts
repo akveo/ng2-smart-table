@@ -17,7 +17,6 @@ export class DataSet {
   protected willSelect: string = 'first';
 
   constructor(data: Array<any> = [], protected columnSettings: Object, private validator: ValidatorService) {
-    this.createValidators(columnSettings);
     this.createColumns(columnSettings);
     this.setData(data);
 
@@ -43,6 +42,7 @@ export class DataSet {
   setData(data: Array<any>) {
     this.data = data;
     this.createRows();
+    this.createValidators(this.columnSettings);
   }
 
   getColumns(): Array<Column> {
