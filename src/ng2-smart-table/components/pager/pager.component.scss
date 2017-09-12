@@ -17,4 +17,21 @@
   .ng2-smart-page-item {
     display: inline;
   }
+
+  .page-link-next, .page-link-prev {
+    font-size: 10px;
+  }
+}
+
+:host {
+  display: flex;
+  justify-content: space-between;
+
+  select {
+    margin: 1rem 0 1rem 1rem;
+  }
+  label {
+    margin: 1rem 0 1rem 1rem;
+    line-height: 2.5rem;
+  }
 }

@@ -16,6 +16,13 @@ import { DataSource } from '../../lib/data-source/data-source';
             <span class="sr-only">First</span>
           </a>
         </li>
+        <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
+          <a class="ng2-smart-page-link page-link page-link-prev" href="#"
+             (click)="getPage() == 1 ? false : prev()" aria-label="Prev">
+            <span aria-hidden="true">&lt;</span>
+            <span class="sr-only">Prev</span>
+          </a>
+        </li>
         <li class="ng2-smart-page-item page-item"
         [ngClass]="{active: getPage() == page}" *ngFor="let page of getPages()">
           <span class="ng2-smart-page-link page-link"
@@ -24,6 +31,15 @@ import { DataSource } from '../../lib/data-source/data-source';
           (click)="paginate(page)" *ngIf="getPage() != page">{{ page }}</a>
         </li>
 
+        <li class="ng2-smart-page-item page-item"
+            [ngClass]="{disabled: getPage() == getLast()}">
+          <a class="ng2-smart-page-link page-link page-link-next" href="#"
+             (click)="getPage() == getLast() ? false : next()" aria-label="Next">
+            <span aria-hidden="true">&gt;</span>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+        
         <li class="ng2-smart-page-item page-item"
         [ngClass]="{disabled: getPage() == getLast()}">
           <a class="ng2-smart-page-link page-link" href="#"
@@ -34,13 +50,25 @@ import { DataSource } from '../../lib/data-source/data-source';
         </li>
       </ul>
     </nav>
+    
+    <nav *ngIf="perPageSelect && perPageSelect.length > 0" class="ng2-smart-pagination-per-page">
+      <label for="per-page">
+        Per Page:
+      </label>
+      <select (change)="onChangePerPage($event)" [(ngModel)]="currentPerPage" id="per-page">
+        <option *ngFor="let item of perPageSelect" [value]="item">{{ item }}</option>
+      </select>
+    </nav>
   `,
 })
 export class PagerComponent implements OnChanges {
 
   @Input() source: DataSource;
+  @Input() perPageSelect: any[] = [];
 
   @Output() changePage = new EventEmitter<any>();
+
+  currentPerPage: any;
 
   protected pages: Array<any>;
   protected page: number;
@@ -57,6 +85,7 @@ export class PagerComponent implements OnChanges {
       this.dataChangedSub = this.source.onChanged().subscribe((dataChanges) => {
         this.page = this.source.getPaging().page;
         this.perPage = this.source.getPaging().perPage;
+        this.currentPerPage = this.perPage;
         this.count = this.source.count();
         if (this.isPageOutOfBounce()) {
           this.source.setPage(--this.page);
@@ -92,6 +121,14 @@ export class PagerComponent implements OnChanges {
     this.page = page;
     this.changePage.emit({ page });
     return false;
+  }
+
+  next(): boolean {
+    return this.paginate(this.getPage() + 1);
+  }
+
+  prev(): boolean {
+    return this.paginate(this.getPage() - 1);
   }
 
   getPage(): number {
@@ -131,4 +168,18 @@ export class PagerComponent implements OnChanges {
       }
     }
   }
+
+  onChangePerPage(event: any) {
+    if (this.currentPerPage) {
+
+      if (typeof this.currentPerPage === 'string' && this.currentPerPage.toLowerCase() === 'all') {
+        this.source.getPaging().perPage = null;
+      } else {
+        this.source.getPaging().perPage = this.currentPerPage * 1;
+        this.source.refresh();
+      }
+      this.initPages();
+    }
+  }
+
 }

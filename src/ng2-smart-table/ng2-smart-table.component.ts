@@ -29,6 +29,7 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   tableClass: string;
   tableId: string;
+  perPageSelect: any;
   isHideHeader: boolean;
   isHideSubHeader: boolean;
   isPagerDisplay: boolean;
@@ -102,6 +103,8 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.isHideHeader = this.grid.getSetting('hideHeader');
     this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
     this.isPagerDisplay = this.grid.getSetting('pager.display');
+    this.isPagerDisplay = this.grid.getSetting('pager.display');
+    this.perPageSelect = this.grid.getSetting('pager.perPageSelect');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
   }
 
