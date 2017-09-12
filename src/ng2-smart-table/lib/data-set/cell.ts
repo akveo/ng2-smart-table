@@ -22,7 +22,7 @@ export class Cell {
   getValue(): any {
     const valid = this.column.getValuePrepareFunction() instanceof Function;
     const prepare = valid ? this.column.getValuePrepareFunction() : Cell.PREPARE;
-    return prepare.call(null, this.value, this.row.getData());
+    return prepare.call(null, this.value, this.row.getData(), this);
   }
 
   setValue(value: any): any {
