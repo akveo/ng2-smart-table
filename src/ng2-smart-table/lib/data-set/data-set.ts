@@ -19,6 +19,7 @@ export class DataSet {
   constructor(data: Array<any> = [], protected columnSettings: Object, private validator: ValidatorService) {
     this.createColumns(columnSettings);
     this.setData(data);
+    this.createNewRowValidator();
 
     this.createNewRow();
   }
@@ -31,8 +32,11 @@ export class DataSet {
     return formGroup;
   }
 
-  createValidators(columnSettings: Object){
+  createNewRowValidator() {
     this.newRowValidator = this.addDefaultsToFormGroup(this.validator.getFormGroup());
+  }
+
+  createEditRowValidators() {
     this.editRowValidators = new Array<FormGroup>();
     this.data.forEach(() => {
       this.editRowValidators.push(this.addDefaultsToFormGroup(this.validator.getFormGroup()));
@@ -42,7 +46,7 @@ export class DataSet {
   setData(data: Array<any>) {
     this.data = data;
     this.createRows();
-    this.createValidators(this.columnSettings);
+    this.createEditRowValidators();
   }
 
   getColumns(): Array<Column> {
