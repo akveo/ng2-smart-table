@@ -24,6 +24,7 @@
     "build:ci": "npm run build:prod && npm run build:prod:aot && npm run build:release",
     "build:ghpages": "npm run build:prod:aot -- --base-href \"https://akveo.github.io/ng2-smart-table/\" && ngh",
     "build:release": "gulp build:release",
+    "preinstall": "gulp build:release",
     "test": "ng test -sr",
     "test:coverage": "npm run clean:coverage && ng test -sr -cc",
     "lint": "ng lint",
