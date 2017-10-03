@@ -68,6 +68,8 @@ export class Ng2SmartTableComponent implements OnChanges {
       cancelButtonContent: 'Cancel',
       confirmCreate: false,
       insertMethod: 'prepend',
+      createFormShownInitial: false,
+      createFormShownAlways: false,
     },
     delete: {
       deleteButtonContent: 'Delete',

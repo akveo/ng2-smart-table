@@ -46,6 +46,7 @@ export class Grid {
 
   setSettings(settings: Object, validator: ValidatorService) {
     this.settings = settings;
+    this.createFormShown = this.getSetting('add.createFormShownAlways') || this.getSetting('add.createFormShownInitial');
     this.dataSet = new DataSet([], this.getSetting('columns'), validator);
 
     if (this.source) {
@@ -102,7 +103,8 @@ export class Grid {
     deferred.promise.then((newData) => {
       newData = newData ? newData : row.getNewData();
       if (deferred.resolve.skipAdd) {
-        this.createFormShown = false;
+        if(!this.getSetting('add.createFormShownAlways'))
+          this.createFormShown = false;
       } else {
         this.insert(newData);
       }
@@ -127,7 +129,8 @@ export class Grid {
 
   insert(newData: any) {
     (<any>this.source)[this.getSetting('add.insertMethod')](newData).then(() => {
-      this.createFormShown = false;
+      if (!this.getSetting('add.createFormShownAlways'))
+        this.createFormShown = false;
       this.dataSet.addInsertedRowValidator();
       this.dataSet.createNewRow();
     });
