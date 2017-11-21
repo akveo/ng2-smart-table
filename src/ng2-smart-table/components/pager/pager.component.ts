@@ -42,8 +42,20 @@ export class PagerComponent implements OnChanges {
 
   @Output() changePage = new EventEmitter<any>();
 
+  @Input()
+  set page(pn: number) {
+    if (pn) {
+      this.paginate(pn);
+    }
+  }
+
+  get page(): number {
+    return this._page;
+  }
+
+
   protected pages: Array<any>;
-  protected page: number;
+  protected _page: number;
   protected count: number = 0;
   protected perPage: number;
 
@@ -55,11 +67,11 @@ export class PagerComponent implements OnChanges {
         this.dataChangedSub.unsubscribe();
       }
       this.dataChangedSub = this.source.onChanged().subscribe((dataChanges) => {
-        this.page = this.source.getPaging().page;
+        this._page = this.source.getPaging().page;
         this.perPage = this.source.getPaging().perPage;
         this.count = this.source.count();
         if (this.isPageOutOfBounce()) {
-          this.source.setPage(--this.page);
+          this.source.setPage(--this._page);
         }
 
         this.processPageChange(dataChanges);
@@ -89,7 +101,7 @@ export class PagerComponent implements OnChanges {
 
   paginate(page: number): boolean {
     this.source.setPage(page);
-    this.page = page;
+    this._page = page;
     this.changePage.emit({ page });
     return false;
   }

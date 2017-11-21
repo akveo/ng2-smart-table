@@ -5,7 +5,14 @@ import { Column } from '../../../lib/data-set/column';
 
 export class DefaultFilter implements Filter, OnDestroy {
 
-  delay: number = 300;
+  // delay: number = 300;
+  get delay():number{
+      let config = this.column.getFilterConfig();
+      if (config && config['delay']) {
+        return config['delay'];
+      }
+      return 300;
+  }
   changesSubscription: Subscription;
   @Input() query: string;
   @Input() inputClass: string;
