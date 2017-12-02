@@ -37,6 +37,7 @@ export class Ng2SmartTableTbodyComponent {
   isActionAdd: boolean;
   isActionEdit: boolean;
   isActionDelete: boolean;
+  isActionCustom: boolean;
   noDataMessage: boolean;
 
   ngOnChanges() {
@@ -48,6 +49,7 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionAdd = this.grid.getSetting('actions.add');
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
+    this.isActionCustom = !!this.grid.getSetting('actions.custom');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
   }
 }
