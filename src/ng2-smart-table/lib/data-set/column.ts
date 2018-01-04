@@ -19,6 +19,8 @@ export class Column {
   valuePrepareFunction: Function;
   filterFunction: Function;
   onComponentInitFunction: Function;
+  cellClassFunction: Function;
+  cellStyleFunction: Function;
 
   constructor(public id: string, protected settings: any, protected dataSet: DataSet) {
     this.process();
@@ -34,6 +36,14 @@ export class Column {
 
   getValuePrepareFunction(): Function {
     return this.valuePrepareFunction;
+  }
+
+  getCellClassFunction(): Function {
+    return this.cellClassFunction;
+  }
+
+  getCellStyleFunction(): Function {
+    return this.cellStyleFunction;
   }
 
   getFilterFunction(): Function {
@@ -73,6 +83,8 @@ export class Column {
     this.valuePrepareFunction = this.settings['valuePrepareFunction'];
     this.filterFunction = this.settings['filterFunction'];
     this.onComponentInitFunction = this.settings['onComponentInitFunction'];
+    this.cellClassFunction = this.settings['cellClassFunction'];
+    this.cellStyleFunction = this.settings['cellStyleFunction'];
   }
 
   prepareType(): string {
