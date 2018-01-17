@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChangesm, OnInit } from '@angular/core';
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
@@ -84,7 +84,11 @@ export class Ng2SmartTableComponent implements OnChanges {
   };
 
   isAllSelected: boolean = false;
-
+  
+  ngOnInit() {
+    this.ngOnChanges({});
+  }
+  
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (this.grid) {
       if (changes['settings']) {
