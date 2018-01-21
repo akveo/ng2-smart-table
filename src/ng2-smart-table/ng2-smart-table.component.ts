@@ -1,17 +1,24 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnInit, Injector, ReflectiveInjector} from '@angular/core';
+
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
-import { deepExtend } from './lib/helpers';
+import {deepExtend, getAnnotations } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+
+import { ServerDataSource } from './lib/data-source/server/server.data-source';
+import { ServerSourceConf } from './lib/data-source/server/server-source.conf';
+
+import {HttpModule, Http} from '@angular/http';
+
 
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
   templateUrl: './ng2-smart-table.component.html',
 })
-export class Ng2SmartTableComponent implements OnChanges {
+export class Ng2SmartTableComponent implements OnChanges, OnInit {
 
   @Input() source: any;
   @Input() settings: Object = {};
@@ -85,6 +92,10 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   isAllSelected: boolean = false;
 
+  ngOnInit() {
+      this.ngOnChanges({});
+  }
+
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (this.grid) {
       if (changes['settings']) {
@@ -104,6 +115,8 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.isPagerDisplay = this.grid.getSetting('pager.display');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
   }
+  
+  
 
   editRowSelect(row: Row) {
     if (this.grid.getSetting('selectMode') === 'multi') {
@@ -159,8 +172,18 @@ export class Ng2SmartTableComponent implements OnChanges {
       return this.source;
     } else if (this.source instanceof Array) {
       return new LocalDataSource(this.source);
+    }else if(typeof(this.source) == 'string') {
+        let conf = new ServerSourceConf({endPoint: this.source});
+        let thisp = [
+            { provide: ServerDataSource, deps: [Http, ServerSourceConf], useFactory: function(http: Http, conf: ServerSourceConf){return new ServerDataSource(http, conf) }},
+            { provide: ServerSourceConf, useValue: conf},
+            ];          
+        thisp.push(...getAnnotations(HttpModule)[0].providers);
+        let injector = ReflectiveInjector.resolveAndCreate(thisp);
+        let srv = injector.get(ServerDataSource);
+        return srv;
     }
-
+    
     return new LocalDataSource();
   }
 

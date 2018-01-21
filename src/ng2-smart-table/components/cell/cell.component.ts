@@ -7,10 +7,10 @@ import { Row } from '../../lib/data-set/row';
 @Component({
   selector: 'ng2-smart-table-cell',
   template: `
-    <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell"></table-cell-view-mode>
+    <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell" (dblclick)="dblclick()"></table-cell-view-mode>
     <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell"
                           [inputClass]="inputClass"
-                          (edited)="onEdited($event)">
+                          (edited)="onEdited($event)" (dblclick)="dblclick()">
     </table-cell-edit-mode>
   `,
 })
@@ -27,6 +27,7 @@ export class CellComponent {
   @Input() isInEditing: boolean = false;
 
   @Output() edited = new EventEmitter<any>();
+  @Output() doubleClick = new EventEmitter<any>();
 
   onEdited(event: any) {
     if (this.isNew) {
@@ -34,5 +35,9 @@ export class CellComponent {
     } else {
       this.grid.save(this.row, this.editConfirm);
     }
+  }
+  
+  dblclick() {
+      this.doubleClick.emit({row: this.row, cell: this.cell, grid: this.grid, cellComponent: this});
   }
 }
