@@ -13,8 +13,6 @@ import {ServerSourceConf} from './lib/data-source/server/server-source.conf';
 
 import { Ng2SmartTableComponent } from './ng2-smart-table.component';
 
-import {HttpClientModule} from '@angular/common/http';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -24,8 +22,7 @@ import {HttpClientModule} from '@angular/common/http';
     FilterModule,
     PagerModule,
     TBodyModule,
-    THeadModule,
-    HttpClientModule
+    THeadModule
   ],
   declarations: [
     Ng2SmartTableComponent
