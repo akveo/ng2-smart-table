@@ -60,7 +60,7 @@ export class FilterComponent implements OnChanges {
 
           // add a check for existing filters an set the query if one exists for this column
           // this covers instances where the filter is set by user code while maintaining existing functionality
-        } else if (filterConf && filterConf.filters && filterConf.filters.length > 0) {
+        } else if (filterConf && filterConf.filters && filterConf.filters.length > 0 && dataChanges.action === 'setFilter') {
           filterConf.filters.forEach((k: any, v: any) => {
             if (k.field == this.column.id) {
               this.query = k.search;
