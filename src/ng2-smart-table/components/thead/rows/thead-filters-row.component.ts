@@ -12,7 +12,7 @@ import { Column } from "../../../lib/data-set/column";
                           [grid]="grid"
                           (create)="create.emit($event)">
     </th>
-    <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}">
+    <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngStyle]=\"{'display': column.show ? '': 'none'}\">
       <ng2-smart-table-filter [source]="source"
                               [column]="column"
                               [inputClass]="filterInputClass"
