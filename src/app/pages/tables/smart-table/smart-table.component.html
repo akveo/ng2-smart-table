@@ -1,0 +1,31 @@
+<nb-card>
+  <nb-card-header>
+   <div class="dropdown" ngbDropdown>
+      Currency &nbsp; 
+      <!-- <button class="btn btn-primary setwidth" type="button" ngbDropdownToggle>
+        Dropdown
+      </button>
+      <ul  class="dropdown-menu dropdownset" ngbDropdownMenu>
+        <li *ngFor="let item of tabledata" class="dropdown-item">{{item.currency}}</li>
+        
+      </ul> -->
+      <select>
+        <option (change)="changeonddl()"  *ngFor="let item of tabledata" value="{{item.currency}}">{{item.currency}}</option>
+       
+      </select>
+    </div>
+   
+   <!-- <button class="btn btn-hero-success btn-demo icon-setting" (click)="onClick()"><i class="nb-loop"></i></button> -->
+  </nb-card-header>
+
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)" reset>
+    </ng2-smart-table>
+    <div class="container-btn rightposition">
+          <button class="btn btn-hero-primary btn-demo">Export For Android</button>&nbsp;
+          <button class="btn btn-hero-primary btn-demo">Export For IOS</button>
+    </div>
+   
+  </nb-card-body>
+</nb-card>
+
