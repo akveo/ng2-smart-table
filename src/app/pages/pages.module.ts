@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { RouterModule } from '@angular/router';
 
-import { routes } from './pages.routes';
-import { SharedModule } from '../shared/shared.module';
+import { PagesComponent } from './pages.component';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { PagesRoutingModule } from './pages-routing.module';
+import { ThemeModule } from '../@theme/theme.module';
 
-import { Ng2SmartTableModule } from '../../ng2-smart-table/ng2-smart-table.module';
+const PAGES_COMPONENTS = [
+  PagesComponent,
+];
 
 @NgModule({
   imports: [
-    FormsModule,
-    HttpModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes),
-    Ng2SmartTableModule,
-    SharedModule,
+    PagesRoutingModule,
+    ThemeModule,
+    DashboardModule,
+  ],
+  declarations: [
+    ...PAGES_COMPONENTS,
   ],
 })
 export class PagesModule {
