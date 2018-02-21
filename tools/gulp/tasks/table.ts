@@ -36,7 +36,7 @@ const assetFiles = [
 ];
 
 /** Builds components to UMD bundle. */
-task('build:table', [':build:table:bundle:umd']);
+task('build:table', sequenceTask(':build:table:bundle:umd'));
 
 /** Builds components for ng2-smart-table releases */
 task(':build:table:release', sequenceTask(
@@ -96,15 +96,14 @@ task(':build:table:inline', sequenceTask(
 task(':inline-resources', () => inlineResources(TABLE_DIST_ROOT));
 
 /** Generates metadata.json files for all of the components. */
-task(':build:table:ngc', ['build:table'], execNodeTask(
-  '@angular/compiler-cli', 'ngc', ['-p', tsconfigPath],
-));
+task(':build:table:ngc', sequenceTask('build:table',':build:table:ngc:compile'));
+task(':build:table:ngc:compile', execNodeTask('@angular/compiler-cli', 'ngc', ['-p', tsconfigPath]));
 
 /** [Watch task] Rebuilds (ESM output) whenever ts, scss, or html sources change. */
 task(':watch:table', () => {
-  watch(path.join(TABLE_DIR, '**/*.ts'), ['build:table', triggerLivereload]);
-  watch(path.join(TABLE_DIR, '**/*.scss'), ['build:table', triggerLivereload]);
-  watch(path.join(TABLE_DIR, '**/*.html'), ['build:table', triggerLivereload]);
+  watch(path.join(TABLE_DIR, '**/*.ts'), sequenceTask(['build:table', triggerLivereload]));
+  watch(path.join(TABLE_DIR, '**/*.scss'), sequenceTask(['build:table', triggerLivereload]));
+  watch(path.join(TABLE_DIR, '**/*.html'), sequenceTask(['build:table', triggerLivereload]));
 });
 
 const ROLLUP_GLOBALS = {

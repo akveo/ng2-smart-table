@@ -9,6 +9,7 @@ import { DefaultEditor } from './default-editor';
     <input [ngClass]="inputClass"
            type="checkbox"
            class="form-control"
+           [formControl]="cell.getValidator()"
            [name]="cell.getId()"
            [disabled]="!cell.isEditable()"
            [checked]="cell.getValue() == (cell.getColumn().getConfig()?.true || true)"

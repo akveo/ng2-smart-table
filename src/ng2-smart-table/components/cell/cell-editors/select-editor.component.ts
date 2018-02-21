@@ -7,6 +7,7 @@ import { DefaultEditor } from './default-editor';
   template: `
     <select [ngClass]="inputClass"
             class="form-control"
+            [formControl]="cell.getValidator()"
             [(ngModel)]="cell.newValue"
             [name]="cell.getId()"
             [disabled]="!cell.isEditable()"

@@ -1,4 +1,5 @@
 export * from './ng2-smart-table.module';
+export { ValidatorService } from './lib/validator.service';
 export { ViewCell } from './components/cell/cell-view-mode/view-cell';
 export { DefaultEditor, Editor } from './components/cell/cell-editors/default-editor';
 export { Cell } from './lib/data-set/cell';

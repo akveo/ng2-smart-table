@@ -6,7 +6,7 @@ import { DataSource } from '../../../lib/data-source/data-source';
 @Component({
   selector: '[ng2-st-add-button]',
   template: `
-    <a *ngIf="isActionAdd" href="#" class="ng2-smart-action ng2-smart-action-add-add"
+    <a *ngIf="isActionAdd && !isCreateFormShownAlways" href="#" class="ng2-smart-action ng2-smart-action-add-add"
         [innerHTML]="addNewButtonContent" (click)="onAdd($event)"></a>
   `,
 })
@@ -17,6 +17,7 @@ export class AddButtonComponent implements AfterViewInit, OnChanges {
   @Output() create = new EventEmitter<any>();
 
   isActionAdd: boolean;
+  isCreateFormShownAlways: boolean;
   addNewButtonContent: string;
 
   constructor(private ref: ElementRef) {
@@ -28,6 +29,7 @@ export class AddButtonComponent implements AfterViewInit, OnChanges {
 
   ngOnChanges() {
     this.isActionAdd = this.grid.getSetting('actions.add');
+    this.isCreateFormShownAlways = this.grid.getSetting('add.createFormShownAlways');
     this.addNewButtonContent = this.grid.getSetting('add.addButtonContent');
   }
 
@@ -38,7 +40,7 @@ export class AddButtonComponent implements AfterViewInit, OnChanges {
       this.create.emit({
         source: this.source,
       });
-    } else {
+    } else if (!this.isCreateFormShownAlways) {
       this.grid.createFormShown = true;
     }
   }

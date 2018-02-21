@@ -1,26 +1,52 @@
+import { FormGroup, FormControl } from '@angular/forms';
+
 import { Row } from './row';
 import { Column } from './column';
+import { ValidatorService } from '../validator.service';
 
 export class DataSet {
 
   newRow: Row;
 
+  public newRowValidator: FormGroup;
+  public editRowValidators: FormGroup[];
   protected data: Array<any> = [];
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
   protected selectedRow: Row;
   protected willSelect: string = 'first';
 
-  constructor(data: Array<any> = [], protected columnSettings: Object) {
+  constructor(data: Array<any> = [], protected columnSettings: Object, private validator: ValidatorService) {
     this.createColumns(columnSettings);
     this.setData(data);
+    this.createNewRowValidator();
 
     this.createNewRow();
+  }
+
+  addDefaultsToFormGroup(formGroup: FormGroup): FormGroup {
+    if(this.columnSettings)
+      for (const id in this.columnSettings)
+          if (!formGroup.controls[id] && this.columnSettings.hasOwnProperty(id))
+              formGroup.controls[id] = new FormControl();
+    return formGroup;
+  }
+
+  createNewRowValidator() {
+    this.newRowValidator = this.addDefaultsToFormGroup(this.validator.getFormGroup());
+  }
+
+  createEditRowValidators() {
+    this.editRowValidators = new Array<FormGroup>();
+    this.data.forEach(() => {
+      this.editRowValidators.push(this.addDefaultsToFormGroup(this.validator.getFormGroup()));
+    });
   }
 
   setData(data: Array<any>) {
     this.data = data;
     this.createRows();
+    this.createEditRowValidators();
   }
 
   getColumns(): Array<Column> {
@@ -37,6 +63,13 @@ export class DataSet {
 
   getLastRow(): Row {
     return this.rows[this.rows.length - 1];
+  }
+
+  getRowValidator(index:number): FormGroup {
+    if(index === -1)
+      return this.newRowValidator;
+    else
+      return this.editRowValidators[index] as FormGroup;
   }
 
   findRowByData(data: any): Row {
@@ -116,6 +149,11 @@ export class DataSet {
     }
 
     return this.selectedRow;
+  }
+
+  addInsertedRowValidator(): void {
+    this.newRowValidator.reset();
+    this.editRowValidators = [this.addDefaultsToFormGroup(this.validator.getFormGroup())].concat(this.editRowValidators);
   }
 
   createNewRow() {
