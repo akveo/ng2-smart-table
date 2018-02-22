@@ -101,7 +101,7 @@
     "no-invalid-template-strings": true,
     "prefer-template": true,
     "no-unnecessary-callback-wrapper": true,
-    "member-access": [true, "no-public"],
+    "member-access": false,
     "no-empty-interface": true,
     "no-reference": true,
     "prefer-for-of": true,
@@ -127,9 +127,6 @@
     "pipe-naming": [true, "camelCase", ["nga", "ngd", "ngt"]],
     "component-class-suffix": true,
     "directive-class-suffix": true,
-    "templates-use-public": true,
-    "no-access-missing-member": true,
-    "invoke-injectable": true,
     "template-to-ng-template": true
   }
 }
