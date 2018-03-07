@@ -80,6 +80,10 @@ export class Ng2SmartTableComponent implements OnChanges {
     pager: {
       display: true,
       perPage: 10,
+      firstButtonContent: '&laquo;',
+      prevButtonContent: '&lt;',
+      nextButtonContent: '&gt;',
+      lastButtonContent: '&raquo;'
     },
     rowClassFunction: () => ""
   };

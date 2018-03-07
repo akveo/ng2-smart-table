@@ -2,13 +2,13 @@
   <ul class="ng2-smart-pagination pagination">
     <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
       <a class="ng2-smart-page-link page-link" href="#" (click)="getPage() == 1 ? false : paginate(1)" aria-label="First">
-        <span aria-hidden="true">&laquo;</span>
+        <span aria-hidden="true" [innerHTML]="firstButtonContent"></span>
         <span class="sr-only">First</span>
       </a>
     </li>
     <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
       <a class="ng2-smart-page-link page-link page-link-prev" href="#" (click)="getPage() == 1 ? false : prev()" aria-label="Prev">
-        <span aria-hidden="true">&lt;</span>
+        <span aria-hidden="true" [innerHTML]="prevButtonContent"></span>
         <span class="sr-only">Prev</span>
       </a>
     </li>
@@ -21,14 +21,14 @@
 
     <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == getLast()}">
       <a class="ng2-smart-page-link page-link page-link-next" href="#" (click)="getPage() == getLast() ? false : next()" aria-label="Next">
-        <span aria-hidden="true">&gt;</span>
+        <span aria-hidden="true" [innerHTML]="nextButtonContent"></span>
         <span class="sr-only">Next</span>
       </a>
     </li>
 
     <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == getLast()}">
       <a class="ng2-smart-page-link page-link" href="#" (click)="getPage() == getLast() ? false : paginate(getLast())" aria-label="Last">
-        <span aria-hidden="true">&raquo;</span>
+        <span aria-hidden="true" [innerHTML]="lastButtonContent"></span>
         <span class="sr-only">Last</span>
       </a>
     </li>

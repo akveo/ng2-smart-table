@@ -1,15 +1,17 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { DataSource } from '../../lib/data-source/data-source';
+import { Grid } from '../../lib/grid';
 
 @Component({
   selector: 'ng2-smart-table-pager',
   styleUrls: ['./pager.component.scss'],
-  templateUrl: './pager.component.html',
+  templateUrl: './pager.component.html'
 })
-export class PagerComponent implements OnChanges {
+export class PagerComponent implements OnChanges, OnInit {
 
+  @Input() grid: Grid;
   @Input() source: DataSource;
   @Input() perPageSelect: any[] = [];
 
@@ -21,6 +23,11 @@ export class PagerComponent implements OnChanges {
   protected page: number;
   protected count: number = 0;
   protected perPage: number;
+
+  protected firstButtonContent: string;
+  protected prevButtonContent: string;
+  protected nextButtonContent: string;
+  protected lastButtonContent: string;
 
   protected dataChangedSub: Subscription;
 
@@ -44,6 +51,13 @@ export class PagerComponent implements OnChanges {
     }
   }
 
+  ngOnInit(): void {
+    this.firstButtonContent = this.grid.getSetting('pager.firstButtonContent');
+    this.prevButtonContent = this.grid.getSetting('pager.prevButtonContent');
+    this.nextButtonContent = this.grid.getSetting('pager.nextButtonContent');
+    this.lastButtonContent = this.grid.getSetting('pager.lastButtonContent');
+  }
+  
   /**
    * We change the page here depending on the action performed against data source
    * if a new element was added to the end of the table - then change the page to the last
