@@ -12,7 +12,7 @@ import { DefaultEditor } from './default-editor';
            [(ngModel)]="cell.newValue"
            [name]="cell.getId()"
            [placeholder]="cell.getTitle()"
-           [disabled]="!cell.isEditable()"
+           [attr.disabled]="!cell.isEditable() ? 'disabled' : null" 
            (click)="onClick.emit($event)"
            (keydown.enter)="onEdited.emit($event)"
            (keydown.esc)="onStopEditing.emit()">
