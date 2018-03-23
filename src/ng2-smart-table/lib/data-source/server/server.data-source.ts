@@ -102,7 +102,11 @@ export class ServerDataSource extends LocalDataSource {
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {
         if (fieldConf['search']) {
-          searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
+          let search = fieldConf['search'];
+          if (typeof search === 'object' && search.hasOwnProperty('beginEpoc') && search.hasOwnProperty('endEpoc')) {
+            search = `${search.beginEpoc}..${search.endEpoc}`;
+          }
+          searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), search);
         }
       });
     }
