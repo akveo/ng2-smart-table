@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 import { FilterComponent } from './filter.component';
 import { CheckboxFilterComponent } from './filter-types/checkbox-filter.component';
 import { CompleterFilterComponent } from './filter-types/completer-filter.component';
 import { InputFilterComponent } from './filter-types/input-filter.component';
 import { SelectFilterComponent } from './filter-types/select-filter.component';
+import { DateRangeFilterComponent } from './filter-types/daterange-filter.component';
 
 const FILTER_COMPONENTS = [
   FilterComponent,
@@ -15,6 +17,7 @@ const FILTER_COMPONENTS = [
   CompleterFilterComponent,
   InputFilterComponent,
   SelectFilterComponent,
+  DateRangeFilterComponent,
 ];
 
 @NgModule({
@@ -23,6 +26,7 @@ const FILTER_COMPONENTS = [
     FormsModule,
     ReactiveFormsModule,
     Ng2CompleterModule,
+    MyDateRangePickerModule,
   ],
   declarations: [
     ...FILTER_COMPONENTS,

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SharedModule } from '../../shared/shared.module';
@@ -65,6 +65,9 @@ const EXAMPLES_COMPONENTS = [
   declarations: [
     ExamplesComponent,
     ...EXAMPLES_COMPONENTS,
+  ],
+  providers: [
+      DatePipe,
   ],
 })
 export class ExamplesModule { }
