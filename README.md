@@ -7,5 +7,5 @@ gulp build:table will build a distributable version in dist/ng2-smart-table
 
 Changes I've made
 * Added Find in the placeholder to differentiate searches.
-
+* disable field stopped working on angular 4.  fixed.
 
