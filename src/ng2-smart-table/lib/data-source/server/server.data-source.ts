@@ -1,13 +1,11 @@
-import { Http } from '@angular/http';
-import { RequestOptionsArgs } from '@angular/http/src/interfaces';
-import { URLSearchParams } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { LocalDataSource } from '../local/local.data-source';
 import { ServerSourceConf } from './server-source.conf';
 import { getDeepFromObject } from '../../helpers';
 
-import 'rxjs/add/operator/toPromise';
+import { map } from 'rxjs/operators';
 
 export class ServerDataSource extends LocalDataSource {
 
@@ -15,7 +13,7 @@ export class ServerDataSource extends LocalDataSource {
 
   protected lastRequestCount: number = 0;
 
-  constructor(protected http: Http, conf: ServerSourceConf | {} = {}) {
+  constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}) {
     super();
 
     this.conf = new ServerSourceConf(conf);
@@ -30,12 +28,13 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   getElements(): Promise<any> {
-    return this.requestElements().map(res => {
-      this.lastRequestCount = this.extractTotalFromResponse(res);
-      this.data = this.extractDataFromResponse(res);
+    return this.requestElements()
+      .pipe(map(res => {
+        this.lastRequestCount = this.extractTotalFromResponse(res);
+        this.data = this.extractDataFromResponse(res);
 
-      return this.data;
-    }).toPromise();
+        return this.data;
+      })).toPromise();
   }
 
   /**
@@ -71,53 +70,49 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected requestElements(): Observable<any> {
-    return this.http.get(this.conf.endPoint, this.createRequestOptions());
+    let httpParams = this.createRequestOptions();
+    return this.http.get(this.conf.endPoint, { params: httpParams });
   }
 
-  protected createRequestOptions(): RequestOptionsArgs {
-    let requestOptions: RequestOptionsArgs = {};
-    requestOptions.params = new URLSearchParams();
+  protected createRequestOptions(): HttpParams {
+    let httpParams = new HttpParams();
 
-    requestOptions = this.addSortRequestOptions(requestOptions);
-    requestOptions = this.addFilterRequestOptions(requestOptions);
-    return this.addPagerRequestOptions(requestOptions);
+    httpParams = this.addSortRequestOptions(httpParams);
+    httpParams = this.addFilterRequestOptions(httpParams);
+    return this.addPagerRequestOptions(httpParams);
   }
 
-  protected addSortRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
-
+  protected addSortRequestOptions(httpParams: HttpParams): HttpParams {
     if (this.sortConf) {
       this.sortConf.forEach((fieldConf) => {
-        searchParams.set(this.conf.sortFieldKey, fieldConf.field);
-        searchParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
+        httpParams = httpParams.set(this.conf.sortFieldKey, fieldConf.field);
+        httpParams = httpParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
       });
     }
 
-    return requestOptions;
+    return httpParams;
   }
 
-  protected addFilterRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
+  protected addFilterRequestOptions(httpParams: HttpParams): HttpParams {
 
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {
         if (fieldConf['search']) {
-          searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
+          httpParams = httpParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
         }
       });
     }
 
-    return requestOptions;
+    return httpParams;
   }
 
-  protected addPagerRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
+  protected addPagerRequestOptions(httpParams: HttpParams): HttpParams {
 
     if (this.pagingConf && this.pagingConf['page'] && this.pagingConf['perPage']) {
-      searchParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
-      searchParams.set(this.conf.pagerLimitKey, this.pagingConf['perPage']);
+      httpParams = httpParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
+      httpParams = httpParams.set(this.conf.pagerLimitKey, this.pagingConf['perPage']);
     }
 
-    return requestOptions;
+    return httpParams;
   }
 }
