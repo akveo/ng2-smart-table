@@ -43,7 +43,7 @@ export class ServerDataSource extends LocalDataSource {
    * @returns {any}
    */
   protected extractDataFromResponse(res: any): Array<any> {
-    const rawData = res.json();
+    const rawData = res.body;
     const data = !!this.conf.dataKey ? getDeepFromObject(rawData, this.conf.dataKey, []) : rawData;
 
     if (data instanceof Array) {
@@ -64,14 +64,14 @@ export class ServerDataSource extends LocalDataSource {
     if (res.headers.has(this.conf.totalKey)) {
       return +res.headers.get(this.conf.totalKey);
     } else {
-      const rawData = res.json();
+      const rawData = res.body;
       return getDeepFromObject(rawData, this.conf.totalKey, 0);
     }
   }
 
   protected requestElements(): Observable<any> {
     let httpParams = this.createRequestOptions();
-    return this.http.get(this.conf.endPoint, { params: httpParams });
+    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
   }
 
   protected createRequestOptions(): HttpParams {
