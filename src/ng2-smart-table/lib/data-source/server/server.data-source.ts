@@ -70,19 +70,19 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected requestElements(): Observable<any> {
-    let httpParams = this.createRequestOptions();
+    let httpParams = this.createRequesParams();
     return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
   }
 
-  protected createRequestOptions(): HttpParams {
+  protected createRequesParams(): HttpParams {
     let httpParams = new HttpParams();
 
-    httpParams = this.addSortRequestOptions(httpParams);
-    httpParams = this.addFilterRequestOptions(httpParams);
-    return this.addPagerRequestOptions(httpParams);
+    httpParams = this.addSortRequestParams(httpParams);
+    httpParams = this.addFilterRequestParams(httpParams);
+    return this.addPagerRequestParams(httpParams);
   }
 
-  protected addSortRequestOptions(httpParams: HttpParams): HttpParams {
+  protected addSortRequestParams(httpParams: HttpParams): HttpParams {
     if (this.sortConf) {
       this.sortConf.forEach((fieldConf) => {
         httpParams = httpParams.set(this.conf.sortFieldKey, fieldConf.field);
@@ -93,7 +93,7 @@ export class ServerDataSource extends LocalDataSource {
     return httpParams;
   }
 
-  protected addFilterRequestOptions(httpParams: HttpParams): HttpParams {
+  protected addFilterRequestParams(httpParams: HttpParams): HttpParams {
 
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {
@@ -106,7 +106,7 @@ export class ServerDataSource extends LocalDataSource {
     return httpParams;
   }
 
-  protected addPagerRequestOptions(httpParams: HttpParams): HttpParams {
+  protected addPagerRequestParams(httpParams: HttpParams): HttpParams {
 
     if (this.pagingConf && this.pagingConf['page'] && this.pagingConf['perPage']) {
       httpParams = httpParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
