@@ -1,3 +1,11 @@
+# 1.2.2
+
+### Features
+* Upgrade To Angular 6
+
+### Bug Fixed
+* Replace HTTP with HttpClient because it's deprecated
+
 <a name="1.2.1"></a>
 # [1.2.1](https://github.com/akveo/ng2-smart-table/compare/v1.2.0...v1.2.1) (2017-05-25)
 
