@@ -21,8 +21,6 @@ before_install:
 
 install:
   - npm i
-before_script:
-  - npm i typescript@2.7.2
 
 script:
   - npm run build:ci

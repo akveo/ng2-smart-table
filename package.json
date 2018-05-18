@@ -97,6 +97,6 @@
     "tslint": "5.10.0",
     "tslint-eslint-rules": "5.3.1",
     "tslint-language-service": "0.9.9",
-    "typescript": "^2.7.2"
+    "typescript": "~2.7.2"
   }
 }
