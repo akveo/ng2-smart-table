@@ -24,12 +24,12 @@
     "akveo"
   ],
   "dependencies": {
-    "lodash": "^4.17.4",
-    "ng2-completer": "^1.2.2"
+    "lodash": "^4.17.10",
+    "ng2-completer": "^1.6.3"
   },
   "peerDependencies": {
-    "@angular/common": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/forms": "^4.0.0"
+    "@angular/common": "^6.0.1",
+    "@angular/core": "^6.0.1",
+    "@angular/forms": "^6.0.1"
   }
 }

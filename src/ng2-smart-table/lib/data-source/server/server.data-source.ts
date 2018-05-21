@@ -1,13 +1,11 @@
-import { Http } from '@angular/http';
-import { RequestOptionsArgs } from '@angular/http/src/interfaces';
-import { URLSearchParams } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { LocalDataSource } from '../local/local.data-source';
 import { ServerSourceConf } from './server-source.conf';
 import { getDeepFromObject } from '../../helpers';
 
-import 'rxjs/add/operator/toPromise';
+import { map } from 'rxjs/operators';
 
 export class ServerDataSource extends LocalDataSource {
 
@@ -15,7 +13,7 @@ export class ServerDataSource extends LocalDataSource {
 
   protected lastRequestCount: number = 0;
 
-  constructor(protected http: Http, conf: ServerSourceConf | {} = {}) {
+  constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}) {
     super();
 
     this.conf = new ServerSourceConf(conf);
@@ -30,12 +28,13 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   getElements(): Promise<any> {
-    return this.requestElements().map(res => {
-      this.lastRequestCount = this.extractTotalFromResponse(res);
-      this.data = this.extractDataFromResponse(res);
+    return this.requestElements()
+      .pipe(map(res => {
+        this.lastRequestCount = this.extractTotalFromResponse(res);
+        this.data = this.extractDataFromResponse(res);
 
-      return this.data;
-    }).toPromise();
+        return this.data;
+      })).toPromise();
   }
 
   /**
@@ -44,7 +43,7 @@ export class ServerDataSource extends LocalDataSource {
    * @returns {any}
    */
   protected extractDataFromResponse(res: any): Array<any> {
-    const rawData = res.json();
+    const rawData = res.body;
     const data = !!this.conf.dataKey ? getDeepFromObject(rawData, this.conf.dataKey, []) : rawData;
 
     if (data instanceof Array) {
@@ -65,59 +64,55 @@ export class ServerDataSource extends LocalDataSource {
     if (res.headers.has(this.conf.totalKey)) {
       return +res.headers.get(this.conf.totalKey);
     } else {
-      const rawData = res.json();
+      const rawData = res.body;
       return getDeepFromObject(rawData, this.conf.totalKey, 0);
     }
   }
 
   protected requestElements(): Observable<any> {
-    return this.http.get(this.conf.endPoint, this.createRequestOptions());
+    let httpParams = this.createRequesParams();
+    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
   }
 
-  protected createRequestOptions(): RequestOptionsArgs {
-    let requestOptions: RequestOptionsArgs = {};
-    requestOptions.params = new URLSearchParams();
+  protected createRequesParams(): HttpParams {
+    let httpParams = new HttpParams();
 
-    requestOptions = this.addSortRequestOptions(requestOptions);
-    requestOptions = this.addFilterRequestOptions(requestOptions);
-    return this.addPagerRequestOptions(requestOptions);
+    httpParams = this.addSortRequestParams(httpParams);
+    httpParams = this.addFilterRequestParams(httpParams);
+    return this.addPagerRequestParams(httpParams);
   }
 
-  protected addSortRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
-
+  protected addSortRequestParams(httpParams: HttpParams): HttpParams {
     if (this.sortConf) {
       this.sortConf.forEach((fieldConf) => {
-        searchParams.set(this.conf.sortFieldKey, fieldConf.field);
-        searchParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
+        httpParams = httpParams.set(this.conf.sortFieldKey, fieldConf.field);
+        httpParams = httpParams.set(this.conf.sortDirKey, fieldConf.direction.toUpperCase());
       });
     }
 
-    return requestOptions;
+    return httpParams;
   }
 
-  protected addFilterRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
+  protected addFilterRequestParams(httpParams: HttpParams): HttpParams {
 
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {
         if (fieldConf['search']) {
-          searchParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
+          httpParams = httpParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
         }
       });
     }
 
-    return requestOptions;
+    return httpParams;
   }
 
-  protected addPagerRequestOptions(requestOptions: RequestOptionsArgs): RequestOptionsArgs {
-    const searchParams: URLSearchParams = <URLSearchParams>requestOptions.params;
+  protected addPagerRequestParams(httpParams: HttpParams): HttpParams {
 
     if (this.pagingConf && this.pagingConf['page'] && this.pagingConf['perPage']) {
-      searchParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
-      searchParams.set(this.conf.pagerLimitKey, this.pagingConf['perPage']);
+      httpParams = httpParams.set(this.conf.pagerPageKey, this.pagingConf['page']);
+      httpParams = httpParams.set(this.conf.pagerLimitKey, this.pagingConf['perPage']);
     }
 
-    return requestOptions;
+    return httpParams;
   }
 }

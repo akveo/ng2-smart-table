@@ -1,14 +1,14 @@
-import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-
+import { HttpClient } from '@angular/common/http';
 import { LocalDataSource } from '../../../../ng2-smart-table/lib/data-source/local/local.data-source';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class CustomServerDataSource extends LocalDataSource {
 
   lastRequestCount: number = 0;
 
-  constructor(protected http: Http) {
+  constructor(protected http: HttpClient) {
     super();
   }
 
@@ -37,9 +37,12 @@ export class CustomServerDataSource extends LocalDataSource {
       });
     }
 
-    return this.http.get(url).map(res => {
-      this.lastRequestCount = +res.headers.get('x-total-count');
-      return res.json();
-    }).toPromise();
+    return this.http.get(url, { observe: 'response' })
+      .pipe(
+        map(res => {
+          this.lastRequestCount = +res.headers.get('x-total-count');
+          return res.body;
+        })
+      ).toPromise();
   }
 }

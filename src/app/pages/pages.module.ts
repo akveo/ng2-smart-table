@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { routes } from './pages.routes';
@@ -12,7 +12,7 @@ import { Ng2SmartTableModule } from '../../ng2-smart-table/ng2-smart-table.modul
 @NgModule({
   imports: [
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
     Ng2SmartTableModule,
