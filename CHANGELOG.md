@@ -1,3 +1,13 @@
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/akveo/ng2-smart-table/compare/v1.2.2...v1.3.0) (2018-05-21)
+
+
+### Features
+
+* update to Angular 6 ([1d51de2](https://github.com/akveo/ng2-smart-table/commit/1d51de2))
+
+
+
 <a name="1.2.1"></a>
 # [1.2.1](https://github.com/akveo/ng2-smart-table/compare/v1.2.0...v1.2.1) (2017-05-25)
 
