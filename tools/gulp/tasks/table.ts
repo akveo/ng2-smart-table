@@ -96,11 +96,13 @@ task(':build:table:inline', sequenceTask(
 task(':inline-resources', () => inlineResources(TABLE_DIST_ROOT));
 
 /** Generates metadata.json files for all of the components. */
-task(':build:table:ngc', () => {
-  return task('build:table', execNodeTask(
-    '@angular/compiler-cli', 'ngc', ['-p', tsconfigPath],
-  ))
-});
+task(':build:table:ngc',
+  sequenceTask(['build:table', ':build:table:metadata'])
+);
+
+task(':build:table:metadata', execNodeTask(
+  '@angular/compiler-cli', 'ngc', ['-p', tsconfigPath],
+));
 
 /** [Watch task] Rebuilds (ESM output) whenever ts, scss, or html sources change. */
 task(':watch:table', () => {
