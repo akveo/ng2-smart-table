@@ -6,6 +6,26 @@
       box-sizing: border-box;
     }
 
+    .table-action {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 0.1em;
+    }
+    
+    .export-btn {
+      border: none;
+      padding: 0.5em;
+      width: 5em;
+      border-radius: .2em;
+      background: #eaebec;
+      color: #1e6bb8;
+    }
+
+    .export-btn:focus{
+      text-decoration: none;
+      outline: none;
+    }
+    
     button,
     input,
     optgroup,
