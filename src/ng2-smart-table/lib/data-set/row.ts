@@ -4,8 +4,8 @@ import { DataSet } from './data-set';
 
 export class Row {
 
-  isSelected: boolean = false;
-  isInEditing: boolean = false;
+  isSelected = false;
+  isInEditing = false;
   cells: Array<Cell> = [];
 
 

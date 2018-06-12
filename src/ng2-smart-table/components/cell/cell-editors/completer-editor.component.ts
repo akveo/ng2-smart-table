@@ -17,7 +17,7 @@ import { DefaultEditor } from './default-editor';
 })
 export class CompleterEditorComponent extends DefaultEditor implements OnInit {
 
-  completerStr: string = '';
+  completerStr = '';
 
   constructor(private completerService: CompleterService) {
     super();

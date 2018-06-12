@@ -10,7 +10,7 @@ import { DataSource } from './data-source/data-source';
 
 export class Grid {
 
-  createFormShown: boolean = false;
+  createFormShown = false;
 
   source: DataSource;
   settings: any;
@@ -28,7 +28,7 @@ export class Grid {
   }
 
   isCurrentActionsPosition(position: string): boolean {
-    return position == this.getSetting('actions.position');
+    return position === this.getSetting('actions.position');
   }
 
   isActionsVisible(): boolean {

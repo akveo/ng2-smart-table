@@ -35,7 +35,7 @@ export class CompleterFilterComponent extends DefaultFilter implements OnInit {
       .pipe(
         map((ev: any) => (ev && ev.title) || ev || ''),
         distinctUntilChanged(),
-        debounceTime(this.delay)
+        debounceTime(this.delay),
       )
       .subscribe((search: string) => {
         this.query = search;

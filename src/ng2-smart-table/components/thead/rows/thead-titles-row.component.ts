@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
 import { DataSource } from '../../../lib/data-source/data-source';
-import { Column } from "../../../lib/data-set/column";
+import { Column } from '../../../lib/data-set/column';
 
 @Component({
   selector: '[ng2-st-thead-titles-row]',

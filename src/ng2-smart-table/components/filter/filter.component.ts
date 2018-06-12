@@ -40,11 +40,11 @@ export class FilterComponent implements OnChanges {
 
   @Input() column: Column;
   @Input() source: DataSource;
-  @Input() inputClass: string = '';
+  @Input() inputClass = '';
 
   @Output() filter = new EventEmitter<any>();
 
-  query: string = '';
+  query = '';
 
   protected dataChangedSub: Subscription;
 
@@ -62,7 +62,7 @@ export class FilterComponent implements OnChanges {
           // this covers instances where the filter is set by user code while maintaining existing functionality
         } else if (filterConf && filterConf.filters && filterConf.filters.length > 0) {
           filterConf.filters.forEach((k: any, v: any) => {
-            if (k.field == this.column.id) {
+            if (k.field === this.column.id) {
               this.query = k.search;
             }
           });

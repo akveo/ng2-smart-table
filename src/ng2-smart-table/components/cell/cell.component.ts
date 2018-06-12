@@ -22,9 +22,9 @@ export class CellComponent {
   @Input() createConfirm: EventEmitter<any>;
   @Input() isNew: boolean;
   @Input() cell: Cell;
-  @Input() inputClass: string = '';
-  @Input() mode: string = 'inline';
-  @Input() isInEditing: boolean = false;
+  @Input() inputClass = '';
+  @Input() mode = 'inline';
+  @Input() isInEditing = false;
 
   @Output() edited = new EventEmitter<any>();
 

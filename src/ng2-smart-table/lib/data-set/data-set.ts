@@ -9,7 +9,7 @@ export class DataSet {
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
   protected selectedRow: Row;
-  protected willSelect: string = 'first';
+  protected willSelect = 'first';
 
   constructor(data: Array<any> = [], protected columnSettings: Object) {
     this.createColumns(columnSettings);

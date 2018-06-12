@@ -47,7 +47,9 @@ export class CustomViewComponent implements OnInit, OnDestroy {
 
   protected callOnComponentInit() {
     const onComponentInitFunction = this.cell.getColumn().getOnComponentInitFunction();
-    onComponentInitFunction && onComponentInitFunction(this.customComponent.instance);
+    if (onComponentInitFunction) {
+        onComponentInitFunction(this.customComponent.instance);
+    }
   }
 
   protected patchInstance() {
@@ -57,7 +59,7 @@ export class CustomViewComponent implements OnInit, OnDestroy {
   protected getPatch(): ViewCell {
     return {
       value: this.cell.getValue(),
-      rowData: this.cell.getRow().getData()
-    }
+      rowData: this.cell.getRow().getData(),
+    };
   }
 }
