@@ -13,7 +13,7 @@ const TBODY_COMPONENTS = [
   TbodyCreateCancelComponent,
   TbodyEditDeleteComponent,
   TbodyCustomComponent,
-  Ng2SmartTableTbodyComponent
+  Ng2SmartTableTbodyComponent,
 ];
 
 @NgModule({

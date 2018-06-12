@@ -81,10 +81,10 @@ export class Ng2SmartTableComponent implements OnChanges {
       display: true,
       perPage: 10,
     },
-    rowClassFunction: () => ""
+    rowClassFunction: () => '',
   };
 
-  isAllSelected: boolean = false;
+  isAllSelected = false;
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (this.grid) {

@@ -11,7 +11,7 @@ export class ServerDataSource extends LocalDataSource {
 
   protected conf: ServerSourceConf;
 
-  protected lastRequestCount: number = 0;
+  protected lastRequestCount = 0;
 
   constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}) {
     super();
@@ -70,7 +70,7 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected requestElements(): Observable<any> {
-    let httpParams = this.createRequesParams();
+    const httpParams = this.createRequesParams();
     return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
   }
 
