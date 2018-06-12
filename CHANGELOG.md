@@ -1,3 +1,14 @@
+<a name="1.3.2"></a>
+## [1.3.2](https://github.com/akveo/ng2-smart-table/compare/v1.3.1...v1.3.2) (2018-06-12)
+
+
+### Bug Fixes
+
+* **build:** fix release metadata generation ([10111e2](https://github.com/akveo/ng2-smart-table/commit/10111e2))
+* **filter:** fix ngModal deprecation warning ([e00c77f](https://github.com/akveo/ng2-smart-table/commit/e00c77f))
+
+
+
 <a name="1.3.1"></a>
 ## [1.3.1](https://github.com/akveo/ng2-smart-table/compare/v1.3.0...v1.3.1) (2018-06-12)
 
