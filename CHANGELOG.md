@@ -1,3 +1,13 @@
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/akveo/ng2-smart-table/compare/v1.3.0...v1.3.1) (2018-06-12)
+
+
+### Bug Fixes
+
+* fix gulp create metadata task ([#801](https://github.com/akveo/ng2-smart-table/issues/801)) ([96ad9d2](https://github.com/akveo/ng2-smart-table/commit/96ad9d2))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/akveo/ng2-smart-table/compare/v1.2.2...v1.3.0) (2018-05-21)
 
