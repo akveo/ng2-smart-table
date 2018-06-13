@@ -1,5 +1,6 @@
 import { task, watch, src, dest } from 'gulp';
 import { ScriptTarget, ModuleKind } from 'typescript';
+const rename = require('gulp-rename');
 import * as path from 'path';
 
 import {
@@ -40,9 +41,8 @@ task('build:table',  ()  => task(':build:table:bundle:umd'));
 
 /** Builds components for ng2-smart-table releases */
 task(':build:table:release', sequenceTask(
-  ':build:table:bundle:umd',
   ':build:table:bundle:esm',
-  ':build:table:ngc',
+  ':build:table:bundle:umd',
 ));
 
 /** Builds components typescript in ES5, ES6 target. For specs Karma needs CJS output. */
@@ -54,7 +54,7 @@ task(':build:table:ts:spec', tsBuildTask(tsconfigPath, {
 
 /** Tasks to create a UMD or ES bundle */
 task(':build:table:bundle:umd', sequenceTask(
-  ':build:table:ts:es5', ':build:table:inline', ':build:table:rollup:umd',
+  ':build:table:ts:es5', ':build:table:ngc', ':build:table:inline', ':build:table:rollup:umd',
 ));
 
 task(':build:table:bundle:esm', sequenceTask(
@@ -75,6 +75,7 @@ task(':build:table:scss', sassBuildTask(TABLE_DIST_ROOT, TABLE_DIR, true));
 task(':build:table:rollup:esm', () => {
   return src(path.join(TABLE_DIST_ROOT, 'index.js'))
     .pipe(createRollupBundle('es', 'table.js'))
+    .pipe(rename('table.js'))
     .pipe(dest(path.join(TABLE_DIST_ROOT, 'bundles')));
 });
 
@@ -82,6 +83,7 @@ task(':build:table:rollup:esm', () => {
 task(':build:table:rollup:umd', () => {
   return src(path.join(TABLE_DIST_ROOT, 'index.js'))
     .pipe(createRollupBundle('umd', 'table.umd.js'))
+    .pipe(rename('table.umd.js'))
     .pipe(dest(path.join(TABLE_DIST_ROOT, 'bundles')));
 });
 
@@ -96,10 +98,7 @@ task(':build:table:inline', sequenceTask(
 task(':inline-resources', () => inlineResources(TABLE_DIST_ROOT));
 
 /** Generates metadata.json files for all of the components. */
-task(':build:table:ngc',() => {
-    return sequenceTask(['build:table', ':build:table:metadata'])
-  }
-);
+task(':build:table:ngc', sequenceTask([':build:table:metadata']));
 
 task(':build:table:metadata', execNodeTask(
   '@angular/compiler-cli', 'ngc', ['-p', tsconfigPath],
@@ -115,6 +114,7 @@ task(':watch:table', () => {
 const ROLLUP_GLOBALS = {
   // Angular dependencies
   '@angular/core': 'ng.core',
+  '@angular/common/http': 'ng.common.http',
   '@angular/common': 'ng.common',
   '@angular/forms': 'ng.forms',
   '@angular/router': 'ng.router',
@@ -126,140 +126,8 @@ const ROLLUP_GLOBALS = {
   '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
 
   // Rxjs dependencies
-  'rxjs/AnonymousSubject': 'Rx',
-  'rxjs/AsyncSubject': 'Rx',
-  'rxjs/BehaviorSubject': 'Rx',
-  'rxjs/Notifiction': 'Rx',
-  'rxjs/ObservableInput': 'Rx',
-  'rxjs/Observable': 'Rx',
-  'rxjs/Observer': 'Rx',
-  'rxjs/Scheduler': 'Rx',
-  'rxjs/Subject': 'Rx',
-  'rxjs/SubjectSubscriber': 'Rx',
-  'rxjs/SubscribableOrPromise': 'Rx',
-  'rxjs/Subscriber': 'Rx',
-  'rxjs/Subscription': 'Rx',
-  'rxjs/TeardownLogic': 'Rx',
-  'rxjs/add/observable/fromPromise': 'Rx.Observable',
-  'rxjs/add/observable/of': 'Rx.Observable',
-  'rxjs/add/observable/bindCallback': 'Rx.Observable',
-  'rxjs/add/observable/bindNodeCallback': 'Rx.Observable',
-  'rxjs/add/observable/combineLatest': 'Rx.Observable',
-  'rxjs/add/observable/concat': 'Rx.Observable',
-  'rxjs/add/observable/create': 'Rx.Observable',
-  'rxjs/add/observable/defer': 'Rx.Observable',
-  'rxjs/add/observable/empty': 'Rx.Observable',
-  'rxjs/add/observable/forkJoin': 'Rx.Observable',
-  'rxjs/add/observable/from': 'Rx.Observable',
-  'rxjs/add/observable/fromEvent': 'Rx.Observable',
-  'rxjs/add/observable/fromEventPattern': 'Rx.Observable',
-  'rxjs/add/observable/interval': 'Rx.Observable',
-  'rxjs/add/observable/merge': 'Rx.Observable',
-  'rxjs/add/observable/never': 'Rx.Observable',
-  'rxjs/add/observable/range': 'Rx.Observable',
-  'rxjs/add/observable/throw': 'Rx.Observable',
-  'rxjs/add/observable/timer': 'Rx.Observable',
-  'rxjs/add/observable/webSocket': 'Rx.Observable',
-  'rxjs/add/observable/zip': 'Rx.Observable',
-  'rxjs/add/operator/audit': 'Rx.Observable.prototype',
-  'rxjs/add/operator/auditTime': 'Rx.Observable.prototype',
-  'rxjs/add/operator/buffer': 'Rx.Observable.prototype',
-  'rxjs/add/operator/bufferCount': 'Rx.Observable.prototype',
-  'rxjs/add/operator/bufferTime': 'Rx.Observable.prototype',
-  'rxjs/add/operator/bufferToggle': 'Rx.Observable.prototype',
-  'rxjs/add/operator/bufferWhen': 'Rx.Observable.prototype',
-  'rxjs/add/operator/catch': 'Rx.Observable.prototype',
-  'rxjs/add/operator/combineAll': 'Rx.Observable.prototype',
-  'rxjs/add/operator/combineLatest': 'Rx.Observable.prototype',
-  'rxjs/add/operator/concat': 'Rx.Observable.prototype',
-  'rxjs/add/operator/concatAll': 'Rx.Observable.prototype',
-  'rxjs/add/operator/concatMap': 'Rx.Observable.prototype',
-  'rxjs/add/operator/concatMapTo': 'Rx.Observable.prototype',
-  'rxjs/add/operator/count': 'Rx.Observable.prototype',
-  'rxjs/add/operator/debounce': 'Rx.Observable.prototype',
-  'rxjs/add/operator/debounceTime': 'Rx.Observable.prototype',
-  'rxjs/add/operator/defaultIfEmpty': 'Rx.Observable.prototype',
-  'rxjs/add/operator/delay': 'Rx.Observable.prototype',
-  'rxjs/add/operator/delayWhen': 'Rx.Observable.prototype',
-  'rxjs/add/operator/dematerialize': 'Rx.Observable.prototype',
-  'rxjs/add/operator/distinct': 'Rx.Observable.prototype',
-  'rxjs/add/operator/distinctUntilChanged': 'Rx.Observable.prototype',
-  'rxjs/add/operator/distinctUntilKeyChanged': 'Rx.Observable.prototype',
-  'rxjs/add/operator/do': 'Rx.Observable.prototype',
-  'rxjs/add/operator/elementAt': 'Rx.Observable.prototype',
-  'rxjs/add/operator/every': 'Rx.Observable.prototype',
-  'rxjs/add/operator/exhaust': 'Rx.Observable.prototype',
-  'rxjs/add/operator/exhaustMap': 'Rx.Observable.prototype',
-  'rxjs/add/operator/expand': 'Rx.Observable.prototype',
-  'rxjs/add/operator/filter': 'Rx.Observable.prototype',
-  'rxjs/add/operator/find': 'Rx.Observable.prototype',
-  'rxjs/add/operator/findIndex': 'Rx.Observable.prototype',
-  'rxjs/add/operator/first': 'Rx.Observable.prototype',
-  'rxjs/add/operator/forEach': 'Rx.Observable.prototype',
-  'rxjs/add/operator/finally': 'Rx.Observable.prototype',
-  'rxjs/add/operator/groupBy': 'Rx.Observable.prototype',
-  'rxjs/add/operator/ignoreElements': 'Rx.Observable.prototype',
-  'rxjs/add/operator/isEmpty': 'Rx.Observable.prototype',
-  'rxjs/add/operator/last': 'Rx.Observable.prototype',
-  'rxjs/add/operator/letProto': 'Rx.Observable.prototype',
-  'rxjs/add/operator/lift': 'Rx.Observable.prototype',
-  'rxjs/add/operator/map': 'Rx.Observable.prototype',
-  'rxjs/add/operator/materialize': 'Rx.Observable.prototype',
-  'rxjs/add/operator/max': 'Rx.Observable.prototype',
-  'rxjs/add/operator/merge': 'Rx.Observable.prototype',
-  'rxjs/add/operator/mergeAll': 'Rx.Observable.prototype',
-  'rxjs/add/operator/mergeMap': 'Rx.Observable.prototype',
-  'rxjs/add/operator/mergeMapTo': 'Rx.Observable.prototype',
-  'rxjs/add/operator/mergeScan': 'Rx.Observable.prototype',
-  'rxjs/add/operator/min': 'Rx.Observable.prototype',
-  'rxjs/add/operator/multicast': 'Rx.Observable.prototype',
-  'rxjs/add/operator/observeOn': 'Rx.Observable.prototype',
-  'rxjs/add/operator/pairwise': 'Rx.Observable.prototype',
-  'rxjs/add/operator/partition': 'Rx.Observable.prototype',
-  'rxjs/add/operator/pluck': 'Rx.Observable.prototype',
-  'rxjs/add/operator/publish': 'Rx.Observable.prototype',
-  'rxjs/add/operator/publishBehavior': 'Rx.Observable.prototype',
-  'rxjs/add/operator/publishLast': 'Rx.Observable.prototype',
-  'rxjs/add/operator/publishReplay': 'Rx.Observable.prototype',
-  'rxjs/add/operator/race': 'Rx.Observable.prototype',
-  'rxjs/add/operator/reduce': 'Rx.Observable.prototype',
-  'rxjs/add/operator/repeat': 'Rx.Observable.prototype',
-  'rxjs/add/operator/repeatWhen': 'Rx.Observable.prototype',
-  'rxjs/add/operator/retry': 'Rx.Observable.prototype',
-  'rxjs/add/operator/retryWhen': 'Rx.Observable.prototype',
-  'rxjs/add/operator/sample': 'Rx.Observable.prototype',
-  'rxjs/add/operator/sampleTime': 'Rx.Observable.prototype',
-  'rxjs/add/operator/scan': 'Rx.Observable.prototype',
-  'rxjs/add/operator/sequenceEqual': 'Rx.Observable.prototype',
-  'rxjs/add/operator/share': 'Rx.Observable.prototype',
-  'rxjs/add/operator/single': 'Rx.Observable.prototype',
-  'rxjs/add/operator/skip': 'Rx.Observable.prototype',
-  'rxjs/add/operator/skipUntil': 'Rx.Observable.prototype',
-  'rxjs/add/operator/skipWhile': 'Rx.Observable.prototype',
-  'rxjs/add/operator/startWith': 'Rx.Observable.prototype',
-  'rxjs/add/operator/subscribeOn': 'Rx.Observable.prototype',
-  'rxjs/add/operator/switch': 'Rx.Observable.prototype',
-  'rxjs/add/operator/switchMap': 'Rx.Observable.prototype',
-  'rxjs/add/operator/switchMapTo': 'Rx.Observable.prototype',
-  'rxjs/add/operator/take': 'Rx.Observable.prototype',
-  'rxjs/add/operator/takeLast': 'Rx.Observable.prototype',
-  'rxjs/add/operator/takeUntil': 'Rx.Observable.prototype',
-  'rxjs/add/operator/takeWhile': 'Rx.Observable.prototype',
-  'rxjs/add/operator/throttle': 'Rx.Observable.prototype',
-  'rxjs/add/operator/throttleTime': 'Rx.Observable.prototype',
-  'rxjs/add/operator/timeInterval': 'Rx.Observable.prototype',
-  'rxjs/add/operator/timeout': 'Rx.Observable.prototype',
-  'rxjs/add/operator/timeoutWith': 'Rx.Observable.prototype',
-  'rxjs/add/operator/timestamp': 'Rx.Observable.prototype',
-  'rxjs/add/operator/toArray': 'Rx.Observable.prototype',
-  'rxjs/add/operator/toPromise': 'Rx.Observable.prototype',
-  'rxjs/add/operator/window': 'Rx.Observable.prototype',
-  'rxjs/add/operator/windowCount': 'Rx.Observable.prototype',
-  'rxjs/add/operator/windowToggle': 'Rx.Observable.prototype',
-  'rxjs/add/operator/windowWhen': 'Rx.Observable.prototype',
-  'rxjs/add/operator/withLatestFrom': 'Rx.Observable.prototype',
-  'rxjs/add/operator/zipAll': 'Rx.Observable.prototype',
-  'rxjs/add/operator/zipProto': 'Rx.Observable.prototype',
+  'rxjs': 'Rx',
+  'rxjs/operators': 'Rx.operators',
 
   // 3rd party dependencies
   'ng2-completer': 'ng2completer',
