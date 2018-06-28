@@ -1,3 +1,14 @@
+<a name="1.3.4"></a>
+## [1.3.4](https://github.com/akveo/ng2-smart-table/compare/v1.3.3...v1.3.4) (2018-06-28)
+
+
+### Bug Fixes
+
+* **demo:** update polyfills for IE ([cf59d21](https://github.com/akveo/ng2-smart-table/commit/cf59d21))
+* move ng2-completer to peerDependencies ([aa62510](https://github.com/akveo/ng2-smart-table/commit/aa62510))
+
+
+
 <a name="1.3.3"></a>
 ## [1.3.3](https://github.com/akveo/ng2-smart-table/compare/v1.3.2...v1.3.3) (2018-06-13)
 
