@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
 
 import { FilterComponent } from './filter.component';
+import { DefaultFilterComponent } from "./default-filter.component";
+import { CustomFilterComponent } from "./custom-filter.component";
 import { CheckboxFilterComponent } from './filter-types/checkbox-filter.component';
 import { CompleterFilterComponent } from './filter-types/completer-filter.component';
 import { InputFilterComponent } from './filter-types/input-filter.component';
@@ -11,6 +13,8 @@ import { SelectFilterComponent } from './filter-types/select-filter.component';
 
 const FILTER_COMPONENTS = [
   FilterComponent,
+  DefaultFilterComponent,
+  CustomFilterComponent,
   CheckboxFilterComponent,
   CompleterFilterComponent,
   InputFilterComponent,
