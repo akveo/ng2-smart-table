@@ -1,6 +1,6 @@
 import {
   Component,
-  ComponentFactoryResolver,
+  ComponentFactoryResolver, Input,
   OnChanges,
   OnDestroy,
   SimpleChanges,
@@ -15,7 +15,7 @@ import { FilterDefault } from "./filter-default";
   template: `<ng-template #dynamicTarget></ng-template>`,
 })
 export class CustomFilterComponent extends FilterDefault implements OnChanges, OnDestroy {
-
+  @Input() query: string;
   customComponent: any;
   @ViewChild('dynamicTarget', { read: ViewContainerRef }) dynamicTarget: any;
 

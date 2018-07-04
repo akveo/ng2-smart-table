@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, skip } from 'rxjs/operators';
 
@@ -15,7 +15,7 @@ import { DefaultFilter } from '../../../../ng2-smart-table';
       type="number">
   `,
 })
-export class CustomFilterComponent extends DefaultFilter implements OnInit {
+export class CustomFilterComponent extends DefaultFilter implements OnInit, OnChanges {
   inputControl = new FormControl();
 
   constructor() {
@@ -36,5 +36,11 @@ export class CustomFilterComponent extends DefaultFilter implements OnInit {
         this.query = value !== null ? this.inputControl.value.toString() : '';
         this.setFilter();
       });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.query) {
+      this.inputControl.setValue(this.query);
+    }
   }
 }

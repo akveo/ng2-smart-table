@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Column} from "../../lib/data-set/column";
-import {DataSource} from "../../lib/data-source/data-source";
+import {Component, OnChanges, SimpleChanges} from '@angular/core';
+import {FilterDefault} from "./filter-default";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'ng2-smart-table-filter',
@@ -8,12 +8,14 @@ import {DataSource} from "../../lib/data-source/data-source";
   template: `
       <div class="ng2-smart-filter" *ngIf="column.isFilterable" [ngSwitch]="column.getFilterType()">
         <custom-table-filter *ngSwitchCase="'custom'"
-                              [column]="column"
-                              [source]="source"
-                              [inputClass]="inputClass"
-                              (filter)="onFilter($event)">
+                             [query]="query"
+                             [column]="column"
+                             [source]="source"
+                             [inputClass]="inputClass"
+                             (filter)="onFilter($event)">
         </custom-table-filter>
         <default-table-filter *ngSwitchDefault
+                              [query]="query"
                               [column]="column"
                               [source]="source"
                               [inputClass]="inputClass"
@@ -22,18 +24,29 @@ import {DataSource} from "../../lib/data-source/data-source";
       </div>
     `,
 })
-export class FilterComponent {
-  @Input() column: Column;
-  @Input() source: DataSource;
-  @Input() inputClass: string = '';
+export class FilterComponent extends FilterDefault implements OnChanges {
+  protected dataChangedSub: Subscription;
 
-  @Output() filter = new EventEmitter<any>();
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.source) {
+      if (!changes.source.firstChange) {
+        this.dataChangedSub.unsubscribe();
+      }
+      this.dataChangedSub = this.source.onChanged().subscribe((dataChanges) => {
+        const filterConf = this.source.getFilter();
+        if (filterConf && filterConf.filters && filterConf.filters.length === 0) {
+          this.query = '';
 
-  onFilter(query: string) {
-    this.source.addFilter({
-      field: this.column.id,
-      search: query,
-      filter: this.column.getFilterFunction(),
-    });
+          // add a check for existing filters an set the query if one exists for this column
+          // this covers instances where the filter is set by user code while maintaining existing functionality
+        } else if (filterConf && filterConf.filters && filterConf.filters.length > 0) {
+          filterConf.filters.forEach((k: any, v: any) => {
+            if (k.field == this.column.id) {
+              this.query = k.search;
+            }
+          });
+        }
+      });
+    }
   }
 }
