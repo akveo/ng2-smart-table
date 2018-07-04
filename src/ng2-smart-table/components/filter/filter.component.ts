@@ -25,6 +25,7 @@ import {Subscription} from "rxjs";
     `,
 })
 export class FilterComponent extends FilterDefault implements OnChanges {
+  query: string = '';
   protected dataChangedSub: Subscription;
 
   ngOnChanges(changes: SimpleChanges) {
