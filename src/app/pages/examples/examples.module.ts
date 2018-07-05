@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { SharedModule } from '../../shared/shared.module';
 import { Ng2SmartTableModule } from '../../../ng2-smart-table';
@@ -51,6 +52,7 @@ const EXAMPLES_COMPONENTS = [
 @NgModule({
   imports: [
     CommonModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),

@@ -1,11 +1,7 @@
-import { spawn } from 'child_process';
-import { existsSync, statSync } from 'fs';
 import { task } from 'gulp';
 import gulpRunSequence = require('run-sequence');
-import path = require('path');
 
-import { execTask, cleanTask } from '../util/task_helpers';
-import { TABLE_DIST_ROOT } from '../constants';
+import { cleanTask } from '../util/task_helpers';
 
 /** Removes redundant spec files from the release. TypeScript creates definition files for specs. */
 // TODO(devversion): tsconfig files should share code and don't generate spec files for releases.

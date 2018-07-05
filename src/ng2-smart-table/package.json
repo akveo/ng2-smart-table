@@ -1,6 +1,6 @@
 {
   "name": "ng2-smart-table",
-  "version": "1.2.2",
+  "version": "1.3.4",
   "description": "Angular Smart Table",
   "main": "./bundles/table.umd.js",
   "module": "./index.js",
@@ -24,12 +24,12 @@
     "akveo"
   ],
   "dependencies": {
-    "lodash": "^4.17.4",
-    "ng2-completer": "^1.2.2"
+    "lodash": "^4.17.10"
   },
   "peerDependencies": {
-    "@angular/common": "^4.0.0",
-    "@angular/core": "^4.0.0",
-    "@angular/forms": "^4.0.0"
+    "ng2-completer": "^2.0.8",
+    "@angular/common": "^6.0.1",
+    "@angular/core": "^6.0.1",
+    "@angular/forms": "^6.0.1"
   }
 }

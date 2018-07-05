@@ -1,5 +1,5 @@
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
 import { Deferred, getDeepFromObject } from './helpers';
@@ -59,9 +59,9 @@ export class Grid {
   setSource(source: DataSource) {
     this.source = this.prepareSource(source);
 
-    this.source.onChanged().subscribe((changes) => this.processDataChange(changes));
+    this.source.onChanged().subscribe((changes: any) => this.processDataChange(changes));
 
-    this.source.onUpdated().subscribe((data) => {
+    this.source.onUpdated().subscribe((data: any) => {
       const changedRow = this.dataSet.findRowByData(data);
       changedRow.setData(data);
     });

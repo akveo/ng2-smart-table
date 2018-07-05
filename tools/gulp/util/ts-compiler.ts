@@ -1,6 +1,6 @@
 import * as ts from 'typescript';
 import * as path from 'path';
-import * as chalk from 'chalk';
+import chalk from 'chalk';
 
 /** Compiles a TypeScript project with possible extra options. */
 export function compileProject(project: string, options: ts.CompilerOptions) {
@@ -32,7 +32,7 @@ function parseProjectConfig(project: string, options: ts.CompilerOptions) {
 }
 
 /** Formats the TypeScript diagnostics into a error string. */
-export function formatDiagnostics(diagnostics: ts.Diagnostic[], baseDir: string): string {
+export function formatDiagnostics(diagnostics: ReadonlyArray<ts.Diagnostic>, baseDir: string): string {
   return diagnostics.map(diagnostic => {
     let res = `• ${chalk.red(`TS${diagnostic.code}`)} - `;
 
@@ -49,7 +49,7 @@ export function formatDiagnostics(diagnostics: ts.Diagnostic[], baseDir: string)
 }
 
 /** Checks and reports diagnostics if present. */
-export function reportDiagnostics(diagnostics: ts.Diagnostic[], baseDir?: string) {
+export function reportDiagnostics(diagnostics: ReadonlyArray<ts.Diagnostic>, baseDir?: string) {
   if (diagnostics && diagnostics.length && diagnostics[0]) {
     console.error(formatDiagnostics(diagnostics, baseDir));
     throw new Error('TypeScript compilation failed.');
