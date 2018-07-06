@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 import { DefaultFilter } from './default-filter';
@@ -19,6 +19,15 @@ export class CheckboxFilterComponent extends DefaultFilter implements OnInit {
 
   constructor() {
     super();
+  }
+
+  @Input() set queryText(query: string) {
+    if (this.query !== query) {
+      this.inputControl.setValue(query, { emitEvent: false });
+    }
+    if (query === '') {
+      this.filterActive = false;
+    }
   }
 
   ngOnInit() {

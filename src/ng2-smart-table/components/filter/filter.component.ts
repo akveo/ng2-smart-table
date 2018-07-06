@@ -10,25 +10,25 @@ import { Subscription } from 'rxjs';
   template: `
     <div class="ng2-smart-filter" *ngIf="column.isFilterable" [ngSwitch]="column.getFilterType()">
       <select-filter *ngSwitchCase="'list'"
-                     [query]="query"
+                     [queryText]="query"
                      [ngClass]="inputClass"
                      [column]="column"
                      (filter)="onFilter($event)">
       </select-filter>
       <checkbox-filter *ngSwitchCase="'checkbox'"
-                       [query]="query"
+                       [queryText]="query"
                        [ngClass]="inputClass"
                        [column]="column"
                        (filter)="onFilter($event)">
       </checkbox-filter>
       <completer-filter *ngSwitchCase="'completer'"
-                        [query]="query"
+                        [queryText]="query"
                         [ngClass]="inputClass"
                         [column]="column"
                         (filter)="onFilter($event)">
       </completer-filter>
       <input-filter *ngSwitchDefault
-                    [query]="query"
+                    [queryText]="query"
                     [ngClass]="inputClass"
                     [column]="column"
                     (filter)="onFilter($event)">
