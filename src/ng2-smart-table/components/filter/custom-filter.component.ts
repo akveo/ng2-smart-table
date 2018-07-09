@@ -35,6 +35,9 @@ export class CustomFilterComponent extends FilterDefault implements OnChanges, O
       this.customComponent.instance.inputClass = this.inputClass;
       this.customComponent.instance.filter.subscribe((event: any) => this.onFilter(event));
     }
+    if (this.customComponent) {
+      this.customComponent.instance.ngOnChanges(changes);
+    }
   }
 
   ngOnDestroy() {

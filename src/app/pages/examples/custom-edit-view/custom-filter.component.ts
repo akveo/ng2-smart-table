@@ -40,6 +40,7 @@ export class CustomFilterComponent extends DefaultFilter implements OnInit, OnCh
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.query) {
+      this.query = changes.query.currentValue;
       this.inputControl.setValue(this.query);
     }
   }
