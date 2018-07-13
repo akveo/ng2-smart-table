@@ -21,6 +21,12 @@
                      (onClick)="onClick($event)">
     </checkbox-editor>
 
+    <datepicker-editor *ngSwitchCase="'datepicker'"
+                     [cell]="cell"
+                     [inputClass]="inputClass"
+                     (onClick)="onClick($event)">
+    </datepicker-editor>
+
     <completer-editor *ngSwitchCase="'completer'"
                       [cell]="cell">
     </completer-editor>

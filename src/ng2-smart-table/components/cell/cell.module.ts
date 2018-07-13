@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Ng2CompleterModule } from 'ng2-completer';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { CellComponent } from './cell.component';
 import { CustomEditComponent } from './cell-edit-mode/custom-edit.component';
@@ -14,6 +15,7 @@ import { SelectEditorComponent } from './cell-editors/select-editor.component';
 import { TextareaEditorComponent } from './cell-editors/textarea-editor.component';
 import { CustomViewComponent } from './cell-view-mode/custom-view.component';
 import { ViewCellComponent } from './cell-view-mode/view-cell.component';
+import { DatepickerEditorComponent, DatepickerRenderComponent } from './cell-editors/datepicker-editor.component';
 
 const CELL_COMPONENTS = [
   CellComponent,
@@ -22,6 +24,8 @@ const CELL_COMPONENTS = [
   EditCellComponent,
   CheckboxEditorComponent,
   CompleterEditorComponent,
+  DatepickerEditorComponent,
+  DatepickerRenderComponent,
   InputEditorComponent,
   SelectEditorComponent,
   TextareaEditorComponent,
@@ -34,6 +38,11 @@ const CELL_COMPONENTS = [
     CommonModule,
     FormsModule,
     Ng2CompleterModule,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
+  ],
+  entryComponents: [
+    DatepickerEditorComponent,
   ],
   declarations: [
     ...CELL_COMPONENTS,

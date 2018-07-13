@@ -27,6 +27,7 @@
     "lodash": "^4.17.10"
   },
   "peerDependencies": {
+    "ng-pick-datetime": "^6.0.4",
     "ng2-completer": "^2.0.8",
     "@angular/common": "^6.0.1",
     "@angular/core": "^6.0.1",

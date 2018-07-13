@@ -9,6 +9,8 @@ import { Cell } from '../../../lib/data-set/cell';
     <div [ngSwitch]="cell.getColumn().type">
         <custom-view-component *ngSwitchCase="'custom'" [cell]="cell"></custom-view-component>
         <div *ngSwitchCase="'html'" [innerHTML]="cell.getValue()"></div>
+        <div *ngSwitchCase="'date'">{{ cell.getValue()| date }}</div>
+        <div *ngSwitchCase="'shortDate'">{{ cell.getValue()| date:'shortDate' }}</div>
         <div *ngSwitchDefault>{{ cell.getValue() }}</div>
     </div>
     `,
