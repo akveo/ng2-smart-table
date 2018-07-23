@@ -16,6 +16,42 @@
 
   .ng2-smart-page-item {
     display: inline;
+    cursor: pointer;
+    margin: 5px;
+    padding: 3px 10px;
+    background-color: #F0F0F0;
+    border: 1px solid #c9c9c9;
+
+    a {
+      color: #666666;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &:hover, &.active {
+      background-color: #6B6B6B;
+
+      span, a {
+        color: #fafafa;
+      }
+    }
+
+    &.disabled {
+      cursor: auto;
+      background-color: #FFFFFF;
+      border: 1px solid #F0F0F0;
+
+      &:hover {
+        background-color: #FFFFFF;
+
+        span, a {
+          color: #666666;
+          cursor: auto;
+        }
+      }
+    }
   }
 
   .page-link-next, .page-link-prev {
@@ -25,7 +61,7 @@
 
 :host {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   select {
     margin: 1rem 0 1rem 1rem;

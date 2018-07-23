@@ -1,12 +1,51 @@
 :host {
   .ng2-smart-row {
-    &.selected {
-      background: rgba(0, 0, 0, 0.05);
-    }
-    .ng2-smart-actions {
-      &.ng2-smart-action-multiple-select {
-        text-align: center;
+    border-radius: 25px;
+
+    td {
+      border: 1px solid #ced1a7;
+      border-left: none;
+      position: relative;
+
+      &:first-child {
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-right: none;
+        border-left: 1px solid #ced1a7;
+      }
+
+      &:last-child {
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+
+      &:not(:last-child) {
+        &:before {
+          content: '';
+          position: absolute;
+          top: 0px;
+          right: -6px;
+          background-color: white;
+          width: 10px;
+          height: 4px;
+          z-index: 1;
+        }
+  
+        &:after {
+          content: '';
+          position: absolute;
+          bottom: 0px;
+          right: -6px;
+          background-color: white;
+          width: 10px;
+          height: 4px;
+          z-index: 1;
+        }
       }
     }
+  }
+
+  .ng2-smart-row-spacer {
+    margin-bottom: 5px;
   }
 }
