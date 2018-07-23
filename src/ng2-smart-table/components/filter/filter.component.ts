@@ -27,14 +27,20 @@ import { Subscription } from 'rxjs';
                         [column]="column"
                         (filter)="onFilter($event)">
       </completer-filter>
+      <custom-table-filter *ngSwitchCase="'custom'"
+                        [query]="query"
+                        [column]="column"
+                        [source]="source"
+                        [inputClass]="inputClass"
+                        (filter)="onFilter($event)">
+      </custom-table-filter>
       <input-filter *ngSwitchDefault
                     [query]="query"
                     [ngClass]="inputClass"
                     [column]="column"
                     (filter)="onFilter($event)">
       </input-filter>
-    </div>
-  `,
+    </div>`
 })
 export class FilterComponent implements OnChanges {
 

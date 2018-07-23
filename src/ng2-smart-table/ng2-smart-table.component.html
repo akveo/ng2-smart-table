@@ -1,3 +1,11 @@
+<ng2-smart-table-pager
+                        [source]="source"
+                        [perPageSelect]="perPageSelect"
+                        (changePage)="changePage($event)">
+</ng2-smart-table-pager>
+
+<hr>
+
 <table [id]="tableId" [ngClass]="tableClass">
 
   <thead ng2-st-thead *ngIf="!isHideHeader || !isHideSubHeader"
@@ -27,7 +35,7 @@
 
 </table>
 
-<ng2-smart-table-pager *ngIf="isPagerDisplay"
+<ng2-smart-table-pager
                         [source]="source"
                         [perPageSelect]="perPageSelect"
                         (changePage)="changePage($event)">

@@ -18,18 +18,20 @@
 
     table {
       line-height: 1.5em;
-      border-collapse: collapse;
-      border-spacing: 0;
       display: table;
       width: 100%;
+      border-spacing: 0 10px;
+      border-collapse: separate;
       max-width: 100%;
       overflow: auto;
       word-break: normal;
       word-break: keep-all;
 
       tr {
+        text-align: left;
         th {
           font-weight: bold;
+          text-align: left;
         }
         section {
           font-size: .75em;
@@ -41,11 +43,24 @@
           margin: 0;
           padding: 0.5em 1em;
         }
+
+        td {
+          a {
+            color: #359daa;
+            text-decoration: none;
+            border-bottom: 1px dotted #359daa;
+
+            &:hover {
+              text-decoration: none;
+              border-bottom: 1px solid #359daa; 
+            }
+          }
+        }
       }
     }
 
     a {
-      color: #1e6bb8;
+      color: #004f5a;
       text-decoration: none;
       &:hover {
         text-decoration: underline;
