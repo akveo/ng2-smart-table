@@ -9,9 +9,9 @@ import { DataSource } from '../../../lib/data-source/data-source';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <a href="#" *ngIf="isActionEdit" class="ng2-smart-action ng2-smart-action-edit-edit"
-        [innerHTML]="editRowButtonContent" (click)="onEdit($event)"></a>
+        [ngClass]="editRowButtonClass" [innerHTML]="editRowButtonContent" (click)="onEdit($event)"></a>
     <a href="#" *ngIf="isActionDelete" class="ng2-smart-action ng2-smart-action-delete-delete"
-        [innerHTML]="deleteRowButtonContent" (click)="onDelete($event)"></a>
+        [ngClass]="deleteRowButtonClass" [innerHTML]="deleteRowButtonContent" (click)="onDelete($event)"></a>
   `,
 })
 export class TbodyEditDeleteComponent implements OnChanges {
@@ -29,7 +29,9 @@ export class TbodyEditDeleteComponent implements OnChanges {
   isActionEdit: boolean;
   isActionDelete: boolean;
   editRowButtonContent: string;
+  editRowButtonClass: string;
   deleteRowButtonContent: string;
+  deleteRowButtonClass: string;
 
   onEdit(event: any) {
     event.preventDefault();
@@ -65,6 +67,8 @@ export class TbodyEditDeleteComponent implements OnChanges {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.editRowButtonContent = this.grid.getSetting('edit.editButtonContent');
+    this.editRowButtonClass = this.grid.getSetting('edit.editButtonClass');
     this.deleteRowButtonContent = this.grid.getSetting('delete.deleteButtonContent');
+    this.deleteRowButtonClass = this.grid.getSetting('delete.deleteButtonClass');
   }
 }
