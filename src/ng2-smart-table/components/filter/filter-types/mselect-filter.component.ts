@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { DefaultFilter } from './default-filter';
 import { HttpClient } from "@angular/common/http";
-import { } from "./";
 
-interface Config {
+export interface Config {
     dropdownList: Array<any>,
     selectedItems: Array<any>,
     dropdownSettings: DropdownSettings
 }
-interface DropdownSettings {
+export interface DropdownSettings {
     singleSelection?: boolean,
     text?: string,
     selectAllText?: string,
@@ -21,7 +20,7 @@ interface DropdownSettings {
     selector: 'mselect-filter',
     template: `<angular2-multiselect [data]="dropdownList" 
     [(ngModel)]="selectedItems" 
-    [settings]="settings" 
+    [settings]="dropdownSettings" 
     (onSelect)="onItemSelect($event)"
     (onDeSelect)="OnItemDeSelect($event)" 
     (onSelectAll)="onSelectAll($event)" 
@@ -31,7 +30,7 @@ interface DropdownSettings {
 export class MselectFilterComponent extends DefaultFilter implements OnInit {
     dropdownList: Array<any> = [];
     selectedItems: Array<any> = [];
-    private dropdownSettings: DropdownSettings = {};
+    dropdownSettings: DropdownSettings = {};
 
     constructor(private http: HttpClient) {
         super()

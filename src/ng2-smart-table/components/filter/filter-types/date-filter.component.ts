@@ -17,7 +17,6 @@ import { debounceTime, mergeMap, mapTo, map, concat, concatMap } from 'rxjs/oper
      <input *ngSwitchCase="'equal'" type="date" [formControl]="dateEqual" [ngClass]="inputClass" class="form-control">
      <input *ngSwitchCase="'between'" type="date" [formControl]="startDate" [ngClass]="inputClass" class="form-control">
      <input *ngSwitchCase="'between'" type="date" [formControl]="endDate" [ngClass]="inputClass" class="form-control">
-    <a href="#" *ngIf="filterActive" (click)="resetFilter($event)">{{column.getFilterConfig()?.resetText || 'reset'}}</a>
     </div>
   `,
 })
@@ -68,13 +67,5 @@ export class DateFilterComponent extends DefaultFilter implements OnInit {
           }))
       }
     }
-  }
-
-  resetFilter(event: any) {
-    event.preventDefault();
-    this.query = '';
-    this.startDate.setValue(false, { emitEvent: false });
-    this.endDate.setValue(false, { emitEvent: false })
-    this.setFilter();
   }
 }
