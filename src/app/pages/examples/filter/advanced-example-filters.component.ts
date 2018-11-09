@@ -63,6 +63,7 @@ export class AdvancedExampleFiltersComponent {
     columns: {
       id: {
         title: 'ID',
+        placeholder: 'Prueba',
       },
       name: {
         title: 'Full Name',
