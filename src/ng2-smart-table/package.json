@@ -1,6 +1,6 @@
 {
-  "name": "ng2-smart-table",
-  "version": "1.3.3",
+  "name": "@dcp/ng2-smart-table",
+  "version": "2.0.1",
   "description": "Angular Smart Table",
   "main": "./bundles/table.umd.js",
   "module": "./index.js",

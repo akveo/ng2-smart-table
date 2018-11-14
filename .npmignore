@@ -1,0 +1,9 @@
+.env
+.nyc_output
+.DS_Store
+.vscode/
+npm-debug.log
+coverage/
+src/
+node_modules/
+test/**/*.js
