@@ -118,12 +118,15 @@ export abstract class DataSource {
   }
 
   protected emitOnChanged(action: string) {
-    this.getElements().then((elements) => this.onChangedSource.next({
-      action: action,
-      elements: elements,
-      paging: this.getPaging(),
-      filter: this.getFilter(),
-      sort: this.getSort(),
-    }));
+    this.getElements().then((elements) =>  {
+      this.onChangedSource.next({reqInProgress: false});
+      this.onChangedSource.next({
+        action: action,
+        elements: elements,
+        paging: this.getPaging(),
+        filter: this.getFilter(),
+        sort: this.getSort(),
+      });
+    });
   }
 }

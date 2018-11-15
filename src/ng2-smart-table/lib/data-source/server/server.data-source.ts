@@ -10,7 +10,6 @@ import { map } from 'rxjs/operators';
 export class ServerDataSource extends LocalDataSource {
 
   protected conf: ServerSourceConf;
-  protected onUpdateStartedSource = new Subject<any>();
   protected lastRequestCount: number = 0;
 
   constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}) {
@@ -23,24 +22,12 @@ export class ServerDataSource extends LocalDataSource {
     }
   }
 
-  protected emitOnUpdateStarted(element: any) {
-    this.onUpdateStartedSource.next(element);
-  }
-
-  onUpdateStarted(): Observable<any> {
-    return this.onUpdateStartedSource.asObservable();
-  }
-
   count(): number {
     return this.lastRequestCount;
   }
 
   getElements(): Promise<any> {
-    const promise: Observable<any> = this.requestElements();
-    promise.subscribe((res) => {
-      this.emitOnUpdateStarted({reqInProgress: false});
-    });
-    return promise
+    return this.requestElements()
       .pipe(map(res => {
         this.lastRequestCount = this.extractTotalFromResponse(res);
         this.data = this.extractDataFromResponse(res);
@@ -83,7 +70,7 @@ export class ServerDataSource extends LocalDataSource {
 
   protected requestElements(): Observable<any> {
     let httpParams = this.createRequesParams();
-    this.emitOnUpdateStarted({reqInProgress: true});
+    this.onChangedSource.next({reqInProgress: true});
     return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
   }
 
