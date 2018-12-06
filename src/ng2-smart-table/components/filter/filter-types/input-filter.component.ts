@@ -29,7 +29,6 @@ export class InputFilterComponent extends DefaultFilter implements OnInit {
     }
     this.inputControl.valueChanges
       .pipe(
-        skip(1),
         distinctUntilChanged(),
         debounceTime(this.delay),
       )
