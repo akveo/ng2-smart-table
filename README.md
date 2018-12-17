@@ -133,5 +133,5 @@ Installation, customization and other useful articles: https://akveo.github.io/n
 ## Publishing
 Run npm-pack.sh. This will create a release build in dist folder and create a local npm package as a tarball to test with. This
 tarball can installed like any other npm package. Once verified that package is working as correctly, increment package version in both
-root and ng2-smart-table folder package.json. Then cd into dist and run `npm publish`
+root and ng2-smart-table folder package.json. Then cd into dist and run `npm publish`. Make sure to add npm token to path.
 
