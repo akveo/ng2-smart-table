@@ -63,3 +63,4 @@ npm-debug.log
 !webpack.config.js
 *.map
 /build
+/.vs
