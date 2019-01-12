@@ -16,7 +16,16 @@ export class LocalSorter {
     const compare: Function = customCompare ? customCompare : this.COMPARE;
 
     return data.sort((a, b) => {
-      return compare.call(null, dir, a[field], b[field]);
+      let parts = field.split(".");
+      let propA = a;
+      for (var i = 0; i < parts.length && typeof propA !== 'undefined'; i++) {
+        propA = propA[parts[i]];
+      }
+      let propB = b;
+      for (var i = 0; i < parts.length && typeof propB !== 'undefined'; i++) {
+        propB = propB[parts[i]];
+      }
+      return compare.call(null, dir, propA, propB);
     });
   }
 }
