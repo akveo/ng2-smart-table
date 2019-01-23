@@ -56,7 +56,7 @@
     "@angular/compiler-cli": "4.0.0",
     "@angular/platform-server": "4.0.0",
     "@types/chalk": "0.4.31",
-    "@types/gulp": "4.0.2",
+    "@types/gulp": "4.0.3",
     "@types/highlight.js": "9.1.9",
     "@types/jasmine": "2.5.38",
     "@types/lodash": "4.14.58",
@@ -93,6 +93,6 @@
     "ts-node": "2.0.0",
     "tslint": "4.5.1",
     "tslint-eslint-rules": "3.4.0",
-    "typescript": "2.2.1"
+    "typescript": "2.3.0"
   }
 }
