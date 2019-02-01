@@ -5,27 +5,157 @@ import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import { IColumnSettings } from './lib/data-set/column';
+
+export type ActionsColumnPosition = 'left' | 'right';
+
+export interface ICustomAction {
+  name: string;
+  title: string;
+}
+
+export interface IActionsColumnSettings {
+    columnTitle?: string;
+    add?: boolean;
+    edit?: boolean;
+    delete?: boolean;
+    custom?: ICustomAction[]; 
+    position?: ActionsColumnPosition;
+}
+
+export interface IEditActionSettings {
+    inputClass?: string;
+    editButtonContent?: string;
+    saveButtonContent?: string;
+    cancelButtonContent?: string;
+    confirmSave?: boolean;
+}
+export interface IAddActionSettings {
+    inputClass?: string;
+    addButtonContent?: string;
+    createButtonContent?: string;
+    cancelButtonContent?: string;
+    confirmCreate?: boolean;
+}
+export interface IDeleteActionSettings {
+    deleteButtonContent?: string;
+    confirmDelete?: boolean;
+}
+
+export interface IPager {
+    display?: boolean;
+    perPage?: number;
+    deleteButtonContent?: string;
+}
+
+export type TableMode = 'external' | 'inline';
+export type SelectMode = 'single' | 'multi';
+
+export interface IFilterSettings {
+    inputClass?: string;
+}
+
+export interface ITableAttributes {
+    id?: string;
+    class?: string;
+}
+
+export type RowClassFunction = () => string;
+
+export interface ITableSettings<T=object> {
+    actions?: IActionsColumnSettings;
+    columns?: {[key: string]: IColumnSettings<T>};
+    selectMode?: SelectMode;
+    sort?: boolean;
+    mode?: TableMode;
+    hideHeader?: boolean;
+    hideSubHeader?: boolean;
+    noDataMessage?: string;
+    attr?: ITableAttributes;
+    filter?: IFilterSettings;
+    edit?: IEditActionSettings;
+    add?: IAddActionSettings;
+    delete?: IDeleteActionSettings;
+    pager?: IPager;
+    rowClassFunction?: RowClassFunction;
+}
+
+export interface IRowEvent<T> {
+    data: T;
+    source: DataSource;
+}
+
+export interface IRowSelectEvent<T> extends IRowEvent<T> {
+  isSelected: boolean;
+}
+
+export interface IUserRowSelectEvent<T> extends IRowSelectEvent<T> {
+  selected: T[];
+}
+
+export interface IRowMouseOverEvent<T> extends IRowSelectEvent<T> {
+
+}
+export interface ICreateEvent<T> {
+    source: DataSource;
+}
+
+export interface ICreateConfirmEvent<T> {
+    newData: T;
+    source: DataSource;
+    confirm: Promise<any>;
+}
+
+export interface IEditEvent<T> {
+    data: T;
+    source: DataSource;
+}
+
+export interface IEditConfirmEvent<T> {
+    data: T;
+    newData: T;
+    source: DataSource;
+    confirm: Promise<any>;
+}
+
+export interface IDeleteEvent<T> {
+    data: T;
+    source: DataSource;
+}
+
+export interface IDeleteConfirmEvent<T> {
+    data: T;
+    source: DataSource;
+    confirm: Promise<any>;
+}
+
+export interface ICustomActionEvent<T> {
+  action: string;
+  data: T;
+  source: Event;
+}
+
 
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
   templateUrl: './ng2-smart-table.component.html',
 })
-export class Ng2SmartTableComponent implements OnChanges {
+export class Ng2SmartTableComponent<T=object> implements OnChanges {
 
   @Input() source: any;
-  @Input() settings: Object = {};
+  @Input() settings: ITableSettings<T> = {};
 
-  @Output() rowSelect = new EventEmitter<any>();
-  @Output() userRowSelect = new EventEmitter<any>();
-  @Output() delete = new EventEmitter<any>();
-  @Output() edit = new EventEmitter<any>();
-  @Output() create = new EventEmitter<any>();
-  @Output() custom = new EventEmitter<any>();
-  @Output() deleteConfirm = new EventEmitter<any>();
-  @Output() editConfirm = new EventEmitter<any>();
-  @Output() createConfirm = new EventEmitter<any>();
-  @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
+  @Output() rowSelect = new EventEmitter<IRowSelectEvent<T>>();
+  @Output() userRowSelect = new EventEmitter<IUserRowSelectEvent<T>>();
+  @Output() delete = new EventEmitter<IDeleteEvent<T>>();
+  @Output() edit = new EventEmitter<IEditEvent<T>>();
+  @Output() create = new EventEmitter<ICreateEvent<T>>();
+  @Output() custom = new EventEmitter<ICustomActionEvent<T>>();
+  @Output() deleteConfirm = new EventEmitter<IDeleteConfirmEvent<T>>();
+  @Output() editConfirm = new EventEmitter<IEditConfirmEvent<T>>();
+  @Output() createConfirm = new EventEmitter<ICreateConfirmEvent<T>>();
+  @Output() rowHover: EventEmitter<any> = new EventEmitter<IRowMouseOverEvent<T>>();
 
   tableClass: string;
   tableId: string;
@@ -33,11 +163,11 @@ export class Ng2SmartTableComponent implements OnChanges {
   isHideHeader: boolean;
   isHideSubHeader: boolean;
   isPagerDisplay: boolean;
-  rowClassFunction: Function;
+  rowClassFunction: RowClassFunction;
 
 
   grid: Grid;
-  defaultSettings: Object = {
+  defaultSettings: ITableSettings<T> = {
     mode: 'inline', // inline|external|click-to-edit
     selectMode: 'single', // single|multi
     hideHeader: false,
@@ -81,7 +211,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       display: true,
       perPage: 10,
     },
-    rowClassFunction: () => ""
+    rowClassFunction: () => '',
   };
 
   isAllSelected: boolean = false;
@@ -102,7 +232,6 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.tableClass = this.grid.getSetting('attr.class');
     this.isHideHeader = this.grid.getSetting('hideHeader');
     this.isHideSubHeader = this.grid.getSetting('hideSubHeader');
-    this.isPagerDisplay = this.grid.getSetting('pager.display');
     this.isPagerDisplay = this.grid.getSetting('pager.display');
     this.perPageSelect = this.grid.getSetting('pager.perPageSelect');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
