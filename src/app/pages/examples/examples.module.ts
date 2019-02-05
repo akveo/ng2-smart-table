@@ -13,6 +13,7 @@ import { AdvancedExampleConfirmComponent } from './various/advanced-example-conf
 import { AdvancedExamplesCustomEditorComponent } from './custom-edit-view/advanced-example-custom-editor.component';
 import { AdvancedExamplesTypesComponent } from './custom-edit-view/advanced-example-types.component';
 import { AdvancedExampleServerComponent } from './server/advanced-example-server.component';
+import { ODataExampleServerComponent } from './server/odata-example-server.component';
 import { BasicExampleLoadComponent } from './server/basic-example-load.component';
 import { BasicExampleMultiSelectComponent } from './various/basic-example-multi-select.component';
 import { CustomEditorComponent } from './custom-edit-view/custom-editor.component';
@@ -35,6 +36,7 @@ const EXAMPLES_COMPONENTS = [
   AdvancedExamplesCustomEditorComponent,
   AdvancedExamplesTypesComponent,
   AdvancedExampleServerComponent,
+  ODataExampleServerComponent,
   BasicExampleLoadComponent,
   BasicExampleMultiSelectComponent,
   BasicExampleSourceComponent,

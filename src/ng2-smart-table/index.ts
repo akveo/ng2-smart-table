@@ -4,3 +4,4 @@ export { DefaultEditor, Editor } from './components/cell/cell-editors/default-ed
 export { Cell } from './lib/data-set/cell';
 export { LocalDataSource } from './lib/data-source/local/local.data-source';
 export { ServerDataSource } from './lib/data-source/server/server.data-source';
+export { ODataDataSource } from './lib/data-source/server/odata.data-source';
