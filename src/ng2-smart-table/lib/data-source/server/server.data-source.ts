@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { LocalDataSource } from '../local/local.data-source';
@@ -7,7 +7,7 @@ import { getDeepFromObject } from '../../helpers';
 
 import { map } from 'rxjs/operators';
 
-export class ServerDataSource extends LocalDataSource {
+export class ServerDataSource<T = object> extends LocalDataSource<T> {
 
   protected conf: ServerSourceConf;
 
@@ -27,7 +27,7 @@ export class ServerDataSource extends LocalDataSource {
     return this.lastRequestCount;
   }
 
-  getElements(): Promise<any> {
+  getElements(): Promise<T[]> {
     return this.requestElements()
       .pipe(map(res => {
         this.lastRequestCount = this.extractTotalFromResponse(res);
@@ -42,9 +42,9 @@ export class ServerDataSource extends LocalDataSource {
    * @param res
    * @returns {any}
    */
-  protected extractDataFromResponse(res: any): Array<any> {
+  protected extractDataFromResponse(res: any): T[] {
     const rawData = res.body;
-    const data = !!this.conf.dataKey ? getDeepFromObject(rawData, this.conf.dataKey, []) : rawData;
+    const data = this.conf.dataKey ? getDeepFromObject(rawData, this.conf.dataKey, []) : rawData;
 
     if (data instanceof Array) {
       return data;
@@ -69,8 +69,8 @@ export class ServerDataSource extends LocalDataSource {
     }
   }
 
-  protected requestElements(): Observable<any> {
-    let httpParams = this.createRequesParams();
+  protected requestElements(): Observable<HttpResponse<object>> {
+    const httpParams = this.createRequesParams();
     return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
   }
 
@@ -98,7 +98,8 @@ export class ServerDataSource extends LocalDataSource {
     if (this.filterConf.filters) {
       this.filterConf.filters.forEach((fieldConf: any) => {
         if (fieldConf['search']) {
-          httpParams = httpParams.set(this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
+          httpParams = httpParams.set(
+            this.conf.filterFieldKey.replace('#field#', fieldConf['field']), fieldConf['search']);
         }
       });
     }
