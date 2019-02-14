@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { distinctUntilChanged, debounceTime, skip } from 'rxjs/operators';
+import { distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 import { DefaultFilter } from './default-filter';
 
@@ -9,7 +9,6 @@ import { DefaultFilter } from './default-filter';
   template: `
     <select [ngClass]="inputClass"
             class="form-control"
-            [(ngModel)]="query"
             [formControl]="inputControl">
 
         <option value="">{{ column.getFilterConfig().selectText }}</option>
@@ -23,6 +22,11 @@ export class SelectFilterComponent extends DefaultFilter implements OnInit {
 
   inputControl = new FormControl();
 
+  @Input() set queryText(query: string) {
+    this.query = query;
+    this.inputControl.setValue(query);
+  }
+
   constructor() {
     super();
   }
@@ -30,10 +34,12 @@ export class SelectFilterComponent extends DefaultFilter implements OnInit {
   ngOnInit() {
     this.inputControl.valueChanges
       .pipe(
-        skip(1),
         distinctUntilChanged(),
         debounceTime(this.delay)
       )
-      .subscribe((value: string) => this.setFilter());
+      .subscribe((value: string) => {
+        this.query = this.inputControl.value;
+        this.setFilter();
+      });
   }
 }
