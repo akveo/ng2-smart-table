@@ -1,7 +1,7 @@
 import { Output, EventEmitter, Input } from '@angular/core';
 
-import {Column} from "../../lib/data-set/column";
-import {DataSource} from "../../lib/data-source/data-source";
+import { Column } from '../../lib/data-set/column';
+import { DataSource } from '../../lib/data-source/data-source';
 
 export class FilterDefault {
 

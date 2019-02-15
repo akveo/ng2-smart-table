@@ -23,12 +23,8 @@ export class CustomFilterComponent extends DefaultFilter implements OnInit, OnCh
   }
 
   ngOnInit() {
-    if (this.query) {
-      this.inputControl.setValue(this.query);
-    }
     this.inputControl.valueChanges
       .pipe(
-        skip(1),
         distinctUntilChanged(),
         debounceTime(this.delay),
       )

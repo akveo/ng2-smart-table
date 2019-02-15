@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, skip } from 'rxjs/operators';
 

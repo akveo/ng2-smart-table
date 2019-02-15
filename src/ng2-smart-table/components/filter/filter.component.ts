@@ -1,6 +1,6 @@
-import {Component, OnChanges, SimpleChanges} from '@angular/core';
-import {FilterDefault} from "./filter-default";
-import {Subscription} from "rxjs";
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { FilterDefault } from './filter-default';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ng2-smart-table-filter',
