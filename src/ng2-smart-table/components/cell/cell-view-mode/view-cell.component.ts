@@ -7,9 +7,9 @@ import { Cell } from '../../../lib/data-set/cell';
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div [ngSwitch]="cell.getColumn().type">
-        <custom-view-component *ngSwitchCase="'custom'" [cell]="cell"></custom-view-component>
-        <div *ngSwitchCase="'html'" [innerHTML]="cell.getValue()"></div>
-        <div *ngSwitchDefault>{{ cell.getValue() }}</div>
+        <custom-view-component *ngSwitchCase="'custom'" data-title="{{cell.getTitle()}}"  [cell]="cell"></custom-view-component>
+        <div *ngSwitchCase="'html'" data-title="{{cell.getTitle()}}" [innerHTML]="cell.getValue()"></div>
+        <div data-title="{{cell.getTitle()}}" *ngSwitchDefault>{{ cell.getValue() }}</div>
     </div>
     `,
 })
