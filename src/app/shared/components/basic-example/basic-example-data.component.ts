@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'basic-example-data',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" class="stackable-table" [source]="data"></ng2-smart-table>
   `,
 })
 export class BasicExampleDataComponent {

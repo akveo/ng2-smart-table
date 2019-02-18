@@ -1,0 +1,54 @@
+/* You can add global styles to this file, and also import other style files */
+
+// repsonsive stackable tables scss
+@media only screen and (max-width: 800px) {
+
+    ng2-smart-table.stackable-table .ng2-smart-table-cell-value:before {
+        // put title as label to left of data value
+        content: attr(title);
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }  
+  
+    ng2-smart-table.stackable-table  td .ng2-smart-table-cell-value {
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50% !important;
+        white-space: normal;
+        text-align: left; 
+        display: block;
+        border: none;
+    } 
+
+    ng2-smart-table.stackable-table ng2-smart-table-cell td  {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50% !important;
+        white-space: normal;
+        text-align: left; 
+        display: block;
+    }
+
+    //give it a stackable class such not to break existing 
+    ng2-smart-table.stackable-table  thead{
+        display: none;
+    }
+        
+    //give it a stackable class such not to break existing 
+    ng2-smart-table.stackable-table  table, 
+    ng2-smart-table.stackable-table   tbody, 
+    ng2-smart-table.stackable-table   th, 
+    ng2-smart-table.stackable-table   td, 
+    ng2-smart-table.stackable-table   tr {
+        display: block;
+    }
+    
+}
+

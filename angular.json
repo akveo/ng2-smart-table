@@ -23,7 +23,9 @@
             "styles": [
               "node_modules/highlight.js/styles/dracula.css",
               "src/app/theme/theme.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/stackable.scss"
+
             ],
             "scripts": []
           },
