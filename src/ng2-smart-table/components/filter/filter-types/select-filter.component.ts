@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgControl } from '@angular/forms';
 import { distinctUntilChanged, debounceTime, skip } from 'rxjs/operators';
 
 import { DefaultFilter } from './default-filter';
@@ -9,8 +9,8 @@ import { DefaultFilter } from './default-filter';
   template: `
     <select [ngClass]="inputClass"
             class="form-control"
-            [(ngModel)]="query"
-            [formControl]="inputControl">
+            #inputControl
+            [(ngModel)]="query">
 
         <option value="">{{ column.getFilterConfig().selectText }}</option>
         <option *ngFor="let option of column.getFilterConfig().list" [value]="option.value">
@@ -21,7 +21,7 @@ import { DefaultFilter } from './default-filter';
 })
 export class SelectFilterComponent extends DefaultFilter implements OnInit {
 
-  inputControl = new FormControl();
+  @ViewChild('inputControl', { read: NgControl }) inputControl: NgControl;
 
   constructor() {
     super();
