@@ -5,3 +5,4 @@ export { DefaultFilter, Filter } from './components/filter/filter-types/default-
 export { Cell } from './lib/data-set/cell';
 export { LocalDataSource } from './lib/data-source/local/local.data-source';
 export { ServerDataSource } from './lib/data-source/server/server.data-source';
+export { ODataDataSource } from './lib/data-source/server/odata.data-source';
