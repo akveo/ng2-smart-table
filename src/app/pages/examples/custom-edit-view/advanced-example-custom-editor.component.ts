@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { CustomEditorComponent } from './custom-editor.component';
 import { CustomRenderComponent } from './custom-render.component';
+import { CustomFilterComponent } from './custom-filter.component';
 
 @Component({
   selector: 'advanced-example-custom-editor',
@@ -42,6 +43,10 @@ export class AdvancedExamplesCustomEditorComponent {
     columns: {
       id: {
         title: 'ID',
+        filter: {
+          type: 'custom',
+          component: CustomFilterComponent
+        }
       },
       name: {
         title: 'Full Name',

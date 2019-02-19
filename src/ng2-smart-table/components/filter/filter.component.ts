@@ -1,51 +1,31 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-
-import { DataSource } from '../../lib/data-source/data-source';
-import { Column } from '../../lib/data-set/column';
+import { Component, OnChanges, SimpleChanges } from '@angular/core';
+import { FilterDefault } from './filter-default';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ng2-smart-table-filter',
   styleUrls: ['./filter.component.scss'],
   template: `
-    <div class="ng2-smart-filter" *ngIf="column.isFilterable" [ngSwitch]="column.getFilterType()">
-      <select-filter *ngSwitchCase="'list'"
-                     [query]="query"
-                     [ngClass]="inputClass"
-                     [column]="column"
-                     (filter)="onFilter($event)">
-      </select-filter>
-      <checkbox-filter *ngSwitchCase="'checkbox'"
-                       [query]="query"
-                       [ngClass]="inputClass"
-                       [column]="column"
-                       (filter)="onFilter($event)">
-      </checkbox-filter>
-      <completer-filter *ngSwitchCase="'completer'"
-                        [query]="query"
-                        [ngClass]="inputClass"
-                        [column]="column"
-                        (filter)="onFilter($event)">
-      </completer-filter>
-      <input-filter *ngSwitchDefault
-                    [query]="query"
-                    [ngClass]="inputClass"
-                    [column]="column"
-                    (filter)="onFilter($event)">
-      </input-filter>
-    </div>
-  `,
+      <div class="ng2-smart-filter" *ngIf="column.isFilterable" [ngSwitch]="column.getFilterType()">
+        <custom-table-filter *ngSwitchCase="'custom'"
+                             [query]="query"
+                             [column]="column"
+                             [source]="source"
+                             [inputClass]="inputClass"
+                             (filter)="onFilter($event)">
+        </custom-table-filter>
+        <default-table-filter *ngSwitchDefault
+                              [query]="query"
+                              [column]="column"
+                              [source]="source"
+                              [inputClass]="inputClass"
+                              (filter)="onFilter($event)">
+        </default-table-filter>
+      </div>
+    `,
 })
-export class FilterComponent implements OnChanges {
-
-  @Input() column: Column;
-  @Input() source: DataSource;
-  @Input() inputClass: string = '';
-
-  @Output() filter = new EventEmitter<any>();
-
+export class FilterComponent extends FilterDefault implements OnChanges {
   query: string = '';
-
   protected dataChangedSub: Subscription;
 
   ngOnChanges(changes: SimpleChanges) {
@@ -69,13 +49,5 @@ export class FilterComponent implements OnChanges {
         }
       });
     }
-  }
-
-  onFilter(query: string) {
-    this.source.addFilter({
-      field: this.column.id,
-      search: query,
-      filter: this.column.getFilterFunction(),
-    });
   }
 }
