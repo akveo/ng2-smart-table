@@ -2,67 +2,16 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { Subscription } from 'rxjs';
 
 import { DataSource } from '../../lib/data-source/data-source';
+import { Grid } from '../../lib/grid';
 
 @Component({
   selector: 'ng2-smart-table-pager',
   styleUrls: ['./pager.component.scss'],
-  template: `
-    <nav *ngIf="shouldShow()" class="ng2-smart-pagination-nav">
-      <ul class="ng2-smart-pagination pagination">
-        <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
-          <a class="ng2-smart-page-link page-link" href="#"
-          (click)="getPage() == 1 ? false : paginate(1)" aria-label="First">
-            <span aria-hidden="true">&laquo;</span>
-            <span class="sr-only">First</span>
-          </a>
-        </li>
-        <li class="ng2-smart-page-item page-item" [ngClass]="{disabled: getPage() == 1}">
-          <a class="ng2-smart-page-link page-link page-link-prev" href="#"
-             (click)="getPage() == 1 ? false : prev()" aria-label="Prev">
-            <span aria-hidden="true">&lt;</span>
-            <span class="sr-only">Prev</span>
-          </a>
-        </li>
-        <li class="ng2-smart-page-item page-item"
-        [ngClass]="{active: getPage() == page}" *ngFor="let page of getPages()">
-          <span class="ng2-smart-page-link page-link"
-          *ngIf="getPage() == page">{{ page }} <span class="sr-only">(current)</span></span>
-          <a class="ng2-smart-page-link page-link" href="#"
-          (click)="paginate(page)" *ngIf="getPage() != page">{{ page }}</a>
-        </li>
-
-        <li class="ng2-smart-page-item page-item"
-            [ngClass]="{disabled: getPage() == getLast()}">
-          <a class="ng2-smart-page-link page-link page-link-next" href="#"
-             (click)="getPage() == getLast() ? false : next()" aria-label="Next">
-            <span aria-hidden="true">&gt;</span>
-            <span class="sr-only">Next</span>
-          </a>
-        </li>
-        
-        <li class="ng2-smart-page-item page-item"
-        [ngClass]="{disabled: getPage() == getLast()}">
-          <a class="ng2-smart-page-link page-link" href="#"
-          (click)="getPage() == getLast() ? false : paginate(getLast())" aria-label="Last">
-            <span aria-hidden="true">&raquo;</span>
-            <span class="sr-only">Last</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    
-    <nav *ngIf="perPageSelect && perPageSelect.length > 0" class="ng2-smart-pagination-per-page">
-      <label for="per-page">
-        Per Page:
-      </label>
-      <select (change)="onChangePerPage($event)" [(ngModel)]="currentPerPage" id="per-page">
-        <option *ngFor="let item of perPageSelect" [value]="item">{{ item }}</option>
-      </select>
-    </nav>
-  `,
+  templateUrl: './pager.component.html'
 })
-export class PagerComponent implements OnChanges {
+export class PagerComponent implements OnChanges, OnInit {
 
+  @Input() grid: Grid;
   @Input() source: DataSource;
   @Input() perPageSelect: any[] = [];
 
@@ -74,6 +23,11 @@ export class PagerComponent implements OnChanges {
   protected page: number;
   protected count: number = 0;
   protected perPage: number;
+
+  protected firstButtonContent: string;
+  protected prevButtonContent: string;
+  protected nextButtonContent: string;
+  protected lastButtonContent: string;
 
   protected dataChangedSub: Subscription;
 
@@ -97,6 +51,13 @@ export class PagerComponent implements OnChanges {
     }
   }
 
+  ngOnInit(): void {
+    this.firstButtonContent = this.grid.getSetting('pager.firstButtonContent');
+    this.prevButtonContent = this.grid.getSetting('pager.prevButtonContent');
+    this.nextButtonContent = this.grid.getSetting('pager.nextButtonContent');
+    this.lastButtonContent = this.grid.getSetting('pager.lastButtonContent');
+  }
+  
   /**
    * We change the page here depending on the action performed against data source
    * if a new element was added to the end of the table - then change the page to the last
