@@ -1,3 +1,6 @@
+<div *ngIf="exportToCsv" class="table-action">
+  <button class="export-btn" title="Export to csv" (click)="exportDataToCsv()">Export</button>
+</div>
 <table [id]="tableId" [ngClass]="tableClass">
 
   <thead ng2-st-thead *ngIf="!isHideHeader || !isHideSubHeader"

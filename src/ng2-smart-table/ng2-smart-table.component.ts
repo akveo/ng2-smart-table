@@ -5,6 +5,7 @@ import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import { exportToCsv } from './lib/export';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -15,6 +16,7 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   @Input() source: any;
   @Input() settings: Object = {};
+  @Input() exportToCsv: boolean = false;
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
@@ -204,6 +206,10 @@ export class Ng2SmartTableComponent implements OnChanges {
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
     });
+  }
+
+  exportDataToCsv() {
+    exportToCsv(this.source, this.settings);
   }
 
 }
