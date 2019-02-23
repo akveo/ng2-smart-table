@@ -10,7 +10,7 @@ import { Row } from '../../../lib/data-set/row';
       <td  *ngIf="showActionColumnLeft"  class="ng2-smart-actions">
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
-      <td *ngFor="let cell of grid.getNewRow().getCells()">
+      <td *ngFor="let cell of grid.getNewRow().getCells()" [hidden]="!cell.column.show">
         <ng2-smart-table-cell [cell]="cell"
                               [grid]="grid"
                               [isNew]="true"
