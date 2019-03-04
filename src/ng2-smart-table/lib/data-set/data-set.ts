@@ -66,6 +66,12 @@ export class DataSet {
     return this.selectedRow;
   }
 
+  multipeSelectNoToggle(row:Row): Row {
+    row.isSelected = true;
+    this.selectedRow = row;
+    return this.selectedRow;
+  }
+
   selectPreviousRow(): Row {
     if (this.rows.length > 0) {
       let index = this.selectedRow ? this.selectedRow.index : 0;

@@ -7,6 +7,7 @@ import { Column } from './data-set/column';
 import { Row } from './data-set/row';
 import { DataSet } from './data-set/data-set';
 import { DataSource } from './data-source/data-source';
+import { PreSelectCriteria } from './data-set/pre-select-criteria';
 
 export class Grid {
 
@@ -15,6 +16,7 @@ export class Grid {
   source: DataSource;
   settings: any;
   dataSet: DataSet;
+  preSelectCriteria: PreSelectCriteria;
 
   onSelectRowSource = new Subject<any>();
 
@@ -64,6 +66,25 @@ export class Grid {
     this.source.onUpdated().subscribe((data: any) => {
       const changedRow = this.dataSet.findRowByData(data);
       changedRow.setData(data);
+    });
+  }
+
+  setPreSelectCriteria(criteria:PreSelectCriteria) {
+    this.preSelectCriteria = criteria;
+    this.applyPreSelection();
+  }
+
+  applyPreSelection() {
+    if (!this.preSelectCriteria || !this.preSelectCriteria.values || !this.preSelectCriteria.field) {
+      return;
+    }
+    this.getRows().forEach((r:Row)=>{
+      let select = this.preSelectCriteria.values.filter(v=>{
+        return (((<any>r.getData())[this.preSelectCriteria.field]) === v)
+      });
+      if (select && select.length>0) {
+        this.dataSet.multipeSelectNoToggle(r);
+      }
     });
   }
 
@@ -174,6 +195,7 @@ export class Grid {
   processDataChange(changes: any) {
     if (this.shouldProcessChange(changes)) {
       this.dataSet.setData(changes['elements']);
+      this.applyPreSelection();
       if (this.getSetting('selectMode') !== 'multi') {
         const row = this.determineRowToSelect(changes);
 

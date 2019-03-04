@@ -5,6 +5,7 @@ import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import { PreSelectCriteria } from './lib/data-set/pre-select-criteria';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -15,6 +16,7 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   @Input() source: any;
   @Input() settings: Object = {};
+  @Input() preSelectCriteria: PreSelectCriteria;
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
@@ -81,7 +83,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       display: true,
       perPage: 10,
     },
-    rowClassFunction: () => ""
+    rowClassFunction: () => "ng2-smart-row"
   };
 
   isAllSelected: boolean = false;
@@ -94,6 +96,7 @@ export class Ng2SmartTableComponent implements OnChanges {
       if (changes['source']) {
         this.source = this.prepareSource();
         this.grid.setSource(this.source);
+        this.grid.setPreSelectCriteria(this.preSelectCriteria);
       }
     } else {
       this.initGrid();
@@ -155,6 +158,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
     this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
+    this.grid.setPreSelectCriteria(this.preSelectCriteria);
   }
 
   prepareSource(): DataSource {
