@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
+import { PreSelectCriteria } from 'ng2-smart-table/lib/data-set/pre-select-criteria';
 
 @Component({
-  selector: 'basic-example-data',
+  selector: 'basic-example-preselect-rows',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ng2-smart-table [settings]="settings" [source]="data" [preSelectCriteria]="preSelectCriteria"></ng2-smart-table>
   `,
 })
 export class BasicExampleDataComponent {
 
+  preSelectCriteria: PreSelectCriteria = {
+    field: 'id',
+    values: [2,3,4]
+  }
 
   settings = {
+    selectMode: 'multi',
     columns: {
       id: {
         title: 'ID',
