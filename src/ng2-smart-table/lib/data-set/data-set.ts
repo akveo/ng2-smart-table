@@ -131,7 +131,10 @@ export class DataSet {
   createColumns(settings: any) {
     for (const id in settings) {
       if (settings.hasOwnProperty(id)) {
-        this.columns.push(new Column(id, settings[id], this));
+        const setting = settings[id];
+        if(!setting.hide){
+          this.columns.push(new Column(id, settings[id], this));
+        }
       }
     }
   }
