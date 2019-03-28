@@ -46,4 +46,8 @@ export class Cell {
     }
   }
 
+  resetValue(): void {
+    this.setValue(this.getValue());
+  }
+
 }
