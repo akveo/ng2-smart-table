@@ -182,6 +182,11 @@ export class Ng2SmartTableComponent implements OnChanges {
   filter($event: any) {
     this.resetAllSelector();
   }
+  
+  selectAllRows(status: boolean) {
+    this.grid.selectAllRows(status);
+    this.isAllSelected = status;
+  }
 
   private resetAllSelector() {
     this.isAllSelected = false;
