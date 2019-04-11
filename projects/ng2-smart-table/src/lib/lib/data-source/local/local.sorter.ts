@@ -16,7 +16,7 @@ export class LocalSorter {
     const compare: Function = customCompare ? customCompare : compareValues;
 
     return data.sort((a, b) => {
-      return compare.call(null, dir, a[field], b[field]);
+      return compare.call(null, dir, a[field], b[field], a, b);
     });
   }
 }
