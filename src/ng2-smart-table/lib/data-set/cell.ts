@@ -47,7 +47,8 @@ export class Cell {
   }
 
   resetValue(): void {
-    this.setValue(this.getValue());
+    // directly access this.value to get raw value,
+    // because this.getValue() will go through valuePrepareFunction (if any)
+    this.setValue(this.value);
   }
-
 }
