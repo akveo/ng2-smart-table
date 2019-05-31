@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import * as cloneDeep from 'lodash.clonedeep';
 
 /**
  * Extending object that entered in first argument.
