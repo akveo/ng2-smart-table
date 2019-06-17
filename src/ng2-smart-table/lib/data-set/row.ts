@@ -13,6 +13,15 @@ export class Row {
     this.process();
   }
 
+  getProperty(data:any,property:string):any {
+    let parts = property.split(".");
+    let prop = data;
+    for (var i = 0; i < parts.length && typeof prop !== 'undefined'; i++) {
+        prop = prop[parts[i]];
+    }
+    return prop;    
+  }
+
   getCell(column: Column): Cell {
     return this.cells.find(el => el.getColumn() === column);
   }
@@ -50,7 +59,8 @@ export class Row {
 
   createCell(column: Column): Cell {
     const defValue = (column as any).settings.defaultValue ? (column as any).settings.defaultValue : '';
-    const value = typeof this.data[column.id] === 'undefined' ? defValue : this.data[column.id];
+    var value = this.getProperty(this.data,column.id);
+    value = typeof value === 'undefined' ? defValue : value;
     return new Cell(value, this, column, this._dataSet);
   }
 }
