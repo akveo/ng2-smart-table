@@ -1,7 +1,7 @@
 :host {
   font-size: 1rem;
 
-  /deep/ {
+  ::ng-deep {
     * {
       box-sizing: border-box;
     }

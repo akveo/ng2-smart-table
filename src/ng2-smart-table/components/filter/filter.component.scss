@@ -1,6 +1,6 @@
 :host {
   .ng2-smart-filter {
-    /deep/ {
+    ::ng-deep {
       input,
       select {
         width: 100%;
