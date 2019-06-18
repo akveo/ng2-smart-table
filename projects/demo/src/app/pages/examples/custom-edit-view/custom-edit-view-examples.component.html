@@ -1,0 +1,44 @@
+<h2>Customized edit and view cells examples</h2>
+<h3><a id="types" class="anchor" href="#types" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Select, Completer and Textarea column types</h3>
+<p>
+  An example on how to use select, completer, textarea column types:
+</p>
+<div class="with-source">
+  <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/custom-edit-view/advanced-example-types.component.ts" target="_blank">Demo Source</a>
+  <advanced-example-types></advanced-example-types>
+</div>
+<h3><a id="custom-editor-renderer" class="anchor" href="#custom-editor-renderer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom editor/renderer column type</h3>
+<p>An example on how to use a custom cell editor and/or custom cell renderer:</p>
+<div class="with-source">
+  <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/custom-edit-view/advanced-example-custom-editor.component.ts" target="_blank">Demo Source</a>
+  <advanced-example-custom-editor></advanced-example-custom-editor>
+</div>
+<p>When implementing a custom editor or renderer remember to add it to the <code>entryComponents</code> and to the <code>declarations</code> part of your module</p>
+<pre>
+  <code highlight class="typescript">{{ snippets.customEditorModule }}</code>
+</pre>
+<p>
+  <b>For the custom cell editor:</b><br>
+  To inherit the methods needed to interact with the table you can either extend the component with the <code>DefaultEditor</code> class or implement the <code>Editor</code> interface and reproduce the same methods on your component.<br>
+  <b>For the custom cell renderer:</b><br>
+  In this example the custom component is applying a <code>.toUpperCase()</code> to one of the columns. You can implement the ViewCell interface to make sure you are setting up your component correctly.
+</p>
+
+<h3>
+  <a id="buttonview" class="anchor" href="#buttonview" aria-hidden="true">
+    <span aria-hidden="true" class="octicon octicon-link"></span>
+  </a>Button View
+</h3>
+<p>An example on how to use custom button view:</p>
+<div class="with-source">
+  <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/custom-edit-view/basic-example-button-view.component.ts"
+    target="_blank">Demo Source</a>
+  <basic-example-button-view></basic-example-button-view>
+</div>
+
+<h3><a id="multiselect" class="anchor" href="#customactions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Custom actions</h3>
+<p>An example on how to use custom actions:</p>
+<div class="with-source">
+  <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/various/basic-example-custom-actions.component.ts" target="_blank">Demo Source</a>
+  <basic-example-custom-actions></basic-example-custom-actions>
+</div>
