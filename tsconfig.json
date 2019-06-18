@@ -20,10 +20,7 @@
     ],
     "paths": {
       "ng2-smart-table": [
-        "dist/ng2-smart-table"
-      ],
-      "ng2-smart-table/*": [
-        "dist/ng2-smart-table/*"
+        "projects/ng2-smart-table/src/public-api.ts"
       ]
     }
   }

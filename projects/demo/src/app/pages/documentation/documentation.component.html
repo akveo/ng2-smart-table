@@ -1,0 +1,947 @@
+<header-component tagline="Documentation"></header-component>
+
+<section class="main-content">
+  <h2><a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Documentation</h2>
+
+  <h3><a id="inputs" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component Inputs</h3>
+
+  <table>
+    <tr>
+      <th>Input</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>[settings]</td>
+      <td><span class="highlight">Object</span></td>
+      <td>Table component configuration object, properties described below</td>
+    </tr>
+    <tr>
+      <td>[source]</td>
+      <td><span class="highlight">Array</span>|<span class="highlight">DataSource</span></td>
+      <td>Table data, either an array or DataSource object (LocalDataSource currently supported)</td>
+    </tr>
+  </table>
+
+  <h3><a id="configuration" class="anchor" href="#configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Table Configuration</h3>
+
+  <table>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Default</th>
+      <th>Description</th>
+    </tr>
+    <tr class="section">
+      <td>Required Table Settings</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>columns</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Table column settings, by default an empty object.<br>
+        Example format:<br>
+        <code>
+          columns: {{ '{' }}
+            <b>columnKey</b>: {{ '{' }}
+              title: 'Some Title'
+            {{ '}' }}
+          {{ '}' }}
+        </code>
+        <br>
+        Please note, <b>columnKey</b> must be the same as a key in data array objects.
+      </td>
+    </tr>
+    <tr class="section">
+      <td>Column Settings</td>
+      <td></td>
+      <td></td>
+      <td>
+        List of a column's settings
+      </td>
+    </tr>
+    <tr>
+      <td>title</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Column title
+      </td>
+    </tr>
+    <tr>
+      <td>class</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Column class
+      </td>
+    </tr>
+    <tr>
+      <td>width</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Column width, example: <span class="highlight">'20px'</span>, <span class="highlight">'20%'</span>
+      </td>
+    </tr>
+    <tr>
+      <td>editable</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Whether this column is editable or not
+      </td>
+    </tr>
+    <tr>
+      <td>type</td>
+      <td><span class="highlight">'text'</span>|<span class="highlight">'html'</span>|<span class="highlight">'custom'</span></td>
+      <td>'text'</td>
+      <td>
+        If type is <span class="highlight">text</span> then cell value will be inserted as text.<br>
+        If type is <span class="highlight">html</span> then cell value will be inserted as html.<br>
+        If type is <span class="highlight">custom</span> the <code>renderComponent</code> property must be defined.
+      </td>
+    </tr>
+    <tr>
+      <td>renderComponent</td>
+      <td><span class="highlight">any</span></td>
+      <td>null</td>
+      <td>
+        Custom component that will be responsible for rendering the cell content while in view mode.<br>
+        Type must be <span class="highlight">custom</span> in order for this to work.<br>
+        You can see an <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/custom-edit-view/advanced-example-custom-editor.component.ts">example here</a>
+      </td>
+    </tr>
+    <tr>
+      <td>onComponentInitFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>null</td>
+      <td>
+        Function which will be invoked after <span class="highlight">renderComponent</span> instantiated and before ngOnInit hook. This function gets <span class="highlight">renderComponent</span> instance in first param.
+      </td>
+    </tr>
+    <tr>
+      <td>editor</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Editor attributes settings
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor</span>.type</td>
+      <td><span class="highlight">'text' | 'textarea' | 'completer' | 'list' | 'checkbox'</span></td>
+      <td>'text'</td>
+      <td>
+        Editor used when new row is added or edited
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor</span>.config</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Editor configuration settings. Mandatory only for editor types <span class="highlight">completer</span>, <span class="highlight">list</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.true</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Only on <span class="highlight">checkbox</span> type.<br>
+        Defines the value to assign when the checkbox is checked. This parameter is optional, if omitted, <code>true</code> will be used.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.false</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Only on <span class="highlight">checkbox</span> type.<br>
+        Defines the value to assign when the checkbox is not checked. This parameter is optional, if omitted, <code>false</code> will be used.
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.list</td>
+      <td><span class="highlight">Array</span></td>
+      <td>[ ]</td>
+      <td>
+        Only on <span class="highlight">list</span> type. Example format:<br>
+        <code>{{ '{' }} value: 'Element Value', title: 'Element Title' {{ '}' }}</code><br>
+        Html is supported if column type is <span class="highlight">'html'</span>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config</span>.completer</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Only on <span class="highlight">completer</span> type. Example format:<br>
+        Completer configuration settings
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config.completer</span>.data</td>
+      <td><span class="highlight">Array</span></td>
+      <td>[ ]</td>
+      <td>
+        Autocomplete list data source.<br>
+        Example format:<br>
+        <code>{{ '{' }} id: 10, name: 'Nick', email: 'rey@karina.biz' {{ '}' }}</code>
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config.completer</span>.searchFields</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Comma separated list of fields to search on. Fields may contain dots for nested attributes; if empty or null all data will be returned
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config.completer</span>.titleField</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+       Name of the field to use as title for the list item
+      </td>
+    </tr>
+    <tr>
+      <td><span class="nested-obj">editor.config.completer</span>.descriptionField</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Name of the field to use as description for the list item
+      </td>
+    </tr>
+    <tr>
+      <td>filter</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Column filter attributes settings. This object accepts the same properties as the <code>editor</code> object.<br>
+        The available types are: <code>checkbox</code>, <code>select</code>, <code>completer</code>.<br>
+        The <code>checkbox</code> type accepts one more optional property compared to the <code>editor</code> version: <span class="highlight">resetText: string</span>.
+        It defines the text of the button to reset the checkbox selection.<br>
+        <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/examples/filter/advanced-example-filters.component.ts">Click here to see an example</a> on how to configure it.
+      </td>
+    </tr>
+    <tr>
+      <td>valuePrepareFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>
+        n/a
+      </td>
+      <td>
+        Function run against a value before it gets inserted into a cell.
+        You can use it to modify how a value is displayed in the cell.
+        <br>
+        This function will be invoked with 2 parameters: cell, row
+      </td>
+    </tr>
+    <tr>
+      <td>sort</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Column sort settings, enable/disable.
+      </td>
+    </tr>
+    <tr>
+      <td>sortDirection</td>
+      <td><span class="highlight">'asc'|'desc'</span></td>
+      <td>n/a</td>
+      <td>
+        Sort table by this column with this direction by default.<br>
+        Applied only when <span class="highlight">sort</span> = true.
+        Note: multiple sort option is not supported yet, so sortDirection can be applied to only one column per table.
+      </td>
+    </tr>
+    <tr>
+      <td>compareFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>
+        n/a
+      </td>
+      <td>
+        Function run against the values to sort the table
+      </td>
+    </tr>
+    <tr>
+      <td>filter</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Column filter settings, enable/disable
+      </td>
+    </tr>
+    <tr>
+      <td>filterFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>n/a</td>
+      <td>
+        Function run against the column value when filtering is happening
+      </td>
+    </tr>
+    <tr class="section">
+      <td>Other Table Settings</td>
+      <td></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>mode</td>
+      <td><span class="highlight">'external'</span>|<span class="highlight">'inline'</span></td>
+      <td>'inline'</td>
+      <td>
+        Determines how to react on action links (Add, Edit, Delete).<br>
+        <span class="highlight">'external'</span> - just trigger the events (LINK HERE).<br>
+        <span class="highlight">'inline'</span> - process internally, show forms/inputs/etc<br>
+      </td>
+    </tr>
+    <tr>
+      <td>hideHeader</td>
+      <td><span class="highlight">'boolean'</span></td>
+      <td>false</td>
+      <td>
+        Set to true to not display the table header (which includes table column titles)
+      </td>
+    </tr>
+    <tr>
+      <td>hideSubHeader</td>
+      <td><span class="highlight">'boolean'</span></td>
+      <td>false</td>
+      <td>
+        Set to true to not display the table sub-header (which includes filters and global table actions (currently - Add action))
+      </td>
+    </tr>
+    <tr>
+      <td>noDataMessage</td>
+      <td><span class="highlight">string</span></td>
+      <td>'No data found'</td>
+      <td>
+        Message shown when there is no data in the table
+      </td>
+    </tr>
+    <tr>
+      <td>attr</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Table attributes settings
+      </td>
+    </tr>
+    <tr>
+      <td>attr.id</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Table element id
+      </td>
+    </tr>
+    <tr>
+      <td>attr.class</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Table element class
+      </td>
+    </tr>
+    <tr>
+      <td>actions</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Settings for the table actions
+      </td>
+    </tr>
+    <tr>
+      <td>actions.columnTitle</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Actions'</td>
+      <td>
+        Actions column title
+      </td>
+    </tr>
+    <tr>
+      <td>actions.add</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Show/not show Add button
+      </td>
+    </tr>
+    <tr>
+      <td>actions.edit</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Show/not show Edit button
+      </td>
+    </tr>
+    <tr>
+      <td>actions.delete</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Show/not show Delete button
+      </td>
+    </tr>
+    <tr>
+      <td>actions.position</td>
+      <td><span class="highlight">'left'</span>|<span class="highlight">'right'</span></td>
+      <td>'left'</td>
+      <td>
+        Choose actions column position
+      </td>
+    </tr>
+    <tr>
+      <td>filter</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Settings for the table filter
+      </td>
+    </tr>
+    <tr>
+      <td>filter.inputClass</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Filter input class
+      </td>
+    </tr>
+    <tr>
+      <td>edit</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Edit action settings
+      </td>
+    </tr>
+    <tr>
+      <td>edit.inputClass</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        Editing form input class
+      </td>
+    </tr>
+    <tr>
+      <td>edit.editButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Edit'</td>
+      <td>
+        Edit row button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>edit.saveButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Update'</td>
+      <td>
+        Update button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>edit.cancelButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Cancel'</td>
+      <td>
+        Cancel button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>edit.confirmSave</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Enable/disable <span class="highlight">(confirmEdit)</span> event. If enabled data will be edited only if confirm.resolve() called.
+      </td>
+    </tr>
+    <tr>
+      <td>add</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Add action settings
+      </td>
+    </tr>
+    <tr>
+      <td>add.inputClass</td>
+      <td><span class="highlight">string</span></td>
+      <td>''</td>
+      <td>
+        New row input class
+      </td>
+    </tr>
+    <tr>
+      <td>add.addButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Add New'</td>
+      <td>
+        Add New button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>add.createButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Create'</td>
+      <td>
+        Create button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>add.cancelButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Cancel'</td>
+      <td>
+        Cancel button content/title
+      </td>
+    </tr>
+    <tr>
+      <td>add.confirmCreate</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Enable/disable <span class="highlight">(confirmCreate)</span> event. If enabled data will be added only if confirm.resolve() called.
+      </td>
+    </tr>
+    <tr>
+      <td>delete</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Delete action settings
+      </td>
+    </tr>
+    <tr>
+      <td>delete.deleteButtonContent</td>
+      <td><span class="highlight">string</span></td>
+      <td>'Delete'</td>
+      <td>
+        Delete row input class
+      </td>
+    </tr>
+    <tr>
+      <td>delete.confirmDelete</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>false</td>
+      <td>
+        Enable/disable <span class="highlight">(confirmDelete)</span> event. If enabled data will be deleted only if confirm.resolve() called.
+      </td>
+    </tr>
+    <tr>
+      <td>pager</td>
+      <td><span class="highlight">Object</span></td>
+      <td>n/a</td>
+      <td>
+        Pager settings
+      </td>
+    </tr>
+    <tr>
+      <td>pager.display</td>
+      <td><span class="highlight">boolean</span></td>
+      <td>true</td>
+      <td>
+        Whether to display the pager or not
+      </td>
+    </tr>
+    <tr>
+      <td>pager.perPage</td>
+      <td><span class="highlight">number</span></td>
+      <td>10</td>
+      <td>
+        Rows per page
+      </td>
+    </tr>
+    <tr>
+      <td>rowClassFunction</td>
+      <td><span class="highlight">Function</span></td>
+      <td>row</td>
+      <td>
+        Handle css class for each row in the table
+      </td>
+    </tr>
+  </table>
+
+  <h3><a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Component Outputs/Events</h3>
+
+  <table>
+    <tr>
+      <th>Event</th>
+      <th>Arguments</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>(rowSelect)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - selected row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a row is selected (either clicked or selected automatically (after page is changed, after some row is deleted, etc)).
+      </td>
+    </tr>
+    <tr>
+      <td>(userRowSelect)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - selected row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered <strong>only</strong> on a user click event.
+      </td>
+    </tr>
+    <tr>
+      <td>(mouseover)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - highlighted row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered <strong>only</strong> on a user mouseover event.
+      </td>
+    </tr>
+    <tr>
+      <td>(create)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Create button clicked. Triggered only if table <strong>mode = external</strong>.
+      </td>
+    </tr>
+    <tr>
+      <td>(createConfirm)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>newData: <span class="highlight">Object</span> - data entered in a new row</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+          <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve(newData: Object) and reject() methods.</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Create button clicked. Triggered only if table <strong>confirmCreate = true and mode = inline</strong>.
+        Allows you to confirm changes before they are applied to the table data source.
+      </td>
+    </tr>
+    <tr>
+      <td>(edit)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once an Edit button clicked on a row. Triggered only if table <strong>mode = external</strong>.
+      </td>
+    </tr>
+    <tr>
+      <td>(editConfirm)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - original row data</li>
+          <li>newData: <span class="highlight">Object</span> - edited data</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+          <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve(newData: Object) and reject() methods.</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Save button clicked. Triggered only if table <strong>confirmSave = true and mode = inline</strong>.
+        Allows you to confirm changes before they are applied to the table data source.
+      </td>
+    </tr>
+    <tr>
+      <td>(delete)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - row data object</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Delete button clicked on a row. Triggered only if table <strong>mode = external</strong>.
+      </td>
+    </tr>
+    <tr>
+      <td>(deleteConfirm)</td>
+      <td>
+        event: <span class="highlight">Object</span>, consist of:
+        <ul>
+          <li>data: <span class="highlight">Object</span> - data object to delete</li>
+          <li>source: <span class="highlight">DataSource</span> - table data source</li>
+          <li>confirm: <span class="highlight">Deferred</span> - Deferred object with resolve() and reject() methods.</li>
+        </ul>
+      </td>
+      <td>
+        Triggered once a Delete button clicked. Triggered only if table <strong>confirmDelete = true and mode = inline</strong>.
+        Allows you to confirm changes before they are applied to the table data source.
+      </td>
+    </tr>
+  </table>
+
+  <h3><a id="source-method" class="anchor" href="#source-method" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Data Source Methods</h3>
+
+  <table>
+    <tr>
+      <th>Method</th>
+      <th>Arguments</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>load</td>
+      <td>
+        <ul>
+          <li>data: <span class="highlight">Array</span> - data to load into the table</li>
+        </ul>
+      <td>
+        Reload table with new data. For example if some data has received from the server.
+      </td>
+    </tr>
+    <tr>
+      <td>prepend</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to add</li>
+        </ul>
+      <td>
+        Add a new element to the beginning of the table.
+      </td>
+    </tr>
+    <tr>
+      <td>append</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to add</li>
+        </ul>
+      <td>
+        Add a new element to the end of the table. This also will switch current page to the last one.
+      </td>
+    </tr>
+    <tr>
+      <td>add</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to add</li>
+        </ul>
+      <td>
+        Add a new element to the table.
+      </td>
+    </tr>
+    <tr>
+      <td>remove</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to remove</li>
+        </ul>
+      <td>
+        Remove the element from the table.
+      </td>
+    </tr>
+    <tr>
+      <td>update</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to update</li>
+          <li>values: <span class="highlight">Object</span> - object with new values</li>
+        </ul>
+      <td>
+        Update the element in the table.
+      </td>
+    </tr>
+    <tr>
+      <td>find</td>
+      <td>
+        <ul>
+          <li>element: <span class="highlight">Object</span> - object to find</li>
+        </ul>
+      <td>
+        Find the element in the table.
+      </td>
+    </tr>
+    <tr>
+      <td>getElements</td>
+      <td>
+        n/a
+      <td>
+        Get elements for current sort, filter and page.
+      </td>
+    </tr>
+    <tr>
+      <td>getFilteredAndSorted</td>
+      <td>
+        n/a
+        <td>
+          Get sorted, filtered and not paginated elements.
+        </td>
+    </tr>
+    <tr>
+      <td>getAll</td>
+      <td>
+        n/a
+      <td>
+        Get all data source elements.
+      </td>
+    </tr>
+    <tr>
+      <td>setSort</td>
+      <td>
+        <ul>
+          <li>
+            conf: <span class="highlight">Array</span> - array of sort setting objects, object format is:
+            <ul>
+              <li>field - <span class="highlight">string</span> - columnKey</li>
+              <li>direction - <span class="string">string|null</span> - 'asc'|'desc'|null - sort direction</li>
+              <li>compare - <span class="string">Function|null</span> - custom compare function</li>
+            </ul>
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table sorts, example: <br>
+        <code>this.source.setSort([{{ '{' }} field: 'id', direction: 'asc' {{ '}' }}]);</code>
+      </td>
+    </tr>
+    <tr>
+      <td>setFilter</td>
+      <td>
+        <ul>
+          <li>
+            conf: <span class="highlight">Array</span> - array of filter setting objects, object format is:
+            <ul>
+              <li>field - <span class="highlight">string</span> - columnKey</li>
+              <li>search - <span class="string">string</span> - search query</li>
+              <li>filter - <span class="string">Function|null</span> - custom filter function</li>
+            </ul>
+          </li>
+          <li>
+            andOperator: <span class="highlight">boolean</span> - how to process multiple filters (as AND or as OR), default = true (AND)
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table filters, example: <br>
+        <code>this.source.setFilter([{{ '{' }} field: 'id', search: 'foobar' {{ '}' }}, {{ '{' }} field: 'name', search: 'foobar' {{ '}' }}]);</code>
+      </td>
+    </tr>
+    <tr>
+      <td>addFilter</td>
+      <td>
+        <ul>
+          <li>
+            conf: <span class="highlight">Object</span> - one filter object, format is:
+            <ul>
+              <li>field - <span class="highlight">string</span> - columnKey</li>
+              <li>search - <span class="string">string</span> - search query</li>
+              <li>filter - <span class="string">Function|null</span> - custom filter function</li>
+            </ul>
+          </li>
+          <li>
+            andOperator: <span class="highlight">boolean</span> - how to process multiple filters (as AND or as OR), default = true (AND)
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table filter for one column, example: <br>
+        <code>this.source.addFilter({{ '{' }} field: 'id', search: 'foobar' {{ '}' }});</code>
+      </td>
+    </tr>
+    <tr>
+      <td>setPaging</td>
+      <td>
+        <ul>
+          <li>
+            page: <span class="highlight">number</span> - page number
+          </li>
+          <li>
+            perPage: <span class="highlight">number</span> - about per page
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table pagination settings
+      </td>
+    </tr>
+    <tr>
+      <td>setPage</td>
+      <td>
+        <ul>
+          <li>
+            page: <span class="highlight">number</span> - page number
+          </li>
+          <li>
+            doEmit: <span class="highlight">boolean</span> - emit event (to refresh the table) or not, default = true
+          </li>
+        </ul>
+      <td>
+        Set table page
+      </td>
+    </tr>
+    <tr>
+      <td>reset</td>
+      <td>
+        <ul>
+          <li>silent: <span class="highlight">boolean</span> - if true - you have to additionally call `refresh` to reflect the changes</li>
+        </ul>
+      <td>
+        Set data source to first page with empty filter and empty sort.
+      </td>
+    </tr>
+    <tr>
+      <td>refresh</td>
+      <td>
+        n/a
+      <td>
+        Refresh data in the data source. In most cases you won't need this method.
+      </td>
+    </tr>
+    <tr>
+      <td>count</td>
+      <td>
+        n/a
+      <td>
+        Return count of element in the data source.
+      </td>
+    </tr>
+    <tr>
+      <td>empty</td>
+      <td>
+        n/a
+      <td>
+        Empty the data source.
+      </td>
+    </tr>
+  </table>
+
+</section>

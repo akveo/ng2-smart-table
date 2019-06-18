@@ -59,7 +59,8 @@
               "projects/demo/src/assets"
             ],
             "styles": [
-              "projects/demo/src/styles.css"
+              "node_modules/highlight.js/styles/dracula.css",
+              "projects/demo/src/app/theme/theme.scss"
             ],
             "scripts": []
           },

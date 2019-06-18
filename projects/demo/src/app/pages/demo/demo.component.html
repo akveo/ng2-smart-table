@@ -1,0 +1,77 @@
+<header-component tagline="Quick Start & Demo"></header-component>
+<section class="main-content">
+
+  <h2 ><a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h2>
+  <p>
+    Hello and Welcome!
+  </p>
+
+  <h3><a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
+  <p>
+    The library is available as npm package, so all you need to do is to run the following command:
+  </p>
+  <pre>
+    <code highlight class="bash">{{ snippets.install }}</code>
+  </pre>
+  <p>This command will create a record in your `package.json` file and install the package into the npm modules folder.</p>
+
+  <h2><a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+  <h3><a id="minimal-setup" class="anchor" href="#minimal-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Minimal Setup Example</h3>
+  <p>
+    First thing you need to do is to import the ng2-smart-table directives into your component.
+  </p>
+  <pre>
+    <code highlight class="typescript">{{ snippets.require }}</code>
+  </pre>
+  <p>
+    Then register it by adding to the list of directives of your module:
+  </p>
+  <pre>
+    <code highlight class="typescript">{{ snippets.directive }}</code>
+  </pre>
+  <p>
+    Now, we need to configure the table and add it into the template. The only <strong>required</strong> setting for the component to start working is a columns configuration.<br>
+    Let's register <i>settings</i> property inside of the component where we want to have the table and configure some columns (<a [routerLink]="['/documentation']">Settings documentation</a>):
+  </p>
+  <pre>
+    <code highlight class="typescript">{{ snippets.settings }}</code>
+  </pre>
+  <p>
+    Finally let's put the ng2-smart-table component inside of the template:
+  </p>
+  <pre>
+    <code highlight class="typescript">{{ snippets.template }}</code>
+  </pre>
+  <p>
+    At this step you will have a minimally configured table which should look something like this:
+  </p>
+  <div>
+    <basic-example></basic-example>
+  </div>
+  <p>
+    All functions are available by default and you don't need to configure them somehow, so you already able to add/edit/delete rows, sort or filter the table, etc.
+  </p>
+  <p>
+    But it feels like something is missing... Right, there is no data in the table by default. To add some, let's create an array property with a list of objects in the component. Please note that object keys are same as in the columns configuration.
+  </p>
+  <pre>
+    <code highlight class="typescript">{{ snippets.array }}</code>
+  </pre>
+  <p>And pass the data to the table:</p>
+  <pre>
+    <code highlight class="typescript">{{ snippets.dataTemplate }}</code>
+  </pre>
+  <p>Now you have some data in the table:</p>
+  <div>
+    <basic-example-data></basic-example-data>
+  </div>
+  <p>
+    That's it for a minimal setup, our final component should look like this, pretty simple, huh?
+  </p>
+  <pre class="with-source">
+    <a class="source" href="https://github.com/akveo/ng2-smart-table/blob/master/src/app/pages/shared/components/basic-example/basic-example-data.component.ts" target="_blank">Demo Source</a>
+    <code highlight class="typescript">{{ snippets.basicFull }}</code>
+  </pre>
+
+  <p>Full component documentation you can find <a [routerLink]="['/documentation']">here</a>.</p>
+</section>
