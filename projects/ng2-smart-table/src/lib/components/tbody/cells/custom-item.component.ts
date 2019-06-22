@@ -12,7 +12,7 @@ export class TbodyCustomItemComponent implements OnInit {
   customComponent: any;
   @Input() action: any;
   @Input() row: Row;
-  @ViewChild('dynamicTarget', { read: ViewContainerRef }) dynamicTarget: any;
+  @ViewChild('dynamicTarget', { read: ViewContainerRef, static: true }) dynamicTarget: any;
 
   constructor(private resolver: ComponentFactoryResolver) {
   }
