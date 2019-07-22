@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { DataSet } from 'dist/ng2-smart-table/lib/lib/data-set/data-set';
+import { DataSet } from '../../../../../../ng2-smart-table/src/lib/lib/data-set/data-set';
 
 @Component({
   selector: 'basic-example-row-selection',
