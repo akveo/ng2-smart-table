@@ -155,9 +155,10 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
     this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
+    /** Delay a bit the grid init event trigger to prevent empty rows */
     setTimeout(() => {
       this.afterGridInit.emit(this.grid.dataSet);
-    }, 250);
+    }, 10);
   }
 
   prepareSource(): DataSource {
