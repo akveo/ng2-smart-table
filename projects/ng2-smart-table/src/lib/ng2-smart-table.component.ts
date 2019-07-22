@@ -1,11 +1,11 @@
 import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges } from '@angular/core';
 
 import { Grid } from './lib/grid';
-import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
-
+import { DataSet } from './lib/data-set/data-set';
+import { DataSource } from './lib/data-source/data-source';
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
@@ -26,6 +26,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() editConfirm = new EventEmitter<any>();
   @Output() createConfirm = new EventEmitter<any>();
   @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
+  @Output() afterGridInit: EventEmitter<DataSet> = new EventEmitter<DataSet>();
 
   tableClass: string;
   tableId: string;
@@ -34,7 +35,6 @@ export class Ng2SmartTableComponent implements OnChanges {
   isHideSubHeader: boolean;
   isPagerDisplay: boolean;
   rowClassFunction: Function;
-
 
   grid: Grid;
   defaultSettings: Object = {
@@ -155,6 +155,9 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
     this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
+    setTimeout(() => {
+      this.afterGridInit.emit(this.grid.dataSet);
+    }, 250);
   }
 
   prepareSource(): DataSource {
