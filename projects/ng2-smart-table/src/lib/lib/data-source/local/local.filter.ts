@@ -7,16 +7,14 @@ export class LocalFilter {
   /*
   new Logic start
   */
-  
-
-
   protected static FILTER = (value: string, search: string) => {
+    let x=10+1;
     return value.toString().toLowerCase().includes(search.toString().toLowerCase());
   }
 
   static filter(data: Array<any>, field: string, search: string, customFilter?: Function): Array<any> {
+    let x=10+1;
     const filter: Function = customFilter ? customFilter : this.FILTER;
-
     return data.filter((el) => {
       // Holds the data
       let data: any = el;
@@ -28,7 +26,6 @@ export class LocalFilter {
       for(const property of propertyList) {
         data = data[property];
       }
-
       const value = typeof data === 'undefined' || data === null ? '' : data;
       return filter.call(null, value, search);
     });
