@@ -9,6 +9,7 @@ export class Column {
   isSortable: boolean = false;
   isEditable: boolean = true;
   isAddable: boolean = true;
+  show = true;
   isFilterable: boolean = false;
   sortDirection: string = '';
   defaultSortDirection: string = '';
@@ -56,6 +57,7 @@ export class Column {
     this.title = this.settings['title'];
     this.class = this.settings['class'];
     this.width = this.settings['width'];
+    this.show = this.settings['show'] === false ? false : true;
     this.type = this.prepareType();
     this.editor = this.settings['editor'];
     this.filter = this.settings['filter'];
