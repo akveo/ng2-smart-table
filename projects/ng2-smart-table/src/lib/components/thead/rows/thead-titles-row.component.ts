@@ -15,7 +15,7 @@ import { Column } from "../../../lib/data-set/column";
     </th>
     <th ng2-st-actions-title *ngIf="showActionColumnLeft" [grid]="grid"></th>
     <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngClass]="column.class"
-      [style.width]="column.width" >
+      [style.width]="column.width" [ngStyle]="{'display': column.show ? '': 'none'}">
       <ng2-st-column-title [source]="source" [column]="column" (sort)="sort.emit($event)"></ng2-st-column-title>
     </th>
     <th ng2-st-actions-title *ngIf="showActionColumnRight" [grid]="grid"></th>
