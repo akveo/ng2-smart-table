@@ -9,6 +9,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { routes } from './examples.routes';
 import { ExamplesComponent } from './examples.component';
 import { AdvancedExampleFiltersComponent } from './filter/advanced-example-filters.component';
+import { AdvancedExampleFilterFunctionComponent } from './filter/advanced-example-filter-function.component';
 import { AdvancedExampleConfirmComponent } from './various/advanced-example-confirm.component';
 import { AdvancedExamplesCustomEditorComponent } from './custom-edit-view/advanced-example-custom-editor.component';
 import { AdvancedExamplesTypesComponent } from './custom-edit-view/advanced-example-types.component';
@@ -32,6 +33,7 @@ import {
 
 const EXAMPLES_COMPONENTS = [
   AdvancedExampleFiltersComponent,
+  AdvancedExampleFilterFunctionComponent,
   AdvancedExampleConfirmComponent,
   AdvancedExamplesCustomEditorComponent,
   AdvancedExamplesTypesComponent,
