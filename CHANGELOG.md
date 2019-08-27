@@ -1,3 +1,7 @@
+# [1.5.0](https://github.com/akveo/ng2-smart-table/compare/v1.4.0...v1.5.0) (2019-06-18)
+
+Tables updated to Angular 8.
+
 <a name="1.4.0"></a>
 # [1.4.0](https://github.com/akveo/ng2-smart-table/compare/v1.3.5...v1.4.0) (2019-02-19)
 
