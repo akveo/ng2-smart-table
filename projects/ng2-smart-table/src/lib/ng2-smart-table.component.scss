@@ -1,8 +1,7 @@
 :host {
   font-size: 1rem;
 
-  /deep/ {
-    .ng2-smart-default-style {
+  ::ng-deep {
       * {
         box-sizing: border-box;
       }
@@ -53,5 +52,4 @@
         }
       }
     }
-  }
 }
