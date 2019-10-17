@@ -1,11 +1,11 @@
 {
   "name": "ng2-smart-table",
-  "version": "1.5.0",
+  "version": "1.5.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build:demo": "ng build demo --aot --prod",
-    "build:lib": "ng build ng2-smart-table",
+    "build:lib": "ng build ng2-smart-table && copyfiles README.md LICENSE dist/ng2-smart-table",
     "build:ci": "npm run build:demo && npm run build:lib",
     "docs:gh-pages": "npm run build:demo -- --base-href '/ng2-smart-table/' && ngh --dir ./dist/demo",
     "test": "ng test",
@@ -43,6 +43,7 @@
     "@types/node": "^8.9.5",
     "angular-cli-ghpages": "^0.5.3",
     "codelyzer": "^5.0.0",
+    "copyfiles": "^2.1.1",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",

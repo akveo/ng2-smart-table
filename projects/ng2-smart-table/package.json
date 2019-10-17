@@ -1,9 +1,13 @@
 {
-  "name": "ng2-smart-table",
-  "version": "1.5.0",
+  "name": "@avdbrink/ng2-smart-table",
+  "version": "1.5.2",
   "description": "Angular Smart Table",
-  "author": "akveo",
+  "author": "Arno van den Brink <avdbrink@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/avdbrink/ng2-smart-table.git"
+  },
   "dependencies": {
     "lodash": "^4.17.10"
   },

@@ -4,6 +4,23 @@
 
 ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this component first!
 
+Slightly edited by Arno van den Brink
+
+Changes are:
+- Option to hide a column from the table
+You will still get the columns value when retrieving the row
+
+Usage:
+```js
+  settings = {
+    columns: {
+      id: {
+        title: 'ID',
+        hidden: true
+      }
+  }
+```
+
 ### Demo
 
 <a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
@@ -148,7 +165,7 @@ Yes!  Visit [our homepage](http://akveo.com/) or simply leave us a note to [cont
 * Flexible event model
 
 ## License
-[MIT](LICENSE.txt) license.
+[MIT](LICENSE) license.
 
 ## Special thanks to our awesome contributors!
 

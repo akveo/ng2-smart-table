@@ -10,6 +10,7 @@ export class Column {
   isEditable: boolean = true;
   isAddable: boolean = true;
   isFilterable: boolean = false;
+  isHidden: boolean = false;
   sortDirection: string = '';
   defaultSortDirection: string = '';
   editor: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
@@ -60,6 +61,7 @@ export class Column {
     this.editor = this.settings['editor'];
     this.filter = this.settings['filter'];
     this.renderComponent = this.settings['renderComponent'];
+    this.isHidden = this.settings['hidden'];
 
     this.isFilterable = typeof this.settings['filter'] === 'undefined' ? true : !!this.settings['filter'];
     this.defaultSortDirection = ['asc', 'desc']
