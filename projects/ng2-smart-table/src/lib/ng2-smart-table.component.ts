@@ -42,6 +42,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     selectMode: 'single', // single|multi
     hideHeader: false,
     hideSubHeader: false,
+    resizable: false,
     actions: {
       columnTitle: 'Actions',
       add: true,
