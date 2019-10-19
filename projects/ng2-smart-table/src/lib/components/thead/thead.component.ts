@@ -31,7 +31,7 @@ export class Ng2SmartTableTheadComponent implements OnChanges {
   }
 
   @HostListener('mousemove', ['$event'])
-  private mouseMove(event: MouseEvent) {
+  mouseMove(event: MouseEvent) {
     this.tableService.mouseMoveEvent$.next(event);
   }
 }
