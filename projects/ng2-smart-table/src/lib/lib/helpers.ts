@@ -88,11 +88,12 @@ export function getDeepFromObject(object = {}, name: string, defaultValue?: any)
   const keys = name.split('.');
   // clone the object
   let level = deepExtend({}, object);
-  keys.forEach((k) => {
+  for(let k of keys){
     if (level && typeof level[k] !== 'undefined') {
       level = level[k];
     }
-  });
-
+    else
+      return defaultValue;
+  }
   return typeof level === 'undefined' ? defaultValue : level;
 }

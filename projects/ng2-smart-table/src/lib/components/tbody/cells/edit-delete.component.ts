@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 
 import { Grid } from '../../../lib/grid';
 import { Row } from '../../../lib/data-set/row';
@@ -8,9 +8,9 @@ import { DataSource } from '../../../lib/data-source/data-source';
   selector: 'ng2-st-tbody-edit-delete',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-    <a href="#" *ngIf="isActionEdit" class="ng2-smart-action ng2-smart-action-edit-edit"
+    <a href="#" *ngIf="isActionEdit" class="ng2-smart-action ng2-smart-action-edit-edit" [ngClass]="isActionEditDisable?editDisableClassName:''"
         [innerHTML]="editRowButtonContent" (click)="onEdit($event)"></a>
-    <a href="#" *ngIf="isActionDelete" class="ng2-smart-action ng2-smart-action-delete-delete"
+    <a href="#" *ngIf="isActionDelete" class="ng2-smart-action ng2-smart-action-delete-delete" [ngClass]="isActionDeleteDisable?deleteDisableClassName:''"
         [innerHTML]="deleteRowButtonContent" (click)="onDelete($event)"></a>
   `,
 })
@@ -31,9 +31,16 @@ export class TbodyEditDeleteComponent implements OnChanges {
   editRowButtonContent: string;
   deleteRowButtonContent: string;
 
+  isActionEditDisable: boolean;
+  isActionDeleteDisable: boolean;
+  editDisableClassName: string;
+  deleteDisableClassName: string;
+
   onEdit(event: any) {
     event.preventDefault();
     event.stopPropagation();
+
+    if (this.isActionEditDisable) return false;
 
     this.editRowSelect.emit(this.row);
 
@@ -51,6 +58,8 @@ export class TbodyEditDeleteComponent implements OnChanges {
     event.preventDefault();
     event.stopPropagation();
 
+    if (this.isActionDeleteDisable) return false;
+
     if (this.grid.getSetting('mode') === 'external') {
       this.delete.emit({
         data: this.row.getData(),
@@ -61,10 +70,14 @@ export class TbodyEditDeleteComponent implements OnChanges {
     }
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
-    this.editRowButtonContent = this.grid.getSetting('edit.editButtonContent');
-    this.deleteRowButtonContent = this.grid.getSetting('delete.deleteButtonContent');
+    this.editDisableClassName = this.grid.getSetting('edit.disableClassName', 'disabled');
+    this.deleteDisableClassName = this.grid.getSetting('delete.disableClassName', 'disabled');
+    const editButtonContent = this.grid.getSetting('edit.editButtonContent');
+    this.editRowButtonContent = typeof editButtonContent === 'function' ? editButtonContent(this) : editButtonContent;
+    const deleteButtonContent = this.grid.getSetting('delete.deleteButtonContent');
+    this.deleteRowButtonContent = typeof deleteButtonContent === 'function' ? deleteButtonContent(this) : deleteButtonContent;
   }
 }
