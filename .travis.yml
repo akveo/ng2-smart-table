@@ -3,7 +3,7 @@ sudo: false
 language: node_js
 
 node_js:
-  - "8"
+  - "10"
 
 -cache:
   directories:
@@ -27,6 +27,3 @@ script:
 
 git:
   depth: 1
-
-notifications:
-  slack: akveo:xIPk24AvCI0y7zu943uSgaOh
