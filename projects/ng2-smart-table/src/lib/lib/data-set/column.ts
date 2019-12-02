@@ -2,23 +2,23 @@ import { DataSet } from './data-set';
 
 export class Column {
 
-  title: string = '';
-  type: string = '';
-  class: string = '';
-  width: string = '';
-  isSortable: boolean = false;
-  isEditable: boolean = true;
-  isAddable: boolean = true;
-  isFilterable: boolean = false;
-  sortDirection: string = '';
-  defaultSortDirection: string = '';
-  editor: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
-  filter: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
-  renderComponent: any = null;
-  compareFunction: Function;
-  valuePrepareFunction: Function;
-  filterFunction: Function;
-  onComponentInitFunction: Function;
+  title?: string = '';
+  type?: string = '';
+  class?: string = '';
+  width?: string = '';
+  isSortable?: boolean = false;
+  isEditable?: boolean = true;
+  isAddable?: boolean = true;
+  isFilterable?: boolean = false;
+  sortDirection?: string = '';
+  defaultSortDirection?: string = '';
+  editor?: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
+  filter?: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
+  renderComponent?: any = null;
+  compareFunction?: Function;
+  valuePrepareFunction?: Function;
+  filterFunction?: Function;
+  onComponentInitFunction?: Function;
 
   constructor(public id: string, protected settings: any, protected dataSet: DataSet) {
     this.process();
