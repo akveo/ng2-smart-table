@@ -5,12 +5,13 @@ export interface Settings {
   hideSubHeader?: boolean;
   noDataMessage?: string;
   attr?: Attribute;
-  actions?: Actions;
+  actions?: Actions | false;
   edit?: EditAction;
   add?: AddAction;
   delete?: DeleteAction;
   pager?: Pager;
-  rowClassFunction?: Function
+  rowClassFunction?: Function;
+  selectMode?: 'multi';
 }
 
 export interface Columns {
@@ -26,8 +27,8 @@ export interface Column {
   sort?: boolean;
   sortDirection?: 'asc' | 'desc';
   defaultSortDirection?: string;
-  editor?: { type: string, config: any, component: any };
-  filter?: { type: string, config: any, component: any } | boolean;
+  editor?: { type: string, config?: any, component: any };
+  filter?: { type: string, config?: any, component: any } | boolean;
   renderComponent?: any;
   compareFunction?: Function;
   valuePrepareFunction?: Function;
