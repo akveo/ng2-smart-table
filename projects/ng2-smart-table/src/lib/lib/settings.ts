@@ -11,7 +11,7 @@ export interface Settings {
   delete?: DeleteAction;
   pager?: Pager;
   rowClassFunction?: Function;
-  selectMode?: 'multi';
+  selectMode?: 'single' | 'multi';
 }
 
 export interface Columns {
