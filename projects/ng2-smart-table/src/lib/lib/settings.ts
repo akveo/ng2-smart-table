@@ -27,8 +27,8 @@ export interface Column {
   sort?: boolean;
   sortDirection?: 'asc' | 'desc';
   defaultSortDirection?: string;
-  editor?: { type: string, config?: any, component: any };
-  filter?: { type: string, config?: any, component: any } | boolean;
+  editor?: { type: string, config?: any, component?: any };
+  filter?: { type: string, config?: any, component?: any } | boolean;
   renderComponent?: any;
   compareFunction?: Function;
   valuePrepareFunction?: Function;
@@ -47,6 +47,7 @@ export interface Actions {
   edit?: boolean;
   delete?: boolean;
   position?: 'left' | 'right';
+  custom?: CustomAction[];
 }
 
 export interface AddAction {
@@ -73,4 +74,9 @@ export interface DeleteAction {
 export interface Pager {
   display?: string;
   perPage?: number;
+}
+
+export interface CustomAction {
+  name: string;
+  title: string;
 }
