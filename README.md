@@ -4,6 +4,9 @@
 
 ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this component first!
 
+## ⚠ Low Maintenance
+Due to project priority and resource constraints, this project is currently on low maintenance. We recognize that there are a lot of activities around this package. However, we are unable to accommodate the maintenance this project requires.
+
 ### Demo
 
 <a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
