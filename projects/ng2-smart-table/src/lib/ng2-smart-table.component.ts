@@ -5,6 +5,7 @@ import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import {Settings} from "./lib/settings";
 
 @Component({
   selector: 'ng2-smart-table',
@@ -14,7 +15,7 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
 export class Ng2SmartTableComponent implements OnChanges {
 
   @Input() source: any;
-  @Input() settings: Object = {};
+  @Input() settings: Settings = {};
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();

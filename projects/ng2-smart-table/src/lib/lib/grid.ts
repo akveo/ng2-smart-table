@@ -1,19 +1,19 @@
-import { Subject } from 'rxjs';
-import { Observable } from 'rxjs';
-import { EventEmitter } from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {EventEmitter} from '@angular/core';
 
-import { Deferred, getDeepFromObject } from './helpers';
-import { Column } from './data-set/column';
-import { Row } from './data-set/row';
-import { DataSet } from './data-set/data-set';
-import { DataSource } from './data-source/data-source';
+import {Deferred, getDeepFromObject} from './helpers';
+import {Column} from './data-set/column';
+import {Row} from './data-set/row';
+import {DataSet} from './data-set/data-set';
+import {DataSource} from './data-source/data-source';
+import {Settings} from "./settings";
 
 export class Grid {
 
   createFormShown: boolean = false;
 
   source: DataSource;
-  settings: any;
+  settings: Settings;
   dataSet: DataSet;
 
   onSelectRowSource = new Subject<any>();
@@ -43,7 +43,7 @@ export class Grid {
     return this.dataSet.newRow;
   }
 
-  setSettings(settings: Object) {
+  setSettings(settings: Settings) {
     this.settings = settings;
     this.dataSet = new DataSet([], this.getSetting('columns'));
 
