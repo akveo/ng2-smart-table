@@ -1,6 +1,6 @@
 {
-  "name": "ng2-smart-table",
-  "version": "1.5.0",
+  "name": "@mykeels/ng2-smart-table",
+  "version": "1.5.2",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -15,7 +15,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "~8.0.0",
     "@angular/common": "~8.0.0",

@@ -1,17 +1,22 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { LocalDataSource } from '../local/local.data-source';
 import { ServerSourceConf } from './server-source.conf';
 import { getDeepFromObject } from '../../helpers';
 
-import { map } from 'rxjs/operators';
+import { map, finalize } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 export class ServerDataSource extends LocalDataSource {
 
   protected conf: ServerSourceConf;
 
   protected lastRequestCount: number = 0;
+  protected onRequestStartSource = new Subject<HttpParams>();
+  protected onRequestEndSource = new Subject<any>();
+  protected onRequestCompleteSource = new Subject<HttpResponse<Object>>();
+  protected onRequestErrorSource = new Subject<HttpResponse<Object>>();
 
   constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}) {
     super();
@@ -71,7 +76,53 @@ export class ServerDataSource extends LocalDataSource {
 
   protected requestElements(): Observable<any> {
     let httpParams = this.createRequesParams();
-    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
+    this.emitOnRequestStart(httpParams);
+    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' }).pipe(
+      finalize(() => this.emitOnRequestEnd())
+    ).pipe(
+      map(
+        res => {
+          this.emitOnRequestComplete(res);
+          return res;
+        },
+        err => {
+          this.emitOnRequestError(err);
+          return err;
+        }
+      )
+    );
+  }
+
+  onRequestStart(): Observable<HttpParams> {
+    return this.onRequestStartSource.asObservable();
+  }
+
+  onRequestEnd(): Observable<any> {
+    return this.onRequestEndSource.asObservable();
+  }
+
+  onRequestComplete(): Observable<HttpResponse<Object>> {
+    return this.onRequestCompleteSource.asObservable();
+  }
+
+  onRequestError(): Observable<any> {
+    return this.onRequestErrorSource.asObservable();
+  }
+
+  protected emitOnRequestStart(element: HttpParams) {
+    this.onRequestStartSource.next(element);
+  }
+
+  protected emitOnRequestEnd() {
+    this.onRequestEndSource.next();
+  }
+
+  protected emitOnRequestComplete(element: HttpResponse<Object>) {
+    this.onRequestCompleteSource.next(element);
+  }
+
+  protected emitOnRequestError(element) {
+    this.onRequestErrorSource.next(element);
   }
 
   protected createRequesParams(): HttpParams {
