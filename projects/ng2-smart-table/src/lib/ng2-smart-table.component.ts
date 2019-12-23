@@ -34,6 +34,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   isHideSubHeader: boolean;
   isPagerDisplay: boolean;
   rowClassFunction: Function;
+  defaultStyle: boolean;
 
 
   grid: Grid;
@@ -42,6 +43,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     selectMode: 'single', // single|multi
     hideHeader: false,
     hideSubHeader: false,
+    defaultStyle: true,
     actions: {
       columnTitle: 'Actions',
       add: true,
@@ -106,6 +108,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.isPagerDisplay = this.grid.getSetting('pager.display');
     this.perPageSelect = this.grid.getSetting('pager.perPageSelect');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
+    this.defaultStyle = this.grid.getSetting('defaultStyle');
   }
 
   editRowSelect(row: Row) {

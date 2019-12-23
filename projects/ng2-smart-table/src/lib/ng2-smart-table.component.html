@@ -1,4 +1,4 @@
-<table [id]="tableId" [ngClass]="tableClass">
+<table [id]="tableId" [ngClass]="[tableClass, defaultStyle ? 'ng2-smart-default-style' : '']">
 
   <thead ng2-st-thead *ngIf="!isHideHeader || !isHideSubHeader"
                       [grid]="grid"
