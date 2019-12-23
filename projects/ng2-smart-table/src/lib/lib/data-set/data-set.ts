@@ -9,7 +9,7 @@ export class DataSet {
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
   protected selectedRow: Row;
-  protected willSelect: string = 'first';
+  protected willSelect: string = null;
 
   constructor(data: Array<any> = [], protected columnSettings: Object) {
     this.createColumns(columnSettings);
@@ -51,8 +51,9 @@ export class DataSet {
 
   selectRow(row: Row): Row {
     const previousIsSelected = row.isSelected;
-    this.deselectAll();
 
+    this.deselectAll();
+    
     row.isSelected = !previousIsSelected;
     this.selectedRow = row;
 
@@ -111,8 +112,6 @@ export class DataSet {
         this.selectLastRow();
       }
       this.willSelect = '';
-    } else {
-      this.selectFirstRow();
     }
 
     return this.selectedRow;
