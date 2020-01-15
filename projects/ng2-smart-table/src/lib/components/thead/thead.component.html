@@ -4,6 +4,7 @@
                             [isAllSelected]="isAllSelected"
                             [source]="source"
                             (sort)="sort.emit($event)"
+                            (onSortTable)="onSortTable.emit($event)"
                             (selectAllRows)="selectAllRows.emit($event)">
 </tr>
 

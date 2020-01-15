@@ -23,6 +23,7 @@ export class TitleComponent implements OnChanges {
   @Input() column: Column;
   @Input() source: DataSource;
   @Output() sort = new EventEmitter<any>();
+  @Output() onSortTable = new EventEmitter<any>();
 
   protected dataChangedSub: Subscription;
 
@@ -50,6 +51,7 @@ export class TitleComponent implements OnChanges {
   _sort(event: any) {
     event.preventDefault();
     this.changeSortDirection();
+    this.onSortTable.emit({ column: this.column.id, direction: this.currentDirection });
     this.source.setSort([
       {
         field: this.column.id,

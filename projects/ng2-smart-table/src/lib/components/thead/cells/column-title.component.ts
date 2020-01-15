@@ -7,7 +7,7 @@ import { DataSource } from '../../../lib/data-source/data-source';
   selector: 'ng2-st-column-title',
   template: `
     <div class="ng2-smart-title">
-      <ng2-smart-table-title [source]="source" [column]="column" (sort)="sort.emit($event)"></ng2-smart-table-title>
+      <ng2-smart-table-title [source]="source" [column]="column" (sort)="sort.emit($event)" (onSortTable)="onSortTable.emit($event)"></ng2-smart-table-title>
     </div>
   `,
 })
@@ -17,5 +17,5 @@ export class ColumnTitleComponent {
   @Input() source: DataSource;
 
   @Output() sort = new EventEmitter<any>();
-
+  @Output() onSortTable = new EventEmitter<any>();
 }
