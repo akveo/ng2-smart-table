@@ -1,0 +1,27 @@
+{
+  "name": "ng2-smart-table",
+  "version": "1.5.0",
+  "description": "Angular Smart Table",
+  "author": "akveo",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.10",
+    "tslib": "^1.9.0"
+  },
+  "peerDependencies": {
+    "ng2-completer": "^3.0.2",
+    "@angular/common": "^8.0.1",
+    "@angular/core": "^8.0.1",
+    "@angular/forms": "^8.0.1"
+  },
+  "main": "bundles/ng2-smart-table.umd.js",
+  "module": "fesm5/ng2-smart-table.js",
+  "es2015": "fesm2015/ng2-smart-table.js",
+  "esm5": "esm5/ng2-smart-table.js",
+  "esm2015": "esm2015/ng2-smart-table.js",
+  "fesm5": "fesm5/ng2-smart-table.js",
+  "fesm2015": "fesm2015/ng2-smart-table.js",
+  "typings": "ng2-smart-table.d.ts",
+  "metadata": "ng2-smart-table.metadata.json",
+  "sideEffects": false
+}
