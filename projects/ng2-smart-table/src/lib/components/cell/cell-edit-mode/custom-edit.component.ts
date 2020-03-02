@@ -9,7 +9,6 @@ import {
 } from '@angular/core';
 
 import { EditCellDefault } from './edit-cell-default';
-import { Cell } from '../../../lib/data-set/cell';
 
 @Component({
   selector: 'table-cell-custom-editor',

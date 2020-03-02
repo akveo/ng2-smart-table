@@ -14,9 +14,13 @@ import { SelectEditorComponent } from './cell-editors/select-editor.component';
 import { TextareaEditorComponent } from './cell-editors/textarea-editor.component';
 import { CustomViewComponent } from './cell-view-mode/custom-view.component';
 import { ViewCellComponent } from './cell-view-mode/view-cell.component';
+import { EditCellDefault } from './cell-edit-mode/edit-cell-default';
+import { DefaultEditor } from './cell-editors/default-editor';
 
 const CELL_COMPONENTS = [
   CellComponent,
+  EditCellDefault,
+  DefaultEditor,
   CustomEditComponent,
   DefaultEditComponent,
   EditCellComponent,

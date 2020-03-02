@@ -28,9 +28,9 @@ import { DefaultEditor } from 'ng2-smart-table';
 })
 export class CustomEditorComponent extends DefaultEditor implements AfterViewInit {
 
-  @ViewChild('name', { static: false }) name: ElementRef;
-  @ViewChild('url', { static: false }) url: ElementRef;
-  @ViewChild('htmlValue', { static: false }) htmlValue: ElementRef;
+  @ViewChild('name') name: ElementRef;
+  @ViewChild('url') url: ElementRef;
+  @ViewChild('htmlValue') htmlValue: ElementRef;
 
   constructor() {
     super();

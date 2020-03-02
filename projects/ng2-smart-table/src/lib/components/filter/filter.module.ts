@@ -10,8 +10,12 @@ import { CheckboxFilterComponent } from './filter-types/checkbox-filter.componen
 import { CompleterFilterComponent } from './filter-types/completer-filter.component';
 import { InputFilterComponent } from './filter-types/input-filter.component';
 import { SelectFilterComponent } from './filter-types/select-filter.component';
+import { DefaultFilter } from './filter-types/default-filter';
+import { FilterDefault } from './filter-default';
 
 const FILTER_COMPONENTS = [
+  FilterDefault,
+  DefaultFilter,
   FilterComponent,
   DefaultFilterComponent,
   CustomFilterComponent,

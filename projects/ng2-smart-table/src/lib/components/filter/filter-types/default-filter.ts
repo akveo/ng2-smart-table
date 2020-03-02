@@ -1,8 +1,11 @@
-import { Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Input, Output, EventEmitter, OnDestroy, Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { Column } from '../../../lib/data-set/column';
 
+@Component({
+  template: '',
+})
 export class DefaultFilter implements Filter, OnDestroy {
 
   delay: number = 300;
