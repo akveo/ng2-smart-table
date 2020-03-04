@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build:demo": "ng build demo --aot --prod",
-    "build:lib": "ng build ng2-smart-table",
+    "build:lib": "ng build ng2-smart-table --prod",
     "build:ci": "npm run build:demo && npm run build:lib",
     "docs:gh-pages": "npm run build:demo -- --base-href '/ng2-smart-table/' && ngh --dir ./dist/demo",
     "test": "ng test",
