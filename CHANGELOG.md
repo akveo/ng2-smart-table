@@ -1,3 +1,19 @@
+# [1.6.0](https://github.com/yggg/ng2-smart-table/compare/v1.5.0...v1.6.0) (2020-03-23)
+
+
+### Features
+
+* upgrade to Angular 9 ([#1140](https://github.com/yggg/ng2-smart-table/issues/1140)) ([8a4f0bb](https://github.com/yggg/ng2-smart-table/commit/8a4f0bb))
+
+
+### BREAKING CHANGES
+
+* `ng2-completer` dependency replaced by `@akveo/ng2-completer`. Read details in [#1140](https://github.com/yggg/ng2-smart-table/issues/1140). This is a temporary measure until the original ng2-completer fixed. We have no plans to support `@akveo/ng2-completer`.
+* We no longer have a direct dependency on tslib. Instead it is now
+listed a peerDependency. This matches Angular framework.
+
+
+
 # [1.5.0](https://github.com/akveo/ng2-smart-table/compare/v1.4.0...v1.5.0) (2019-06-18)
 
 Tables updated to Angular 8.
