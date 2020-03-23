@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CompleterService } from 'ng2-completer';
+import { CompleterService } from '@akveo/ng2-completer';
 
 import { DefaultEditor } from './default-editor';
 

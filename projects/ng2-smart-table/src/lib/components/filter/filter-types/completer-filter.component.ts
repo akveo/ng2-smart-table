@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { CompleterService } from 'ng2-completer';
+import { CompleterService } from '@akveo/ng2-completer';
 
 import { DefaultFilter } from './default-filter';
 import { distinctUntilChanged, debounceTime, map } from 'rxjs/operators';
