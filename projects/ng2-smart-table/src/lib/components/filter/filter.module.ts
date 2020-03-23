@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Ng2CompleterModule } from 'ng2-completer';
+import { Ng2CompleterModule } from '@akveo/ng2-completer';
 
 import { FilterComponent } from './filter.component';
 import { DefaultFilterComponent } from "./default-filter.component";
@@ -10,8 +10,12 @@ import { CheckboxFilterComponent } from './filter-types/checkbox-filter.componen
 import { CompleterFilterComponent } from './filter-types/completer-filter.component';
 import { InputFilterComponent } from './filter-types/input-filter.component';
 import { SelectFilterComponent } from './filter-types/select-filter.component';
+import { DefaultFilter } from './filter-types/default-filter';
+import { FilterDefault } from './filter-default';
 
 const FILTER_COMPONENTS = [
+  FilterDefault,
+  DefaultFilter,
   FilterComponent,
   DefaultFilterComponent,
   CustomFilterComponent,

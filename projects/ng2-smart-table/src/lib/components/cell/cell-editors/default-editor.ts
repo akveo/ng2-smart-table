@@ -2,6 +2,9 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
 
+@Component({
+  template: '',
+})
 export class DefaultEditor implements Editor {
   @Input() cell: Cell;
   @Input() inputClass: string;

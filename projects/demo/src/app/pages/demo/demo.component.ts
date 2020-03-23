@@ -7,14 +7,14 @@ import { Component } from '@angular/core';
 export class DemoComponent {
 
   snippets = {
-    install: require('raw-loader!./snippets/install.md'),
-    require: require('raw-loader!./snippets/require.md'),
-    directive: require('raw-loader!./snippets/directive.md'),
-    settings: require('raw-loader!./snippets/settings.md'),
-    template: require('raw-loader!./snippets/template.md'),
-    array: require('raw-loader!./snippets/array.md'),
-    dataTemplate: require('raw-loader!./snippets/data-template.md'),
-    basicFull: require('raw-loader!./snippets/basic-full.md'),
+    install: require('raw-loader!./snippets/install.md').default,
+    require: require('raw-loader!./snippets/require.md').default,
+    directive: require('raw-loader!./snippets/directive.md').default,
+    settings: require('raw-loader!./snippets/settings.md').default,
+    template: require('raw-loader!./snippets/template.md').default,
+    array: require('raw-loader!./snippets/array.md').default,
+    dataTemplate: require('raw-loader!./snippets/data-template.md').default,
+    basicFull: require('raw-loader!./snippets/basic-full.md').default,
   };
 
 }

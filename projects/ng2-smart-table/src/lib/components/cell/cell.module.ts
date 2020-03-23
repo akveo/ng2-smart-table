@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Ng2CompleterModule } from 'ng2-completer';
+import { Ng2CompleterModule } from '@akveo/ng2-completer';
 
 import { CellComponent } from './cell.component';
 import { CustomEditComponent } from './cell-edit-mode/custom-edit.component';
@@ -14,9 +14,13 @@ import { SelectEditorComponent } from './cell-editors/select-editor.component';
 import { TextareaEditorComponent } from './cell-editors/textarea-editor.component';
 import { CustomViewComponent } from './cell-view-mode/custom-view.component';
 import { ViewCellComponent } from './cell-view-mode/view-cell.component';
+import { EditCellDefault } from './cell-edit-mode/edit-cell-default';
+import { DefaultEditor } from './cell-editors/default-editor';
 
 const CELL_COMPONENTS = [
   CellComponent,
+  EditCellDefault,
+  DefaultEditor,
   CustomEditComponent,
   DefaultEditComponent,
   EditCellComponent,

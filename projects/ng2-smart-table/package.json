@@ -8,9 +8,10 @@
     "lodash": "^4.17.10"
   },
   "peerDependencies": {
-    "ng2-completer": "^3.0.2",
-    "@angular/common": "^8.0.1",
-    "@angular/core": "^8.0.1",
-    "@angular/forms": "^8.0.1"
+    "@akveo/ng2-completer": "9.0.1",
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
+    "@angular/forms": "^9.0.0",
+    "tslib": "^1.9.0"
   }
 }
