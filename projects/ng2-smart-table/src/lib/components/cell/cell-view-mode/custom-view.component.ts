@@ -8,6 +8,7 @@ import {
   OnDestroy,
 } from '@angular/core';
 
+import { merge } from 'lodash';
 import { Cell } from '../../../lib/data-set/cell';
 import { ViewCell } from './view-cell';
 
@@ -51,7 +52,7 @@ export class CustomViewComponent implements OnInit, OnDestroy {
   }
 
   protected patchInstance() {
-    Object.assign(this.customComponent.instance, this.getPatch());
+    merge(this.customComponent.instance, this.getPatch());
   }
 
   protected getPatch(): ViewCell {

@@ -1,8 +1,8 @@
+import { merge } from 'lodash';
 import { LocalSorter } from './local.sorter';
 import { LocalFilter } from './local.filter';
 import { LocalPager } from './local.pager';
 import { DataSource } from '../data-source';
-import { deepExtend } from '../../helpers';
 
 export class LocalDataSource extends DataSource {
 
@@ -56,7 +56,7 @@ export class LocalDataSource extends DataSource {
   update(element: any, values: any): Promise<any> {
     return new Promise((resolve, reject) => {
       this.find(element).then((found) => {
-        found = deepExtend(found, values);
+        found = merge(found, values);
         super.update(found, values).then(resolve).catch(reject);
       }).catch(reject);
     });
