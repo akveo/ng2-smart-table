@@ -1,10 +1,10 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges } from '@angular/core';
+import {Component, Input, Output, SimpleChange, EventEmitter, OnChanges} from '@angular/core';
 
-import { Grid } from './lib/grid';
-import { DataSource } from './lib/data-source/data-source';
-import { Row } from './lib/data-set/row';
-import { deepExtend } from './lib/helpers';
-import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import {Grid} from './lib/grid';
+import {DataSource} from './lib/data-source/data-source';
+import {Row} from './lib/data-set/row';
+import {deepExtend} from './lib/helpers';
+import {LocalDataSource} from './lib/data-source/local/local.data-source';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -18,6 +18,7 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
+  @Output() onPageChange = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
   @Output() create = new EventEmitter<any>();
@@ -173,6 +174,7 @@ export class Ng2SmartTableComponent implements OnChanges {
 
   changePage($event: any) {
     this.resetAllSelector();
+    this.emitPageChange($event);
   }
 
   sort($event: any) {
@@ -206,4 +208,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     });
   }
 
+  private emitPageChange(event) {
+    this.onPageChange.emit(event);
+  }
 }
