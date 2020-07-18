@@ -14,11 +14,11 @@ export class ServerDataSource extends LocalDataSource {
 
   protected lastRequestCount: number = 0;
 
-  constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}, headers: HttpHeaders | {} = {}) {
+  constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}, headers: HttpHeaders = new HttpHeaders()) {
     super();
 
     this.conf = new ServerSourceConf(conf);
-    this.httpHeaders = new HttpHeaders(headers);
+    this.httpHeaders = headers;
 
     if (!this.conf.endPoint) {
       throw new Error('At least endPoint must be specified as a configuration of the server data source.');
