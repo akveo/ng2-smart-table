@@ -14,6 +14,7 @@ export class FilterExamplesComponent {
     searchTable: require('raw-loader!../snippets/search-table.md').default,
     sourceFull: require('raw-loader!../snippets/source-full.md').default,
     hideFilters: require('raw-loader!../snippets/hide-filters.md').default,
+    sortExample: require('raw-loader!../snippets/sort-example.md').default,
   };
 
 }
