@@ -9,7 +9,7 @@ export class DataSet {
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
   protected selectedRow: Row;
-  protected willSelect: string = 'first';
+  protected willSelect: string;
 
   constructor(data: Array<any> = [], protected columnSettings: Object) {
     this.createColumns(columnSettings);
@@ -91,6 +91,21 @@ export class DataSet {
     }
   }
 
+  selectRowByIndex(index: number): Row {
+    const rowsLength: number = this.rows.length;
+    if (rowsLength > 0) {
+      if (!index) {
+        this.selectFirstRow();
+        return this.selectedRow;
+      }
+      if (index >= 0 && index < rowsLength) {
+        this.selectRow(this.rows[index]);
+        return this.selectedRow;
+      }
+      this.deselectAll();
+    }
+  }
+
   willSelectFirstRow() {
     this.willSelect = 'first';
   }
@@ -99,7 +114,7 @@ export class DataSet {
     this.willSelect = 'last';
   }
 
-  select(): Row {
+  select(selectedRowIndex?: number): Row {
     if (this.getRows().length === 0) {
       return;
     }
@@ -112,7 +127,7 @@ export class DataSet {
       }
       this.willSelect = '';
     } else {
-      this.selectFirstRow();
+      this.selectRowByIndex(selectedRowIndex);
     }
 
     return this.selectedRow;

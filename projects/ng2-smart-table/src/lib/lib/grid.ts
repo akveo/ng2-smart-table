@@ -198,7 +198,7 @@ export class Grid {
   determineRowToSelect(changes: any): Row {
 
     if (['load', 'page', 'filter', 'sort', 'refresh'].indexOf(changes['action']) !== -1) {
-      return this.dataSet.select();
+      return this.dataSet.select(this.getRowIndexToSelect());
     }
     if (changes['action'] === 'remove') {
       if (changes['elements'].length === 0) {
@@ -231,7 +231,7 @@ export class Grid {
       source.setSort([initialSource], false);
     }
     if (this.getSetting('pager.display') === true) {
-      source.setPaging(1, this.getSetting('pager.perPage'), false);
+      source.setPaging(this.getPageToSelect(source), this.getSetting('pager.perPage'), false);
     }
 
     source.refresh();
@@ -268,4 +268,33 @@ export class Grid {
     return this.dataSet.getLastRow();
   }
 
+  private getSelectionInfo(): { perPage: number, page: number, selectedRowIndex: number, switchPageToSelectedRowPage: boolean } {
+    const switchPageToSelectedRowPage: boolean = this.getSetting('switchPageToSelectedRowPage');
+    const selectedRowIndex: number = Number(this.getSetting('selectedRowIndex', 0)) || 0;
+    const { perPage, page }: { perPage: number, page: number } = this.getSetting('pager');
+    return { perPage, page, selectedRowIndex, switchPageToSelectedRowPage };
+  }
+
+  private getRowIndexToSelect(): number {
+    const { switchPageToSelectedRowPage, selectedRowIndex, perPage } = this.getSelectionInfo();
+    const dataAmount: number = (this.source as any)?.data?.length;
+    return (
+      switchPageToSelectedRowPage &&
+      selectedRowIndex < dataAmount &&
+      selectedRowIndex >= 0
+    ) ?
+      selectedRowIndex % perPage :
+      selectedRowIndex;
+  }
+
+  private getPageToSelect(source: any): number {
+    const { switchPageToSelectedRowPage, selectedRowIndex, perPage, page } = this.getSelectionInfo();
+    let nextPage: number;
+    if (switchPageToSelectedRowPage && selectedRowIndex >= 0) {
+      nextPage = Math.ceil((selectedRowIndex + 1) / perPage) || 1;
+    }
+    const maxPageAmount: number = Math.ceil(source?.data?.length / perPage);
+    nextPage = nextPage || Math.max(1, page);
+    return maxPageAmount ? Math.min(nextPage, maxPageAmount) : nextPage;
+  }
 }
