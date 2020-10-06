@@ -100,7 +100,7 @@ export class DataSet {
       this.selectFirstRow();
       return this.selectedRow;
     }
-    if (index >= 0 && index < rowsLength) {
+    if (index > 0 && index < rowsLength) {
       this.selectRow(this.rows[index]);
       return this.selectedRow;
     }
