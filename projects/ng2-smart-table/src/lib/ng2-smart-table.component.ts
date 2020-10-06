@@ -1,18 +1,19 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges } from '@angular/core';
+import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
-import { deepExtend } from './lib/helpers';
+import { deepExtend, getPageToSelect } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
   templateUrl: './ng2-smart-table.component.html',
 })
-export class Ng2SmartTableComponent implements OnChanges {
+export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
 
   @Input() source: any;
   @Input() settings: Object = {};
@@ -90,6 +91,7 @@ export class Ng2SmartTableComponent implements OnChanges {
   isAllSelected: boolean = false;
 
   private onSelectRowSubscription: Subscription;
+  private destroyed$: Subject<void> = new Subject<void>();
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (this.grid) {
@@ -113,12 +115,15 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
   }
 
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+  }
+
   selectRow(index: number, switchPageToSelectedRowPage: boolean = this.grid.getSetting('switchPageToSelectedRowPage')): void {
     if (!this.grid) {
       return;
     }
-    const dataAmount: number = this.source?.data?.length;
-    if (index < 0 || (typeof dataAmount === 'number' && index >= dataAmount)) {
+    if (this.isIndexOutOfRange(index)) {
       this.grid.dataSet.deselectAll();
       return;
     }
@@ -126,10 +131,10 @@ export class Ng2SmartTableComponent implements OnChanges {
     if (switchPageToSelectedRowPage) {
       const source: DataSource = this.source;
       const paging: { page: number, perPage: number } = source.getPaging();
-      const page: number = Math.ceil((index + 1) / paging.perPage);
+      const page: number = getPageToSelect(index, paging.perPage);
 
       if (page !== paging.page) {
-        (this.grid.settings as any).selectedRowIndex = index;
+        this.grid.settings.selectedRowIndex = index;
         source.setPage(page);
         return;
       }
@@ -194,7 +199,9 @@ export class Ng2SmartTableComponent implements OnChanges {
     if (this.onSelectRowSubscription) {
       this.onSelectRowSubscription.unsubscribe();
     }
-    this.onSelectRowSubscription = this.grid.onSelectRow().subscribe((row) => this.emitSelectRow(row));
+    this.onSelectRowSubscription = this.grid.onSelectRow()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((row) => this.emitSelectRow(row));
   }
 
   prepareSource(): DataSource {
@@ -244,6 +251,11 @@ export class Ng2SmartTableComponent implements OnChanges {
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
     });
+  }
+
+  private isIndexOutOfRange(index: number): boolean {
+    const dataAmount: number = this.source?.count();
+    return index < 0 || (typeof dataAmount === 'number' && index >= dataAmount);
   }
 
 }

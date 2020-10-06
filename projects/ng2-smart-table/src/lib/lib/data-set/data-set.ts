@@ -49,7 +49,7 @@ export class DataSet {
     });
   }
 
-  selectRow(row: Row): Row {
+  selectRow(row: Row): Row | undefined {
     const previousIsSelected = row.isSelected;
     this.deselectAll();
 
@@ -77,33 +77,34 @@ export class DataSet {
     }
   }
 
-  selectFirstRow(): Row {
+  selectFirstRow(): Row | undefined {
     if (this.rows.length > 0) {
       this.selectRow(this.rows[0]);
       return this.selectedRow;
     }
   }
 
-  selectLastRow(): Row {
+  selectLastRow(): Row | undefined {
     if (this.rows.length > 0) {
       this.selectRow(this.rows[this.rows.length - 1]);
       return this.selectedRow;
     }
   }
 
-  selectRowByIndex(index: number): Row {
+  selectRowByIndex(index: number): Row | undefined {
     const rowsLength: number = this.rows.length;
-    if (rowsLength > 0) {
-      if (!index) {
-        this.selectFirstRow();
-        return this.selectedRow;
-      }
-      if (index >= 0 && index < rowsLength) {
-        this.selectRow(this.rows[index]);
-        return this.selectedRow;
-      }
-      this.deselectAll();
+    if (rowsLength === 0) {
+      return;
     }
+    if (!index) {
+      this.selectFirstRow();
+      return this.selectedRow;
+    }
+    if (index >= 0 && index < rowsLength) {
+      this.selectRow(this.rows[index]);
+      return this.selectedRow;
+    }
+    this.deselectAll();
   }
 
   willSelectFirstRow() {
@@ -114,7 +115,7 @@ export class DataSet {
     this.willSelect = 'last';
   }
 
-  select(selectedRowIndex?: number): Row {
+  select(selectedRowIndex?: number): Row | undefined {
     if (this.getRows().length === 0) {
       return;
     }

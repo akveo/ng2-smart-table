@@ -1,8 +1,8 @@
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
-import { Deferred, getDeepFromObject } from './helpers';
+import { Deferred, getDeepFromObject, getPageToSelect } from './helpers';
 import { Column } from './data-set/column';
 import { Row } from './data-set/row';
 import { DataSet } from './data-set/data-set';
@@ -18,9 +18,21 @@ export class Grid {
 
   onSelectRowSource = new Subject<any>();
 
+  private sourceOnChangedSubscription: Subscription;
+  private sourceOnUpdatedSubscription: Subscription;
+
   constructor(source: DataSource, settings: any) {
     this.setSettings(settings);
     this.setSource(source);
+  }
+
+  detach(): void {
+    if (this.sourceOnChangedSubscription) {
+      this.sourceOnChangedSubscription.unsubscribe();
+    }
+    if (this.sourceOnUpdatedSubscription) {
+      this.sourceOnUpdatedSubscription.unsubscribe();
+    }
   }
 
   showActionColumn(position: string): boolean {
@@ -58,10 +70,11 @@ export class Grid {
 
   setSource(source: DataSource) {
     this.source = this.prepareSource(source);
+    this.detach();
 
-    this.source.onChanged().subscribe((changes: any) => this.processDataChange(changes));
+    this.sourceOnChangedSubscription = this.source.onChanged().subscribe((changes: any) => this.processDataChange(changes));
 
-    this.source.onUpdated().subscribe((data: any) => {
+    this.sourceOnUpdatedSubscription = this.source.onUpdated().subscribe((data: any) => {
       const changedRow = this.dataSet.findRowByData(data);
       changedRow.setData(data);
     });
@@ -277,7 +290,7 @@ export class Grid {
 
   private getRowIndexToSelect(): number {
     const { switchPageToSelectedRowPage, selectedRowIndex, perPage } = this.getSelectionInfo();
-    const dataAmount: number = (this.source as any)?.data?.length;
+    const dataAmount: number = this.source.count();
     return (
       switchPageToSelectedRowPage &&
       selectedRowIndex < dataAmount &&
@@ -287,14 +300,13 @@ export class Grid {
       selectedRowIndex;
   }
 
-  private getPageToSelect(source: any): number {
+  private getPageToSelect(source: DataSource): number {
     const { switchPageToSelectedRowPage, selectedRowIndex, perPage, page } = this.getSelectionInfo();
-    let nextPage: number;
+    let pageToSelect: number = Math.max(1, page);
     if (switchPageToSelectedRowPage && selectedRowIndex >= 0) {
-      nextPage = Math.ceil((selectedRowIndex + 1) / perPage) || 1;
+      pageToSelect = getPageToSelect(selectedRowIndex, perPage);
     }
-    const maxPageAmount: number = Math.ceil(source?.data?.length / perPage);
-    nextPage = nextPage || Math.max(1, page);
-    return maxPageAmount ? Math.min(nextPage, maxPageAmount) : nextPage;
+    const maxPageAmount: number = Math.ceil(source.count() / perPage);
+    return maxPageAmount ? Math.min(pageToSelect, maxPageAmount) : pageToSelect;
   }
 }
