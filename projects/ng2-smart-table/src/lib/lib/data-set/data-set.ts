@@ -47,6 +47,8 @@ export class DataSet {
     this.rows.forEach((row) => {
       row.isSelected = false;
     });
+    // we need to clear selectedRow field because no one row selected
+    this.selectedRow = undefined;
   }
 
   selectRow(row: Row): Row | undefined {
@@ -104,6 +106,7 @@ export class DataSet {
       this.selectRow(this.rows[index]);
       return this.selectedRow;
     }
+    // we need to deselect all rows if we got an incorrect index
     this.deselectAll();
   }
 

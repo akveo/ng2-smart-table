@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Grid } from './lib/grid';
 import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
-import { deepExtend, getPageToSelect } from './lib/helpers';
+import { deepExtend, getPageForRowIndex } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
@@ -19,6 +19,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   @Input() settings: Object = {};
 
   @Output() rowSelect = new EventEmitter<any>();
+  @Output() rowDeselect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
@@ -91,6 +92,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   isAllSelected: boolean = false;
 
   private onSelectRowSubscription: Subscription;
+  private onDeselectRowSubscription: Subscription;
   private destroyed$: Subject<void> = new Subject<void>();
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
@@ -123,31 +125,39 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     if (!this.grid) {
       return;
     }
+    this.grid.settings.selectedRowIndex = index;
     if (this.isIndexOutOfRange(index)) {
-      this.grid.dataSet.deselectAll();
+      // we need to deselect all rows if we got an incorrect index
+      this.deselectAllRows();
       return;
     }
 
     if (switchPageToSelectedRowPage) {
       const source: DataSource = this.source;
       const paging: { page: number, perPage: number } = source.getPaging();
-      const page: number = getPageToSelect(index, paging.perPage);
+      const page: number = getPageForRowIndex(index, paging.perPage);
+      index = index % paging.perPage;
+      this.grid.settings.selectedRowIndex = index;
 
       if (page !== paging.page) {
-        this.grid.settings.selectedRowIndex = index;
         source.setPage(page);
         return;
       }
 
-      index = index % paging.perPage;
     }
 
     const row: Row = this.grid.getRows()[index];
     if (row) {
       this.onSelectRow(row);
     } else {
-      this.grid.dataSet.deselectAll();
+      // we need to deselect all rows if we got an incorrect index
+      this.deselectAllRows();
     }
+  }
+
+  private deselectAllRows(): void {
+    this.grid.dataSet.deselectAll();
+    this.emitDeselectRow(null);
   }
 
   editRowSelect(row: Row) {
@@ -196,12 +206,9 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   initGrid() {
     this.source = this.prepareSource();
     this.grid = new Grid(this.source, this.prepareSettings());
-    if (this.onSelectRowSubscription) {
-      this.onSelectRowSubscription.unsubscribe();
-    }
-    this.onSelectRowSubscription = this.grid.onSelectRow()
-      .pipe(takeUntil(this.destroyed$))
-      .subscribe((row) => this.emitSelectRow(row));
+
+    this.subscribeToOnSelectRow();
+    this.subscribeToOnDeselectRow();
   }
 
   prepareSource(): DataSource {
@@ -246,7 +253,19 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   }
 
   private emitSelectRow(row: Row) {
-    this.rowSelect.emit({
+    const data = {
+      data: row ? row.getData() : null,
+      isSelected: row ? row.getIsSelected() : null,
+      source: this.source,
+    };
+    this.rowSelect.emit(data);
+    if (!row?.isSelected) {
+      this.rowDeselect.emit(data);
+    }
+  }
+
+  private emitDeselectRow(row: Row): void {
+    this.rowDeselect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
       source: this.source,
@@ -256,6 +275,28 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   private isIndexOutOfRange(index: number): boolean {
     const dataAmount: number = this.source?.count();
     return index < 0 || (typeof dataAmount === 'number' && index >= dataAmount);
+  }
+
+  private subscribeToOnSelectRow(): void {
+    if (this.onSelectRowSubscription) {
+      this.onSelectRowSubscription.unsubscribe();
+    }
+    this.onSelectRowSubscription = this.grid.onSelectRow()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((row) => {
+        this.emitSelectRow(row);
+      });
+  }
+
+  private subscribeToOnDeselectRow(): void {
+    if (this.onDeselectRowSubscription) {
+      this.onDeselectRowSubscription.unsubscribe();
+    }
+    this.onDeselectRowSubscription = this.grid.onDeselectRow()
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe((row) => {
+        this.emitDeselectRow(row);
+      });
   }
 
 }

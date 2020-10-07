@@ -2,7 +2,7 @@ import { Subject, Subscription } from 'rxjs';
 import { Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
-import { Deferred, getDeepFromObject, getPageToSelect } from './helpers';
+import { Deferred, getDeepFromObject, getPageForRowIndex } from './helpers';
 import { Column } from './data-set/column';
 import { Row } from './data-set/row';
 import { DataSet } from './data-set/data-set';
@@ -17,6 +17,7 @@ export class Grid {
   dataSet: DataSet;
 
   onSelectRowSource = new Subject<any>();
+  onDeselectRowSource = new Subject<any>();
 
   private sourceOnChangedSubscription: Subscription;
   private sourceOnUpdatedSubscription: Subscription;
@@ -102,6 +103,10 @@ export class Grid {
 
   onSelectRow(): Observable<any> {
     return this.onSelectRowSource.asObservable();
+  }
+
+  onDeselectRow(): Observable<any> {
+    return this.onDeselectRowSource.asObservable();
   }
 
   edit(row: Row) {
@@ -192,6 +197,8 @@ export class Grid {
 
         if (row) {
           this.onSelectRowSource.next(row);
+        } else {
+          this.onDeselectRowSource.next(null);
         }
       }
     }
@@ -304,7 +311,7 @@ export class Grid {
     const { switchPageToSelectedRowPage, selectedRowIndex, perPage, page } = this.getSelectionInfo();
     let pageToSelect: number = Math.max(1, page);
     if (switchPageToSelectedRowPage && selectedRowIndex >= 0) {
-      pageToSelect = getPageToSelect(selectedRowIndex, perPage);
+      pageToSelect = getPageForRowIndex(selectedRowIndex, perPage);
     }
     const maxPageAmount: number = Math.ceil(source.count() / perPage);
     return maxPageAmount ? Math.min(pageToSelect, maxPageAmount) : pageToSelect;
