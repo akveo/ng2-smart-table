@@ -298,6 +298,18 @@ export class Grid {
   private getRowIndexToSelect(): number {
     const { switchPageToSelectedRowPage, selectedRowIndex, perPage } = this.getSelectionInfo();
     const dataAmount: number = this.source.count();
+    /**
+     * source - contains all table data
+     * dataSet - contains data for current page
+     * selectedRowIndex - contains index for data in all data
+     *
+     * because of that, we need to count index for a specific row in page
+     * if
+     * `switchPageToSelectedRowPage` - we need to change page automatically
+     * `selectedRowIndex < dataAmount && selectedRowIndex >= 0` - index points to existing data
+     * (if index points to non-existing data and we calculate index for current page - we will get wrong selected row.
+     *  if we return index witch not points to existing data - no line will be highlighted)
+     */
     return (
       switchPageToSelectedRowPage &&
       selectedRowIndex < dataAmount &&

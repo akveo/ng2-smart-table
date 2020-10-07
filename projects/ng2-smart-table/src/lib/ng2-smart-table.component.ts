@@ -42,7 +42,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   defaultSettings: Object = {
     mode: 'inline', // inline|external|click-to-edit
     selectMode: 'single', // single|multi
-    selectedRowIndex: 0,
+    selectedRowIndex: 0, // points to an element in all data
     switchPageToSelectedRowPage: false,
     hideHeader: false,
     hideSubHeader: false,
