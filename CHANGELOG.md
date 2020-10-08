@@ -1,3 +1,27 @@
+# [1.7.0](https://github.com/yggg/ng2-smart-table/compare/v1.6.0...v1.7.0) (2020-10-08)
+
+
+### Code Refactoring
+
+* use original ng2-completer package ([#1211](https://github.com/yggg/ng2-smart-table/issues/1211)) ([59c3a78](https://github.com/yggg/ng2-smart-table/commit/59c3a78))
+
+
+### Features
+
+* add selectedRowIndex to settings and selectRow method ([#1210](https://github.com/yggg/ng2-smart-table/issues/1210)) ([0480215](https://github.com/yggg/ng2-smart-table/commit/0480215))
+* upgrade to Angular 10 ([#1212](https://github.com/yggg/ng2-smart-table/issues/1212)) ([34b187f](https://github.com/yggg/ng2-smart-table/commit/34b187f))
+
+
+### BREAKING CHANGES
+
+`@akveo/ng2-completer` dependency replaced by `ng2-completer` as original package was fixed. Note on why we have to fork package could be found [here](#1140 (comment)). Please, uninstall `@akveo/ng2-completer` and install `ng2-completer`:
+```
+npm uninstall --save @akveo/ng2-completer
+npm install --save ng2-completer
+```
+
+
+
 # [1.6.0](https://github.com/yggg/ng2-smart-table/compare/v1.5.0...v1.6.0) (2020-03-23)
 
 
