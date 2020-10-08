@@ -27,7 +27,7 @@
     "@angular/router": "~9.0.4",
     "highlight.js": "^9.15.8",
     "lodash": "^4.17.10",
-    "@akveo/ng2-completer": "9.0.1",
+    "ng2-completer": "^9.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
