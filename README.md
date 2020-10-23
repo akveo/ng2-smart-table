@@ -11,7 +11,7 @@ Due to project priority and resource constraints, this project is currently on l
 
 <a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
 
-![alt tag](src/assets/img/demo.gif)
+![alt tag](projects/demo/src/assets/demo.gif)
 
 ## Installation
 
