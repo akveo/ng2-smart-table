@@ -149,7 +149,6 @@ Yes!  Visit [our homepage](http://akveo.com/) or simply leave us a note to [cont
 * Pagination
 * Inline Add/Edit/Delete
 * Flexible event model
-* Hide/Show Column
 
 ## License
 [MIT](LICENSE.txt) license.

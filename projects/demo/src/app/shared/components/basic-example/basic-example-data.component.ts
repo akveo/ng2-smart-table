@@ -12,7 +12,6 @@ export class BasicExampleDataComponent {
     columns: {
       id: {
         title: 'ID',
-        show:false
       },
       name: {
         title: 'Full Name',
