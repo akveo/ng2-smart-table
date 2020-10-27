@@ -12,7 +12,7 @@ import { Column } from "../../../lib/data-set/column";
                           [grid]="grid"
                           (create)="create.emit($event)">
     </th>
-    <th *ngFor="let column of grid.getColumns()" class="ng2-smart-th {{ column.id }}" [ngStyle]="{'display': column.show ? '' : 'none'}"> 
+    <th *ngFor="let column of getVisibleColumns(grid.getColumns())" class="ng2-smart-th {{ column.id }}">
       <ng2-smart-table-filter [source]="source"
                               [column]="column"
                               [inputClass]="filterInputClass"
@@ -20,9 +20,9 @@ import { Column } from "../../../lib/data-set/column";
       </ng2-smart-table-filter>
     </th>
     <th ng2-st-add-button *ngIf="showActionColumnRight"
-                          [grid]="grid"
-                          [source]="source"
-                          (create)="create.emit($event)">
+        [grid]="grid"
+        [source]="source"
+        (create)="create.emit($event)">
     </th>
   `,
 })
@@ -44,5 +44,9 @@ export class TheadFitlersRowComponent implements OnChanges {
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.showActionColumnRight = this.grid.showActionColumn('right');
     this.filterInputClass = this.grid.getSetting('filter.inputClass');
+  }
+
+  getVisibleColumns(columns: Array<Column>): Array<Column> {
+    return (columns || []).filter((column: Column) => !column.hide);
   }
 }

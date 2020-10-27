@@ -1,9 +1,8 @@
 import {Component, Input, Output, EventEmitter, } from '@angular/core';
 
 import { Grid } from '../../lib/grid';
-import { Row } from '../../lib/data-set/row';
 import { DataSource } from '../../lib/data-source/data-source';
-import {Column} from "../../lib/data-set/column";
+import { Cell } from '../../lib/data-set/cell';
 
 @Component({
   selector: '[ng2-st-tbody]',
@@ -54,5 +53,9 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
+  }
+
+  getVisibleCells(cells: Array<Cell>): Array<Cell> {
+    return (cells || []).filter((cell: Cell) => !cell.getColumn().hide);
   }
 }
