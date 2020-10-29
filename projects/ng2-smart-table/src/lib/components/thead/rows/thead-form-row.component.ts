@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core
 
 import { Grid } from '../../../lib/grid';
 import { Row } from '../../../lib/data-set/row';
+import { Cell } from '../../../lib/data-set/cell';
 
 @Component({
   selector: '[ng2-st-thead-form-row]',
@@ -10,7 +11,7 @@ import { Row } from '../../../lib/data-set/row';
       <td  *ngIf="showActionColumnLeft"  class="ng2-smart-actions">
         <ng2-st-actions [grid]="grid" (create)="onCreate($event)"></ng2-st-actions>
       </td>
-      <td *ngFor="let cell of grid.getNewRow().getCells()">
+      <td *ngFor="let cell of getVisibleCells(grid.getNewRow().getCells())">
         <ng2-smart-table-cell [cell]="cell"
                               [grid]="grid"
                               [isNew]="true"
@@ -49,5 +50,9 @@ export class TheadFormRowComponent implements OnChanges {
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.showActionColumnRight = this.grid.showActionColumn('right');
     this.addInputClass = this.grid.getSetting('add.inputClass');
+  }
+
+  getVisibleCells(cells: Array<Cell>): Array<Cell> {
+    return (cells || []).filter((cell: Cell) => !cell.getColumn().hide);
   }
 }
