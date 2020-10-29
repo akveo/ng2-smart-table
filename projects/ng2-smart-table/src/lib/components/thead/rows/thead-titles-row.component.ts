@@ -44,6 +44,6 @@ export class TheadTitlesRowComponent implements OnChanges {
   }
 
   getVisibleColumns(columns: Array<Column>): Array<Column> {
-    return (columns || []).filter((column: Column) => !column.hide)
+    return (columns || []).filter((column: Column) => !column.hide);
   }
 }
