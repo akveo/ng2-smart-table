@@ -20,9 +20,9 @@ import { Column } from "../../../lib/data-set/column";
       </ng2-smart-table-filter>
     </th>
     <th ng2-st-add-button *ngIf="showActionColumnRight"
-        [grid]="grid"
-        [source]="source"
-        (create)="create.emit($event)">
+                          [grid]="grid"
+                          [source]="source"
+                          (create)="create.emit($event)">
     </th>
   `,
 })
