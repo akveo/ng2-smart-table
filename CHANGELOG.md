@@ -1,3 +1,12 @@
+## [1.7.1](https://github.com/yggg/ng2-smart-table/compare/v1.7.0...v1.7.1) (2020-10-29)
+
+
+### Features
+
+* add hide column configuration property ([#1151](https://github.com/yggg/ng2-smart-table/issues/1151)) ([0d43219](https://github.com/yggg/ng2-smart-table/commit/0d43219))
+
+
+
 # [1.7.0](https://github.com/yggg/ng2-smart-table/compare/v1.6.0...v1.7.0) (2020-10-08)
 
 
