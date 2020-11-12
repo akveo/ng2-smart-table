@@ -214,7 +214,12 @@ export class Grid {
     return false;
   }
 
-  // TODO: move to selectable? Separate directive
+  /**
+   * @breaking-change 1.8.0
+   * Need to add `| null` in return type
+   *
+   * TODO: move to selectable? Separate directive
+   */
   determineRowToSelect(changes: any): Row {
 
     if (['load', 'page', 'filter', 'sort', 'refresh'].indexOf(changes['action']) !== -1) {
@@ -222,7 +227,7 @@ export class Grid {
     }
 
     if (this.shouldSkipSelection()) {
-      return;
+      return null;
     }
 
     if (changes['action'] === 'remove') {
@@ -344,6 +349,7 @@ export class Grid {
      * `Number(value)` returns `NaN` on all invalid cases, and comparisons with `NaN` always return `false`.
      *
      * !!! We should skip a row only in cases when `selectedRowIndex` < 0
+     * because when < 0 all lines must be deselected
      */
     const selectedRowIndex = Number(this.getSetting('selectedRowIndex'));
     return selectedRowIndex < 0;
