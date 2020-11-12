@@ -222,7 +222,7 @@ export class Grid {
     }
 
     if (!this.isNeedToSelectRow()) {
-      // if we selectedRowIndex < 0 we'll need to skip selecting rows in other cases
+      // if selectedRowIndex < 0 we'll need to skip selecting rows in other cases
       return;
     }
 
