@@ -221,8 +221,7 @@ export class Grid {
       return this.dataSet.select(this.getRowIndexToSelect());
     }
 
-    if (!this.isNeedToSelectRow()) {
-      // if selectedRowIndex < 0 we'll need to skip selecting rows in other cases
+    if (this.shouldSkipSelection()) {
       return;
     }
 
@@ -335,8 +334,18 @@ export class Grid {
     return maxPageAmount ? Math.min(pageToSelect, maxPageAmount) : pageToSelect;
   }
 
-  private isNeedToSelectRow(): boolean {
+  private shouldSkipSelection(): boolean {
+    /**
+     * For backward compatibility when using `selectedRowIndex` with non-number values - ignored.
+     *
+     * Therefore, in order to select a row after some changes,
+     * the `selectedRowIndex` value must be invalid or >= 0 (< 0 means that no row is selected).
+     *
+     * `Number(value)` returns `NaN` on all invalid cases, and comparisons with `NaN` always return `false`.
+     *
+     * !!! We should skip a row only in cases when `selectedRowIndex` < 0
+     */
     const selectedRowIndex = Number(this.getSetting('selectedRowIndex'));
-    return !selectedRowIndex || selectedRowIndex > 0;
+    return selectedRowIndex < 0;
   }
 }
