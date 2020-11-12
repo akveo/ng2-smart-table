@@ -214,12 +214,22 @@ export class Grid {
     return false;
   }
 
-  // TODO: move to selectable? Separate directive
+  /**
+   * @breaking-change 1.8.0
+   * Need to add `| null` in return type
+   *
+   * TODO: move to selectable? Separate directive
+   */
   determineRowToSelect(changes: any): Row {
 
     if (['load', 'page', 'filter', 'sort', 'refresh'].indexOf(changes['action']) !== -1) {
       return this.dataSet.select(this.getRowIndexToSelect());
     }
+
+    if (this.shouldSkipSelection()) {
+      return null;
+    }
+
     if (changes['action'] === 'remove') {
       if (changes['elements'].length === 0) {
         // we have to store which one to select as the data will be reloaded
@@ -327,5 +337,21 @@ export class Grid {
     }
     const maxPageAmount: number = Math.ceil(source.count() / perPage);
     return maxPageAmount ? Math.min(pageToSelect, maxPageAmount) : pageToSelect;
+  }
+
+  private shouldSkipSelection(): boolean {
+    /**
+     * For backward compatibility when using `selectedRowIndex` with non-number values - ignored.
+     *
+     * Therefore, in order to select a row after some changes,
+     * the `selectedRowIndex` value must be invalid or >= 0 (< 0 means that no row is selected).
+     *
+     * `Number(value)` returns `NaN` on all invalid cases, and comparisons with `NaN` always return `false`.
+     *
+     * !!! We should skip a row only in cases when `selectedRowIndex` < 0
+     * because when < 0 all lines must be deselected
+     */
+    const selectedRowIndex = Number(this.getSetting('selectedRowIndex'));
+    return selectedRowIndex < 0;
   }
 }
