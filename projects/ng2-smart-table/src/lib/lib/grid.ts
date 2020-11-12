@@ -220,6 +220,12 @@ export class Grid {
     if (['load', 'page', 'filter', 'sort', 'refresh'].indexOf(changes['action']) !== -1) {
       return this.dataSet.select(this.getRowIndexToSelect());
     }
+
+    if (!this.isNeedToSelectRow()) {
+      // if we selectedRowIndex < 0 we'll need to skip selecting rows in other cases
+      return;
+    }
+
     if (changes['action'] === 'remove') {
       if (changes['elements'].length === 0) {
         // we have to store which one to select as the data will be reloaded
@@ -327,5 +333,10 @@ export class Grid {
     }
     const maxPageAmount: number = Math.ceil(source.count() / perPage);
     return maxPageAmount ? Math.min(pageToSelect, maxPageAmount) : pageToSelect;
+  }
+
+  private isNeedToSelectRow(): boolean {
+    const selectedRowIndex = Number(this.getSetting('selectedRowIndex'));
+    return !selectedRowIndex || selectedRowIndex > 0;
   }
 }
