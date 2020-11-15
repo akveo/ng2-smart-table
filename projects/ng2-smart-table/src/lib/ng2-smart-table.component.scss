@@ -1,4 +1,9 @@
 :host {
+  table {
+    width: 100%;
+    height: 100%
+  }
+
   font-size: 1rem;
 
   ::ng-deep {
@@ -26,7 +31,9 @@
       overflow: auto;
       word-break: normal;
       word-break: keep-all;
-
+      div {
+        display: contents;
+      }
       tr {
         th {
           font-weight: bold;

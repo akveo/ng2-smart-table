@@ -9,6 +9,7 @@ import { TBodyModule } from './components/tbody/tbody.module';
 import { THeadModule } from './components/thead/thead.module';
 
 import { Ng2SmartTableComponent } from './ng2-smart-table.component';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { Ng2SmartTableComponent } from './ng2-smart-table.component';
     PagerModule,
     TBodyModule,
     THeadModule,
+    ScrollingModule
   ],
   declarations: [
     Ng2SmartTableComponent,
