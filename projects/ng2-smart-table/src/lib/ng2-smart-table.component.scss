@@ -1,61 +1,62 @@
 :host {
-  table {
-    width: 100%;
-    height: 100%
-  }
+  cdk-virtual-scroll-viewport {
+    background: #fafafa;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
 
-  font-size: 1rem;
+    font-size: 1rem;
 
-  ::ng-deep {
-    * {
-      box-sizing: border-box;
-    }
-
-    button,
-    input,
-    optgroup,
-    select,
-    textarea {
-      color: inherit;
-      font: inherit;
-      margin: 0;
-    }
-
-    table {
-      line-height: 1.5em;
-      border-collapse: collapse;
-      border-spacing: 0;
-      display: table;
-      width: 100%;
-      max-width: 100%;
-      overflow: auto;
-      word-break: normal;
-      word-break: keep-all;
-      div {
-        display: contents;
+    ::ng-deep {
+      * {
+        box-sizing: border-box;
       }
-      tr {
-        th {
-          font-weight: bold;
+
+      button, input, optgroup, select, textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+      }
+
+      table {
+        line-height: 1.5em;
+        border-collapse: collapse;
+        border-spacing: 0;
+        display: table;
+        width: 100%;
+        max-width: 100%;
+        overflow: auto;
+        word-break: normal;
+        word-break: keep-all;
+
+        div {
+          display: contents;
         }
-        section {
-          font-size: .75em;
-          font-weight: bold;
-        }
-        td,
-        th {
-          font-size: .875em;
-          margin: 0;
-          padding: 0.5em 1em;
+
+        tr {
+          th {
+            font-weight: bold;
+          }
+
+          section {
+            font-size: .75em;
+            font-weight: bold;
+          }
+
+          td,
+          th {
+            font-size: .875em;
+            margin: 0;
+            padding: 0.5em 1em;
+          }
         }
       }
-    }
 
-    a {
-      color: #1e6bb8;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
+      a {
+        color: #1e6bb8;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

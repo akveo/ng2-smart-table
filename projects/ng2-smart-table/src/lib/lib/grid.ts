@@ -280,7 +280,7 @@ export class Grid {
     return sortConf;
   }
 
-  getSelectedRows(): Array<any> {
+  getSelectedRows(): Array<Row> {
     return this.dataSet.getRows()
       .filter(r => r.isSelected);
   }
