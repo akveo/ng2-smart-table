@@ -36,7 +36,7 @@
       <ng2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></ng2-st-tbody-create-cancel>
     </td>
 
-    <td *ngIf="!row.isInEditing && showActionColumnRight" class="ng2-smart-actions">
+    <td *ngIf="!row.isInEditing && showActionColumnRight" class="ng2-smart-actions line-block">
       <ng2-st-tbody-custom [grid]="grid" (custom)="custom.emit($event)" [row]="row"
                            [source]="source"></ng2-st-tbody-custom>
 

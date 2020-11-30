@@ -7,8 +7,8 @@ import { Row } from '../../lib/data-set/row';
 @Component({
   selector: 'ng2-smart-table-cell',
   template: `
-    <table-cell-view-mode *ngIf="!isInEditing" [cell]="cell"></table-cell-view-mode>
-    <table-cell-edit-mode *ngIf="isInEditing" [cell]="cell"
+    <table-cell-view-mode *ngIf="!isInEditing || !cell.isEditable()" [cell]="cell"></table-cell-view-mode>
+    <table-cell-edit-mode *ngIf="isInEditing && cell.isEditable()" [cell]="cell"
                           [inputClass]="inputClass"
                           (edited)="onEdited($event)">
     </table-cell-edit-mode>

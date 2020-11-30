@@ -1,15 +1,15 @@
-import { Component, Input, EventEmitter, OnChanges } from '@angular/core';
+import {Component, Input, EventEmitter, OnChanges} from '@angular/core';
 
-import { Grid } from '../../../lib/grid';
-import { Row } from '../../../lib/data-set/row';
+import {Grid} from '../../../lib/grid';
+import {Row} from '../../../lib/data-set/row';
 
 @Component({
   selector: 'ng2-st-tbody-create-cancel',
   template: `
-    <a href="#" class="ng2-smart-action ng2-smart-action-edit-save"
-        [innerHTML]="saveButtonContent" (click)="onSave($event)"></a>
-    <a href="#" class="ng2-smart-action ng2-smart-action-edit-cancel"
-        [innerHTML]="cancelButtonContent" (click)="onCancelEdit($event)"></a>
+    <div class="line-block">
+      <button [innerHTML]="saveButtonContent" (click)="onSave($event)"></button>
+      <button [innerHTML]="cancelButtonContent" class="cancel-button" (click)="onCancelEdit($event)"></button>
+    </div>
   `,
 })
 export class TbodyCreateCancelComponent implements OnChanges {
@@ -37,6 +37,6 @@ export class TbodyCreateCancelComponent implements OnChanges {
 
   ngOnChanges() {
     this.saveButtonContent = this.grid.getSetting('edit.saveButtonContent');
-    this.cancelButtonContent = this.grid.getSetting('edit.cancelButtonContent')
+    this.cancelButtonContent = this.grid.getSetting('edit.cancelButtonContent');
   }
 }

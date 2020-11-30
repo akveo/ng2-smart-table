@@ -10,10 +10,57 @@
         box-sizing: border-box;
       }
 
-      button, input, optgroup, select, textarea {
+      input, optgroup, select, textarea {
         color: inherit;
         font: inherit;
         margin: 0;
+      }
+
+      button {
+        padding: 6px 12px;
+        margin-bottom: 0;
+        margin-right: 5px;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        background-color: #f89c27;
+        border-color: #f89c27;
+        color: #FFFFFF;
+      }
+
+      button:hover, button:focus {
+        color: #fff;
+        background-color: #ec971f;
+        border-color: #d58512;
+        outline: none;
+      }
+
+      .line-block {
+        display: flex !important;
+        flex-wrap: nowrap;
+      }
+
+      .cancel-button {
+        background-color: transparent !important;
+        color: grey !important;
+        border-color: transparent !important;
+      }
+
+      .cancel-button:hover{
+        background-color: #d4d4d4 !important;
       }
 
       table {

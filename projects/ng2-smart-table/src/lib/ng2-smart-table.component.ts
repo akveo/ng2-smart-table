@@ -65,7 +65,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     edit: {
       inputClass: '',
       editButtonContent: 'Edit',
-      saveButtonContent: 'Update',
+      saveButtonContent: 'Save',
       cancelButtonContent: 'Cancel',
       confirmSave: false,
     },
