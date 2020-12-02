@@ -1,5 +1,6 @@
 import { Row } from './row';
 import { Column } from './column';
+import { FooterRow } from './footer-row';
 
 export class DataSet {
 
@@ -8,6 +9,7 @@ export class DataSet {
   protected data: Array<any> = [];
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
+  protected footerRows: Array<FooterRow> = [];
   protected selectedRow: Row;
   protected willSelect: string;
 
@@ -23,12 +25,20 @@ export class DataSet {
     this.createRows();
   }
 
+  setFooterData(data: Array<any>) {
+    this.createFooterRows(data);
+  }
+
   getColumns(): Array<Column> {
     return this.columns;
   }
 
   getRows(): Array<Row> {
     return this.rows;
+  }
+
+  getFooterRows(): Array<FooterRow> {
+    return this.footerRows;
   }
 
   getFirstRow(): Row {
@@ -164,5 +174,13 @@ export class DataSet {
     this.data.forEach((el, index) => {
       this.rows.push(new Row(index, el, this));
     });
+  }
+
+  createFooterRows(data: any[]) {
+    this.footerRows = [];
+    const rowCount = Math.max(...this.columns.filter(column => !column.hide).map(column => column.footer?.rows?.length || 0));
+    for (let i = 0; i < rowCount; i++) {
+      this.footerRows.push(new FooterRow(i, data, this));
+    }
   }
 }

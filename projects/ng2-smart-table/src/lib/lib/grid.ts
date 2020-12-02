@@ -7,6 +7,7 @@ import { Column } from './data-set/column';
 import { Row } from './data-set/row';
 import { DataSet } from './data-set/data-set';
 import { DataSource } from './data-source/data-source';
+import { FooterRow } from './data-set/footer-row';
 
 export class Grid {
 
@@ -72,7 +73,7 @@ export class Grid {
   setSource(source: DataSource) {
     this.source = this.prepareSource(source);
     this.detach();
-
+    this.dataSet.createFooterRows(this.source.getFiltered());
     this.sourceOnChangedSubscription = this.source.onChanged().subscribe((changes: any) => this.processDataChange(changes));
 
     this.sourceOnUpdatedSubscription = this.source.onUpdated().subscribe((data: any) => {
@@ -91,6 +92,10 @@ export class Grid {
 
   getRows(): Array<Row> {
     return this.dataSet.getRows();
+  }
+
+  getFooterRows(): Array<FooterRow> {
+    return this.dataSet.getFooterRows();
   }
 
   selectRow(row: Row) {
@@ -194,13 +199,15 @@ export class Grid {
       this.dataSet.setData(changes['elements']);
       if (this.getSetting('selectMode') !== 'multi') {
         const row = this.determineRowToSelect(changes);
-
         if (row) {
           this.onSelectRowSource.next(row);
         } else {
           this.onDeselectRowSource.next(null);
         }
       }
+    }
+    if (['load', 'filter', 'prepend', 'append', 'remove'].indexOf(changes['action']) !== -1) {
+      this.dataSet.setFooterData(changes['filtered']);
     }
   }
 

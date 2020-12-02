@@ -9,6 +9,7 @@ import { TBodyModule } from './components/tbody/tbody.module';
 import { THeadModule } from './components/thead/thead.module';
 
 import { Ng2SmartTableComponent } from './ng2-smart-table.component';
+import { TfootComponent } from './components/tfoot/tfoot.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import { Ng2SmartTableComponent } from './ng2-smart-table.component';
   ],
   declarations: [
     Ng2SmartTableComponent,
+    TfootComponent
   ],
   exports: [
     Ng2SmartTableComponent,
