@@ -16,6 +16,13 @@ export class BasicExampleSourceComponent {
       id: {
         title: 'ID',
         filter: false,
+        footer: {
+          rows: [
+            {valuePrepareFunction: (a) => {
+              return a.reduce((prev, current) => prev + current['id'], 0)
+            }}
+          ]
+        }
       },
       name: {
         title: 'Full Name',

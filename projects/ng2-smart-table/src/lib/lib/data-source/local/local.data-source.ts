@@ -14,7 +14,7 @@ export class LocalDataSource extends DataSource {
     andOperator: true,
   };
   protected pagingConf: any = {};
-
+  protected filtered: any;
   constructor(data: Array<any> = []) {
     super();
 
@@ -212,8 +212,13 @@ export class LocalDataSource extends DataSource {
     return this.pagingConf;
   }
 
+  getFiltered(): any {
+    return this.filtered;
+  }
+
   protected prepareData(data: Array<any>): Array<any> {
     data = this.filter(data);
+    this.filtered = data.slice(0);
     data = this.sort(data);
     this.filteredAndSorted = data.slice(0);
 

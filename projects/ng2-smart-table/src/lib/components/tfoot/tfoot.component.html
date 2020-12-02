@@ -1,0 +1,9 @@
+<tr *ngFor="let row of grid.getFooterRows()" class="ng2-smart-footer-row">
+  <td *ngIf="isMultiSelectVisible" class="ng2-smart-actions ng2-smart-action-multiple-select">
+  </td>
+  <td *ngIf="showActionColumnLeft" class="ng2-smart-actions">
+  </td>
+  <td *ngFor="let cell of row.cells">
+    <table-cell-view-mode [cell]="cell"></table-cell-view-mode>
+  </td>
+</tr>

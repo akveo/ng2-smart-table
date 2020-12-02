@@ -13,6 +13,10 @@ export class Cell {
     this.newValue = value;
   }
 
+  getType() {
+    return this.getColumn().type;
+  }
+
   getColumn(): Column {
     return this.column;
   }

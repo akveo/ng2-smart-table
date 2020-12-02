@@ -13,6 +13,7 @@ export abstract class DataSource {
   abstract getSort(): any;
   abstract getFilter(): any;
   abstract getPaging(): any;
+  abstract getFiltered(): any;
   abstract count(): number;
 
   refresh() {
@@ -121,6 +122,7 @@ export abstract class DataSource {
     this.getElements().then((elements) => this.onChangedSource.next({
       action: action,
       elements: elements,
+      filtered: this.getFiltered(),
       paging: this.getPaging(),
       filter: this.getFilter(),
       sort: this.getSort(),

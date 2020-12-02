@@ -15,6 +15,13 @@ export class Column {
   defaultSortDirection: string = '';
   editor: { type: string, config: any, component: any } = { type: '', config: {}, component: null };
   filter: { type: string, config: {[key: string]: any, inputPlaceholder?: string}, component: any } = { type: '', config: {}, component: null };
+  footer: { rows: {
+      type: string;
+      value: any;
+      renderComponent: any;
+      valuePrepareFunction: Function;
+      onComponentInitFunction: Function;}[],
+  } = { rows: []};
   renderComponent: any = null;
   compareFunction: Function;
   valuePrepareFunction: Function;
@@ -53,6 +60,10 @@ export class Column {
     return this.filter && this.filter.config;
   }
 
+  getFooterRowConfig(i: number) {
+    return this.footer?.rows[i];
+  }
+
   protected process() {
     this.title = this.settings['title'];
     this.class = this.settings['class'];
@@ -61,6 +72,7 @@ export class Column {
     this.type = this.prepareType();
     this.editor = this.settings['editor'];
     this.filter = this.settings['filter'];
+    this.footer = this.settings['footer'];
     this.renderComponent = this.settings['renderComponent'];
 
     this.isFilterable = typeof this.settings['filter'] === 'undefined' ? true : !!this.settings['filter'];
@@ -68,7 +80,7 @@ export class Column {
       .indexOf(this.settings['sortDirection']) !== -1 ? this.settings['sortDirection'] : '';
     this.isSortable = typeof this.settings['sort'] === 'undefined' ? true : !!this.settings['sort'];
     this.isEditable = typeof this.settings['editable'] === 'undefined' ? true : !!this.settings['editable'];
-    this.isAddable=typeof this.settings['addable'] === 'undefined' ? true : !!this.settings['addable'];
+    this.isAddable = typeof this.settings['addable'] === 'undefined' ? true : !!this.settings['addable'];
     this.sortDirection = this.prepareSortDirection();
 
     this.compareFunction = this.settings['compareFunction'];
@@ -89,4 +101,6 @@ export class Column {
     // TODO: determine type by data
     return 'text';
   }
+
+
 }

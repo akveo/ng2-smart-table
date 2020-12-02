@@ -25,6 +25,9 @@
                       (rowHover)="onRowHover($event)">
   </tbody>
 
+  <tfoot ng2-st-tfoot [grid]="grid" [source]="source" *ngIf="grid.getFooterRows().length">
+  </tfoot>
+
 </table>
 
 <ng2-smart-table-pager *ngIf="isPagerDisplay"
