@@ -12,6 +12,7 @@ export abstract class DataSource {
   abstract getElements(): Promise<any>;
   abstract getSort(): any;
   abstract getFilter(): any;
+  abstract getGlobalFilter(): any;
   abstract getPaging(): any;
   abstract getFiltered(): any;
   abstract count(): number;
@@ -82,6 +83,18 @@ export abstract class DataSource {
     }
   }
 
+  setGlobalFilter(conf: Array<any>, andOperator?: boolean, doEmit?: boolean) {
+    if (doEmit) {
+      this.emitOnChanged('globalFilter');
+    }
+  }
+
+  addGlobalFilter(fieldConf: {}, andOperator?: boolean, doEmit?: boolean) {
+    if (doEmit) {
+      this.emitOnChanged('globalFilter');
+    }
+  }
+
   setFilter(conf: Array<any>, andOperator?: boolean, doEmit?: boolean) {
     if (doEmit) {
       this.emitOnChanged('filter');
@@ -119,13 +132,15 @@ export abstract class DataSource {
   }
 
   protected emitOnChanged(action: string) {
-    this.getElements().then((elements) => this.onChangedSource.next({
-      action: action,
-      elements: elements,
-      filtered: this.getFiltered(),
-      paging: this.getPaging(),
-      filter: this.getFilter(),
-      sort: this.getSort(),
-    }));
+    this.getElements().then((elements) =>
+      this.onChangedSource.next({
+        action: action,
+        elements: elements,
+        filtered: this.getFiltered(),
+        paging: this.getPaging(),
+        filter: this.getFilter(),
+        globalFilter: this.getGlobalFilter(),
+        sort: this.getSort(),
+      }));
   }
 }

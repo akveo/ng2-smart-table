@@ -13,6 +13,10 @@ export class LocalDataSource extends DataSource {
     filters: [],
     andOperator: true,
   };
+  protected globalFilterConf: any = {
+    filters: [],
+    andOperator: true,
+  };
   protected pagingConf: any = {};
   protected filtered: any;
   constructor(data: Array<any> = []) {
@@ -89,6 +93,10 @@ export class LocalDataSource extends DataSource {
 
   reset(silent = false) {
     if (silent) {
+      this.globalFilterConf = {
+        filters: [],
+        andOperator: true,
+      };
       this.filterConf = {
         filters: [],
         andOperator: true,
@@ -96,6 +104,7 @@ export class LocalDataSource extends DataSource {
       this.sortConf = [];
       this.pagingConf['page'] = 1;
     } else {
+      this.setGlobalFilter([], true, false);
       this.setFilter([], true, false);
       this.setSort([], false);
       this.setPage(1);
@@ -134,6 +143,44 @@ export class LocalDataSource extends DataSource {
     }
 
     super.setSort(conf, doEmit);
+    return this;
+  }
+
+  setGlobalFilter(conf: Array<any>, andOperator = true, doEmit = true): LocalDataSource {
+    if (conf && conf.length > 0) {
+      conf.forEach((fieldConf) => {
+        this.addGlobalFilter(fieldConf, andOperator, false);
+      });
+    } else {
+      this.globalFilterConf = {
+        filters: [],
+        andOperator: true,
+      };
+    }
+    this.globalFilterConf.andOperator = andOperator;
+    this.pagingConf['page'] = 1;
+
+    super.setGlobalFilter(conf, andOperator, doEmit);
+    return this;
+  }
+
+  addGlobalFilter(fieldConf: any, andOperator = true, doEmit: boolean = true): LocalDataSource {
+    if (!fieldConf['field'] || typeof fieldConf['search'] === 'undefined') {
+      throw new Error('Filter configuration object is not valid');
+    }
+
+    let found = false;
+    this.globalFilterConf.filters.forEach((currentFieldConf: any, index: any) => {
+      if (currentFieldConf['field'] === fieldConf['field']) {
+        this.globalFilterConf.filters[index] = fieldConf;
+        found = true;
+      }
+    });
+    if (!found) {
+      this.globalFilterConf.filters.push(fieldConf);
+    }
+    this.globalFilterConf.andOperator = andOperator;
+    super.addGlobalFilter(fieldConf, andOperator, doEmit);
     return this;
   }
 
@@ -208,6 +255,10 @@ export class LocalDataSource extends DataSource {
     return this.filterConf;
   }
 
+  getGlobalFilter(): any {
+    return this.globalFilterConf;
+  }
+
   getPaging(): any {
     return this.pagingConf;
   }
@@ -235,11 +286,17 @@ export class LocalDataSource extends DataSource {
     return data;
   }
 
-  // TODO: refactor?
   protected filter(data: Array<any>): Array<any> {
-    if (this.filterConf.filters) {
-      if (this.filterConf.andOperator) {
-        this.filterConf.filters.forEach((fieldConf: any) => {
+    data = this.filterHelper(data, this.globalFilterConf);
+    data = this.filterHelper(data, this.filterConf);
+    return data;
+  }
+
+  // TODO: refactor?
+  protected filterHelper(data: Array<any>, filterConf: any): Array<any> {
+    if (filterConf.filters && filterConf.filters.length) {
+      if (filterConf.andOperator) {
+        filterConf.filters.forEach((fieldConf: any) => {
           if (fieldConf['search'].length > 0) {
             data = LocalFilter
               .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']);
@@ -247,7 +304,7 @@ export class LocalDataSource extends DataSource {
         });
       } else {
         let mergedData: any = [];
-        this.filterConf.filters.forEach((fieldConf: any) => {
+        filterConf.filters.forEach((fieldConf: any) => {
           if (fieldConf['search'].length > 0) {
             mergedData = mergedData.concat(LocalFilter
               .filter(data, fieldConf['field'], fieldConf['search'], fieldConf['filter']));

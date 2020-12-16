@@ -15,7 +15,6 @@ export class BasicExampleSourceComponent {
     columns: {
       id: {
         title: 'ID',
-        filter: false,
         footer: {
           rows: [
             {valuePrepareFunction: (a) => {
@@ -26,15 +25,12 @@ export class BasicExampleSourceComponent {
       },
       name: {
         title: 'Full Name',
-        filter: false,
       },
       username: {
         title: 'User Name',
-        filter: false,
       },
       email: {
         title: 'Email',
-        filter: false,
       },
     },
   };
@@ -115,7 +111,7 @@ export class BasicExampleSourceComponent {
   }
 
   onSearch(query: string = '') {
-    this.source.setFilter([
+    this.source.setGlobalFilter(query ? [
       // fields we want to inclue in the search
       {
         field: 'id',
@@ -133,7 +129,7 @@ export class BasicExampleSourceComponent {
         field: 'email',
         search: query,
       },
-    ], false);
+    ] : [], false);
     // second parameter specifying whether to perform 'AND' or 'OR' search
     // (meaning all columns should contain search query or at least one)
     // 'AND' by default, so changing to 'OR' by setting false here
