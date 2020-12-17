@@ -1,17 +1,18 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, Output, SimpleChange, ViewEncapsulation } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { Row } from './lib/data-set/row';
+import { DataSource } from './lib/data-source/data-source';
+import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 import { Grid } from './lib/grid';
-import { DataSource } from './lib/data-source/data-source';
-import { Row } from './lib/data-set/row';
 import { deepExtend, getPageForRowIndex } from './lib/helpers';
-import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
   selector: 'ng2-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
   templateUrl: './ng2-smart-table.component.html',
+  encapsulation: ViewEncapsulation.None
 })
 export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
 
