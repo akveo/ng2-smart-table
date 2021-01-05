@@ -123,9 +123,6 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     this.perPageSelect = this.grid.getSetting('pager.perPageSelect');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
   }
-<<<<<<< HEAD
- 
-=======
 
   ngOnDestroy(): void {
     this.destroyed$.next();
@@ -170,7 +167,6 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     this.emitDeselectRow(null);
   }
 
->>>>>>> 10db7f9c6d002bfdd0bfb287c56b73e7d0eb98f0
   editRowSelect(row: Row) {
     if (this.grid.getSetting('selectMode') === 'multi') {
       this.onMultipleSelectRow(row);
