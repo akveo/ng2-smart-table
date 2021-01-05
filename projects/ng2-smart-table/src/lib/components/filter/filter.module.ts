@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Ng2CompleterModule } from '@akveo/ng2-completer';
+import { Ng2CompleterModule } from 'ng2-completer';
 
 import { FilterComponent } from './filter.component';
 import { DefaultFilterComponent } from "./default-filter.component";

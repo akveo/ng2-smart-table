@@ -96,3 +96,8 @@ export function getDeepFromObject(object = {}, name: string, defaultValue?: any)
 
   return typeof level === 'undefined' ? defaultValue : level;
 }
+
+export function getPageForRowIndex(index: number, perPage: number): number {
+  // we need to add 1 to convert 0-based index to 1-based page number.
+  return Math.floor(index / perPage) + 1;
+}

@@ -1,3 +1,45 @@
+## [1.7.2](https://github.com/yggg/ng2-smart-table/compare/v1.7.1...v1.7.2) (2020-11-12)
+
+
+### Bug Fixes
+
+* use `selectedRowIndex` if specified when data changes ([#1221](https://github.com/yggg/ng2-smart-table/issues/1221)) ([3036b76](https://github.com/yggg/ng2-smart-table/commit/3036b76))
+
+
+
+## [1.7.1](https://github.com/yggg/ng2-smart-table/compare/v1.7.0...v1.7.1) (2020-10-29)
+
+
+### Features
+
+* add hide column configuration property ([#1151](https://github.com/yggg/ng2-smart-table/issues/1151)) ([0d43219](https://github.com/yggg/ng2-smart-table/commit/0d43219))
+
+
+
+# [1.7.0](https://github.com/yggg/ng2-smart-table/compare/v1.6.0...v1.7.0) (2020-10-08)
+
+
+### Code Refactoring
+
+* use original ng2-completer package ([#1211](https://github.com/yggg/ng2-smart-table/issues/1211)) ([59c3a78](https://github.com/yggg/ng2-smart-table/commit/59c3a78))
+
+
+### Features
+
+* add selectedRowIndex to settings and selectRow method ([#1210](https://github.com/yggg/ng2-smart-table/issues/1210)) ([0480215](https://github.com/yggg/ng2-smart-table/commit/0480215))
+* upgrade to Angular 10 ([#1212](https://github.com/yggg/ng2-smart-table/issues/1212)) ([34b187f](https://github.com/yggg/ng2-smart-table/commit/34b187f))
+
+
+### BREAKING CHANGES
+
+`@akveo/ng2-completer` dependency replaced by `ng2-completer` as original package was fixed. Note on why we have to fork package could be found [here](#1140 (comment)). Please, uninstall `@akveo/ng2-completer` and install `ng2-completer`:
+```
+npm uninstall --save @akveo/ng2-completer
+npm install --save ng2-completer
+```
+
+
+
 # [1.6.0](https://github.com/yggg/ng2-smart-table/compare/v1.5.0...v1.6.0) (2020-03-23)
 
 

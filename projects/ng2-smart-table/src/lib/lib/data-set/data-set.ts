@@ -9,7 +9,7 @@ export class DataSet {
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
   protected selectedRow: Row;
-  protected willSelect: string = 'first';
+  protected willSelect: string;
 
   constructor(data: Array<any> = [], protected columnSettings: Object) {
     this.createColumns(columnSettings);
@@ -47,9 +47,11 @@ export class DataSet {
     this.rows.forEach((row) => {
       row.isSelected = false;
     });
+    // we need to clear selectedRow field because no one row selected
+    this.selectedRow = undefined;
   }
 
-  selectRow(row: Row): Row {
+  selectRow(row: Row): Row | undefined {
     const previousIsSelected = row.isSelected;
     this.deselectAll();
 
@@ -77,18 +79,35 @@ export class DataSet {
     }
   }
 
-  selectFirstRow(): Row {
+  selectFirstRow(): Row | undefined {
     if (this.rows.length > 0) {
       this.selectRow(this.rows[0]);
       return this.selectedRow;
     }
   }
 
-  selectLastRow(): Row {
+  selectLastRow(): Row | undefined {
     if (this.rows.length > 0) {
       this.selectRow(this.rows[this.rows.length - 1]);
       return this.selectedRow;
     }
+  }
+
+  selectRowByIndex(index: number): Row | undefined {
+    const rowsLength: number = this.rows.length;
+    if (rowsLength === 0) {
+      return;
+    }
+    if (!index) {
+      this.selectFirstRow();
+      return this.selectedRow;
+    }
+    if (index > 0 && index < rowsLength) {
+      this.selectRow(this.rows[index]);
+      return this.selectedRow;
+    }
+    // we need to deselect all rows if we got an incorrect index
+    this.deselectAll();
   }
 
   willSelectFirstRow() {
@@ -99,7 +118,7 @@ export class DataSet {
     this.willSelect = 'last';
   }
 
-  select(): Row {
+  select(selectedRowIndex?: number): Row | undefined {
     if (this.getRows().length === 0) {
       return;
     }
@@ -112,7 +131,7 @@ export class DataSet {
       }
       this.willSelect = '';
     } else {
-      this.selectFirstRow();
+      this.selectRowByIndex(selectedRowIndex);
     }
 
     return this.selectedRow;
