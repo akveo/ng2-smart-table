@@ -10,13 +10,14 @@ import { Grid } from '../../../lib/grid';
         (click)="$event.preventDefault();create.emit($event)"></a>
     <a href="#" class="ng2-smart-action ng2-smart-action-add-cancel"
         [innerHTML]="cancelButtonContent"
-        (click)="$event.preventDefault();grid.createFormShown = false;"></a>
+        (click)="$event.preventDefault();grid.createFormShown = false;createCancel.emit($event)"></a>
   `,
 })
 export class ActionsComponent implements OnChanges {
 
   @Input() grid: Grid;
   @Output() create = new EventEmitter<any>();
+  @Output() createCancel = new EventEmitter<any>();
 
   createButtonContent: string;
   cancelButtonContent: string;

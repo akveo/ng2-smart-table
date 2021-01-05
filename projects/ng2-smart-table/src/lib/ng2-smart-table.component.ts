@@ -20,11 +20,13 @@ export class Ng2SmartTableComponent implements OnChanges {
   @Output() userRowSelect = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
   @Output() edit = new EventEmitter<any>();
+  @Output() editCancel = new EventEmitter<any>();
   @Output() create = new EventEmitter<any>();
+  @Output() createCancel = new EventEmitter<any>();
   @Output() custom = new EventEmitter<any>();
   @Output() deleteConfirm = new EventEmitter<any>();
   @Output() editConfirm = new EventEmitter<any>();
-  @Output() createConfirm = new EventEmitter<any>();
+  @Output() createConfirm = new EventEmitter<any>();  
   @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
 
   tableClass: string;
@@ -107,7 +109,7 @@ export class Ng2SmartTableComponent implements OnChanges {
     this.perPageSelect = this.grid.getSetting('pager.perPageSelect');
     this.rowClassFunction = this.grid.getSetting('rowClassFunction');
   }
-
+ 
   editRowSelect(row: Row) {
     if (this.grid.getSetting('selectMode') === 'multi') {
       this.onMultipleSelectRow(row);
