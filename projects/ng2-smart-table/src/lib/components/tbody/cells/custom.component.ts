@@ -7,13 +7,14 @@ import { Grid } from '../../../lib/grid';
   selector: 'ng2-st-tbody-custom',
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
-      <a *ngFor="let action of grid.getSetting('actions.custom')" href="#"
-         class="ng2-smart-action ng2-smart-action-custom-custom"
+    <ng-template ngFor let-action [ngForOf]="grid.getSetting('actions.custom')">
+      <a class="ng2-smart-action ng2-smart-action-custom-custom"
          [innerHTML]="action.title"
          [class.disabled]="isDisabled(action)"
          [attr.disabled]="isDisabled(action)"
+         *ngIf="action.hideFunction ? action.hideFunction(row.getData()) : true"
          (click)="onCustom(action, $event)"></a>
-        `
+    </ng-template>`
 })
 export class TbodyCustomComponent {
 
