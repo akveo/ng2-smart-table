@@ -1,7 +1,6 @@
 {
-  "name": "@alobaton/ng2-smart-table",
+  "name": "ng2-smart-table",
   "version": "1.7.3",
-  "bin": "./dist/ng2-smart-table",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -16,7 +15,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": false,
+  "private": true,
   "dependencies": {
     "@angular/animations": "~10.1.5",
     "@angular/common": "~10.1.5",
@@ -57,21 +56,5 @@
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.3"
-  },
-  "description": "[![Build Status](https://travis-ci.org/akveo/ng2-smart-table.svg?branch=master)](https://travis-ci.org/akveo/ng2-smart-table)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alobaton/ng2-smart-table.git"
-  },
-  "keywords": [
-    "akveo",
-    "ng2-smart-table",
-    "fork"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/alobaton/ng2-smart-table/issues"
-  },
-  "homepage": "https://github.com/alobaton/ng2-smart-table#readme"
+  }
 }

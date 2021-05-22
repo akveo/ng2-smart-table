@@ -161,8 +161,5 @@
       }
     }
   },
-  "defaultProject": "ng2-smart-table",
-  "cli": {
-    "analytics": "61b9707d-669b-47d4-a712-1ecd08f1d88a"
-  }
+  "defaultProject": "ng2-smart-table"
 }
