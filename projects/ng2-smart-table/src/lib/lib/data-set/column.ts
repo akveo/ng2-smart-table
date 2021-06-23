@@ -6,6 +6,7 @@ export class Column {
   type: string = '';
   class: string = '';
   width: string = '';
+  hide: boolean = false;
   isSortable: boolean = false;
   isEditable: boolean = true;
   isAddable: boolean = true;
@@ -56,6 +57,7 @@ export class Column {
     this.title = this.settings['title'];
     this.class = this.settings['class'];
     this.width = this.settings['width'];
+    this.hide = !!this.settings['hide'];
     this.type = this.prepareType();
     this.editor = this.settings['editor'];
     this.filter = this.settings['filter'];

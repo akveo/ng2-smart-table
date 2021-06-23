@@ -1,8 +1,8 @@
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Observable } from 'rxjs';
 import { EventEmitter } from '@angular/core';
 
-import { Deferred, getDeepFromObject } from './helpers';
+import { Deferred, getDeepFromObject, getPageForRowIndex } from './helpers';
 import { Column } from './data-set/column';
 import { Row } from './data-set/row';
 import { DataSet } from './data-set/data-set';
@@ -17,10 +17,23 @@ export class Grid {
   dataSet: DataSet;
 
   onSelectRowSource = new Subject<any>();
+  onDeselectRowSource = new Subject<any>();
+
+  private sourceOnChangedSubscription: Subscription;
+  private sourceOnUpdatedSubscription: Subscription;
 
   constructor(source: DataSource, settings: any) {
     this.setSettings(settings);
     this.setSource(source);
+  }
+
+  detach(): void {
+    if (this.sourceOnChangedSubscription) {
+      this.sourceOnChangedSubscription.unsubscribe();
+    }
+    if (this.sourceOnUpdatedSubscription) {
+      this.sourceOnUpdatedSubscription.unsubscribe();
+    }
   }
 
   showActionColumn(position: string): boolean {
@@ -58,10 +71,11 @@ export class Grid {
 
   setSource(source: DataSource) {
     this.source = this.prepareSource(source);
+    this.detach();
 
-    this.source.onChanged().subscribe((changes: any) => this.processDataChange(changes));
+    this.sourceOnChangedSubscription = this.source.onChanged().subscribe((changes: any) => this.processDataChange(changes));
 
-    this.source.onUpdated().subscribe((data: any) => {
+    this.sourceOnUpdatedSubscription = this.source.onUpdated().subscribe((data: any) => {
       const changedRow = this.dataSet.findRowByData(data);
       changedRow.setData(data);
     });
@@ -89,6 +103,10 @@ export class Grid {
 
   onSelectRow(): Observable<any> {
     return this.onSelectRowSource.asObservable();
+  }
+
+  onDeselectRow(): Observable<any> {
+    return this.onDeselectRowSource.asObservable();
   }
 
   edit(row: Row) {
@@ -179,6 +197,8 @@ export class Grid {
 
         if (row) {
           this.onSelectRowSource.next(row);
+        } else {
+          this.onDeselectRowSource.next(null);
         }
       }
     }
@@ -194,12 +214,22 @@ export class Grid {
     return false;
   }
 
-  // TODO: move to selectable? Separate directive
+  /**
+   * @breaking-change 1.8.0
+   * Need to add `| null` in return type
+   *
+   * TODO: move to selectable? Separate directive
+   */
   determineRowToSelect(changes: any): Row {
 
     if (['load', 'page', 'filter', 'sort', 'refresh'].indexOf(changes['action']) !== -1) {
-      return this.dataSet.select();
+      return this.dataSet.select(this.getRowIndexToSelect());
     }
+
+    if (this.shouldSkipSelection()) {
+      return null;
+    }
+
     if (changes['action'] === 'remove') {
       if (changes['elements'].length === 0) {
         // we have to store which one to select as the data will be reloaded
@@ -231,7 +261,7 @@ export class Grid {
       source.setSort([initialSource], false);
     }
     if (this.getSetting('pager.display') === true) {
-      source.setPaging(1, this.getSetting('pager.perPage'), false);
+      source.setPaging(this.getPageToSelect(source), this.getSetting('pager.perPage'), false);
     }
 
     source.refresh();
@@ -268,4 +298,60 @@ export class Grid {
     return this.dataSet.getLastRow();
   }
 
+  private getSelectionInfo(): { perPage: number, page: number, selectedRowIndex: number, switchPageToSelectedRowPage: boolean } {
+    const switchPageToSelectedRowPage: boolean = this.getSetting('switchPageToSelectedRowPage');
+    const selectedRowIndex: number = Number(this.getSetting('selectedRowIndex', 0)) || 0;
+    const { perPage, page }: { perPage: number, page: number } = this.getSetting('pager');
+    return { perPage, page, selectedRowIndex, switchPageToSelectedRowPage };
+  }
+
+  private getRowIndexToSelect(): number {
+    const { switchPageToSelectedRowPage, selectedRowIndex, perPage } = this.getSelectionInfo();
+    const dataAmount: number = this.source.count();
+    /**
+     * source - contains all table data
+     * dataSet - contains data for current page
+     * selectedRowIndex - contains index for data in all data
+     *
+     * because of that, we need to count index for a specific row in page
+     * if
+     * `switchPageToSelectedRowPage` - we need to change page automatically
+     * `selectedRowIndex < dataAmount && selectedRowIndex >= 0` - index points to existing data
+     * (if index points to non-existing data and we calculate index for current page - we will get wrong selected row.
+     *  if we return index witch not points to existing data - no line will be highlighted)
+     */
+    return (
+      switchPageToSelectedRowPage &&
+      selectedRowIndex < dataAmount &&
+      selectedRowIndex >= 0
+    ) ?
+      selectedRowIndex % perPage :
+      selectedRowIndex;
+  }
+
+  private getPageToSelect(source: DataSource): number {
+    const { switchPageToSelectedRowPage, selectedRowIndex, perPage, page } = this.getSelectionInfo();
+    let pageToSelect: number = Math.max(1, page);
+    if (switchPageToSelectedRowPage && selectedRowIndex >= 0) {
+      pageToSelect = getPageForRowIndex(selectedRowIndex, perPage);
+    }
+    const maxPageAmount: number = Math.ceil(source.count() / perPage);
+    return maxPageAmount ? Math.min(pageToSelect, maxPageAmount) : pageToSelect;
+  }
+
+  private shouldSkipSelection(): boolean {
+    /**
+     * For backward compatibility when using `selectedRowIndex` with non-number values - ignored.
+     *
+     * Therefore, in order to select a row after some changes,
+     * the `selectedRowIndex` value must be invalid or >= 0 (< 0 means that no row is selected).
+     *
+     * `Number(value)` returns `NaN` on all invalid cases, and comparisons with `NaN` always return `false`.
+     *
+     * !!! We should skip a row only in cases when `selectedRowIndex` < 0
+     * because when < 0 all lines must be deselected
+     */
+    const selectedRowIndex = Number(this.getSetting('selectedRowIndex'));
+    return selectedRowIndex < 0;
+  }
 }
