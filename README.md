@@ -133,6 +133,10 @@ Now you have some data in the table.
 ## Further Documentation
 Installation, customization and other useful articles: https://akveo.github.io/ng2-smart-table/
 
+## UI Bakery
+Try low-code internal tool builder for free
+<a href="https://uibakery.io/?utm_source=github&utm_medium=clicks&utm_campaign=banner"><img src="https://user-images.githubusercontent.com/6151971/125071660-41f84900-e0c2-11eb-882a-0c675eb1e5e3.png"></a>
+
 ## How can I support developers?
 - Star our GitHub repo :star:
 - Create pull requests, submit bugs, suggest new features or documentation updates :wrench:
