@@ -1,54 +1,109 @@
 :host {
-  font-size: 1rem;
+  cdk-virtual-scroll-viewport {
+    background: #fafafa;
+    box-shadow: 0 1px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12);
 
-  ::ng-deep {
-    * {
-      box-sizing: border-box;
-    }
+    font-size: 1rem;
 
-    button,
-    input,
-    optgroup,
-    select,
-    textarea {
-      color: inherit;
-      font: inherit;
-      margin: 0;
-    }
+    ::ng-deep {
+      * {
+        box-sizing: border-box;
+      }
 
-    table {
-      line-height: 1.5em;
-      border-collapse: collapse;
-      border-spacing: 0;
-      display: table;
-      width: 100%;
-      max-width: 100%;
-      overflow: auto;
-      word-break: normal;
-      word-break: keep-all;
+      input, optgroup, select, textarea {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+      }
 
-      tr {
-        th {
-          font-weight: bold;
+      button {
+        padding: 6px 12px;
+        margin-bottom: 0;
+        margin-right: 5px;
+        font-size: 14px;
+        font-weight: normal;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        background-color: #f89c27;
+        border-color: #f89c27;
+        color: #FFFFFF;
+      }
+
+      button:hover, button:focus {
+        color: #fff;
+        background-color: #ec971f;
+        border-color: #d58512;
+        outline: none;
+      }
+
+      .line-block {
+        display: flex !important;
+        flex-wrap: nowrap;
+      }
+
+      .cancel-button {
+        background-color: transparent !important;
+        color: grey !important;
+        border-color: transparent !important;
+      }
+
+      .cancel-button:hover{
+        background-color: #d4d4d4 !important;
+      }
+
+      table {
+        line-height: 1.5em;
+        border-collapse: collapse;
+        border-spacing: 0;
+        display: table;
+        width: 100%;
+        max-width: 100%;
+        overflow: auto;
+        word-break: normal;
+        word-break: keep-all;
+
+        div {
+          display: contents;
         }
-        section {
-          font-size: .75em;
-          font-weight: bold;
-        }
-        td,
-        th {
-          font-size: .875em;
-          margin: 0;
-          padding: 0.5em 1em;
+
+        tr {
+          th {
+            font-weight: bold;
+          }
+
+          section {
+            font-size: .75em;
+            font-weight: bold;
+          }
+
+          td,
+          th {
+            font-size: .875em;
+            margin: 0;
+            padding: 0.5em 1em;
+          }
         }
       }
-    }
 
-    a {
-      color: #1e6bb8;
-      text-decoration: none;
-      &:hover {
-        text-decoration: underline;
+      a {
+        color: #1e6bb8;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

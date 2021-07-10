@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 export class BasicExampleMultiSelectComponent {
 
   settings = {
+    pager: {display: false},
     selectMode: 'multi',
     columns: {
       id: {

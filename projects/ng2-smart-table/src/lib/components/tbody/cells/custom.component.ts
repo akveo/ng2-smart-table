@@ -7,10 +7,9 @@ import { Grid } from '../../../lib/grid';
     selector: 'ng2-st-tbody-custom',
     changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
-      <a *ngFor="let action of grid.getSetting('actions.custom')" href="#"
-         class="ng2-smart-action ng2-smart-action-custom-custom" 
+      <button *ngFor="let action of grid.getSetting('actions.custom')" href="#"
          [innerHTML]="action.title"
-         (click)="onCustom(action, $event)"></a>
+         (click)="onCustom(action, $event)"></button>
         `
 })
 export class TbodyCustomComponent {

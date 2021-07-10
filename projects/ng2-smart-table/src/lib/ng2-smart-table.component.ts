@@ -1,12 +1,12 @@
-import { Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Component, Input, Output, SimpleChange, EventEmitter, OnChanges, OnDestroy} from '@angular/core';
+import {Subject, Subscription} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
-import { Grid } from './lib/grid';
-import { DataSource } from './lib/data-source/data-source';
-import { Row } from './lib/data-set/row';
-import { deepExtend, getPageForRowIndex } from './lib/helpers';
-import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import {Grid} from './lib/grid';
+import {DataSource} from './lib/data-source/data-source';
+import {Row} from './lib/data-set/row';
+import {deepExtend, getPageForRowIndex} from './lib/helpers';
+import {LocalDataSource} from './lib/data-source/local/local.data-source';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -65,7 +65,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     edit: {
       inputClass: '',
       editButtonContent: 'Edit',
-      saveButtonContent: 'Update',
+      saveButtonContent: 'Save',
       cancelButtonContent: 'Cancel',
       confirmSave: false,
     },
@@ -174,7 +174,14 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   }
 
   onUserSelectRow(row: Row) {
-    if (this.grid.getSetting('selectMode') !== 'multi') {
+    if (this.grid.getSetting('selectMode') === 'multi') {
+      this.grid.getSelectedRows().filter(other => other !== row && other.isSelected).forEach(other => {
+        other.isSelected = false;
+        this.emitUserSelectRow(other);
+        this.emitSelectRow(other);
+      });
+      this.multipleSelectRow(row);
+    } else {
       this.grid.selectRow(row);
       this.emitUserSelectRow(row);
       this.emitSelectRow(row);
@@ -186,7 +193,14 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   }
 
   multipleSelectRow(row: Row) {
+    const initialAllSelected = this.isAllSelected;
+    this.isAllSelected =
+      this.grid.getSelectedRows().length === this.grid.getRows().length - 1 &&
+      !this.grid.getSelectedRows().includes(row);
     this.grid.multipleSelectRow(row);
+    if (initialAllSelected !== this.isAllSelected && this.isAllSelected) {
+      row = null;
+    }
     this.emitUserSelectRow(row);
     this.emitSelectRow(row);
   }

@@ -8,6 +8,8 @@ import { Ng2SmartTableTbodyComponent } from './tbody.component';
 import { TbodyCreateCancelComponent } from './cells/create-cancel.component';
 import { TbodyEditDeleteComponent } from './cells/edit-delete.component';
 import { TbodyCustomComponent } from './cells/custom.component';
+import {MatNativeDateModule} from '@angular/material/core';
+import {ScrollingModule} from '@angular/cdk/scrolling';
 
 const TBODY_COMPONENTS = [
   TbodyCreateCancelComponent,
@@ -21,6 +23,8 @@ const TBODY_COMPONENTS = [
     CommonModule,
     FormsModule,
     CellModule,
+    MatNativeDateModule,
+    ScrollingModule
   ],
   declarations: [
     ...TBODY_COMPONENTS,

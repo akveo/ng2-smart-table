@@ -1,15 +1,16 @@
-import {Component, Input, Output, EventEmitter, } from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnChanges,} from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
 import { Cell } from '../../lib/data-set/cell';
+import {Row} from '../../lib/data-set/row';
 
 @Component({
   selector: '[ng2-st-tbody]',
   styleUrls: ['./tbody.component.scss'],
   templateUrl: './tbody.component.html',
 })
-export class Ng2SmartTableTbodyComponent {
+export class Ng2SmartTableTbodyComponent implements OnChanges {
 
   @Input() grid: Grid;
   @Input() source: DataSource;
@@ -43,7 +44,7 @@ export class Ng2SmartTableTbodyComponent {
     return this.grid.getColumns().length + actionColumns;
   }
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.isMultiSelectVisible = this.grid.isMultiSelectVisible();
     this.showActionColumnLeft = this.grid.showActionColumn('left');
     this.mode = this.grid.getSetting('mode');
@@ -57,5 +58,11 @@ export class Ng2SmartTableTbodyComponent {
 
   getVisibleCells(cells: Array<Cell>): Array<Cell> {
     return (cells || []).filter((cell: Cell) => !cell.getColumn().hide);
+  }
+
+  onMultiRowClick($event: MouseEvent, row: Row) {
+    // $event.stopImmediatePropagation();
+    $event.stopPropagation();
+    this.multipleSelectRow.emit(row);
   }
 }
