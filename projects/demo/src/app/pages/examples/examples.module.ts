@@ -24,11 +24,11 @@ import { ServerExamplesComponent } from './server/server-examples.component';
 import { CustomViewEditExamplesComponent } from './custom-edit-view/custom-edit-view-examples.component';
 import { BasicExampleCustomActionsComponent } from './custom-edit-view/basic-example-custom-actions.component';
 import { VariousExamplesComponent } from './various/various-examples.component';
-
 import {
   BasicExampleButtonViewComponent,
   ButtonViewComponent,
 } from './custom-edit-view/basic-example-button-view.component';
+import { BasicExampleSortComponent } from './filter/basic-example-sort.component';
 
 const EXAMPLES_COMPONENTS = [
   AdvancedExampleFiltersComponent,
@@ -49,6 +49,7 @@ const EXAMPLES_COMPONENTS = [
   BasicExampleButtonViewComponent,
   BasicExampleCustomActionsComponent,
   ButtonViewComponent,
+  BasicExampleSortComponent
 ];
 
 @NgModule({
