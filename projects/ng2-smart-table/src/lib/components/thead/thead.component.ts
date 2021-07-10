@@ -17,11 +17,12 @@ export class Ng2SmartTableTheadComponent implements OnChanges {
     @Output() sort = new EventEmitter<any>();
     @Output() selectAllRows = new EventEmitter<any>();
     @Output() create = new EventEmitter<any>();
+    @Output() createCancel = new EventEmitter<any>();
     @Output() filter = new EventEmitter<any>();
 
     isHideHeader: boolean;
-    isHideSubHeader: boolean;
-
+    isHideSubHeader: boolean;  
+    
   ngOnChanges() {
       this.isHideHeader = this.grid.getSetting('hideHeader');
       this.isHideSubHeader = this.grid.getSetting('hideSubHeader');

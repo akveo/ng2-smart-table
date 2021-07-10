@@ -6,6 +6,7 @@
                       [source]="source"
                       [createConfirm]="createConfirm"
                       (create)="create.emit($event)"
+                      (createCancel)="createCancel.emit($event)"
                       (selectAllRows)="onSelectAllRows($event)"
                       (sort)="sort($event)"
                       (filter)="filter($event)">
@@ -17,6 +18,7 @@
                       [editConfirm]="editConfirm"
                       [rowClassFunction]="rowClassFunction"
                       (edit)="edit.emit($event)"
+                      (cancel)="editCancel.emit($event)"
                       (delete)="delete.emit($event)"
                       (custom)="custom.emit($event)"
                       (userSelectRow)="onUserSelectRow($event)"

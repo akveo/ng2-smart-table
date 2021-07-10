@@ -16,7 +16,7 @@
     </ng2-st-tbody-edit-delete>
   </td>
    <td *ngIf="row.isInEditing && showActionColumnLeft"  class="ng2-smart-actions">
-    <ng2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></ng2-st-tbody-create-cancel>
+    <ng2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm" (cancel)="cancel.emit($event)"></ng2-st-tbody-create-cancel>
   </td>
   <td *ngFor="let cell of getVisibleCells(row.cells)">
     <ng2-smart-table-cell [cell]="cell"
