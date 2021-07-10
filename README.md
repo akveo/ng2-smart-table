@@ -18,7 +18,7 @@ Due to project priority and resource constraints, this project is currently on l
 The library is available as npm package, so all you need to do is to run the following command:
 
 ```
-npm install --save ng2-smart-table
+npm install --save ng2-smart-table ng2-completer
 ```
 
 This command will create a record in your `package.json` file and install the package into the npm modules folder.
