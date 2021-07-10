@@ -13,6 +13,7 @@ export class Ng2SmartTableTbodyComponent {
 
   @Input() grid: Grid;
   @Input() source: DataSource;
+  @Input() settings: Object;
   @Input() deleteConfirm: EventEmitter<any>;
   @Input() editConfirm: EventEmitter<any>;
   @Input() rowClassFunction: Function;
