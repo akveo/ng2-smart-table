@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { BasicExampleCustomActionsItemComponent } from './basic-example-custom-actions-item.component';
 
 @Component({
   selector: 'basic-example-custom-actions',
@@ -27,6 +28,11 @@ export class BasicExampleCustomActionsComponent {
           name: 'duplicate',
           title: 'Duplicate ',
         },
+        {
+          name: 'component',
+          title: 'Show',
+          renderComponent: BasicExampleCustomActionsItemComponent,
+        },
       ],
     },
     columns: {
@@ -41,7 +47,7 @@ export class BasicExampleCustomActionsComponent {
       },
       email: {
         title: 'Email',
-      }
+      },
     },
   };
 
@@ -79,6 +85,6 @@ export class BasicExampleCustomActionsComponent {
   ];
 
   onCustom(event) {
-    alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`)
+    alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`);
   }
 }
