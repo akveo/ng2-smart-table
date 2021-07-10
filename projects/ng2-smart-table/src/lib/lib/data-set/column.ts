@@ -2,6 +2,7 @@ import { DataSet } from './data-set';
 
 export class Column {
 
+  placeholder: string = '';
   title: string = '';
   type: string = '';
   class: string = '';
@@ -54,6 +55,7 @@ export class Column {
   }
 
   protected process() {
+    this.placeholder = this.settings['placeholder'];
     this.title = this.settings['title'];
     this.class = this.settings['class'];
     this.width = this.settings['width'];
