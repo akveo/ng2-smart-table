@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { LocalDataSource } from '../local/local.data-source';
@@ -10,13 +10,15 @@ import { map } from 'rxjs/operators';
 export class ServerDataSource extends LocalDataSource {
 
   protected conf: ServerSourceConf;
+  protected httpHeaders: HttpHeaders;
 
   protected lastRequestCount: number = 0;
 
-  constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}) {
+  constructor(protected http: HttpClient, conf: ServerSourceConf | {} = {}, headers: HttpHeaders = new HttpHeaders()) {
     super();
 
     this.conf = new ServerSourceConf(conf);
+    this.httpHeaders = headers;
 
     if (!this.conf.endPoint) {
       throw new Error('At least endPoint must be specified as a configuration of the server data source.');
@@ -71,7 +73,7 @@ export class ServerDataSource extends LocalDataSource {
 
   protected requestElements(): Observable<any> {
     let httpParams = this.createRequesParams();
-    return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
+    return this.http.get(this.conf.endPoint, { params: httpParams, headers: this.httpHeaders, observe: 'response' });
   }
 
   protected createRequesParams(): HttpParams {
