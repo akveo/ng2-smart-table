@@ -47,7 +47,7 @@ export class CustomViewComponent implements OnInit, OnDestroy {
 
   protected callOnComponentInit() {
     const onComponentInitFunction = this.cell.getColumn().getOnComponentInitFunction();
-    onComponentInitFunction && onComponentInitFunction(this.customComponent.instance);
+    onComponentInitFunction && onComponentInitFunction(this.customComponent.instance, this.getPatch());
   }
 
   protected patchInstance() {
