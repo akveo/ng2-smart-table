@@ -19,6 +19,7 @@ import { CustomEditorComponent } from './custom-edit-view/custom-editor.componen
 import { BasicExampleSourceComponent } from './filter/basic-example-source.component';
 import { CustomRenderComponent } from './custom-edit-view/custom-render.component';
 import { CustomFilterComponent } from './custom-edit-view/custom-filter.component';
+import { RowExpandComponent } from './custom-edit-view/row-expand-example';
 import { FilterExamplesComponent } from './filter/filter-examples.component';
 import { ServerExamplesComponent } from './server/server-examples.component';
 import { CustomViewEditExamplesComponent } from './custom-edit-view/custom-edit-view-examples.component';
@@ -49,6 +50,7 @@ const EXAMPLES_COMPONENTS = [
   BasicExampleButtonViewComponent,
   BasicExampleCustomActionsComponent,
   ButtonViewComponent,
+  RowExpandComponent
 ];
 
 @NgModule({

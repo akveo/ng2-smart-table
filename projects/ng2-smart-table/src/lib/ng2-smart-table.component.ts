@@ -209,7 +209,6 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   }
 
   onExpandRow(row: Row) {
-    console.log('row expanded clicked');
     this.grid.expandRow(row);
   }
 
