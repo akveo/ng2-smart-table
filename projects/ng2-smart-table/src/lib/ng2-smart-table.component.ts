@@ -18,6 +18,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   @Input() source: any;
   @Input() settings: Object = {};
 
+
   @Output() rowSelect = new EventEmitter<any>();
   @Output() rowDeselect = new EventEmitter<any>();
   @Output() userRowSelect = new EventEmitter<any>();
@@ -79,6 +80,9 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     delete: {
       deleteButtonContent: 'Delete',
       confirmDelete: false,
+    },
+    expand: {
+      expandRowButtonContent: 'Expand'
     },
     attr: {
       id: '',
@@ -204,6 +208,11 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     this.emitSelectRow(row);
   }
 
+  onExpandRow(row: Row) {
+    console.log('row expanded clicked');
+    this.grid.expandRow(row);
+  }
+
   onMultipleSelectRow(row: Row) {
     this.emitSelectRow(row);
   }
@@ -261,10 +270,14 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     const data = {
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
+      isExpanded: row ? row.getIsExpanded() : null,
       source: this.source,
     };
     this.rowSelect.emit(data);
     if (!row?.isSelected) {
+      this.rowDeselect.emit(data);
+    }
+    if (!row?.isExpanded) {
       this.rowDeselect.emit(data);
     }
   }

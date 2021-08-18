@@ -4,7 +4,7 @@ import { ViewCell } from 'ng2-smart-table';
 @Component({
   selector: 'button-view',
   template: `
-    <button (click)="onClick()">{{ renderValue }}</button>
+    <button style="background-color: red" (click)="onClick()">{{ renderValue }}</button>
   `,
 })
 export class ButtonViewComponent implements ViewCell, OnInit {
@@ -25,14 +25,58 @@ export class ButtonViewComponent implements ViewCell, OnInit {
 }
 
 @Component({
+  selector: 'div-view',
+  template: `
+    <div >
+      <table>
+        <thead>
+          <tr>
+            <th>Id</th>          
+            <th>Name</th>
+            <th>Email</th>
+            <th>User Name</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ rowData?.id }}</td>          
+            <td>{{ rowData?.name }}</td>
+            <td>{{ rowData?.email }}</td>
+            <td>{{ rowData?.username }}</td>
+          </tr>
+        </tbody>        
+      </table>
+    </div>
+  `,
+})
+export class DivViewComponent implements OnInit {
+  renderValue: {};
+
+  @Input() value: string | number;
+  @Input() rowData: any;
+
+  @Output() save: EventEmitter<any> = new EventEmitter();
+
+  ngOnInit() {
+  }
+
+  onClick() {
+    this.save.emit(this.rowData);
+  }
+}
+
+@Component({
   selector: 'basic-example-button-view',
   template: `
     <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
   `,
 })
 export class BasicExampleButtonViewComponent implements OnInit {
+  buttonViewComponent: any = new ButtonViewComponent;
+  onComponentInitFunction: Function
 
   settings = {
+    expandedRowComponent: DivViewComponent,
     columns: {
       id: {
         title: 'ID',
@@ -97,7 +141,8 @@ export class BasicExampleButtonViewComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
