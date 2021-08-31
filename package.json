@@ -15,6 +15,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akveo/ng2-smart-table.git"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.1.5",
