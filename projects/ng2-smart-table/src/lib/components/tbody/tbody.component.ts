@@ -51,7 +51,6 @@ export class Ng2SmartTableTbodyComponent implements  AfterViewInit, OnDestroy  {
   constructor(private resolver: ComponentFactoryResolver,private vcRef: ViewContainerRef) {}
 
   ngAfterViewInit(): void {
-    
     let cmp = this.grid.settings['expandedRowComponent'];
     if (cmp && !this.customComponent) {
       this.expandedRowChild.forEach(c => c.clear());

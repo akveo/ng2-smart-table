@@ -9,7 +9,7 @@ import { deepExtend, getPageForRowIndex } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
-  selector: 'ng2-smart-table',
+  selector: 'ngx-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
   templateUrl: './ng2-smart-table.component.html',
 })
