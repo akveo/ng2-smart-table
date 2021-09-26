@@ -9,7 +9,7 @@ import { deepExtend, getPageForRowIndex } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
-  selector: 'ng2-smart-table',
+  selector: 'ngx-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
   templateUrl: './ng2-smart-table.component.html',
 })
@@ -17,6 +17,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
 
   @Input() source: any;
   @Input() settings: Object = {};
+
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() rowDeselect = new EventEmitter<any>();
@@ -79,6 +80,9 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     delete: {
       deleteButtonContent: 'Delete',
       confirmDelete: false,
+    },
+    expand: {
+      expandRowButtonContent: 'Expand'
     },
     attr: {
       id: '',
@@ -204,6 +208,10 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     this.emitSelectRow(row);
   }
 
+  onExpandRow(row: Row) {
+    this.grid.expandRow(row);
+  }
+
   onMultipleSelectRow(row: Row) {
     this.emitSelectRow(row);
   }
@@ -261,10 +269,14 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     const data = {
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,
+      isExpanded: row ? row.getIsExpanded() : null,
       source: this.source,
     };
     this.rowSelect.emit(data);
     if (!row?.isSelected) {
+      this.rowDeselect.emit(data);
+    }
+    if (!row?.isExpanded) {
       this.rowDeselect.emit(data);
     }
   }

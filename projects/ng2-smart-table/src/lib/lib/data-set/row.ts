@@ -6,6 +6,7 @@ export class Row {
 
   isSelected: boolean = false;
   isInEditing: boolean = false;
+  isExpanded: boolean = false;
   cells: Array<Cell> = [];
 
 
@@ -27,6 +28,10 @@ export class Row {
 
   getIsSelected(): boolean {
     return this.isSelected;
+  }
+
+  getIsExpanded(): boolean {
+    return this.isExpanded;
   }
 
   getNewData(): any {

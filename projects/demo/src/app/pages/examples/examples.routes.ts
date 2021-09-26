@@ -1,5 +1,4 @@
-import { ModuleWithProviders } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {  Routes } from '@angular/router';
 
 import { ExamplesComponent } from './examples.component';
 import { FilterExamplesComponent } from './filter/filter-examples.component';

@@ -23,9 +23,10 @@ export class Grid {
   private sourceOnUpdatedSubscription: Subscription;
 
   constructor(source: DataSource, settings: any) {
-    this.setSettings(settings);
-    this.setSource(source);
+   this.setSettings(settings);
+   this.setSource(source);
   }
+
 
   detach(): void {
     if (this.sourceOnChangedSubscription) {
@@ -103,6 +104,10 @@ export class Grid {
 
   onSelectRow(): Observable<any> {
     return this.onSelectRowSource.asObservable();
+  }
+
+  expandRow(row: Row){
+    this.dataSet.expandRow(row);
   }
 
   onDeselectRow(): Observable<any> {

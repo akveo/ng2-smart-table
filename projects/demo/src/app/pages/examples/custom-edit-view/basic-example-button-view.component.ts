@@ -24,6 +24,8 @@ export class ButtonViewComponent implements ViewCell, OnInit {
   }
 }
 
+
+
 @Component({
   selector: 'basic-example-button-view',
   template: `
@@ -97,7 +99,8 @@ export class BasicExampleButtonViewComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

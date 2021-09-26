@@ -1,15 +1,28 @@
-import {Component, Input, Output, EventEmitter, } from '@angular/core';
+import {
+  Component, 
+  Input, 
+  Output, 
+  EventEmitter,  
+  ViewContainerRef, 
+  ComponentFactoryResolver, 
+  OnDestroy, 
+  AfterViewInit, 
+  QueryList, 
+  ViewChildren 
+} from '@angular/core';
 
 import { Grid } from '../../lib/grid';
 import { DataSource } from '../../lib/data-source/data-source';
 import { Cell } from '../../lib/data-set/cell';
+import { delay } from 'rxjs/operators';
+import { Row } from '../../lib/data-set/row';
 
 @Component({
   selector: '[ng2-st-tbody]',
   styleUrls: ['./tbody.component.scss'],
   templateUrl: './tbody.component.html',
 })
-export class Ng2SmartTableTbodyComponent {
+export class Ng2SmartTableTbodyComponent implements  AfterViewInit, OnDestroy  {
 
   @Input() grid: Grid;
   @Input() source: DataSource;
@@ -27,6 +40,46 @@ export class Ng2SmartTableTbodyComponent {
   @Output() editRowSelect = new EventEmitter<any>();
   @Output() multipleSelectRow = new EventEmitter<any>();
   @Output() rowHover = new EventEmitter<any>();
+  @Output() onExpandRow = new EventEmitter<any>();
+
+  @ViewChildren('expandedRowChild',{ read: ViewContainerRef}) expandedRowChild: QueryList<any>;
+  
+  customComponent: any;
+  hasChildComponent: boolean = false;
+
+
+  constructor(private resolver: ComponentFactoryResolver,private vcRef: ViewContainerRef) {}
+
+  ngAfterViewInit(): void {
+    let cmp = this.grid.settings['expandedRowComponent'];
+    if (cmp && !this.customComponent) {
+      this.expandedRowChild.forEach(c => c.clear());
+      this.hasChildComponent = true;
+      this.createCustomComponent();
+    }  
+  }
+
+  ngOnDestroy(): void {
+    if(this.customComponent) this.customComponent.destroy();
+  }
+
+  clear() {
+    this.vcRef.clear();
+  }
+  
+  protected createCustomComponent() {
+    const componentFactory = this.resolver.resolveComponentFactory(this.grid.settings['expandedRowComponent']);
+    this.expandedRowChild.changes
+      .pipe(delay(0))
+      .subscribe(item => {
+        if (item.length) {
+          this.customComponent  = item.first.createComponent(componentFactory);
+          Object.assign(this.customComponent.instance, this.grid.dataSet.expandRow,{
+            rowData : this.grid.dataSet.getExpandedRow().getData(),
+          });
+        }
+      });
+  }
 
   isMultiSelectVisible: boolean;
   showActionColumnLeft: boolean;
@@ -57,5 +110,10 @@ export class Ng2SmartTableTbodyComponent {
 
   getVisibleCells(cells: Array<Cell>): Array<Cell> {
     return (cells || []).filter((cell: Cell) => !cell.getColumn().hide);
+  }
+
+  onExpandRowClick(row:Row){
+    console.log('onExpandRowClick');
+    this.onExpandRow.emit(row);
   }
 }

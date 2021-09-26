@@ -9,6 +9,7 @@ export class DataSet {
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
   protected selectedRow: Row;
+  protected expandedRow: Row;
   protected willSelect: string;
 
   constructor(data: Array<any> = [], protected columnSettings: Object) {
@@ -25,6 +26,10 @@ export class DataSet {
 
   getColumns(): Array<Column> {
     return this.columns;
+  }
+
+  getExpandedRow(): Row {
+    return this.expandedRow;
   }
 
   getRows(): Array<Row> {
@@ -51,6 +56,14 @@ export class DataSet {
     this.selectedRow = undefined;
   }
 
+  clearExpandAll() {
+    this.rows.forEach((row) => {
+      row.isExpanded = false;
+    });
+    // we need to clear selectedRow field because no one row selected
+    this.expandedRow = undefined;
+  }
+
   selectRow(row: Row): Row | undefined {
     const previousIsSelected = row.isSelected;
     this.deselectAll();
@@ -66,6 +79,17 @@ export class DataSet {
     this.selectedRow = row;
 
     return this.selectedRow;
+  }
+
+  expandRow(row: Row): Row {
+    const previousIsExpanded = row.isExpanded;
+    this.clearExpandAll();
+    if(row.index !== this.expandedRow?.index){
+      this.expandedRow = undefined;
+    }
+    row.isExpanded = !previousIsExpanded;
+    this.expandedRow = row;
+    return  this.expandedRow;
   }
 
   selectPreviousRow(): Row {
