@@ -1,5 +1,6 @@
 export interface Settings {
-  columns?: Columns,
+  columns?: Columns;
+  resizable?: boolean;
   mode?: 'external' | 'inline';
   hideHeader?: boolean;
   hideSubHeader?: boolean;
@@ -9,9 +10,21 @@ export interface Settings {
   edit?: EditAction;
   add?: AddAction;
   delete?: DeleteAction;
+  filter?: Filter;
+  expand?: Expand;
   pager?: Pager;
   rowClassFunction?: Function;
   selectMode?: 'single' | 'multi';
+  selectedRowIndex?: number;
+  switchPageToSelectedRowPage?: boolean;
+}
+
+export interface Filter {
+  inputClass?: string;
+}
+
+export interface Expand {
+  expandRowButtonContent?: string;
 }
 
 export interface Columns {
@@ -72,7 +85,8 @@ export interface DeleteAction {
 }
 
 export interface Pager {
-  display?: string;
+  page?: number;
+  display?: boolean;
   perPage?: number;
 }
 

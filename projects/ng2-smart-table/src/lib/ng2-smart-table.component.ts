@@ -41,7 +41,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   rowClassFunction: Function;
 
   grid: Grid;
-  defaultSettings: Object = {
+  defaultSettings: Settings = {
     mode: 'inline', // inline|external|click-to-edit
     selectMode: 'single', // single|multi
     /**
@@ -236,7 +236,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     return new LocalDataSource();
   }
 
-  prepareSettings(): Object {
+  prepareSettings(): Settings {
     return deepExtend({}, this.defaultSettings, this.settings);
   }
 
