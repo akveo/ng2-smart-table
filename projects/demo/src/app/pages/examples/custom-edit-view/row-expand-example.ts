@@ -48,10 +48,12 @@ export class DivViewComponent {
 export class RowExpandComponent implements OnInit {
 
   settings = {
+    resizable: true,
     expandedRowComponent: DivViewComponent,
     columns: {
       id: {
         title: 'ID',
+        hide: true,
       },
       name: {
         title: 'Full Name',
@@ -99,6 +101,7 @@ export class RowExpandComponent implements OnInit {
   ];
 
   constructor() {
+
   }
 
   ngOnInit() {
