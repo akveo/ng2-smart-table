@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { Cell } from '../../../lib/data-set/cell';
 
@@ -19,12 +19,16 @@ import { Cell } from '../../../lib/data-set/cell';
       </div>
     `,
 })
-export class EditCellComponent {
+export class EditCellComponent implements OnInit {
 
   @Input() cell: Cell;
   @Input() inputClass: string = '';
 
   @Output() edited = new EventEmitter<any>();
+
+  ngOnInit(): void {
+    this.cell.resetValue();
+  }
 
   onEdited(event: any): boolean {
     this.edited.next(event);
