@@ -11,9 +11,9 @@ import { DefaultEditor } from './default-editor';
             [name]="cell.getId()"
             [disabled]="!cell.isEditable()"
             (click)="onClick.emit($event)"
-            (keydown.enter)="onEdited.emit($event)"
-            (keydown.esc)="onStopEditing.emit()"
             [multiple]="cell.getColumn().getConfig()?.multiple">
+            (keydown.enter)="disableEnterKeySave || onEdited.emit($event)"
+            (keydown.esc)="onStopEditing.emit()">
 
         <option *ngFor="let option of cell.getColumn().getConfig()?.list" [value]="option.value"
                 [selected]="option.value === cell.getValue()">{{ option.title }}
