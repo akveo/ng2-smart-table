@@ -1,7 +1,31 @@
-[![Build Status](https://travis-ci.org/akveo/ng2-smart-table.svg?branch=master)](https://travis-ci.org/akveo/ng2-smart-table)
-
 # Angular Smart Table Component
 
+
+## 🚀 This fork will be updated and maintained! 🚀
+
+I'm a self-employed developer so any help is welcome, open a pull request and help me improve this library
+
+
+
+## NEW Features
+* 🚀 Added Expandable Row (thanks [Samir](https://github.com/mominsamir))
+* 🚀 Added Column resizing (thanks [dreswgfuse](https://github.com/dreswgfuse))
+* 🚀 Added Multi Select for a column (thanks [thangluu93](https://github.com/thangluu93))
+* 🚀 Added type to Settings object
+* 🚀 Added Column resizing (thanks [dreswgfuse](https://github.com/dreswgfuse))
+* 🚀 Added custom action render component (thanks [bacali95](https://github.com/bacali95))
+* 🚀 Added Column sorting/filtering to nested objects (thanks [TejinderEvry](https://github.com/TejinderEvry))
+* 🚀 Added row data to custom component render (thanks [marchrius](https://github.com/marchrius))
+* 🚀 Include row data when invoking filterFunction (thanks [darrenhollick](https://github.com/darrenhollick))
+## Features
+* Local data source (Server/API DataSource is on its way)
+* Filtering
+* Sorting
+* Pagination
+* Inline Add/Edit/Delete
+* Flexible event model
+
+<!-- 
 ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this component first!
 
 ## ⚠ Low Maintenance
@@ -11,18 +35,18 @@ Due to project priority and resource constraints, this project is currently on l
 
 <a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
 
-![alt tag](projects/demo/src/assets/demo.gif)
+![alt tag](projects/demo/src/assets/demo.gif) -->
 
 ## Installation
 
 The library is available as npm package, so all you need to do is to run the following command:
 
 ```
-npm install --save ng2-smart-table
+TO BE PUBLISHED TO NPM
 ```
 
 This command will create a record in your `package.json` file and install the package into the npm modules folder.
-
+<!-- 
 ## Minimal Setup Example
 
 First thing you need to do is to import the ng2-smart-table directives into your component.
@@ -128,31 +152,15 @@ And pass the data to the table:
 // ...
 ```
 
-Now you have some data in the table.
+Now you have some data in the table. -->
  
 ## Further Documentation
 Installation, customization and other useful articles: https://akveo.github.io/ng2-smart-table/
 
-## UI Bakery
-Try low-code internal tool builder for free
-<a href="https://uibakery.io/?utm_source=github&utm_medium=clicks&utm_campaign=banner"><img src="https://user-images.githubusercontent.com/6151971/125071660-41f84900-e0c2-11eb-882a-0c675eb1e5e3.png"></a>
-
 ## How can I support developers?
 - Star our GitHub repo :star:
 - Create pull requests, submit bugs, suggest new features or documentation updates :wrench:
-- Follow us on [Twitter](https://twitter.com/akveo_inc) :feet:
-- Like our page on [Facebook](https://www.facebook.com/akveo/) :thumbsup:
 
-## Can I hire you guys?
-Yes!  Visit [our homepage](http://akveo.com/) or simply leave us a note to [contact@akveo.com](mailto:contact@akveo.com). We will be happy to work with you!
-
-## Features
-* Local data source (Server/API DataSource is on its way)
-* Filtering
-* Sorting
-* Pagination
-* Inline Add/Edit/Delete
-* Flexible event model
 
 ## License
 [MIT](LICENSE.txt) license.
@@ -163,7 +171,7 @@ Yes!  Visit [our homepage](http://akveo.com/) or simply leave us a note to [cont
 
 [<img alt="nureha" src="https://avatars2.githubusercontent.com/u/7064537?v=3&s=60" width="60">](https://github.com/nureha)[<img alt="vlupu10" src="https://avatars1.githubusercontent.com/u/3597512?v=3&s=60" width="60">](https://github.com/vlupu10)[<img alt="zhouhao27" src="https://avatars1.githubusercontent.com/u/8099731?v=3&s=60" width="60">](https://github.com/zhouhao27)[<img alt="hkb1990" src="https://avatars1.githubusercontent.com/u/2637138?v=3&s=60" width="60">](https://github.com/hkb1990)[<img alt="liaosong" src="https://avatars0.githubusercontent.com/u/3927282?v=3&s=60" width="60">](https://github.com/liaosong)[<img alt="ktriek" src="https://avatars2.githubusercontent.com/u/4461059?v=3&s=60" width="60">](https://github.com/ktriek)
 
-### From akveo
+### From dj-fiorex, forked from akveo
 
 Enjoy :metal:
 We're always happy to hear your feedback!
