@@ -52,6 +52,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     switchPageToSelectedRowPage: false,
     hideHeader: false,
     hideSubHeader: false,
+    resizable: false,
     actions: {
       columnTitle: 'Actions',
       add: true,

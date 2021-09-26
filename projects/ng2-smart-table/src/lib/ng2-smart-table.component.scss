@@ -30,6 +30,16 @@
       tr {
         th {
           font-weight: bold;
+          position: relative;
+
+          .ng2-resizer-block {
+            width: 8px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: col-resize;
+          }
         }
         section {
           font-size: .75em;
