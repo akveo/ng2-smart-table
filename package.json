@@ -13,7 +13,9 @@
     "publish": "npm publish --access=public dist/ng2-smart-table",
     "changelog": "standard-changelog -p angular",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:stats": "ng build --prod --aot --stats-json",
+    "analyze": "webpack-bundle-analyzer dist/stats.json"
   },
   "private": true,
   "dependencies": {
@@ -26,7 +28,7 @@
     "@angular/platform-browser-dynamic": "~11.0.4",
     "@angular/router": "~11.0.4",
     "highlight.js": "^10.4.1",
-    "lodash": "^4.17.20",
+    "lodash-es": "4.17.21",
     "ng2-completer": "^9.0.1",
     "rxjs": "~6.6.3",
     "tslib": "^2.0.3",

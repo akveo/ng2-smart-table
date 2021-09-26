@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import {cloneDeep} from 'lodash-es';
 
 /**
  * Extending object that entered in first argument.
@@ -9,7 +9,7 @@ import { cloneDeep } from 'lodash';
  * object as first argument, like this:
  *   deepExtend({}, yourObj_1, [yourObj_N]);
  */
-export const deepExtend = function(...objects: Array<any>): any {
+export const deepExtend = function (...objects: Array<any>): any {
   if (arguments.length < 1 || typeof arguments[0] !== 'object') {
     return false;
   }
