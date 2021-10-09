@@ -6,10 +6,10 @@
   "license": "MIT",
   "dependencies": {
     "lodash-es": "4.17.21",
+    "ng2-completer": "^9.0.1",
     "tslib": "^2.0.0"
   },
   "peerDependencies": {
-    "ng2-completer": "^9.0.1",
     "@angular/common": "^12.2.9",
     "@angular/core": "^12.2.9",
     "@angular/forms": "^12.2.9"
