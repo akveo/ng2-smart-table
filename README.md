@@ -25,18 +25,6 @@ I'm a self-employed developer so any help is welcome, open a pull request and he
 * Inline Add/Edit/Delete
 * Flexible event model
 
-<!-- 
-ng2-smart-table component made with :heart:  by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this component first!
-
-## ⚠ Low Maintenance
-Due to project priority and resource constraints, this project is currently on low maintenance. We recognize that there are a lot of activities around this package. However, we are unable to accommodate the maintenance this project requires.
-
-### Demo
-
-<a target="_blank" href="https://akveo.github.io/ng2-smart-table/">Live Demo</a>
-
-![alt tag](projects/demo/src/assets/demo.gif) -->
-
 ## Installation
 
 The library is available as npm package, so all you need to do is to run the following command:
@@ -46,14 +34,16 @@ TO BE PUBLISHED TO NPM
 ```
 
 This command will create a record in your `package.json` file and install the package into the npm modules folder.
-<!-- 
+
+
+
 ## Minimal Setup Example
 
-First thing you need to do is to import the ng2-smart-table directives into your component.
+First thing you need to do is to import the ngx-smart-table directives into your component.
 
 ```
 
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgxSmartTableModule } from 'ngx-smart-table';
 
 ```
 
@@ -66,7 +56,7 @@ Then register it by adding to the list of directives of your module:
   imports: [
     // ...
     
-    Ng2SmartTableModule,
+    NgxSmartTableModule,
     
     // ...
   ],
@@ -76,7 +66,7 @@ Then register it by adding to the list of directives of your module:
 ```
 
 Now, we need to configure the table and add it into the template. The only <strong>required</strong> setting for the component to start working is a columns configuration.
-Let's register <i>settings</i> property inside of the component where we want to have the table and configure some columns [Settings documentation](https://akveo.github.io/ng2-smart-table/#/documentation):
+Let's register <i>settings</i> property inside of the component where we want to have the table and configure some columns [Settings documentation](https://github.com/dj-fiorex/ngx-smart-table):
     
 ```
 settings = {
@@ -97,14 +87,14 @@ settings = {
 };
 ```
 
-Finally let's put the ng2-smart-table component inside of the template:
+Finally let's put the ngx-smart-table component inside of the template:
 
 ```
 // ...
 
 @Component({
   template: `
-    <ng2-smart-table [settings]="settings"></ng2-smart-table>
+    <ngx-smart-table [settings]="settings"></ngx-smart-table>
   `
 })
 // ...
@@ -146,7 +136,7 @@ And pass the data to the table:
 
 @Component({
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ngx-smart-table [settings]="settings" [source]="data"></ngx-smart-table>
   `
 })
 // ...
@@ -155,7 +145,7 @@ And pass the data to the table:
 Now you have some data in the table. -->
  
 ## Further Documentation
-Installation, customization and other useful articles: https://akveo.github.io/ng2-smart-table/
+Installation, customization and other useful articles: https://github.com/dj-fiorex/ngx-smart-table
 
 ## How can I support developers?
 - Star our GitHub repo :star:

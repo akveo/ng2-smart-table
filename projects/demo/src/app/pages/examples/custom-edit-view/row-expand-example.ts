@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'div-view',
@@ -42,7 +42,7 @@ export class DivViewComponent {
 @Component({
   selector: 'row-expand-view',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ngx-smart-table [settings]="settings" [source]="data"></ngx-smart-table>
   `,
 })
 export class RowExpandComponent implements OnInit {

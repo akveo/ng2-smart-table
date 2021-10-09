@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
-import { LocalDataSource } from 'ng2-smart-table';
+import { LocalDataSource } from 'ngx-smart-table';
 import { BasicExampleLoadService } from './basic-example-load.service';
 
 @Component({
   selector: 'basic-example-load',
   providers: [BasicExampleLoadService],
   template: `
-    <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+    <ngx-smart-table [settings]="settings" [source]="source"></ngx-smart-table>
   `,
 })
 export class BasicExampleLoadComponent {

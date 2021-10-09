@@ -1,0 +1,82 @@
+<ng-container  *ngFor="let row of grid.getRows()">
+  <tr (click)="userSelectRow.emit(row)" (mouseover)="rowHover.emit(row)" class="ngx-smart-row" [className]="rowClassFunction(row)" [ngClass]="{selected: row.isSelected}">
+    <td *ngIf="isMultiSelectVisible" class="ngx-smart-actions ngx-smart-action-multiple-select" (click)="multipleSelectRow.emit(row)">
+      <input type="checkbox" class="form-control" [ngModel]="row.isSelected">
+    </td>
+    <td *ngIf="!row.isInEditing && showActionColumnLeft" class="ngx-smart-actions">
+
+      <ngx-st-tbody-custom 
+        [grid]="grid" 
+        (custom)="custom.emit($event)" 
+        [row]="row" 
+        [source]="source">
+      </ngx-st-tbody-custom>
+      
+      <ngx-st-tbody-expand 
+          *ngIf="hasChildComponent"
+          [grid]="grid" 
+          [row]="row" 
+          (onExpandRow)="onExpandRow.emit(row)">
+      </ngx-st-tbody-expand>
+
+      <ngx-st-tbody-edit-delete [grid]="grid"
+                                [deleteConfirm]="deleteConfirm"
+                                [editConfirm]="editConfirm"
+                                (edit)="edit.emit(row)"
+                                (delete)="delete.emit(row)"
+                                (editRowSelect)="editRowSelect.emit($event)"
+                                [row]="row"
+                                [source]="source">
+      </ngx-st-tbody-edit-delete>
+    </td>
+    <td *ngIf="row.isInEditing && showActionColumnLeft"  class="ngx-smart-actions">
+      <ngx-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></ngx-st-tbody-create-cancel>
+    </td>
+    <td *ngFor="let cell of getVisibleCells(row.cells)">
+      <ngx-smart-table-cell [cell]="cell"
+                            [grid]="grid"
+                            [row]="row"
+                            [isNew]="false"
+                            [mode]="mode"
+                            [editConfirm]="editConfirm"
+                            [inputClass]="editInputClass"
+                            [isInEditing]="row.isInEditing">
+      </ngx-smart-table-cell>
+    </td>
+
+    <td *ngIf="row.isInEditing && showActionColumnRight"  class="ngx-smart-actions">
+      <ngx-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm"></ngx-st-tbody-create-cancel>
+    </td>
+
+    <td *ngIf="!row.isInEditing && showActionColumnRight" class="ngx-smart-actions">
+      <ngx-st-tbody-custom [grid]="grid" (custom)="custom.emit($event)" [row]="row" [source]="source"></ngx-st-tbody-custom>
+
+      <ngx-st-tbody-expand 
+          *ngIf="hasChildComponent"
+          [grid]="grid" 
+          [row]="row" 
+          (onExpandRow)="onExpandRow.emit(row)">
+      </ngx-st-tbody-expand>
+      
+      <ngx-st-tbody-edit-delete [grid]="grid"
+                                [deleteConfirm]="deleteConfirm"
+                                [editConfirm]="editConfirm"
+                                [row]="row"
+                                [source]="source"
+                                (edit)="edit.emit(row)"
+                                (delete)="delete.emit(row)"
+                                (editRowSelect)="editRowSelect.emit($event)">
+      </ngx-st-tbody-edit-delete>
+    </td>
+  </tr>
+  <tr class="ngx-smart-row ngx-smart-row-detail" *ngIf="row.isExpanded">
+    <td [attr.colspan]="tableColumnsCount" class="ngx-smart-column-expandedDetail">
+      <ng-template #expandedRowChild ></ng-template>
+    </td>
+  </tr>
+</ng-container>
+<tr *ngIf="grid.getRows().length == 0">
+  <td [attr.colspan]="tableColumnsCount">
+    {{ noDataMessage }}
+  </td>
+</tr>

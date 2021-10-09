@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'advanced-example-types',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ngx-smart-table [settings]="settings" [source]="data"></ngx-smart-table>
   `,
 })
 export class AdvancedExamplesTypesComponent {

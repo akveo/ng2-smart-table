@@ -11,17 +11,11 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "es2015",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "ng2-smart-table": [
-        "projects/ng2-smart-table/src/public-api.ts"
-      ]
+      "tslib": ["node_modules/tslib/tslib.d.ts"],
+      "ngx-smart-table": ["projects/ngx-smart-table/src/public-api.ts"]
     }
   }
 }

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'basic-example-multi-select',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <ngx-smart-table [settings]="settings" [source]="data"></ngx-smart-table>
   `,
 })
 export class BasicExampleMultiSelectComponent {

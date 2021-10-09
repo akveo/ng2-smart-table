@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {Settings} from "../../../../../../ng2-smart-table/src/lib/lib/settings";
+import {Settings} from "../../../../../../ngx-smart-table/src/lib/lib/settings";
 
 @Component({
   selector: 'basic-example',
   template: `
-    <ng2-smart-table [settings]="settings"></ng2-smart-table>
+    <ngx-smart-table [settings]="settings"></ngx-smart-table>
   `,
 })
 export class BasicExampleComponent {

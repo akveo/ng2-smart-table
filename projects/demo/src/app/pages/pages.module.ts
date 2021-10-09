@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { routes } from './pages.routes';
 import { SharedModule } from '../shared/shared.module';
-import { Ng2SmartTableModule } from 'projects/ng2-smart-table/src/public-api';
+import { NgxSmartTableModule } from 'projects/ngx-smart-table/src/public-api';
 
 @NgModule({
   imports: [
@@ -13,7 +13,7 @@ import { Ng2SmartTableModule } from 'projects/ng2-smart-table/src/public-api';
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    Ng2SmartTableModule,
+    NgxSmartTableModule,
     SharedModule,
   ],
 })

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { Ng2SmartTableModule } from 'projects/ng2-smart-table/src/public-api';
+import { NgxSmartTableModule } from 'projects/ngx-smart-table/src/public-api';
 
 import { PagesModule } from './pages/pages.module';
 import { AppComponent } from './app.component';
@@ -19,7 +19,7 @@ import { ScrollPositionDirective } from './theme/directives/scrollPosition.direc
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, { useHash: true }),
-    Ng2SmartTableModule,
+    NgxSmartTableModule,
     PagesModule,
   ],
   providers: [],

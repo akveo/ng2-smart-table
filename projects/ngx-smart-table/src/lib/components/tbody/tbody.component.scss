@@ -1,0 +1,18 @@
+:host {
+  .ngx-smart-row {
+    &.selected {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .ngx-smart-actions {
+      &.ngx-smart-action-multiple-select {
+        text-align: center;
+      }
+    }
+  }
+  ::ng-deep ngx-st-tbody-edit-delete, ::ng-deep ngx-st-tbody-create-cancel, ::ng-deep ngx-smart-action-expand-expand {
+    a:first-child {
+      margin-right: 0.25rem;
+    }
+  }
+
+}

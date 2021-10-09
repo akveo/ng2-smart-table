@@ -4,7 +4,11 @@
     "outDir": "../../out-tsc/app",
     "types": [
       "node"
-    ]
+    ],
+    "baseUrl": "./",
+    "paths": {
+      "tslib" : ["../../node_modules/tslib/tslib.d.ts"]
+    },
   },
   "files": [
     "src/main.ts",
@@ -12,6 +16,6 @@
   ],
   "include": [
     "src/**/*.d.ts",
-    "../ng2-smart-table/src/**/*.ts"
+    "../ngx-smart-table/src/**/*.ts"
   ]
 }

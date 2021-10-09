@@ -4,7 +4,7 @@ import { BasicExampleCustomActionsItemComponent } from './basic-example-custom-a
 @Component({
   selector: 'basic-example-custom-actions',
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)"></ng2-smart-table>
+    <ngx-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)"></ngx-smart-table>
   `,
 })
 export class BasicExampleCustomActionsComponent {

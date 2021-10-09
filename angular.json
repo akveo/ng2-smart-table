@@ -3,38 +3,38 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng2-smart-table": {
+    "ngx-smart-table": {
       "projectType": "library",
-      "root": "projects/ng2-smart-table",
-      "sourceRoot": "projects/ng2-smart-table/src",
+      "root": "projects/ngx-smart-table",
+      "sourceRoot": "projects/ngx-smart-table/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "tsConfig": "projects/ng2-smart-table/tsconfig.lib.json",
-            "project": "projects/ng2-smart-table/ng-package.json"
+            "tsConfig": "projects/ngx-smart-table/tsconfig.lib.json",
+            "project": "projects/ngx-smart-table/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng2-smart-table/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-smart-table/tsconfig.lib.prod.json"
             }
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ng2-smart-table/src/test.ts",
-            "tsConfig": "projects/ng2-smart-table/tsconfig.spec.json",
-            "karmaConfig": "projects/ng2-smart-table/karma.conf.js"
+            "main": "projects/ngx-smart-table/src/test.ts",
+            "tsConfig": "projects/ngx-smart-table/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-smart-table/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "projects/ng2-smart-table/tsconfig.lib.json",
-              "projects/ng2-smart-table/tsconfig.spec.json"
+              "projects/ngx-smart-table/tsconfig.lib.json",
+              "projects/ngx-smart-table/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -64,7 +64,7 @@
               "projects/demo/src/assets"
             ],
             "styles": [
-              "node_modules/highlight.js/styles/dracula.css",
+              "node_modules/highlight.js/styles/dark.css",
               "projects/demo/src/app/theme/theme.scss"
             ],
             "scripts": []
@@ -160,7 +160,7 @@
       }
     }
   },
-  "defaultProject": "ng2-smart-table",
+  "defaultProject": "ngx-smart-table",
   "cli": {
     "analytics": false
   }

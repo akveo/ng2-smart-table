@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-import { Ng2SmartTableModule } from 'projects/ng2-smart-table/src/public-api';
+import { NgxSmartTableModule } from 'projects/ngx-smart-table/src/public-api';
 
 import { HeaderComponent } from './components/header/header.component';
 import { BasicExampleDataComponent } from './components/basic-example/basic-example-data.component';
@@ -24,7 +24,7 @@ const SHARED_DIRECTIVES = [
   imports: [
     RouterModule,
     CommonModule,
-    Ng2SmartTableModule,
+    NgxSmartTableModule,
   ],
   declarations: [
     ...SHARED_COMPONENTS,
