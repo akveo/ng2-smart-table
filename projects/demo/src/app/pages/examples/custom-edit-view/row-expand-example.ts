@@ -34,7 +34,6 @@ export class DivViewComponent {
 
 
   onClick() {
-    console.log('onClick');
     alert(this.rowData.name);
   }
 }
