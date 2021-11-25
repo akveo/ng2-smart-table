@@ -32,7 +32,6 @@ export class ServerDataSource extends LocalDataSource {
       .pipe(map(res => {
         this.lastRequestCount = this.extractTotalFromResponse(res);
         this.data = this.extractDataFromResponse(res);
-
         return this.data;
       })).toPromise();
   }
@@ -70,11 +69,11 @@ export class ServerDataSource extends LocalDataSource {
   }
 
   protected requestElements(): Observable<any> {
-    let httpParams = this.createRequesParams();
+    let httpParams = this.createRequestParams();
     return this.http.get(this.conf.endPoint, { params: httpParams, observe: 'response' });
   }
 
-  protected createRequesParams(): HttpParams {
+  protected createRequestParams(): HttpParams {
     let httpParams = new HttpParams();
 
     httpParams = this.addSortRequestParams(httpParams);

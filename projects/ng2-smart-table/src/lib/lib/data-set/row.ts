@@ -8,6 +8,7 @@ export class Row {
   isInEditing: boolean = false;
   isExpanded: boolean = false;
   cells: Array<Cell> = [];
+  keyValue : string| number | undefined = undefined;
 
 
   constructor(public index: number, protected data: any, protected _dataSet: DataSet) {
@@ -51,6 +52,14 @@ export class Row {
       const cell = this.createCell(column);
       this.cells.push(cell);
     });
+  }
+
+  setKeyValue(keyValue: string | number | undefined) {
+    this.keyValue = keyValue;
+  }
+
+  getKeyValue = () => {
+    return this.keyValue;
   }
 
   createCell(column: Column): Cell {

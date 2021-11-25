@@ -9,7 +9,7 @@ import { deepExtend, getPageForRowIndex } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
 
 @Component({
-  selector: 'ngx-smart-table',
+  selector: 'ng2-smart-table',
   styleUrls: ['./ng2-smart-table.component.scss'],
   templateUrl: './ng2-smart-table.component.html',
 })
@@ -40,6 +40,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   rowClassFunction: Function;
 
   grid: Grid;
+
   defaultSettings: Object = {
     mode: 'inline', // inline|external|click-to-edit
     selectMode: 'single', // single|multi
@@ -52,6 +53,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     switchPageToSelectedRowPage: false,
     hideHeader: false,
     hideSubHeader: false,
+    keyColumn: undefined,
     actions: {
       columnTitle: 'Actions',
       add: true,
@@ -256,7 +258,6 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
 
   private emitUserSelectRow(row: Row) {
     const selectedRows = this.grid.getSelectedRows();
-
     this.userRowSelect.emit({
       data: row ? row.getData() : null,
       isSelected: row ? row.getIsSelected() : null,

@@ -66,6 +66,11 @@ export class Ng2SmartTableTbodyComponent implements  AfterViewInit, OnDestroy  {
   clear() {
     this.vcRef.clear();
   }
+
+  isRowSelected  = (row: Row): boolean =>{
+
+    return this.grid.getDataSet().isRowSelected(row);
+   } 
   
   protected createCustomComponent() {
     const componentFactory = this.resolver.resolveComponentFactory(this.grid.settings['expandedRowComponent']);

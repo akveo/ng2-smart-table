@@ -1,5 +1,5 @@
 {
-  "name": "ngx-smart-table",
+  "name": "@mominsamir/ngx-smart-table",
   "version": "1.7.2",
   "scripts": {
     "ng": "ng",
@@ -10,12 +10,12 @@
     "docs:gh-pages": "npm run build:demo -- --base-href '/ng2-smart-table/' && ngh --dir ./dist/demo",
     "test": "ng test",
     "release": "npm run build:lib && npm run publish",
-    "publish": "npm publish --access=public dist/ng2-smart-table",
+    "publish": "npm publish --access=public dist/ngx-smart-table",
     "changelog": "standard-changelog -p angular",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
+  "private": false,
   "dependencies": {
     "@angular/animations": "~10.1.5",
     "@angular/common": "~10.1.5",
@@ -56,5 +56,21 @@
     "ts-node": "~7.0.0",
     "tslint": "~6.1.0",
     "typescript": "~4.0.3"
-  }
+  },
+  "description": "[![Build Status](https://travis-ci.org/akveo/ng2-smart-table.svg?branch=master)](https://travis-ci.org/akveo/ng2-smart-table)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mominsamir/ng2-smart-table.git"
+  },
+  "keywords": [
+    "angular",
+    "data-table"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mominsamir/ng2-smart-table/issues"
+  },
+  "homepage": "https://github.com/mominsamir/ng2-smart-table#readme"
 }

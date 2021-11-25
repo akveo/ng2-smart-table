@@ -60,6 +60,7 @@ export class Grid {
   setSettings(settings: Object) {
     this.settings = settings;
     this.dataSet = new DataSet([], this.getSetting('columns'));
+    this.dataSet.setTruckByMultiSelectByColumn(this.getSetting('keyColumn'));
 
     if (this.source) {
       this.source.refresh();
@@ -116,6 +117,17 @@ export class Grid {
 
   edit(row: Row) {
     row.isInEditing = true;
+  }
+
+  hasKeyColumn = (): boolean => {
+    return this.settings.hasOwnProperty('keyColumn');
+  }
+
+  getKeyColumn = (): string => {
+    if(this.hasKeyColumn()) {
+        return this.settings.keyColumn;
+    }
+    return undefined; 
   }
 
   create(row: Row, confirmEmitter: EventEmitter<any>) {
@@ -206,6 +218,8 @@ export class Grid {
           this.onDeselectRowSource.next(null);
         }
       }
+    } else {
+        console.warn("processChange ");
     }
   }
 
@@ -286,13 +300,15 @@ export class Grid {
   }
 
   getSelectedRows(): Array<any> {
-    return this.dataSet.getRows()
-      .filter(r => r.isSelected);
+    return Array.from(this.dataSet.getMultipleSelectedRows());
   }
 
-  selectAllRows(status: any) {
-    this.dataSet.getRows()
-      .forEach(r => r.isSelected = status);
+  selectAllRows(status: boolean) {
+      if(status) {
+        this.dataSet.getRows().forEach(row => this.dataSet.getMultipleSelectedRows().add(row));
+      } else {
+        this.dataSet.getMultipleSelectedRows().clear();
+      }
   }
 
   getFirstRow(): Row {

@@ -8,6 +8,8 @@ export class DataSet {
   protected data: Array<any> = [];
   protected columns: Array<Column> = [];
   protected rows: Array<Row> = [];
+  protected multipleSelectedRows: Set<Row> = new Set();
+  protected truckByMultiSelect: string | undefined = undefined;
   protected selectedRow: Row;
   protected expandedRow: Row;
   protected willSelect: string;
@@ -36,6 +38,10 @@ export class DataSet {
     return this.rows;
   }
 
+  getMultipleSelectedRows(): Set<Row> {
+    return this.multipleSelectedRows;
+  }
+
   getFirstRow(): Row {
     return this.rows[0];
   }
@@ -49,9 +55,8 @@ export class DataSet {
   }
 
   deselectAll() {
-    this.rows.forEach((row) => {
-      row.isSelected = false;
-    });
+    //this.rows.forEach((row) => { row.isSelected = false;});
+     this.getMultipleSelectedRows().clear();
     // we need to clear selectedRow field because no one row selected
     this.selectedRow = undefined;
   }
@@ -74,11 +79,17 @@ export class DataSet {
     return this.selectedRow;
   }
 
-  multipleSelectRow(row: Row): Row {
-    row.isSelected = !row.isSelected;
-    this.selectedRow = row;
+  isRowSelected (row: Row): boolean {
+    return Array.from(this.getMultipleSelectedRows())
+        .find((selectedRow: Row) => selectedRow.getKeyValue() === row.getKeyValue()) !== undefined;
+  }
 
-    return this.selectedRow;
+  multipleSelectRow(row: Row): Row {
+//    row.isSelected = !row.isSelected;
+//    this.selectedRow = row;
+    this.multipleSelectedRows.add(row);
+//    return this.selectedRow;
+    return row;
   }
 
   expandRow(row: Row): Row {
@@ -142,6 +153,10 @@ export class DataSet {
     this.willSelect = 'last';
   }
 
+  setTruckByMultiSelectByColumn(columnName: string) {
+    this.truckByMultiSelect = columnName;
+  }
+
   select(selectedRowIndex?: number): Row | undefined {
     if (this.getRows().length === 0) {
       return;
@@ -186,7 +201,9 @@ export class DataSet {
   createRows() {
     this.rows = [];
     this.data.forEach((el, index) => {
-      this.rows.push(new Row(index, el, this));
+      let row: Row = new Row(index, el, this);
+      row.setKeyValue(el[this.truckByMultiSelect]);
+      this.rows.push(row);
     });
   }
 }

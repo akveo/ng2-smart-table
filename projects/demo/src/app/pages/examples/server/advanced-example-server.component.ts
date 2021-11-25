@@ -11,6 +11,8 @@ import { ServerDataSource } from 'ng2-smart-table';
 export class AdvancedExampleServerComponent {
 
   settings = {
+    keyColumn: 'id',
+    selectMode: 'multi',
     columns: {
       id: {
         title: 'ID',
