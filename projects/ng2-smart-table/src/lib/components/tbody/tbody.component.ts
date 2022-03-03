@@ -36,10 +36,11 @@ export class Ng2SmartTableTbodyComponent {
   isActionAdd: boolean;
   isActionEdit: boolean;
   isActionDelete: boolean;
+  isCustomActions: boolean;
   noDataMessage: boolean;
 
   get tableColumnsCount() {
-    const actionColumns = this.isActionAdd || this.isActionEdit || this.isActionDelete ? 1 : 0;
+    const actionColumns = this.isActionAdd || this.isActionEdit || this.isActionDelete ||  this.isCustomActions ? 1 : 0;
     return this.grid.getColumns().length + actionColumns;
   }
 
@@ -52,6 +53,7 @@ export class Ng2SmartTableTbodyComponent {
     this.isActionAdd = this.grid.getSetting('actions.add');
     this.isActionEdit = this.grid.getSetting('actions.edit');
     this.isActionDelete = this.grid.getSetting('actions.delete');
+    this.isCustomActions = !!this.grid.getSetting('actions.custom');
     this.noDataMessage = this.grid.getSetting('noDataMessage');
   }
 
