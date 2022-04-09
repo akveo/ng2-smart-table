@@ -1,3 +1,143 @@
+## [1.7.2](https://github.com/yggg/ng2-smart-table/compare/v1.7.1...v1.7.2) (2020-11-12)
+
+
+### Bug Fixes
+
+* use `selectedRowIndex` if specified when data changes ([#1221](https://github.com/yggg/ng2-smart-table/issues/1221)) ([3036b76](https://github.com/yggg/ng2-smart-table/commit/3036b76))
+
+
+
+## [1.7.1](https://github.com/yggg/ng2-smart-table/compare/v1.7.0...v1.7.1) (2020-10-29)
+
+
+### Features
+
+* add hide column configuration property ([#1151](https://github.com/yggg/ng2-smart-table/issues/1151)) ([0d43219](https://github.com/yggg/ng2-smart-table/commit/0d43219))
+
+
+
+# [1.7.0](https://github.com/yggg/ng2-smart-table/compare/v1.6.0...v1.7.0) (2020-10-08)
+
+
+### Code Refactoring
+
+* use original ng2-completer package ([#1211](https://github.com/yggg/ng2-smart-table/issues/1211)) ([59c3a78](https://github.com/yggg/ng2-smart-table/commit/59c3a78))
+
+
+### Features
+
+* add selectedRowIndex to settings and selectRow method ([#1210](https://github.com/yggg/ng2-smart-table/issues/1210)) ([0480215](https://github.com/yggg/ng2-smart-table/commit/0480215))
+* upgrade to Angular 10 ([#1212](https://github.com/yggg/ng2-smart-table/issues/1212)) ([34b187f](https://github.com/yggg/ng2-smart-table/commit/34b187f))
+
+
+### BREAKING CHANGES
+
+`@akveo/ng2-completer` dependency replaced by `ng2-completer` as original package was fixed. Note on why we have to fork package could be found [here](#1140 (comment)). Please, uninstall `@akveo/ng2-completer` and install `ng2-completer`:
+```
+npm uninstall --save @akveo/ng2-completer
+npm install --save ng2-completer
+```
+
+
+
+# [1.6.0](https://github.com/yggg/ng2-smart-table/compare/v1.5.0...v1.6.0) (2020-03-23)
+
+
+### Features
+
+* upgrade to Angular 9 ([#1140](https://github.com/yggg/ng2-smart-table/issues/1140)) ([8a4f0bb](https://github.com/yggg/ng2-smart-table/commit/8a4f0bb))
+
+
+### BREAKING CHANGES
+
+* `ng2-completer` dependency replaced by `@akveo/ng2-completer`. Read details in [#1140](https://github.com/yggg/ng2-smart-table/issues/1140). This is a temporary measure until the original ng2-completer fixed. We have no plans to support `@akveo/ng2-completer`.
+* We no longer have a direct dependency on tslib. Instead it is now
+listed a peerDependency. This matches Angular framework.
+
+
+
+# [1.5.0](https://github.com/akveo/ng2-smart-table/compare/v1.4.0...v1.5.0) (2019-06-18)
+
+Tables updated to Angular 8.
+
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/akveo/ng2-smart-table/compare/v1.3.5...v1.4.0) (2019-02-19)
+
+
+### Bug Fixes
+
+* deprecation warning with angular 7 ([#961](https://github.com/akveo/ng2-smart-table/issues/961)) ([c1558b1](https://github.com/akveo/ng2-smart-table/commit/c1558b1))
+* **filter:** search on first input ([#883](https://github.com/akveo/ng2-smart-table/issues/883)) ([8d7283d](https://github.com/akveo/ng2-smart-table/commit/8d7283d))
+
+
+### Features
+
+* **filter:** add support for custom filters ([#825](https://github.com/akveo/ng2-smart-table/issues/825)) ([b4713d9](https://github.com/akveo/ng2-smart-table/commit/b4713d9)), closes [#632](https://github.com/akveo/ng2-smart-table/issues/632) [#569](https://github.com/akveo/ng2-smart-table/issues/569) [#447](https://github.com/akveo/ng2-smart-table/issues/447)
+
+
+
+<a name="1.3.5"></a>
+## [1.3.5](https://github.com/akveo/ng2-smart-table/compare/v1.3.4...v1.3.5) (2018-07-12)
+
+
+### Bug Fixes
+
+* **build:** compile to es5 ([d0c4608](https://github.com/akveo/ng2-smart-table/commit/d0c4608))
+
+
+
+<a name="1.3.4"></a>
+## [1.3.4](https://github.com/akveo/ng2-smart-table/compare/v1.3.3...v1.3.4) (2018-06-28)
+
+
+### Bug Fixes
+
+* **demo:** update polyfills for IE ([cf59d21](https://github.com/akveo/ng2-smart-table/commit/cf59d21))
+* move ng2-completer to peerDependencies ([aa62510](https://github.com/akveo/ng2-smart-table/commit/aa62510))
+
+
+
+<a name="1.3.3"></a>
+## [1.3.3](https://github.com/akveo/ng2-smart-table/compare/v1.3.2...v1.3.3) (2018-06-13)
+
+
+### Bug Fixes
+
+* **build:** fix release scripts ([2a7bd0c](https://github.com/akveo/ng2-smart-table/commit/2a7bd0c))
+
+
+
+<a name="1.3.2"></a>
+## [1.3.2](https://github.com/akveo/ng2-smart-table/compare/v1.3.1...v1.3.2) (2018-06-12)
+
+
+### Bug Fixes
+
+* **build:** fix release metadata generation ([10111e2](https://github.com/akveo/ng2-smart-table/commit/10111e2))
+* **filter:** fix ngModal deprecation warning ([e00c77f](https://github.com/akveo/ng2-smart-table/commit/e00c77f))
+
+
+
+<a name="1.3.1"></a>
+## [1.3.1](https://github.com/akveo/ng2-smart-table/compare/v1.3.0...v1.3.1) (2018-06-12)
+
+
+### Bug Fixes
+
+* fix gulp create metadata task ([#801](https://github.com/akveo/ng2-smart-table/issues/801)) ([96ad9d2](https://github.com/akveo/ng2-smart-table/commit/96ad9d2))
+
+
+
+<a name="1.3.0"></a>
+# [1.3.0](https://github.com/akveo/ng2-smart-table/compare/v1.2.2...v1.3.0) (2018-05-21)
+
+
+### Features
+
+* update to Angular 6 ([1d51de2](https://github.com/akveo/ng2-smart-table/commit/1d51de2))
+
+
+
 <a name="1.2.1"></a>
 # [1.2.1](https://github.com/akveo/ng2-smart-table/compare/v1.2.0...v1.2.1) (2017-05-25)
 
