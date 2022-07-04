@@ -23,5 +23,9 @@
         "projects/ng2-smart-table/src/public-api.ts"
       ]
     }
+  },
+  "angularCompilerOptions": {
+    "enableIvy": true,
+    "strictTemplates": false
   }
 }
