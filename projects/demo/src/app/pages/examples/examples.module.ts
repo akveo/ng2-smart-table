@@ -52,24 +52,18 @@ const EXAMPLES_COMPONENTS = [
 ];
 
 @NgModule({
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes),
-    Ng2SmartTableModule,
-    SharedModule,
-  ],
-  entryComponents: [
-    CustomEditorComponent,
-    CustomRenderComponent,
-    CustomFilterComponent,
-    ButtonViewComponent,
-  ],
-  declarations: [
-    ExamplesComponent,
-    ...EXAMPLES_COMPONENTS,
-  ],
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forChild(routes),
+        Ng2SmartTableModule,
+        SharedModule,
+    ],
+    declarations: [
+        ExamplesComponent,
+        ...EXAMPLES_COMPONENTS,
+    ]
 })
 export class ExamplesModule { }

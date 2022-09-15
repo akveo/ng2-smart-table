@@ -28,18 +28,6 @@
             "tsConfig": "projects/ng2-smart-table/tsconfig.spec.json",
             "karmaConfig": "projects/ng2-smart-table/karma.conf.js"
           }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/ng2-smart-table/tsconfig.lib.json",
-              "projects/ng2-smart-table/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -85,7 +73,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -137,19 +124,6 @@
               "projects/demo/src/styles.css"
             ],
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/demo/tsconfig.app.json",
-              "projects/demo/tsconfig.spec.json",
-              "projects/demo/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
           }
         },
         "e2e": {
