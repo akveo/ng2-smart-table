@@ -10,7 +10,7 @@
       "prefix": "lib",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:build",
           "options": {
             "tsConfig": "projects/ng2-smart-table/tsconfig.lib.json",
             "project": "projects/ng2-smart-table/ng-package.json"
@@ -27,6 +27,15 @@
             "main": "projects/ng2-smart-table/src/test.ts",
             "tsConfig": "projects/ng2-smart-table/tsconfig.spec.json",
             "karmaConfig": "projects/ng2-smart-table/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/ng2-smart-table/**/*.ts",
+              "projects/ng2-smart-table/**/*.html"
+            ]
           }
         }
       }
@@ -141,5 +150,10 @@
       }
     }
   },
-  "defaultProject": "ng2-smart-table"
+  "cli": {
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
+  }
 }

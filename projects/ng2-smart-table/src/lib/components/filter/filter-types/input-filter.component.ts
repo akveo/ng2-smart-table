@@ -1,5 +1,5 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, skip } from 'rxjs/operators';
 
 import { DefaultFilter } from './default-filter';
@@ -17,7 +17,7 @@ import { DefaultFilter } from './default-filter';
 })
 export class InputFilterComponent extends DefaultFilter implements OnInit, OnChanges {
 
-  inputControl = new FormControl();
+  inputControl = new UntypedFormControl();
 
   constructor() {
     super();
