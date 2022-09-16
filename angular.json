@@ -60,7 +60,7 @@
               "projects/demo/src/assets"
             ],
             "styles": [
-              "node_modules/highlight.js/styles/dracula.css",
+              "node_modules/highlight.js/styles/dark.css",
               "projects/demo/src/app/theme/theme.scss"
             ],
             "scripts": [],

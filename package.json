@@ -1,6 +1,6 @@
 {
-  "name": "ng2-smart-table",
-  "version": "1.7.2",
+  "name": "rt-ng2-smart-table",
+  "version": "1.7.4",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -15,7 +15,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^14.2.2",
     "@angular/common": "^14.2.2",
@@ -25,7 +24,7 @@
     "@angular/platform-browser": "^14.2.2",
     "@angular/platform-browser-dynamic": "^14.2.2",
     "@angular/router": "^14.2.2",
-    "highlight.js": "^9.18.5",
+    "highlight.js": "^11.6.0",
     "lodash": "^4.17.21",
     "ng2-completer": "^9.0.1",
     "rxjs": "^6.5.5",
@@ -47,7 +46,7 @@
     "@types/node": "^12.20.55",
     "@typescript-eslint/eslint-plugin": "5.36.2",
     "@typescript-eslint/parser": "5.36.2",
-    "angular-cli-ghpages": "^0.5.3",
+    "angular-cli-ghpages": "^1.0.3",
     "eslint": "^8.23.0",
     "eslint-plugin-import": "latest",
     "eslint-plugin-jsdoc": "latest",
@@ -61,6 +60,7 @@
     "karma-jasmine-html-reporter": "^1.7.0",
     "ng-packagr": "^14.2.1",
     "protractor": "~7.0.0",
+    "raw-loader": "^4.0.2",
     "standard-changelog": "^2.0.27",
     "ts-node": "~7.0.0",
     "typescript": "~4.6.4"

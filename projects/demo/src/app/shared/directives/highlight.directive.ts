@@ -9,7 +9,7 @@ export class HighlightCodeDirective implements AfterViewInit {
   constructor(private elRef: ElementRef) { }
 
   ngAfterViewInit() {
-    hljs.highlightBlock(this.elRef.nativeElement);
+    hljs.default.highlightBlock(this.elRef.nativeElement);
   }
 
 }
