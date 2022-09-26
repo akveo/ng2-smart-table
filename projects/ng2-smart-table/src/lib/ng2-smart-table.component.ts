@@ -101,6 +101,9 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   private destroyed$: Subject<void> = new Subject<void>();
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
+
+    console.log("ONEEB HELLO");
+
     if (this.grid) {
       if (changes['settings']) {
         this.grid.setSettings(this.prepareSettings());
