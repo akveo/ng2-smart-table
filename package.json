@@ -1,6 +1,6 @@
 {
   "name": "rt-ng2-smart-table",
-  "version": "1.7.5",
+  "version": "1.7.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
