@@ -7,6 +7,7 @@ import { DataSource } from './lib/data-source/data-source';
 import { Row } from './lib/data-set/row';
 import { deepExtend, getPageForRowIndex } from './lib/helpers';
 import { LocalDataSource } from './lib/data-source/local/local.data-source';
+import {ChangePageResult} from './components/pager/types';
 
 @Component({
   selector: 'ng2-smart-table',
@@ -16,7 +17,7 @@ import { LocalDataSource } from './lib/data-source/local/local.data-source';
 export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
 
   @Input() source: any;
-  @Input() settings: Object = {};
+  @Input() settings: object = {};
 
   @Output() rowSelect = new EventEmitter<any>();
   @Output() rowDeselect = new EventEmitter<any>();
@@ -28,6 +29,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   @Output() deleteConfirm = new EventEmitter<any>();
   @Output() editConfirm = new EventEmitter<any>();
   @Output() createConfirm = new EventEmitter<any>();
+  @Output() changePage = new EventEmitter<ChangePageResult>();
   @Output() rowHover: EventEmitter<any> = new EventEmitter<any>();
 
   tableClass: string;
@@ -36,10 +38,10 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
   isHideHeader: boolean;
   isHideSubHeader: boolean;
   isPagerDisplay: boolean;
-  rowClassFunction: Function;
+  rowClassFunction: (name: string, defaultValue?: any) => string;
 
   grid: Grid;
-  defaultSettings: Object = {
+  defaultSettings: object = {
     mode: 'inline', // inline|external|click-to-edit
     selectMode: 'single', // single|multi
     /**
@@ -94,7 +96,7 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     rowClassFunction: () => '',
   };
 
-  isAllSelected: boolean = false;
+  isAllSelected = false;
 
   private onSelectRowSubscription: Subscription;
   private onDeselectRowSubscription: Subscription;
@@ -102,10 +104,10 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
 
   ngOnChanges(changes: { [propertyName: string]: SimpleChange }) {
     if (this.grid) {
-      if (changes['settings']) {
+      if (changes.settings) {
         this.grid.setSettings(this.prepareSettings());
       }
-      if (changes['source']) {
+      if (changes.source) {
         this.source = this.prepareSource();
         this.grid.setSource(this.source);
       }
@@ -226,11 +228,12 @@ export class Ng2SmartTableComponent implements OnChanges, OnDestroy {
     return new LocalDataSource();
   }
 
-  prepareSettings(): Object {
+  prepareSettings(): object {
     return deepExtend({}, this.defaultSettings, this.settings);
   }
 
-  changePage($event: any) {
+  onPageChange(changePageResult: ChangePageResult) {
+    this.changePage.emit(changePageResult);
     this.resetAllSelector();
   }
 
