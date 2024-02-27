@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { Subscription } from 'rxjs';
 
 import { DataSource } from '../../lib/data-source/data-source';
+import {ChangePageResult} from "./types";
 
 @Component({
   selector: 'ng2-smart-table-pager',
@@ -39,7 +40,7 @@ import { DataSource } from '../../lib/data-source/data-source';
             <span class="sr-only">Next</span>
           </a>
         </li>
-        
+
         <li class="ng2-smart-page-item page-item"
         [ngClass]="{disabled: getPage() == getLast()}">
           <a class="ng2-smart-page-link page-link" href="#"
@@ -50,7 +51,7 @@ import { DataSource } from '../../lib/data-source/data-source';
         </li>
       </ul>
     </nav>
-    
+
     <nav *ngIf="perPageSelect && perPageSelect.length > 0" class="ng2-smart-pagination-per-page">
       <label for="per-page">
         Per Page:
@@ -66,13 +67,13 @@ export class PagerComponent implements OnChanges {
   @Input() source: DataSource;
   @Input() perPageSelect: any[] = [];
 
-  @Output() changePage = new EventEmitter<any>();
+  @Output() changePage = new EventEmitter<ChangePageResult>();
 
   currentPerPage: any;
 
   protected pages: Array<any>;
   protected page: number;
-  protected count: number = 0;
+  protected count = 0;
   protected perPage: number;
 
   protected dataChangedSub: Subscription;
