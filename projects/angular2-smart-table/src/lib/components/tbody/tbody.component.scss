@@ -1,0 +1,18 @@
+:host {
+  .angular2-smart-row {
+    &.selected {
+      background: rgba(0, 0, 0, 0.05);
+    }
+    .angular2-smart-actions {
+      &.angular2-smart-action-multiple-select {
+        text-align: center;
+      }
+    }
+  }
+  ::ng-deep angular2-st-tbody-edit-delete, ::ng-deep angular2-st-tbody-create-cancel, ::ng-deep angular2-st-tbody-expand {
+    a:first-child {
+      margin-right: 0.25rem;
+    }
+  }
+
+}

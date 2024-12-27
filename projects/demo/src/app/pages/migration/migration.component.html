@@ -1,0 +1,144 @@
+<header-component tagline="Coming from ng2-smart-table"></header-component>
+<section class="main-content">
+
+  <h2>Migration Guide</h2>
+  <p>
+    This document is for people who migrate their project from ng2-smart-table to this fork.
+    It contains information about the most significant changes and gives some advice that help
+    integrating this fork into your project.
+  </p>
+  <p>
+    Please consider, that while we are trying to be as compatible as possible, we may have introduced breaking changes.
+    Thus the increase of version number from the latest ng2-smart-table 1.7.2 to 2.x. If you need help for a specific
+    problem, open an <a target="_blank" href="https://github.com/dj-fiorex/angular2-smart-table/issues">Issue</a> on
+    GitHub and we try to help.
+  </p>
+  <p>
+    The recent component documentation including compatibility attributes you can find
+    <a [routerLink]="['/documentation']">here</a>.
+  </p>
+
+  <h3>Bring Back the Styling</h3>
+  <p>
+    If you want to stick to the original styling of the smart-table, you can copy the <a href="https://github.com/akveo/nebular/blob/master/src/framework/theme/styles/global/tables/_smart-table.theme.scss" target="_blank">original SCSS file</a>
+    into your project and replace the <code>ng2-</code> prefix of the selectors with <code>angular2-</code>.
+    There is no guarantee that this results in a perfect replica of the original styling, but it may come a lot more closer.
+  </p>
+
+  <h3>Setting Keys</h3>
+  This Section describes the changes to the settings object.
+
+  <h4>Deprecated</h4>
+  <p>
+    The following setting keys have been deprecated in 2.x and removed in 3.0.0:
+  </p>
+  <ul>
+    <li><code>editable</code> was renamed to <code>isEditable</code></li>
+    <li><code>sort</code> was renamed to <code>isSortable</code></li>
+    <li>The possibility to set <code>filter</code> to false was replaced with an <code>isFilterable</code> attribute</li>
+    <li><code>expandedRowComponent</code> has been into <code>expand</code> and was renamed to <code>component</code></li>
+    <li><code>expandRowButtonContent</code> was renamed to <code>buttonContent</code> (it is already part of the <code>expand</code> settings group)</li>
+    <li><code>class</code> was split into the separate <code>classHeader</code> and <code>classContent</code> settings</li>
+  </ul>
+
+  <h4>New Settings</h4>
+  <p>
+    <code>isAddable</code> - This flag works like <code>isEditable</code> (formerly <code>editable</code>) but affects
+    the cell in the row that is displayed when adding a new item (inline mode only).
+    The <code>isEditable</code> flag on the other hand has no effect on the "add" row.
+    This way you can control whether an attribute shall be immutable once it has been added.
+  </p>
+  <p>
+    <code>expand</code> - With these settings you can enable and configure
+    an additional action button to expand rows into full blown angular components that are displayed next to the
+    expanded row. Read the <a [routerLink]="['/documentation']">documentation</a> for details.
+  </p>
+  <p>
+    <code>editor.config.disableEnterKeySave</code> - By default, hitting ENTER in text, textarea, or select editor,
+    the row is submitted. This behavior can be disabled via this new setting.
+  </p>
+  <p>
+    <code>hideable</code> - Controls whether columns can be hidden by the user.
+  </p>
+  <p>
+    <code>resizable</code> - Controls whether columns can be resized by the user.
+    This is currently experimental and may not work smoothly in all environments.
+  </p>
+
+  <h3>Changed Behavior</h3>
+  <p>
+    For some reason, the <code>DataSource.setSort()</code> method allowed the specification of multiple fields.
+    However, support for sorting by multiple columns was never really implemented. Now it is, but to keep the API
+    backwards compatible, <code>setSort()</code> still replaces the entire sort configuration and we introduced a
+    new <code>updateSort()</code> method to adjust sorting parameters.
+  </p>
+
+  <h3>New Custom Renderer Initialization</h3>
+  <p>
+    Custom renderers were previously initialized by patching the renderer object with a <code>value</code> and a
+    <code>rowData</code> attribute. Those attributes were defined in a <code>ViewCell</code> interface and the custom
+    renderer should implement this interface.
+    However, the interface is too restrictive and does not allow complex types (for which custom renderers are usually
+    needed). See issue <a href="https://github.com/dj-fiorex/angular2-smart-table/issues/65" target="_blank">#65</a>
+    for more information.
+  </p>
+  <p>
+    Since version 3.0.0, the new way of initializing a custom renderer, is to specify a
+    <code>componentInitFunction</code> in the <code>settings</code> of the column where the <code>renderComponent</code>
+    is specified. You can find an example in the
+    <a class="source"
+       href="https://github.com/dj-fiorex/angular2-smart-table/blob/master/projects/demo/src/app/pages/examples/custom-edit-view/basic-example-button-view.component.ts"
+       target="_blank">Demo Source</a>.
+  </p>
+
+  <h3>Avoidance of Type Confusion</h3>
+  <p>
+    In the previous implementation of cells editors, type confusion could happen when the value provided by the data
+    source was not <code>string</code>.
+    Since a web formula can <em>only</em> work with strings, the effect was usually the following:
+  </p>
+  <ul>
+    <li>a value of a different type (e.g. <code>number</code>) was loaded in the form an internally stringified</li>
+    <li>when a cell was edited, the new value is stored and always has type <code>string</code></li>
+    <li>when the row was saved, all edited values were saved as <code>string</code> and untouched values were kept</li>
+  </ul>
+  <p>
+    That means, after saving a row, it was never obvious which type a value in a cell has, leading to all sorts of errors.
+    To address this issue, since version 3.0.0 the visual representation of the data in a cell is always supposed to be
+    of type <code>string</code>. You are encouraged to use the <code>valuePrepareFunction</code> in the column settings
+    to convert a value of a different type to a value of type <code>string</code>, and use the new
+    <code>valueStoreFunction</code> to have the user input of type <code>string</code> converted back to the a value of
+    the correct type in your data source.
+    The following example shows this with columns of type <code>number|null</code>:
+  </p>
+  <pre>
+    <code highlight class="typescript">
+      &#123;
+        title: 'Age',
+        isEditable: true,
+        valuePrepareFunction: (x) => x?.toString() ?? '',
+        valueStoreFunction: (x: string) => &#123;
+          const s = x.trim();
+          if (s === '') return null;
+          return Number(s);
+        &#125;,
+      &#125;
+    </code>
+  </pre>
+
+  <h3>Fixed Bugs</h3>
+  <p>
+    The documentation of the method <code>DataSource.count()</code> claimed to return the number of elements
+    in the data source. But actually it only returns the number of filtered elements.
+    For compatibility we only fixed the documentation.
+  </p>
+  <p>
+    <span class="highlight">ServerDataSource</span> - The behavior of the methods <code>getFilteredAndSorted()</code>
+    and <code>getAll()</code> is fixed. Previously, these methods were inherited from <code>LocalDataSource</code>
+    and returned the elements based on the <code>data</code> array within the data source. But in case of the the
+    <code>ServerDataSource</code> this array is already filtered, sorted, and paginated. The new implementation
+    updates the contents of the data source with the correct data by submitting the correct request. That also means,
+    that you now have to be a bit careful when using <code>getAll()</code> with an <code>ServerDataSource</code> if
+    the server stores a lot of data, because now you <em>really</em> get all the data.
+  </p>
+</section>

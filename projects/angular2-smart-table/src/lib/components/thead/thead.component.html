@@ -1,0 +1,22 @@
+<tr angular2-st-thead-titles-row *ngIf="!isHideHeader"
+    class="angular2-smart-titles"
+    [grid]="grid"
+    [isAllSelected]="isAllSelected"
+    [source]="source"
+    (hide)="hide.emit($event)"
+    (selectAllRows)="selectAllRows.emit()"
+></tr>
+
+<tr angular2-st-thead-filters-row *ngIf="!isHideSubHeader"
+    class="angular2-smart-filters"
+    [grid]="grid"
+    [source]="source"
+    (create)="create.emit($event)"
+></tr>
+
+<tr angular2-st-thead-form-row *ngIf="grid.createFormShown"
+    [grid]="grid"
+    [row]="grid.createFormRow"
+    [createConfirm]="createConfirm"
+    [createCancel]="createCancel"
+></tr>

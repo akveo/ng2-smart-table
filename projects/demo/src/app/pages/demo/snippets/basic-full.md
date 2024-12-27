@@ -4,12 +4,12 @@ import { Component } from '@angular/core';
   selector: 'basic-example-data',
   styles: [],
   template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    <angular2-smart-table [settings]="settings" [source]="data"></angular2-smart-table>
   `
 })
 export class BasicExampleDataComponent {
 
-  settings = {
+  settings: Settings = {
     columns: {
       id: {
         title: 'ID'

@@ -1,14 +1,17 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {BasicExampleCustomActionsItemComponent} from './basic-example-custom-actions-item.component';
+import {Settings} from "angular2-smart-table";
 
 @Component({
-  selector: 'basic-example-custom-actions',
-  template: `
-    <ng2-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)"></ng2-smart-table>
+    selector: 'basic-example-custom-actions',
+    template: `
+    <angular2-smart-table [settings]="settings" [source]="data" (custom)="onCustom($event)"></angular2-smart-table>
   `,
+    standalone: false
 })
 export class BasicExampleCustomActionsComponent {
 
-  settings = {
+  settings: Settings = {
     actions: {
       custom: [
         {
@@ -27,6 +30,11 @@ export class BasicExampleCustomActionsComponent {
           name: 'duplicate',
           title: 'Duplicate ',
         },
+        {
+          name: 'component',
+          title: 'Show',
+          renderComponent: BasicExampleCustomActionsItemComponent,
+        },
       ],
     },
     columns: {
@@ -41,7 +49,7 @@ export class BasicExampleCustomActionsComponent {
       },
       email: {
         title: 'Email',
-      }
+      },
     },
   };
 
@@ -78,7 +86,7 @@ export class BasicExampleCustomActionsComponent {
     },
   ];
 
-  onCustom(event) {
-    alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`)
+  onCustom(event: any) {
+    alert(`Custom event '${event.action}' fired on row №: ${event.data.id}`);
   }
 }

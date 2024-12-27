@@ -1,14 +1,20 @@
 import { Component } from '@angular/core';
+import {Settings} from "angular2-smart-table";
 
 @Component({
-  selector: 'basic-example-data',
-  template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    selector: 'basic-example-data',
+    template: `
+    <angular2-smart-table [settings]="settings" [source]="data"></angular2-smart-table>
   `,
+    standalone: false
 })
 export class BasicExampleDataComponent {
 
-  settings = {
+  settings: Settings = {
+    pager: {
+      perPage: 5,
+      perPageSelect: [5, 10, 15],
+    },
     columns: {
       id: {
         title: 'ID',
@@ -91,6 +97,12 @@ export class BasicExampleDataComponent {
       name: 'Nicholas DuBuque',
       username: 'Nicholas.Stanton',
       email: 'Rey.Padberg@rosamond.biz',
+    },
+    {
+      id: 12,
+      name: 'Gordon Freeman',
+      username: 'Crowbar',
+      email: 'gordon.freeman@black-mesa.science',
     },
   ];
 }

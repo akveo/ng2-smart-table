@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { ServerDataSource } from 'ng2-smart-table';
+import {Component} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {ServerDataSource, Settings} from 'angular2-smart-table';
 
 @Component({
-  selector: 'advanced-example-server',
-  template: `
-    <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+    selector: 'advanced-example-server',
+    template: `
+    <angular2-smart-table [settings]="settings" [source]="source"></angular2-smart-table>
   `,
+    standalone: false
 })
 export class AdvancedExampleServerComponent {
 
-  settings = {
+  settings: Settings = {
     columns: {
       id: {
         title: 'ID',
@@ -25,6 +26,11 @@ export class AdvancedExampleServerComponent {
         title: 'Url',
       },
     },
+    filter: {
+      // illustrate how increasing the debounce time may help
+      // to reduce server requests for audiences with slower typing speed
+      debounceTime: 800,
+    }
   };
 
   source: ServerDataSource;

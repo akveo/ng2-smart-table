@@ -1,60 +1,66 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ViewCell } from 'ng2-smart-table';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Cell, Settings} from 'angular2-smart-table';
 
 @Component({
-  selector: 'button-view',
-  template: `
+    selector: 'button-view',
+    template: `
     <button (click)="onClick()">{{ renderValue }}</button>
   `,
+    standalone: false
 })
-export class ButtonViewComponent implements ViewCell, OnInit {
-  renderValue: string;
+export class ButtonViewComponent {
+  renderValue!: string;
+  name: string = '';
 
-  @Input() value: string | number;
-  @Input() rowData: any;
-
-  @Output() save: EventEmitter<any> = new EventEmitter();
-
-  ngOnInit() {
-    this.renderValue = this.value.toString().toUpperCase();
-  }
+  @Output() save: EventEmitter<void> = new EventEmitter();
 
   onClick() {
-    this.save.emit(this.rowData);
+    this.save.emit();
+  }
+
+  static componentInit(instance: ButtonViewComponent, cell: Cell) {
+    instance.renderValue = cell.getValue().toUpperCase();
+    const name = cell.getRow().getData().name;
+    instance.save.subscribe((_: string) => {
+      alert(`${name} saved!`)
+    });
   }
 }
 
+
+
 @Component({
-  selector: 'basic-example-button-view',
-  template: `
-    <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
+    selector: 'basic-example-button-view',
+    template: `
+    <angular2-smart-table [settings]="settings" [source]="data"></angular2-smart-table>
   `,
+    standalone: false
 })
 export class BasicExampleButtonViewComponent implements OnInit {
 
-  settings = {
+  settings: Settings = {
     columns: {
       id: {
         title: 'ID',
+        type: 'text',
       },
       name: {
         title: 'Full Name',
+        type: 'text',
       },
       username: {
         title: 'User Name',
+        type: 'text',
       },
       email: {
         title: 'Email',
+        type: 'text',
       },
       button: {
         title: 'Button',
         type: 'custom',
         renderComponent: ButtonViewComponent,
-        onComponentInitFunction(instance) {
-          instance.save.subscribe(row => {
-            alert(`${row.name} saved!`)
-          });
-        }
+        componentInitFunction: ButtonViewComponent.componentInit,
       },
     },
   };
@@ -97,7 +103,8 @@ export class BasicExampleButtonViewComponent implements OnInit {
     },
   ];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

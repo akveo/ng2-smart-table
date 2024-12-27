@@ -1,1 +1,1 @@
-import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NgxSmartTableModule } from 'angular2-smart-table';

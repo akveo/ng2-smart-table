@@ -1,0 +1,47 @@
+<ng-container *ngIf="grid !== undefined">
+<angular2-smart-table-tags-list *ngIf="isTagListShown"
+  [tags]="notVisibleColumnTagsList" (close)="onShowColumn($event)"
+></angular2-smart-table-tags-list>
+
+<div style="overflow-x: auto; -webkit-overflow-scrolling: touch">
+  <table [id]="tableId" [ngClass]="tableClass">
+    <thead
+      angular2-st-thead
+      *ngIf="!isHideHeader || !isHideSubHeader"
+      [grid]="grid"
+      [isAllSelected]="isAllSelected"
+      [source]="source"
+      [createConfirm]="createConfirm"
+      [createCancel]="createCancel"
+      (create)="create.emit($event)"
+      (selectAllRows)="onSelectAllRows()"
+      (hide)="onHideColumn($event)"
+    ></thead>
+
+    <tbody
+      angular2-st-tbody
+      [grid]="grid"
+      [source]="source"
+      [deleteConfirm]="deleteConfirm"
+      [editConfirm]="editConfirm"
+      [editCancel]="editCancel"
+      [rowClassFunction]="rowClassFunction"
+      (edit)="edit.emit($event)"
+      (delete)="delete.emit($event)"
+      (custom)="custom.emit($event)"
+      (userSelectRow)="onUserSelectRow($event)"
+      (editRowSelect)="onEditRowSelect($event)"
+      (multipleSelectRow)="onMultipleSelectRow($event)"
+      (onExpandRow)="onExpandRow($event)"
+      (rowHover)="onRowHover($event)"
+    ></tbody>
+  </table>
+</div>
+<angular2-smart-table-pager
+  *ngIf="isPagerDisplay"
+  [source]="source"
+  [perPageSelect]="perPageSelect"
+  [perPageSelectLabel]="perPageSelectLabel"
+>
+</angular2-smart-table-pager>
+</ng-container>

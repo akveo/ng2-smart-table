@@ -1,0 +1,69 @@
+:host {
+  font-size: 1rem;
+
+  ::ng-deep {
+    * {
+      box-sizing: border-box;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      color: inherit;
+      font: inherit;
+      margin: 0;
+    }
+
+    table {
+      line-height: 1.5em;
+      border-collapse: collapse;
+      border-spacing: 0;
+      display: table;
+      width: 100%;
+      max-width: 100%;
+      overflow: auto;
+      word-break: normal;
+      word-break: keep-all;
+
+      tr {
+        th {
+          font-weight: bold;
+          position: relative;
+
+          .angular2-resizer-block {
+            width: 8px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            cursor: col-resize;
+          }
+        }
+        section {
+          font-size: .75em;
+          font-weight: bold;
+        }
+        td,
+        th {
+          font-size: .875em;
+          margin: 0;
+          padding: 0.5em 1em;
+        }
+      }
+    }
+
+    a {
+      color: #1e6bb8;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .not-allowed {
+      cursor: not-allowed;
+    }
+  }
+}

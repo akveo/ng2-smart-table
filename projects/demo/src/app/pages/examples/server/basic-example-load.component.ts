@@ -1,25 +1,26 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
-import { LocalDataSource } from 'ng2-smart-table';
-import { BasicExampleLoadService } from './basic-example-load.service';
+import {LocalDataSource, Settings} from 'angular2-smart-table';
+import {BasicExampleLoadService} from './basic-example-load.service';
 
 @Component({
-  selector: 'basic-example-load',
-  providers: [BasicExampleLoadService],
-  template: `
-    <ng2-smart-table [settings]="settings" [source]="source"></ng2-smart-table>
+    selector: 'basic-example-load',
+    providers: [BasicExampleLoadService],
+    template: `
+    <angular2-smart-table [settings]="settings" [source]="source"></angular2-smart-table>
   `,
+    standalone: false
 })
 export class BasicExampleLoadComponent {
 
   source: LocalDataSource;
 
-  settings = {
+  settings: Settings = {
     columns: {
       id: {
         title: 'ID',
-        editable: false,
-        addable: false,
+        isEditable: false,
+        isAddable: false,
       },
 
 

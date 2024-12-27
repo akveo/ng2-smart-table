@@ -1,0 +1,97 @@
+<ng-container  *ngFor="let row of grid.getRows()">
+  <tr (click)="userSelectRow.emit(row)" (mouseover)="rowHover.emit(row)" class="angular2-smart-row" [className]="rowClassFunction(row)" [ngClass]="{selected: row.isSelected}">
+    <td *ngIf="isMultiSelectVisible" class="angular2-smart-actions angular2-smart-action-multiple-select" (click)="multipleSelectRow.emit(row)">
+      <input type="checkbox" [checked]="row.isSelected">
+    </td>
+    <td *ngIf="!row.isInEditing && showActionColumnLeft" class="angular2-smart-actions">
+
+      <angular2-st-tbody-custom
+        [grid]="grid"
+        (custom)="custom.emit($event)"
+        [row]="row"
+        [source]="source">
+      </angular2-st-tbody-custom>
+
+      <angular2-st-tbody-expand
+          *ngIf="hasChildComponent"
+          [grid]="grid"
+          [row]="row"
+          (onExpandRow)="onExpandRow.emit(row)">
+      </angular2-st-tbody-expand>
+
+      <angular2-st-tbody-edit-delete [grid]="grid"
+                                [deleteConfirm]="deleteConfirm"
+                                (edit)="edit.emit($event)"
+                                (delete)="delete.emit($event)"
+                                (editRowSelect)="editRowSelect.emit($event)"
+                                [row]="row"
+                                [source]="source">
+      </angular2-st-tbody-edit-delete>
+    </td>
+    <td *ngIf="row.isInEditing && showActionColumnLeft"  class="angular2-smart-actions">
+      <angular2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm" [editCancel]="editCancel"></angular2-st-tbody-create-cancel>
+    </td>
+    <ng-container *ngFor="let cell of getVisibleCells(row.cells)">
+      <td *ngIf="!cell.getColumn().isRowHeading">
+        <angular2-smart-table-cell
+          [cell]="cell"
+          [grid]="grid"
+          [row]="row"
+          [isNew]="false"
+          [mode]="mode"
+          [editConfirm]="editConfirm"
+          [editCancel]="editCancel"
+          [inputClass]="editInputClass"
+          [isInEditing]="row.isInEditing"
+        ></angular2-smart-table-cell>
+      </td>
+      <th *ngIf="cell.getColumn().isRowHeading" scope="row">
+        <angular2-smart-table-cell
+          [cell]="cell"
+          [grid]="grid"
+          [row]="row"
+          [isNew]="false"
+          [mode]="mode"
+          [editConfirm]="editConfirm"
+          [editCancel]="editCancel"
+          [inputClass]="editInputClass"
+          [isInEditing]="row.isInEditing"
+        ></angular2-smart-table-cell>
+      </th>
+    </ng-container>
+
+    <td *ngIf="row.isInEditing && showActionColumnRight"  class="angular2-smart-actions">
+      <angular2-st-tbody-create-cancel [grid]="grid" [row]="row" [editConfirm]="editConfirm" [editCancel]="editCancel"></angular2-st-tbody-create-cancel>
+    </td>
+
+    <td *ngIf="!row.isInEditing && showActionColumnRight" class="angular2-smart-actions">
+      <angular2-st-tbody-custom [grid]="grid" (custom)="custom.emit($event)" [row]="row" [source]="source"></angular2-st-tbody-custom>
+
+      <angular2-st-tbody-expand
+          *ngIf="hasChildComponent"
+          [grid]="grid"
+          [row]="row"
+          (onExpandRow)="onExpandRow.emit(row)">
+      </angular2-st-tbody-expand>
+
+      <angular2-st-tbody-edit-delete [grid]="grid"
+                                [deleteConfirm]="deleteConfirm"
+                                [row]="row"
+                                [source]="source"
+                                (edit)="edit.emit($event)"
+                                (delete)="delete.emit($event)"
+                                (editRowSelect)="editRowSelect.emit($event)">
+      </angular2-st-tbody-edit-delete>
+    </td>
+  </tr>
+  <tr class="angular2-smart-row angular2-smart-row-detail" *ngIf="row.isExpanded">
+    <td [attr.colspan]="tableColumnsCount" class="angular2-smart-column-expandedDetail">
+      <ng-template #expandedRowChild ></ng-template>
+    </td>
+  </tr>
+</ng-container>
+<tr *ngIf="grid.getRows().length == 0">
+  <td [attr.colspan]="tableColumnsCount">
+    {{ noDataMessage }}
+  </td>
+</tr>

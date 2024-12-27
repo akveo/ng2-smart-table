@@ -4,7 +4,7 @@
   imports: [
     // ...
     
-    Ng2SmartTableModule,
+    NgxSmartTableModule,
     
     // ...
   ],
